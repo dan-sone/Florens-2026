@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_1391adca8bfb43099964d4b8f21913ee {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-locatecontrol/0.66.2/L.Control.Locate.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-locatecontrol/0.66.2/L.Control.Locate.min.css"/>
+</head>
+<body>
+    
+    <div style="position:fixed;top:12px;left:50px;z-index:9999;background:white;padding:9px 13px;border-radius:8px;box-shadow:0 1px 6px #777;font:14px Arial"><b>Florens 13–17 oktober 2026</b><br>Tryck på en nål för info och Apple Kartor.<br><small>Vissa punkter är ungefärligt placerade. Kräver internet.</small></div>
+    
+            <div class="folium-map" id="map_1391adca8bfb43099964d4b8f21913ee" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_1391adca8bfb43099964d4b8f21913ee = L.map(
+                "map_1391adca8bfb43099964d4b8f21913ee",
+                {
+                    center: [43.7702, 11.2555],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 14,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_1391adca8bfb43099964d4b8f21913ee);
+
+            
+
+        
+    
+            var tile_layer_670938deb8b58c2d30ad3e7204f24def = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_670938deb8b58c2d30ad3e7204f24def.addTo(map_1391adca8bfb43099964d4b8f21913ee);
+        
+    
+            var feature_group_5855dee185ea13867ee5d4ba73cbabd2 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_8a22b7414262781faf22f1676a74b152 = L.marker(
+                [43.7667626, 11.2493264],
+                {
+}
+            ).addTo(map_1391adca8bfb43099964d4b8f21913ee);
+        
+    
+            var icon_ae2aada3ede8e23b1ce7d45c07a028ab = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_21a93b5b7f1241867b5c513bb4465930 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_16060d77390708b40735b274c89e81bf = $(`<div id="html_16060d77390708b40735b274c89e81bf" style="width: 100.0%; height: 100.0%;"><div style="width:210px;font-family:sans-serif"><b>Hotel La Scaletta</b><br>Ert hotell · 13–17 oktober<br><br><a target="_blank" href="https://maps.apple.com/?q=Hotel La Scaletta&ll=43.7667626,11.2493264">Öppna i Apple Kartor ↗</a></div></div>`)[0];
+                popup_21a93b5b7f1241867b5c513bb4465930.setContent(html_16060d77390708b40735b274c89e81bf);
+            
+        
+
+        marker_8a22b7414262781faf22f1676a74b152.bindPopup(popup_21a93b5b7f1241867b5c513bb4465930)
+        ;
+
+        
+    
+    
+            marker_8a22b7414262781faf22f1676a74b152.bindTooltip(
+                `<div>
+                     Hotel La Scaletta
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8a22b7414262781faf22f1676a74b152.setIcon(icon_ae2aada3ede8e23b1ce7d45c07a028ab);
+            
+    
+            var marker_f78b361296e99e0a7fdb55d3ca77ef58 = L.marker(
+                [43.7731, 11.256],
+                {
+}
+            ).addTo(feature_group_5855dee185ea13867ee5d4ba73cbabd2);
+        
+    
+            var icon_e9e2e0ba376559e451d585694093e421 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_adbc450a49b9709a9b9378c6e4423675 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_15a3101f4257b13a30c3c991b06a8c0f = $(`<div id="html_15a3101f4257b13a30c3c991b06a8c0f" style="width: 100.0%; height: 100.0%;"><div style="width:210px;font-family:sans-serif"><b>Duomo / Santa Reparata</b><br>Ons 14/10 · 11.30 · Ghiberti Pass<br><br><a target="_blank" href="https://maps.apple.com/?q=Duomo / Santa Reparata&ll=43.7731,11.256">Öppna i Apple Kartor ↗</a></div></div>`)[0];
+                popup_adbc450a49b9709a9b9378c6e4423675.setContent(html_15a3101f4257b13a30c3c991b06a8c0f);
+            
+        
+
+        marker_f78b361296e99e0a7fdb55d3ca77ef58.bindPopup(popup_adbc450a49b9709a9b9378c6e4423675)
+        ;
+
+        
+    
+    
+            marker_f78b361296e99e0a7fdb55d3ca77ef58.bindTooltip(
+                `<div>
+                     Duomo / Santa Reparata
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f78b361296e99e0a7fdb55d3ca77ef58.setIcon(icon_e9e2e0ba376559e451d585694093e421);
+            
+    
+            var marker_b1bb54047a52db74d4f7be140387a747 = L.marker(
+                [43.7669, 11.2451],
+                {
+}
+            ).addTo(feature_group_5855dee185ea13867ee5d4ba73cbabd2);
+        
+    
+            var icon_67cc2139a4a1e427550fa13700797156 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a00c1ae19b180d1010c7e78fe59d07b1 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_5a791ffbbcaa3359c2c83cadceb8f284 = $(`<div id="html_5a791ffbbcaa3359c2c83cadceb8f284" style="width: 100.0%; height: 100.0%;"><div style="width:210px;font-family:sans-serif"><b>Cuculia</b><br>Ons 14/10 · 19.45 · födelsedagsmiddag<br><br><a target="_blank" href="https://maps.apple.com/?q=Cuculia&ll=43.7669,11.2451">Öppna i Apple Kartor ↗</a></div></div>`)[0];
+                popup_a00c1ae19b180d1010c7e78fe59d07b1.setContent(html_5a791ffbbcaa3359c2c83cadceb8f284);
+            
+        
+
+        marker_b1bb54047a52db74d4f7be140387a747.bindPopup(popup_a00c1ae19b180d1010c7e78fe59d07b1)
+        ;
+
+        
+    
+    
+            marker_b1bb54047a52db74d4f7be140387a747.bindTooltip(
+                `<div>
+                     Cuculia
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b1bb54047a52db74d4f7be140387a747.setIcon(icon_67cc2139a4a1e427550fa13700797156);
+            
+    
+            var marker_20caf9612f829daec683fe7dca4aae0d = L.marker(
+                [43.7515, 11.2831],
+                {
+}
+            ).addTo(feature_group_5855dee185ea13867ee5d4ba73cbabd2);
+        
+    
+            var icon_61933348c82199bdfbcabaca81480fca = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c641099aaa31051489d5febfe8236308 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_4d28211f362bd6758fc6731dd005684f = $(`<div id="html_4d28211f362bd6758fc6731dd005684f" style="width: 100.0%; height: 100.0%;"><div style="width:210px;font-family:sans-serif"><b>Fondazione Arte della Seta Lisio</b><br>Tors 15/10 · 10.15 · guidad visning · taxi<br><br><a target="_blank" href="https://maps.apple.com/?q=Fondazione Arte della Seta Lisio&ll=43.7515,11.2831">Öppna i Apple Kartor ↗</a></div></div>`)[0];
+                popup_c641099aaa31051489d5febfe8236308.setContent(html_4d28211f362bd6758fc6731dd005684f);
+            
+        
+
+        marker_20caf9612f829daec683fe7dca4aae0d.bindPopup(popup_c641099aaa31051489d5febfe8236308)
+        ;
+
+        
+    
+    
+            marker_20caf9612f829daec683fe7dca4aae0d.bindTooltip(
+                `<div>
+                     Fondazione Arte della Seta Lisio
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_20caf9612f829daec683fe7dca4aae0d.setIcon(icon_61933348c82199bdfbcabaca81480fca);
+            
+    
+            var marker_5884ee0c54ed03d7ceb50733487538de = L.marker(
+                [43.7687, 11.255],
+                {
+}
+            ).addTo(feature_group_5855dee185ea13867ee5d4ba73cbabd2);
+        
+    
+            var icon_68783f4722c0075e9e29edcc677dcc6c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bb0b4d4e206b9ae837467d701f33fcfa = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_866ec367d50b0310313c14c2b3967b87 = $(`<div id="html_866ec367d50b0310313c14c2b3967b87" style="width: 100.0%; height: 100.0%;"><div style="width:210px;font-family:sans-serif"><b>Uffizierna</b><br>Fre 16/10 · 10.30<br><br><a target="_blank" href="https://maps.apple.com/?q=Uffizierna&ll=43.7687,11.255">Öppna i Apple Kartor ↗</a></div></div>`)[0];
+                popup_bb0b4d4e206b9ae837467d701f33fcfa.setContent(html_866ec367d50b0310313c14c2b3967b87);
+            
+        
+
+        marker_5884ee0c54ed03d7ceb50733487538de.bindPopup(popup_bb0b4d4e206b9ae837467d701f33fcfa)
+        ;
+
+        
+    
+    
+            marker_5884ee0c54ed03d7ceb50733487538de.bindTooltip(
+                `<div>
+                     Uffizierna
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5884ee0c54ed03d7ceb50733487538de.setIcon(icon_68783f4722c0075e9e29edcc677dcc6c);
+            
+    
+            var marker_4fed27821bfadfc3663b09b1f120a194 = L.marker(
+                [43.7723, 11.27],
+                {
+}
+            ).addTo(feature_group_5855dee185ea13867ee5d4ba73cbabd2);
+        
+    
+            var icon_dd080422bd56481306e130da65764ab6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6a42e80e05d25f4bceedc4439d484a69 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_c6d92578e433a23f6c2ba693f5787045 = $(`<div id="html_c6d92578e433a23f6c2ba693f5787045" style="width: 100.0%; height: 100.0%;"><div style="width:210px;font-family:sans-serif"><b>Nugolo</b><br>Fre 16/10 · 19.30 · Via della Mattonaia 27R<br><br><a target="_blank" href="https://maps.apple.com/?q=Nugolo&ll=43.7723,11.27">Öppna i Apple Kartor ↗</a></div></div>`)[0];
+                popup_6a42e80e05d25f4bceedc4439d484a69.setContent(html_c6d92578e433a23f6c2ba693f5787045);
+            
+        
+
+        marker_4fed27821bfadfc3663b09b1f120a194.bindPopup(popup_6a42e80e05d25f4bceedc4439d484a69)
+        ;
+
+        
+    
+    
+            marker_4fed27821bfadfc3663b09b1f120a194.bindTooltip(
+                `<div>
+                     Nugolo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4fed27821bfadfc3663b09b1f120a194.setIcon(icon_dd080422bd56481306e130da65764ab6);
+            
+    
+            feature_group_5855dee185ea13867ee5d4ba73cbabd2.addTo(map_1391adca8bfb43099964d4b8f21913ee);
+        
+    
+            var feature_group_73bf42fca102a8dfe1423063bcd23981 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_fcd2a30082632f2df5859179a435b6ef = L.marker(
+                [43.768, 11.2531],
+                {
+}
+            ).addTo(feature_group_73bf42fca102a8dfe1423063bcd23981);
+        
+    
+            var icon_b73ef780f3a58cb63bbcf967cab7d6c7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e858367fdac4808969dc359990ab7316 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_ba966c110a5563d3cf142cf787ce22fc = $(`<div id="html_ba966c110a5563d3cf142cf787ce22fc" style="width: 100.0%; height: 100.0%;"><div style="width:210px;font-family:sans-serif"><b>Ponte Vecchio</b><br>Florens klassiska bro<br><br><a target="_blank" href="https://maps.apple.com/?q=Ponte Vecchio&ll=43.768,11.2531">Öppna i Apple Kartor ↗</a></div></div>`)[0];
+                popup_e858367fdac4808969dc359990ab7316.setContent(html_ba966c110a5563d3cf142cf787ce22fc);
+            
+        
+
+        marker_fcd2a30082632f2df5859179a435b6ef.bindPopup(popup_e858367fdac4808969dc359990ab7316)
+        ;
+
+        
+    
+    
+            marker_fcd2a30082632f2df5859179a435b6ef.bindTooltip(
+                `<div>
+                     Ponte Vecchio
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_fcd2a30082632f2df5859179a435b6ef.setIcon(icon_b73ef780f3a58cb63bbcf967cab7d6c7);
+            
+    
+            var marker_3438ef585ef07065fa26c2dceec6ae88 = L.marker(
+                [43.7652, 11.2501],
+                {
+}
+            ).addTo(feature_group_73bf42fca102a8dfe1423063bcd23981);
+        
+    
+            var icon_5aa3bb283d9d8a0a0c83e2d29e780d76 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a97d9e13c041f6fcf50d1db2f6530a13 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_9e52fa056a58e4e5c219a6c45d58511e = $(`<div id="html_9e52fa056a58e4e5c219a6c45d58511e" style="width: 100.0%; height: 100.0%;"><div style="width:210px;font-family:sans-serif"><b>Palazzo Pitti</b><br>Palats och Pitti-kvarteren<br><br><a target="_blank" href="https://maps.apple.com/?q=Palazzo Pitti&ll=43.7652,11.2501">Öppna i Apple Kartor ↗</a></div></div>`)[0];
+                popup_a97d9e13c041f6fcf50d1db2f6530a13.setContent(html_9e52fa056a58e4e5c219a6c45d58511e);
+            
+        
+
+        marker_3438ef585ef07065fa26c2dceec6ae88.bindPopup(popup_a97d9e13c041f6fcf50d1db2f6530a13)
+        ;
+
+        
+    
+    
+            marker_3438ef585ef07065fa26c2dceec6ae88.bindTooltip(
+                `<div>
+                     Palazzo Pitti
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3438ef585ef07065fa26c2dceec6ae88.setIcon(icon_5aa3bb283d9d8a0a0c83e2d29e780d76);
+            
+    
+            var marker_4cacfdd4eba45855a76fa4f21a3eb383 = L.marker(
+                [43.7668, 11.2507],
+                {
+}
+            ).addTo(feature_group_73bf42fca102a8dfe1423063bcd23981);
+        
+    
+            var icon_7cda34db776d831d26b4713ed6f7ecfe = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1e1cce58a5cbefe88afc2de4534694a0 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_b306c8447488249f815827966f4b35b1 = $(`<div id="html_b306c8447488249f815827966f4b35b1" style="width: 100.0%; height: 100.0%;"><div style="width:210px;font-family:sans-serif"><b>Piazza della Passera</b><br>Litet torg i Oltrarno<br><br><a target="_blank" href="https://maps.apple.com/?q=Piazza della Passera&ll=43.7668,11.2507">Öppna i Apple Kartor ↗</a></div></div>`)[0];
+                popup_1e1cce58a5cbefe88afc2de4534694a0.setContent(html_b306c8447488249f815827966f4b35b1);
+            
+        
+
+        marker_4cacfdd4eba45855a76fa4f21a3eb383.bindPopup(popup_1e1cce58a5cbefe88afc2de4534694a0)
+        ;
+
+        
+    
+    
+            marker_4cacfdd4eba45855a76fa4f21a3eb383.bindTooltip(
+                `<div>
+                     Piazza della Passera
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4cacfdd4eba45855a76fa4f21a3eb383.setIcon(icon_7cda34db776d831d26b4713ed6f7ecfe);
+            
+    
+            var marker_e90b8b9b905c5a6fcd23a6200ca7f7ed = L.marker(
+                [43.7662, 11.2476],
+                {
+}
+            ).addTo(feature_group_73bf42fca102a8dfe1423063bcd23981);
+        
+    
+            var icon_bd1d6876f5ee8e6a2da185c457160ff8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7b248a919ee49e0df1008db69d60efe2 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_cbb91a52c8e7cbaab2b609098deb1aa4 = $(`<div id="html_cbb91a52c8e7cbaab2b609098deb1aa4" style="width: 100.0%; height: 100.0%;"><div style="width:210px;font-family:sans-serif"><b>Piazza Santo Spirito</b><br>Livligt kvarter för aperitivo<br><br><a target="_blank" href="https://maps.apple.com/?q=Piazza Santo Spirito&ll=43.7662,11.2476">Öppna i Apple Kartor ↗</a></div></div>`)[0];
+                popup_7b248a919ee49e0df1008db69d60efe2.setContent(html_cbb91a52c8e7cbaab2b609098deb1aa4);
+            
+        
+
+        marker_e90b8b9b905c5a6fcd23a6200ca7f7ed.bindPopup(popup_7b248a919ee49e0df1008db69d60efe2)
+        ;
+
+        
+    
+    
+            marker_e90b8b9b905c5a6fcd23a6200ca7f7ed.bindTooltip(
+                `<div>
+                     Piazza Santo Spirito
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e90b8b9b905c5a6fcd23a6200ca7f7ed.setIcon(icon_bd1d6876f5ee8e6a2da185c457160ff8);
+            
+    
+            var marker_beb98bc549678669daa31a33b0d840f6 = L.marker(
+                [43.766, 11.2474],
+                {
+}
+            ).addTo(feature_group_73bf42fca102a8dfe1423063bcd23981);
+        
+    
+            var icon_8d73b79f519276d678e6d0f0705b6778 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_567c13fb7474860400297a1e16049581 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_26182a0b804241b698d4bbb6d4f0d82b = $(`<div id="html_26182a0b804241b698d4bbb6d4f0d82b" style="width: 100.0%; height: 100.0%;"><div style="width:210px;font-family:sans-serif"><b>Basilica di Santo Spirito</b><br>Kyrka av Brunelleschi<br><br><a target="_blank" href="https://maps.apple.com/?q=Basilica di Santo Spirito&ll=43.766,11.2474">Öppna i Apple Kartor ↗</a></div></div>`)[0];
+                popup_567c13fb7474860400297a1e16049581.setContent(html_26182a0b804241b698d4bbb6d4f0d82b);
+            
+        
+
+        marker_beb98bc549678669daa31a33b0d840f6.bindPopup(popup_567c13fb7474860400297a1e16049581)
+        ;
+
+        
+    
+    
+            marker_beb98bc549678669daa31a33b0d840f6.bindTooltip(
+                `<div>
+                     Basilica di Santo Spirito
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_beb98bc549678669daa31a33b0d840f6.setIcon(icon_8d73b79f519276d678e6d0f0705b6778);
+            
+    
+            var marker_48cf83d1f4c21311bb3fa439abc32404 = L.marker(
+                [43.7677, 11.243],
+                {
+}
+            ).addTo(feature_group_73bf42fca102a8dfe1423063bcd23981);
+        
+    
+            var icon_d22387de62cf30590b16c48c2582e6b1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4277b21385e7842b66046ae1e887ffee = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_3d41d9cc35fd5830901c349817741fe9 = $(`<div id="html_3d41d9cc35fd5830901c349817741fe9" style="width: 100.0%; height: 100.0%;"><div style="width:210px;font-family:sans-serif"><b>Piazza del Carmine</b><br>Vägen mot San Frediano<br><br><a target="_blank" href="https://maps.apple.com/?q=Piazza del Carmine&ll=43.7677,11.243">Öppna i Apple Kartor ↗</a></div></div>`)[0];
+                popup_4277b21385e7842b66046ae1e887ffee.setContent(html_3d41d9cc35fd5830901c349817741fe9);
+            
+        
+
+        marker_48cf83d1f4c21311bb3fa439abc32404.bindPopup(popup_4277b21385e7842b66046ae1e887ffee)
+        ;
+
+        
+    
+    
+            marker_48cf83d1f4c21311bb3fa439abc32404.bindTooltip(
+                `<div>
+                     Piazza del Carmine
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_48cf83d1f4c21311bb3fa439abc32404.setIcon(icon_d22387de62cf30590b16c48c2582e6b1);
+            
+    
+            var marker_979801a10cac43a9e8d24b3c2915c0be = L.marker(
+                [43.7696, 11.2557],
+                {
+}
+            ).addTo(feature_group_73bf42fca102a8dfe1423063bcd23981);
+        
+    
+            var icon_9fcffb49bb8f209d4dd76c9599d3a128 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_89d0fbc05f896291f63852c14df9f864 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_1a0bd8a4af6841abc9b31bf9de7ed96a = $(`<div id="html_1a0bd8a4af6841abc9b31bf9de7ed96a" style="width: 100.0%; height: 100.0%;"><div style="width:210px;font-family:sans-serif"><b>Piazza della Signoria</b><br>Palazzo Vecchio och skulpturer<br><br><a target="_blank" href="https://maps.apple.com/?q=Piazza della Signoria&ll=43.7696,11.2557">Öppna i Apple Kartor ↗</a></div></div>`)[0];
+                popup_89d0fbc05f896291f63852c14df9f864.setContent(html_1a0bd8a4af6841abc9b31bf9de7ed96a);
+            
+        
+
+        marker_979801a10cac43a9e8d24b3c2915c0be.bindPopup(popup_89d0fbc05f896291f63852c14df9f864)
+        ;
+
+        
+    
+    
+            marker_979801a10cac43a9e8d24b3c2915c0be.bindTooltip(
+                `<div>
+                     Piazza della Signoria
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_979801a10cac43a9e8d24b3c2915c0be.setIcon(icon_9fcffb49bb8f209d4dd76c9599d3a128);
+            
+    
+            var marker_ea876f546459bcad7ff83844456c5ec2 = L.marker(
+                [43.7694, 11.2556],
+                {
+}
+            ).addTo(feature_group_73bf42fca102a8dfe1423063bcd23981);
+        
+    
+            var icon_547b0d6e853ae5fceeadf9cd185ee953 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a2c03397c62e243e8d53de7daf9b728d = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_ea14b4de15beba9d3e4005706051c9a6 = $(`<div id="html_ea14b4de15beba9d3e4005706051c9a6" style="width: 100.0%; height: 100.0%;"><div style="width:210px;font-family:sans-serif"><b>Loggia dei Lanzi</b><br>Skulpturer under arkaderna<br><br><a target="_blank" href="https://maps.apple.com/?q=Loggia dei Lanzi&ll=43.7694,11.2556">Öppna i Apple Kartor ↗</a></div></div>`)[0];
+                popup_a2c03397c62e243e8d53de7daf9b728d.setContent(html_ea14b4de15beba9d3e4005706051c9a6);
+            
+        
+
+        marker_ea876f546459bcad7ff83844456c5ec2.bindPopup(popup_a2c03397c62e243e8d53de7daf9b728d)
+        ;
+
+        
+    
+    
+            marker_ea876f546459bcad7ff83844456c5ec2.bindTooltip(
+                `<div>
+                     Loggia dei Lanzi
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ea876f546459bcad7ff83844456c5ec2.setIcon(icon_547b0d6e853ae5fceeadf9cd185ee953);
+            
+    
+            var marker_af9b0be3de48f128c99612b6e6661aae = L.marker(
+                [43.7708, 11.2549],
+                {
+}
+            ).addTo(feature_group_73bf42fca102a8dfe1423063bcd23981);
+        
+    
+            var icon_ce614cec8d2394377dc6f677dc45ea66 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_39eb8a4c4096408359b9d6f6f3fb0122 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_cfac70fcb1f46f2368a90b7411764bc0 = $(`<div id="html_cfac70fcb1f46f2368a90b7411764bc0" style="width: 100.0%; height: 100.0%;"><div style="width:210px;font-family:sans-serif"><b>Orsanmichele</b><br>Ovanlig kyrka och medeltida arkitektur<br><br><a target="_blank" href="https://maps.apple.com/?q=Orsanmichele&ll=43.7708,11.2549">Öppna i Apple Kartor ↗</a></div></div>`)[0];
+                popup_39eb8a4c4096408359b9d6f6f3fb0122.setContent(html_cfac70fcb1f46f2368a90b7411764bc0);
+            
+        
+
+        marker_af9b0be3de48f128c99612b6e6661aae.bindPopup(popup_39eb8a4c4096408359b9d6f6f3fb0122)
+        ;
+
+        
+    
+    
+            marker_af9b0be3de48f128c99612b6e6661aae.bindTooltip(
+                `<div>
+                     Orsanmichele
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_af9b0be3de48f128c99612b6e6661aae.setIcon(icon_ce614cec8d2394377dc6f677dc45ea66);
+            
+    
+            var marker_8513241a9ca40813e02887e1685f38fd = L.marker(
+                [43.7718, 11.2541],
+                {
+}
+            ).addTo(feature_group_73bf42fca102a8dfe1423063bcd23981);
+        
+    
+            var icon_446edda21e08ff381c70f4dc4485c789 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e38faaa46a92c3aa884c893d37da4351 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_65f28e978296237169be226b8584f25b = $(`<div id="html_65f28e978296237169be226b8584f25b" style="width: 100.0%; height: 100.0%;"><div style="width:210px;font-family:sans-serif"><b>Piazza della Repubblica</b><br>Centralt torg<br><br><a target="_blank" href="https://maps.apple.com/?q=Piazza della Repubblica&ll=43.7718,11.2541">Öppna i Apple Kartor ↗</a></div></div>`)[0];
+                popup_e38faaa46a92c3aa884c893d37da4351.setContent(html_65f28e978296237169be226b8584f25b);
+            
+        
+
+        marker_8513241a9ca40813e02887e1685f38fd.bindPopup(popup_e38faaa46a92c3aa884c893d37da4351)
+        ;
+
+        
+    
+    
+            marker_8513241a9ca40813e02887e1685f38fd.bindTooltip(
+                `<div>
+                     Piazza della Repubblica
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8513241a9ca40813e02887e1685f38fd.setIcon(icon_446edda21e08ff381c70f4dc4485c789);
+            
+    
+            var marker_49496c56586a22ba0f1bb341115223fa = L.marker(
+                [43.7696, 11.2514],
+                {
+}
+            ).addTo(feature_group_73bf42fca102a8dfe1423063bcd23981);
+        
+    
+            var icon_74f00fe31e1b6ee32d4cd5fcd065a1c2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bfe384b619d147668e6a8dd10b58a99d = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_fda01b4f6ed058ddf5720642f5489edc = $(`<div id="html_fda01b4f6ed058ddf5720642f5489edc" style="width: 100.0%; height: 100.0%;"><div style="width:210px;font-family:sans-serif"><b>Piazza Santa Trinita</b><br>På vägen mot bron<br><br><a target="_blank" href="https://maps.apple.com/?q=Piazza Santa Trinita&ll=43.7696,11.2514">Öppna i Apple Kartor ↗</a></div></div>`)[0];
+                popup_bfe384b619d147668e6a8dd10b58a99d.setContent(html_fda01b4f6ed058ddf5720642f5489edc);
+            
+        
+
+        marker_49496c56586a22ba0f1bb341115223fa.bindPopup(popup_bfe384b619d147668e6a8dd10b58a99d)
+        ;
+
+        
+    
+    
+            marker_49496c56586a22ba0f1bb341115223fa.bindTooltip(
+                `<div>
+                     Piazza Santa Trinita
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_49496c56586a22ba0f1bb341115223fa.setIcon(icon_74f00fe31e1b6ee32d4cd5fcd065a1c2);
+            
+    
+            var marker_7cbba7ed34fed6bc6519169a41e6adfd = L.marker(
+                [43.7688, 11.251],
+                {
+}
+            ).addTo(feature_group_73bf42fca102a8dfe1423063bcd23981);
+        
+    
+            var icon_81d6dcb163e1f82ff4c8ec9ff9354665 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7115becb177885f95c2dc6f0bf5f5947 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_0a3052573fee12bdbc36160e9b0ce491 = $(`<div id="html_0a3052573fee12bdbc36160e9b0ce491" style="width: 100.0%; height: 100.0%;"><div style="width:210px;font-family:sans-serif"><b>Ponte Santa Trinita</b><br>Fin vy över Ponte Vecchio<br><br><a target="_blank" href="https://maps.apple.com/?q=Ponte Santa Trinita&ll=43.7688,11.251">Öppna i Apple Kartor ↗</a></div></div>`)[0];
+                popup_7115becb177885f95c2dc6f0bf5f5947.setContent(html_0a3052573fee12bdbc36160e9b0ce491);
+            
+        
+
+        marker_7cbba7ed34fed6bc6519169a41e6adfd.bindPopup(popup_7115becb177885f95c2dc6f0bf5f5947)
+        ;
+
+        
+    
+    
+            marker_7cbba7ed34fed6bc6519169a41e6adfd.bindTooltip(
+                `<div>
+                     Ponte Santa Trinita
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7cbba7ed34fed6bc6519169a41e6adfd.setIcon(icon_81d6dcb163e1f82ff4c8ec9ff9354665);
+            
+    
+            var marker_410a25e92d199852931d407d061c37b1 = L.marker(
+                [43.7687, 11.2625],
+                {
+}
+            ).addTo(feature_group_73bf42fca102a8dfe1423063bcd23981);
+        
+    
+            var icon_83e6d792b3fbe98fa79eb9e148534978 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_99eaa5a16a22c73aa10b7a7e3b775ca2 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_8bffbe21d72c0998d0012136ad5a8b38 = $(`<div id="html_8bffbe21d72c0998d0012136ad5a8b38" style="width: 100.0%; height: 100.0%;"><div style="width:210px;font-family:sans-serif"><b>Basilica di Santa Croce</b><br>Kyrka och torg<br><br><a target="_blank" href="https://maps.apple.com/?q=Basilica di Santa Croce&ll=43.7687,11.2625">Öppna i Apple Kartor ↗</a></div></div>`)[0];
+                popup_99eaa5a16a22c73aa10b7a7e3b775ca2.setContent(html_8bffbe21d72c0998d0012136ad5a8b38);
+            
+        
+
+        marker_410a25e92d199852931d407d061c37b1.bindPopup(popup_99eaa5a16a22c73aa10b7a7e3b775ca2)
+        ;
+
+        
+    
+    
+            marker_410a25e92d199852931d407d061c37b1.bindTooltip(
+                `<div>
+                     Basilica di Santa Croce
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_410a25e92d199852931d407d061c37b1.setIcon(icon_83e6d792b3fbe98fa79eb9e148534978);
+            
+    
+            var marker_7c7b1df446bcd34a0d749ce7930731d3 = L.marker(
+                [43.7703, 11.2666],
+                {
+}
+            ).addTo(feature_group_73bf42fca102a8dfe1423063bcd23981);
+        
+    
+            var icon_750deecc076fc548ebbf16f4588e7a7c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6db51d21fc349723f74208247c2d06c2 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_9699888d7429706ec52780672dece0f2 = $(`<div id="html_9699888d7429706ec52780672dece0f2" style="width: 100.0%; height: 100.0%;"><div style="width:210px;font-family:sans-serif"><b>Mercato di Sant’Ambrogio</b><br>Lokal matmarknad, förmiddag<br><br><a target="_blank" href="https://maps.apple.com/?q=Mercato di Sant’Ambrogio&ll=43.7703,11.2666">Öppna i Apple Kartor ↗</a></div></div>`)[0];
+                popup_6db51d21fc349723f74208247c2d06c2.setContent(html_9699888d7429706ec52780672dece0f2);
+            
+        
+
+        marker_7c7b1df446bcd34a0d749ce7930731d3.bindPopup(popup_6db51d21fc349723f74208247c2d06c2)
+        ;
+
+        
+    
+    
+            marker_7c7b1df446bcd34a0d749ce7930731d3.bindTooltip(
+                `<div>
+                     Mercato di Sant’Ambrogio
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7c7b1df446bcd34a0d749ce7930731d3.setIcon(icon_750deecc076fc548ebbf16f4588e7a7c);
+            
+    
+            feature_group_73bf42fca102a8dfe1423063bcd23981.addTo(map_1391adca8bfb43099964d4b8f21913ee);
+        
+    
+            var feature_group_7d201783f364916e6e3e37769026016c = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_37b62feaaf732b6cf121ec4651695326 = L.marker(
+                [43.7659, 11.2499],
+                {
+}
+            ).addTo(feature_group_7d201783f364916e6e3e37769026016c);
+        
+    
+            var icon_00c1671123708611160b2cc181be0066 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "purple",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ec8f486337464fe6c71b98c82403e8b2 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_7cd465eb240ea17b9bfe751148003a66 = $(`<div id="html_7cd465eb240ea17b9bfe751148003a66" style="width: 100.0%; height: 100.0%;"><div style="width:210px;font-family:sans-serif"><b>Giulio Giannini e Figlio</b><br>Via dei Velluti 1 · marmorerat papper och bokbinderi<br><br><a target="_blank" href="https://maps.apple.com/?q=Giulio Giannini e Figlio&ll=43.7659,11.2499">Öppna i Apple Kartor ↗</a></div></div>`)[0];
+                popup_ec8f486337464fe6c71b98c82403e8b2.setContent(html_7cd465eb240ea17b9bfe751148003a66);
+            
+        
+
+        marker_37b62feaaf732b6cf121ec4651695326.bindPopup(popup_ec8f486337464fe6c71b98c82403e8b2)
+        ;
+
+        
+    
+    
+            marker_37b62feaaf732b6cf121ec4651695326.bindTooltip(
+                `<div>
+                     Giulio Giannini e Figlio
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_37b62feaaf732b6cf121ec4651695326.setIcon(icon_00c1671123708611160b2cc181be0066);
+            
+    
+            var marker_ffab5eb8c8f0a34ecc81e9c083c81b7e = L.marker(
+                [43.768, 11.2632],
+                {
+}
+            ).addTo(feature_group_7d201783f364916e6e3e37769026016c);
+        
+    
+            var icon_f7fe03242bb51b09e32a1c57074b51e0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "purple",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_844609312ce98c7b3432923c05e0455c = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_dc4652c562a9b0ab0e5a11c402ee276d = $(`<div id="html_dc4652c562a9b0ab0e5a11c402ee276d" style="width: 100.0%; height: 100.0%;"><div style="width:210px;font-family:sans-serif"><b>Scuola del Cuoio</b><br>Läderhantverk bakom Santa Croce<br><br><a target="_blank" href="https://maps.apple.com/?q=Scuola del Cuoio&ll=43.768,11.2632">Öppna i Apple Kartor ↗</a></div></div>`)[0];
+                popup_844609312ce98c7b3432923c05e0455c.setContent(html_dc4652c562a9b0ab0e5a11c402ee276d);
+            
+        
+
+        marker_ffab5eb8c8f0a34ecc81e9c083c81b7e.bindPopup(popup_844609312ce98c7b3432923c05e0455c)
+        ;
+
+        
+    
+    
+            marker_ffab5eb8c8f0a34ecc81e9c083c81b7e.bindTooltip(
+                `<div>
+                     Scuola del Cuoio
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ffab5eb8c8f0a34ecc81e9c083c81b7e.setIcon(icon_f7fe03242bb51b09e32a1c57074b51e0);
+            
+    
+            var marker_a6a9c808c3c88d3e35f9dc3e5b0ee834 = L.marker(
+                [43.7762, 11.2588],
+                {
+}
+            ).addTo(feature_group_7d201783f364916e6e3e37769026016c);
+        
+    
+            var icon_b9159619bd3f4da5442663ca4fef3706 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "purple",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_dfb6f13a42b00ca186bc6c4cc6c2f7b5 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_d60b407f089492b97bc00482de7b7788 = $(`<div id="html_d60b407f089492b97bc00482de7b7788" style="width: 100.0%; height: 100.0%;"><div style="width:210px;font-family:sans-serif"><b>Museo Opificio delle Pietre Dure</b><br>Florentinsk stenintarsia och teknik<br><br><a target="_blank" href="https://maps.apple.com/?q=Museo Opificio delle Pietre Dure&ll=43.7762,11.2588">Öppna i Apple Kartor ↗</a></div></div>`)[0];
+                popup_dfb6f13a42b00ca186bc6c4cc6c2f7b5.setContent(html_d60b407f089492b97bc00482de7b7788);
+            
+        
+
+        marker_a6a9c808c3c88d3e35f9dc3e5b0ee834.bindPopup(popup_dfb6f13a42b00ca186bc6c4cc6c2f7b5)
+        ;
+
+        
+    
+    
+            marker_a6a9c808c3c88d3e35f9dc3e5b0ee834.bindTooltip(
+                `<div>
+                     Museo Opificio delle Pietre Dure
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a6a9c808c3c88d3e35f9dc3e5b0ee834.setIcon(icon_b9159619bd3f4da5442663ca4fef3706);
+            
+    
+            var marker_41a2128973a60045eaa77954147f4db5 = L.marker(
+                [43.7744, 11.2487],
+                {
+}
+            ).addTo(feature_group_7d201783f364916e6e3e37769026016c);
+        
+    
+            var icon_faa35550e8a75bb232c0045fea7c3f19 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "purple",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f3fbd243f09726238cba8441894ce75f = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_732658dd8dd0c84ab9e34c2e9315882d = $(`<div id="html_732658dd8dd0c84ab9e34c2e9315882d" style="width: 100.0%; height: 100.0%;"><div style="width:210px;font-family:sans-serif"><b>Officina Profumo-Farmaceutica SMN</b><br>Historisk apotekar- och parfymmiljö<br><br><a target="_blank" href="https://maps.apple.com/?q=Officina Profumo-Farmaceutica SMN&ll=43.7744,11.2487">Öppna i Apple Kartor ↗</a></div></div>`)[0];
+                popup_f3fbd243f09726238cba8441894ce75f.setContent(html_732658dd8dd0c84ab9e34c2e9315882d);
+            
+        
+
+        marker_41a2128973a60045eaa77954147f4db5.bindPopup(popup_f3fbd243f09726238cba8441894ce75f)
+        ;
+
+        
+    
+    
+            marker_41a2128973a60045eaa77954147f4db5.bindTooltip(
+                `<div>
+                     Officina Profumo-Farmaceutica SMN
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_41a2128973a60045eaa77954147f4db5.setIcon(icon_faa35550e8a75bb232c0045fea7c3f19);
+            
+    
+            feature_group_7d201783f364916e6e3e37769026016c.addTo(map_1391adca8bfb43099964d4b8f21913ee);
+        
+    
+            var feature_group_f7ee00459b1952c0f025aa52fa009cf3 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_39e894c14c8c5e41299e9e725f384b4f = L.marker(
+                [43.7647, 11.2654],
+                {
+}
+            ).addTo(feature_group_f7ee00459b1952c0f025aa52fa009cf3);
+        
+    
+            var icon_7088b920746c81ed7e90b5d9bf61151a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e2d5f42c10d3b31b31fea446ab878bca = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_72b316ac44906c51aae51466b676b2c1 = $(`<div id="html_72b316ac44906c51aae51466b676b2c1" style="width: 100.0%; height: 100.0%;"><div style="width:210px;font-family:sans-serif"><b>Porta San Niccolò</b><br>Start på utsiktspromenaden<br><br><a target="_blank" href="https://maps.apple.com/?q=Porta San Niccolò&ll=43.7647,11.2654">Öppna i Apple Kartor ↗</a></div></div>`)[0];
+                popup_e2d5f42c10d3b31b31fea446ab878bca.setContent(html_72b316ac44906c51aae51466b676b2c1);
+            
+        
+
+        marker_39e894c14c8c5e41299e9e725f384b4f.bindPopup(popup_e2d5f42c10d3b31b31fea446ab878bca)
+        ;
+
+        
+    
+    
+            marker_39e894c14c8c5e41299e9e725f384b4f.bindTooltip(
+                `<div>
+                     Porta San Niccolò
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_39e894c14c8c5e41299e9e725f384b4f.setIcon(icon_7088b920746c81ed7e90b5d9bf61151a);
+            
+    
+            var marker_4702d5d25ca493ab7e8266cfe28467cd = L.marker(
+                [43.7629, 11.265],
+                {
+}
+            ).addTo(feature_group_f7ee00459b1952c0f025aa52fa009cf3);
+        
+    
+            var icon_150f04277c800ba22254537d28701a40 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_438fa768d5cb6737e2bc557870c178a3 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_2febc5c818ab252e7ef5005f2e25564d = $(`<div id="html_2febc5c818ab252e7ef5005f2e25564d" style="width: 100.0%; height: 100.0%;"><div style="width:210px;font-family:sans-serif"><b>Piazzale Michelangelo</b><br>Panorama över Florens<br><br><a target="_blank" href="https://maps.apple.com/?q=Piazzale Michelangelo&ll=43.7629,11.265">Öppna i Apple Kartor ↗</a></div></div>`)[0];
+                popup_438fa768d5cb6737e2bc557870c178a3.setContent(html_2febc5c818ab252e7ef5005f2e25564d);
+            
+        
+
+        marker_4702d5d25ca493ab7e8266cfe28467cd.bindPopup(popup_438fa768d5cb6737e2bc557870c178a3)
+        ;
+
+        
+    
+    
+            marker_4702d5d25ca493ab7e8266cfe28467cd.bindTooltip(
+                `<div>
+                     Piazzale Michelangelo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4702d5d25ca493ab7e8266cfe28467cd.setIcon(icon_150f04277c800ba22254537d28701a40);
+            
+    
+            var marker_ce7fab8640d1a654203eac77bed41e18 = L.marker(
+                [43.7599, 11.2649],
+                {
+}
+            ).addTo(feature_group_f7ee00459b1952c0f025aa52fa009cf3);
+        
+    
+            var icon_21b1fc5d6ae9b86a82c72e65192f8855 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ab48208871c94dda2ef702e480daf059 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_34a07395d5ea06296595dc0d85d95f00 = $(`<div id="html_34a07395d5ea06296595dc0d85d95f00" style="width: 100.0%; height: 100.0%;"><div style="width:210px;font-family:sans-serif"><b>San Miniato al Monte</b><br>Målet för utsiktspromenaden<br><br><a target="_blank" href="https://maps.apple.com/?q=San Miniato al Monte&ll=43.7599,11.2649">Öppna i Apple Kartor ↗</a></div></div>`)[0];
+                popup_ab48208871c94dda2ef702e480daf059.setContent(html_34a07395d5ea06296595dc0d85d95f00);
+            
+        
+
+        marker_ce7fab8640d1a654203eac77bed41e18.bindPopup(popup_ab48208871c94dda2ef702e480daf059)
+        ;
+
+        
+    
+    
+            marker_ce7fab8640d1a654203eac77bed41e18.bindTooltip(
+                `<div>
+                     San Miniato al Monte
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ce7fab8640d1a654203eac77bed41e18.setIcon(icon_21b1fc5d6ae9b86a82c72e65192f8855);
+            
+    
+            feature_group_f7ee00459b1952c0f025aa52fa009cf3.addTo(map_1391adca8bfb43099964d4b8f21913ee);
+        
+    
+            var feature_group_e4afa180ce246e4e3e34bf21ec0f26cc = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_8f684cc2097c0d5ca3d7b71579a03c35 = L.marker(
+                [43.7675, 11.2525],
+                {
+}
+            ).addTo(feature_group_e4afa180ce246e4e3e34bf21ec0f26cc);
+        
+    
+            var icon_5d769398c84dfa254dedec912d2761f2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7bc1a34b2558c3fca232d55069e44599 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_4e86dfb3442b43b6e858424b2cc4be2b = $(`<div id="html_4e86dfb3442b43b6e858424b2cc4be2b" style="width: 100.0%; height: 100.0%;"><div style="width:210px;font-family:sans-serif"><b>Le Volpi e l’Uva</b><br>Vinbar och smårätter nära Ponte Vecchio<br><br><a target="_blank" href="https://maps.apple.com/?q=Le Volpi e l’Uva&ll=43.7675,11.2525">Öppna i Apple Kartor ↗</a></div></div>`)[0];
+                popup_7bc1a34b2558c3fca232d55069e44599.setContent(html_4e86dfb3442b43b6e858424b2cc4be2b);
+            
+        
+
+        marker_8f684cc2097c0d5ca3d7b71579a03c35.bindPopup(popup_7bc1a34b2558c3fca232d55069e44599)
+        ;
+
+        
+    
+    
+            marker_8f684cc2097c0d5ca3d7b71579a03c35.bindTooltip(
+                `<div>
+                     Le Volpi e l’Uva
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8f684cc2097c0d5ca3d7b71579a03c35.setIcon(icon_5d769398c84dfa254dedec912d2761f2);
+            
+    
+            feature_group_e4afa180ce246e4e3e34bf21ec0f26cc.addTo(map_1391adca8bfb43099964d4b8f21913ee);
+        
+    
+            L.control.fullscreen(
+                {
+  "position": "topleft",
+  "title": "Full Screen",
+  "titleCancel": "Exit Full Screen",
+  "forceSeparateButton": false,
+}
+            ).addTo(map_1391adca8bfb43099964d4b8f21913ee);
+        
+    
+            var locate_control_fc4dac301c922d9a12a51fad13119fdc = L.control.locate(
+                {}
+            ).addTo(map_1391adca8bfb43099964d4b8f21913ee);
+            
+        
+    
+            var feature_group_9ea07f083d3479915f6b17176f58c3a6 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var poly_line_83ab9961d53bb4ed0b6910b63841f186 = L.polyline(
+                [[43.7667626, 11.2493264], [43.768, 11.2531], [43.7687, 11.255], [43.7696, 11.2557], [43.7708, 11.2549], [43.7718, 11.2541], [43.7731, 11.256], [43.7696, 11.2514], [43.7688, 11.251], [43.7662, 11.2476], [43.7667626, 11.2493264]],
+                {"bubblingMouseEvents": true, "color": "#555555", "dashArray": "6,7", "dashOffset": null, "fill": false, "fillColor": "#555555", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_9ea07f083d3479915f6b17176f58c3a6);
+        
+    
+            poly_line_83ab9961d53bb4ed0b6910b63841f186.bindTooltip(
+                `<div>
+                     Orienteringspromenad – ungefärlig, inte gatunavigering
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            // Dagliga promenader. Linjerna visar ordningen mellan stoppen och är inte gatunavigering.
+            var route_wed = L.featureGroup();
+            L.polyline([
+                [43.7667626,11.2493264], [43.768,11.2531], [43.7696,11.2514],
+                [43.7718,11.2541], [43.7731,11.256], [43.7762,11.2588],
+                [43.7708,11.2549], [43.7688,11.251], [43.7662,11.2476],
+                [43.7669,11.2451]
+            ], {color:'#8b5cf6', weight:4, opacity:.85, dashArray:'8,6'})
+            .bindTooltip('Onsdag 14/10 · Duomo → centrum → Oltrarno → Cuculia · ungefärlig')
+            .addTo(route_wed);
+
+            var route_thu = L.featureGroup();
+            L.polyline([
+                [43.7667626,11.2493264], [43.7652,11.2501], [43.7659,11.2499],
+                [43.7668,11.2507], [43.7662,11.2476], [43.766,11.2474],
+                [43.7677,11.243], [43.7669,11.2451], [43.7667626,11.2493264]
+            ], {color:'#2563eb', weight:4, opacity:.85, dashArray:'8,6'})
+            .bindTooltip('Torsdag 15/10 · efter Lisio: Pitti → Giannini → Santo Spirito → San Frediano · ungefärlig')
+            .addTo(route_thu);
+
+            var route_fri = L.featureGroup();
+            L.polyline([
+                [43.7667626,11.2493264], [43.768,11.2531], [43.7687,11.255],
+                [43.7687,11.2625], [43.768,11.2632], [43.7703,11.2666],
+                [43.7723,11.27]
+            ], {color:'#dc2626', weight:4, opacity:.85, dashArray:'8,6'})
+            .bindTooltip('Fredag 16/10 · Uffizi → Santa Croce → Sant’Ambrogio → Nugolo · ungefärlig')
+            .addTo(route_fri);
+
+            var route_sat = L.featureGroup();
+            L.polyline([
+                [43.7667626,11.2493264], [43.768,11.2531], [43.7647,11.2654],
+                [43.7629,11.265], [43.7599,11.2649], [43.7629,11.265],
+                [43.7647,11.2654], [43.7667626,11.2493264]
+            ], {color:'#059669', weight:4, opacity:.85, dashArray:'8,6'})
+            .bindTooltip('Lördag 17/10 · San Niccolò → Piazzale Michelangelo → San Miniato · ungefärlig')
+            .addTo(route_sat);
+
+
+// Kompletterande mat- och vinstopp (markörernas koordinater är ungefärliga).
+L.marker([43.7681,11.246],{icon:L.AwesomeMarkers.icon({markerColor:"orange",iconColor:"white",icon:"glass",prefix:"glyphicon"})}).bindPopup("<div style=\"width:225px;font-family:sans-serif\"><b>Il Santino</b><br>Via di Santo Spirito 60R<br>Vinbar med små rätter och spännande viner.<br><small>Ungefärlig markör – använd Apple Kartor för exakt adress.</small><br><br><a target=\"_blank\" rel=\"noopener\" href=\"https://maps.apple.com/?q=Il%20Santino%20Via%20di%20Santo%20Spirito%2060R\">Öppna i Apple Kartor ↗</a></div>").bindTooltip("Il Santino").addTo(feature_group_e4afa180ce246e4e3e34bf21ec0f26cc);
+L.marker([43.7655,11.2502],{icon:L.AwesomeMarkers.icon({markerColor:"orange",iconColor:"white",icon:"glass",prefix:"glyphicon"})}).bindPopup("<div style=\"width:225px;font-family:sans-serif\"><b>Enoteca Pitti Gola e Cantina</b><br>Piazza de’ Pitti 16<br>Vinfokus, små producenter och tilltugg mitt emot Pitti.<br><small>Ungefärlig markör – använd Apple Kartor för exakt adress.</small><br><br><a target=\"_blank\" rel=\"noopener\" href=\"https://maps.apple.com/?q=Enoteca%20Pitti%20Gola%20e%20Cantina%20Piazza%20de%E2%80%99%20Pitti%2016\">Öppna i Apple Kartor ↗</a></div>").bindTooltip("Enoteca Pitti Gola e Cantina").addTo(feature_group_e4afa180ce246e4e3e34bf21ec0f26cc);
+L.marker([43.7668,11.2487],{icon:L.AwesomeMarkers.icon({markerColor:"orange",iconColor:"white",icon:"glass",prefix:"glyphicon"})}).bindPopup("<div style=\"width:225px;font-family:sans-serif\"><b>Enoteca Spontanea</b><br>Via Maggio 61R<br>Intressant vinbar på er promenad genom Oltrarno.<br><small>Ungefärlig markör – använd Apple Kartor för exakt adress.</small><br><br><a target=\"_blank\" rel=\"noopener\" href=\"https://maps.apple.com/?q=Enoteca%20Spontanea%20Via%20Maggio%2061R\">Öppna i Apple Kartor ↗</a></div>").bindTooltip("Enoteca Spontanea").addTo(feature_group_e4afa180ce246e4e3e34bf21ec0f26cc);
+L.marker([43.7629,11.2655],{icon:L.AwesomeMarkers.icon({markerColor:"orange",iconColor:"white",icon:"glass",prefix:"glyphicon"})}).bindPopup("<div style=\"width:225px;font-family:sans-serif\"><b>Fuori Porta</b><br>Via del Monte alle Croci 10R<br>Vin och lättare mat vid San Niccolò, bra vid utsiktspromenaden.<br><small>Ungefärlig markör – använd Apple Kartor för exakt adress.</small><br><br><a target=\"_blank\" rel=\"noopener\" href=\"https://maps.apple.com/?q=Fuori%20Porta%20Via%20del%20Monte%20alle%20Croci%2010R\">Öppna i Apple Kartor ↗</a></div>").bindTooltip("Fuori Porta").addTo(feature_group_e4afa180ce246e4e3e34bf21ec0f26cc);
+L.marker([43.7667,11.2473],{icon:L.AwesomeMarkers.icon({markerColor:"orange",iconColor:"white",icon:"glass",prefix:"glyphicon"})}).bindPopup("<div style=\"width:225px;font-family:sans-serif\"><b>Loggia Roof Bar</b><br>Piazza Santo Spirito 9<br>Aperitivo med utsikt över Santo Spirito.<br><small>Ungefärlig markör – använd Apple Kartor för exakt adress.</small><br><br><a target=\"_blank\" rel=\"noopener\" href=\"https://maps.apple.com/?q=Loggia%20Roof%20Bar%20Piazza%20Santo%20Spirito%209\">Öppna i Apple Kartor ↗</a></div>").bindTooltip("Loggia Roof Bar").addTo(feature_group_e4afa180ce246e4e3e34bf21ec0f26cc);
+L.marker([43.7681,11.2458],{icon:L.AwesomeMarkers.icon({markerColor:"orange",iconColor:"white",icon:"glass",prefix:"glyphicon"})}).bindPopup("<div style=\"width:225px;font-family:sans-serif\"><b>Il Santo Bevitore</b><br>Via Santo Spirito 64R<br>Avslappnad restaurang med ambitiös vinlista; obokat alternativ.<br><small>Ungefärlig markör – använd Apple Kartor för exakt adress.</small><br><br><a target=\"_blank\" rel=\"noopener\" href=\"https://maps.apple.com/?q=Il%20Santo%20Bevitore%20Via%20Santo%20Spirito%2064R\">Öppna i Apple Kartor ↗</a></div>").bindTooltip("Il Santo Bevitore").addTo(feature_group_e4afa180ce246e4e3e34bf21ec0f26cc);
+marker_8a22b7414262781faf22f1676a74b152.setIcon(L.AwesomeMarkers.icon({markerColor:"darkred",iconColor:"white",icon:"home",prefix:"glyphicon"}));
+
+            var layer_control_65afa043ec6977a45b37d426b61879c6_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_670938deb8b58c2d30ad3e7204f24def,
+                },
+                overlays :  {
+                    "Bokat (hotellet visas alltid)" : feature_group_5855dee185ea13867ee5d4ba73cbabd2,
+                    "Upptäck" : feature_group_73bf42fca102a8dfe1423063bcd23981,
+                    "Hantverk" : feature_group_7d201783f364916e6e3e37769026016c,
+                    "Utsikt" : feature_group_f7ee00459b1952c0f025aa52fa009cf3,
+                    "Mat & vin" : feature_group_e4afa180ce246e4e3e34bf21ec0f26cc,
+                    "Tisdag 13/10 · Orientering" : feature_group_9ea07f083d3479915f6b17176f58c3a6,
+                    "Onsdag 14/10 · Duomo & Cuculia" : route_wed,
+                    "Torsdag 15/10 · Oltrarno" : route_thu,
+                    "Fredag 16/10 · Uffizi & östra Florens" : route_fri,
+                    "Lördag 17/10 · Utsikt" : route_sat,
+                },
+            };
+            let layer_control_65afa043ec6977a45b37d426b61879c6 = L.control.layers(
+                layer_control_65afa043ec6977a45b37d426b61879c6_layers.base_layers,
+                layer_control_65afa043ec6977a45b37d426b61879c6_layers.overlays,
+                {"position":"topright","collapsed":true,"autoZIndex":true}
+            ).addTo(map_1391adca8bfb43099964d4b8f21913ee);
+
+            // Visa tisdagens rutt från start. Övriga dagar slås på i lagerknappen.
+            feature_group_9ea07f083d3479915f6b17176f58c3a6.addTo(map_1391adca8bfb43099964d4b8f21913ee);
+
+        
+</script>
+</html>
