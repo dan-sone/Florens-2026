@@ -1261,17 +1261,17 @@ marker_8a22b7414262781faf22f1676a74b152.setIcon(L.AwesomeMarkers.icon({markerCol
 
 
 // Shopping och glass: ett litet urval. Markörer ungefärliga, adresser söks i Apple Kartor.
-var shopGroup=L.featureGroup(),gelatoGroup=L.featureGroup();
+var shopGroup=L.featureGroup(),craftShopGroup=L.featureGroup(),gelatoGroup=L.featureGroup();
 function newPoint(group,lat,lng,title,detail,iconColor){
   var ico=L.AwesomeMarkers.icon({markerColor:iconColor,iconColor:'white',icon:iconColor==='pink'?'shopping-bag':'shopping-cart',prefix:'fa'});
   var q=encodeURIComponent(title+' Firenze');
   return L.marker([lat,lng],{icon:ico}).bindPopup('<div><b>'+title+'</b><br>'+detail+'<br><small>Markören visar området. Använd Gå för exakt adress i Apple Kartor.</small><br><a target="_blank" rel="noopener" href="https://maps.apple.com/?q='+q+'">Visa adress i Apple Kartor ↗</a></div>').addTo(group);
 }
 newPoint(shopGroup,43.7761,11.2538,'Mercato Centrale','Matmarknad och saluhall vid San Lorenzo; en bit från era huvudstråk.','blue');
-newPoint(shopGroup,43.76545,11.25,'Pitti Mosaici','Florentinsk stenmosaik (pietra dura) vid Piazza Pitti.','blue');
-newPoint(shopGroup,43.76835,11.24955,'Castorina 1895','Traditionell specialbutik med konstnärs- och dekorationsmaterial.','blue');
+newPoint(craftShopGroup,43.76545,11.25,'Pitti Mosaici','Florentinsk stenmosaik (pietra dura) vid Piazza Pitti.','blue');
+newPoint(craftShopGroup,43.76835,11.24955,'Castorina 1895','Traditionell specialbutik med konstnärs- och dekorationsmaterial.','blue');
 newPoint(shopGroup,43.77195,11.25017,'Mio Concept Store','Design, presenter och ovanliga föremål nära Via della Spada.','blue');
-newPoint(shopGroup,43.76575,11.25011,'Giulia Materia','Liten butik för lokalt hantverk och design vid Pitti.','blue');
+newPoint(craftShopGroup,43.76575,11.25011,'Giulia Materia','Liten butik för lokalt hantverk och design vid Pitti.','blue');
 newPoint(gelatoGroup,43.76682,11.25063,'Gelateria della Passera','Liten gelateria vid Piazza della Passera.','pink');
 newPoint(gelatoGroup,43.76895,11.2598,'Gelateria dei Neri','Välkänd gelateria nära Uffizi/Santa Croce.','pink');
 newPoint(gelatoGroup,43.76915,11.2444,'Gelateria La Carraia','Glass vid Ponte alla Carraia, nära Oltrarno.','pink');
@@ -1339,6 +1339,7 @@ apply(gelatoGroup,function(){return eIcon('🍦','#d9822b');});
 
 // Shopping och marknader använder shopping-symbol.
 apply(shopGroup,function(){return shoppingIcon();});
+apply(craftShopGroup,function(){return eIcon('✂️','#7b4aa3');});
 // Sant’Ambrogio ligger bland sevärdheterna i grundfilen men ska visuellt vara shopping/marknad.
 feature_group_73bf42fca102a8dfe1423063bcd23981.eachLayer(function(layer){if(layer instanceof L.Marker && tooltipName(layer).toLowerCase().includes('mercato')) layer.setIcon(shoppingIcon());});
 
@@ -1362,6 +1363,33 @@ marker_4fed27821bfadfc3663b09b1f120a194.setIcon(eIcon('🍴','#d33b32'));
 // Ta bort Lisio-dubbletten ur options; den finns redan som bokad punkt.
 options.eachLayer(function(layer){if(layer instanceof L.Marker && tooltipName(layer).toLowerCase().includes('fondazione arte della seta lisio')) options.removeLayer(layer);});
 apply(options,function(name){var n=name.toLowerCase();if(n.includes('beppa')||n.includes('cosi')) return eIcon('🍴','#d9822b');if(n.includes('michelangelo')) return eIcon('📷','#315f9b');return eIcon('🏛️','#315f9b');});
+
+// Korrigerad POI-klassificering. Endast kategori/ikon ändras; inga POI tas bort.
+// Piazza Santo Spirito: bar/aperitivo i stället för sevärdhet.
+feature_group_73bf42fca102a8dfe1423063bcd23981.removeLayer(marker_e90b8b9b905c5a6fcd23a6200ca7f7ed);
+marker_e90b8b9b905c5a6fcd23a6200ca7f7ed.setIcon(eIcon('🍸','#d9822b'));
+
+// Mercato di Sant’Ambrogio: shopping/marknad i stället för sevärdhet.
+feature_group_73bf42fca102a8dfe1423063bcd23981.removeLayer(marker_7c7b1df446bcd34a0d749ce7930731d3);
+marker_7c7b1df446bcd34a0d749ce7930731d3.setIcon(shoppingIcon());
+
+// Porta San Niccolò och Piazzale Michelangelo: utsikt, kvar under Se & göra.
+marker_39e894c14c8c5e41299e9e725f384b4f.setIcon(eIcon('📷','#315f9b'));
+marker_4702d5d25ca493ab7e8266cfe28467cd.setIcon(eIcon('📷','#315f9b'));
+
+// Flytta lunchställena från Se & göra till Mat & dryck utan att skapa nya markörer.
+var reclassifiedFood=L.layerGroup([marker_e90b8b9b905c5a6fcd23a6200ca7f7ed]);
+var reclassifiedShopping=L.layerGroup([marker_7c7b1df446bcd34a0d749ce7930731d3]);
+function popupText(layer){var p=layer.getPopup&&layer.getPopup();return p?String(p.getContent()).replace(/<[^>]*>/g,' ').replace(/\\s+/g,' ').trim():'';}
+options.eachLayer(function(layer){
+  if(!(layer instanceof L.Marker)) return;
+  var n=popupText(layer).toLowerCase();
+  if(n.includes('beppa fioraia')||n.includes('pasticceria cosi')){
+    options.removeLayer(layer);
+    layer.setIcon(eIcon('🍴','#d9822b'));
+    reclassifiedFood.addLayer(layer);
+  }
+});
 
 // Åtta kompletterande sevärdheter, fristående från dagsrutterna.
 var extraSights=L.featureGroup();
@@ -1401,9 +1429,9 @@ addCraft(43.77103,11.24888,'Valli Tessuti','Via della Vigna Nuova 81/R','Italien
 addCraft(43.76622,11.24928,'Le Telerie Toscane','Sdrucciolo de’ Pitti 15R','Toscanska hemtextilier, linne, dukar och textilier med traditionella mönster.',false);
 addCraft(43.77480,11.25360,'Passamaneria Toscana','Via del Canto dei Nelli 10','Dekorativa textilier, band och passamanteri. Adressuppgifter varierar mellan källor; kontrollera före besök.',true);
 
-var craftGroup=L.layerGroup([feature_group_7d201783f364916e6e3e37769026016c,extraCrafts]);
-var foodGroup=L.layerGroup([feature_group_e4afa180ce246e4e3e34bf21ec0f26cc,drinks,gelatoGroup]);
-var shoppingGroup=L.layerGroup([shopGroup]);
+var craftGroup=L.layerGroup([feature_group_7d201783f364916e6e3e37769026016c,extraCrafts,craftShopGroup]);
+var foodGroup=L.layerGroup([feature_group_e4afa180ce246e4e3e34bf21ec0f26cc,drinks,gelatoGroup,reclassifiedFood]);
+var shoppingGroup=L.layerGroup([shopGroup,reclassifiedShopping]);
 
 var layerControl=L.control.layers(null,{
  'Bokat':bookedGroup,
