@@ -45,6 +45,18 @@ export function validateTrip(schemas,documents) {
   const formatter=new Intl.DateTimeFormat('en-CA',{timeZone:guide.timeZone,year:'numeric',month:'2-digit',day:'2-digit'});
   const dates=new Set(guide.days.map(d=>d.date));
   for(const booking of guide.bookings){requirePlace(booking.placeId,true);const parts=formatter.formatToParts(new Date(booking.startsAt));const value=type=>parts.find(p=>p.type===type).value;const date=value('year')+'-'+value('month')+'-'+value('day');if(!dates.has(date))throw new Error('Bokningen ligger utanför resdagarna: '+booking.id);}
+  unique(guide.flights||[],'flyg');
+  for(const flight of guide.flights||[]){
+    if(!dayIds.has(flight.dayId))throw new Error('Okänd resdag för flyget: '+flight.id);
+    if(new Date(flight.arrival.at)<=new Date(flight.departure.at))throw new Error('Flygets ankomst måste vara efter avgång: '+flight.id);
+    for(const endpoint of [flight.departure,flight.arrival]){
+      const f=new Intl.DateTimeFormat('sv-SE',{timeZone:endpoint.timeZone,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'});
+      const parts=f.formatToParts(new Date(endpoint.at));const value=type=>parts.find(p=>p.type===type).value;
+      const local=value('year')+'-'+value('month')+'-'+value('day')+'T'+value('hour')+':'+value('minute')+':'+value('second');
+      if(local!==endpoint.at.slice(0,19))throw new Error('Flygets tidszon och lokala tid skiljer sig: '+flight.id);
+    }
+    if(flight.departure.at.slice(0,10)!==guide.days.find(d=>d.id===flight.dayId).date)throw new Error('Flygets avgång ligger på annan resdag: '+flight.id);
+  }
   guide.persistentPlaceIds.forEach(id=>requirePlace(id,true));
   Object.keys(guide.presentation.placeOverrides).forEach(id=>requirePlace(id));
   const booked=new Set(guide.bookings.map(b=>b.placeId));

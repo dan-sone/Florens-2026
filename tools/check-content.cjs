@@ -1,10 +1,18 @@
 const fs=require('fs'),vm=require('vm'),assert=require('assert/strict');
 vm.runInThisContext(fs.readFileSync('places-validator.js','utf8'));
 const schemas={},documents={};
-for(const name of ['places','routes','guide']){schemas[name]=JSON.parse(fs.readFileSync(name+'.schema.v1.json'));documents[name]=JSON.parse(fs.readFileSync(name+'.json'));}
+for(const name of ['places','routes','guide']){documents[name]=JSON.parse(fs.readFileSync(name+'.json'));assert.equal(documents[name].$schema,'./'+name+'.schema.v'+documents[name].schemaVersion+'.json');schemas[name]=JSON.parse(fs.readFileSync(documents[name].$schema));}
 const validate=d=>PlacesValidator.validateTrip(schemas,d);
 validate(documents);
 const cases=[
+ d=>d.guide.flights.push(d.guide.flights[0]),
+ d=>d.guide.flights[0].dayId='unknown',
+ d=>d.guide.flights[0].arrival.at=d.guide.flights[0].departure.at,
+ d=>d.guide.flights[0].departure.timeZone='Europe/London',
+ d=>d.guide.flights[0].departure.at='2026-10-12T10:05:00+02:00',
+ d=>d.guide.flights[0].departure.airportCode='?',
+ d=>d.guide.flights[0].bookingReference='private',
+
  d=>d.places.places[0].appleMaps.placeId='I123',
  d=>d.places.places[0].appleMaps.placeUrl='https://example.com/place?place-id='+d.places.places[0].appleMaps.placeId,
  d=>d.places.places[0].position.longitude+=0.001,
@@ -38,7 +46,7 @@ for(const mutate of cases){const bad=structuredClone(documents);mutate(bad);asse
 // Independent content versions do not change schema compatibility.
 const independent=structuredClone(documents);independent.guide.contentVersion=7;independent.routes.contentVersion=3;validate(independent);
 // A different trip uses the same schemas and renderer contract.
-const next=structuredClone(documents);next.guide.id='next-trip';next.guide.title='Nästa resa';next.guide.destination={name:'Annan stad',searchSuffix:'Annan stad'};next.guide.map.center={latitude:59.3,longitude:18.1};next.guide.days.forEach((day,i)=>{day.id='day-'+(i+1);day.date='2027-01-'+(13+i)});next.guide.bookings.forEach(b=>b.startsAt=b.startsAt.replace('2026-10','2027-01'));validate(next);
+const next=structuredClone(documents);next.guide.id='next-trip';next.guide.title='Nästa resa';next.guide.destination={name:'Annan stad',searchSuffix:'Annan stad'};next.guide.map.center={latitude:59.3,longitude:18.1};next.guide.days.forEach((day,i)=>{day.id='day-'+(i+1);day.date='2027-01-'+(13+i)});next.guide.bookings.forEach(b=>b.startsAt=b.startsAt.replace('2026-10','2027-01'));next.guide.flights=[];validate(next);
 assert(!/Florens|Firenze|2026-10|hotel-la-scaletta|routeDefinitions/.test(fs.readFileSync('index.html','utf8')));
 console.log(`PASS: three schemas; ${documents.places.places.length} places, ${documents.routes.routes.length} routes, ${documents.guide.days.length} days, ${documents.guide.bookings.length} bookings; ${cases.length} invalid-input cases; independent versions and reusable trip content`);
 
@@ -50,3 +58,5 @@ for(const place of documents.places.places){
 assert.throws(()=>PlacesValidator.appleDirectionsLink(documents.places.places[0],'flying'));
 const entrance=structuredClone(documents.places.places[0]);entrance.entrance={position:{latitude:43.7,longitude:11.2}};const toEntrance=new URL(PlacesValidator.appleDirectionsLink(entrance,'walking'));assert.equal(toEntrance.searchParams.get('destination'),'43.7,11.2');assert(!toEntrance.searchParams.has('destination-place-id'));
 console.log('PASS: all 69 place links and 207 navigation links, coordinate fallbacks, entrance preference, place-id/source/position consistency');
+
+const legacy=structuredClone(documents);legacy.guide.schemaVersion=1;legacy.guide.$schema='./guide.schema.v1.json';delete legacy.guide.flights;PlacesValidator.validateTrip({...schemas,guide:JSON.parse(fs.readFileSync('guide.schema.v1.json'))},legacy);console.log('PASS: flight validation and legacy guide schema v1 compatibility');

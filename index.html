@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="application-version" content="1.2.0">
+<meta name="application-version" content="1.3.0">
     
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
@@ -131,7 +131,7 @@ const guideReady = (async function(){
   return response.json();
  }
  const names=['places','routes','guide'];
- const entries=await Promise.all(names.map(async name=>{const [schema,data]=await Promise.all([readJson(name+'.schema.v1.json'),readJson(name+'.json')]);return [name,schema,data];}));
+ const entries=await Promise.all(names.map(async name=>{const data=await readJson(name+'.json');const path='./'+name+'.schema.v'+data.schemaVersion+'.json';if(data.$schema!==path)throw new Error('Fel schemareferens: '+name);const schema=await readJson(path.slice(2));return [name,schema,data];}));
  const schemas=Object.fromEntries(entries.map(([name,schema])=>[name,schema]));
  const documents=Object.fromEntries(entries.map(([name,,data])=>[name,data]));
  PlacesValidator.validateTrip(schemas,documents);
@@ -348,15 +348,31 @@ const dateFormatter=new Intl.DateTimeFormat('sv-SE',{timeZone:'UTC',weekday:'lon
 const bookingDateFormatter=new Intl.DateTimeFormat('en-CA',{timeZone:guide.timeZone,year:'numeric',month:'2-digit',day:'2-digit'});
 const timeFormatter=new Intl.DateTimeFormat('sv-SE',{timeZone:guide.timeZone,hour:'2-digit',minute:'2-digit'});
 const localBookingDate=b=>{const parts=bookingDateFormatter.formatToParts(new Date(b.startsAt));const get=type=>parts.find(p=>p.type===type).value;return get('year')+'-'+get('month')+'-'+get('day')};
+function renderFlightCards(day){
+ const flights=(guide.flights||[]).filter(f=>f.dayId===day.id).sort((a,b)=>new Date(a.departure.at)-new Date(b.departure.at));
+ if(!flights.length)return '';
+ const endpointHtml=e=>{
+  const date=new Date(e.at);
+  const clock=new Intl.DateTimeFormat('sv-SE',{timeZone:e.timeZone,hour:'2-digit',minute:'2-digit'}).format(date);
+  const localDate=new Intl.DateTimeFormat('sv-SE',{timeZone:e.timeZone,day:'numeric',month:'long'}).format(date);
+  return '<p><strong>'+esc(clock)+' · '+esc(e.city)+' ('+esc(e.airportCode)+')</strong><br>'+esc(e.airportName)+(e.terminal?' · Terminal '+esc(e.terminal):'')+'<br><small>'+esc(localDate)+' · lokal tid</small></p>';
+ };
+ return '<h3>Flyg</h3>'+flights.map((f,i)=>{
+  const next=flights[i+1];
+  const minutes=next&&f.arrival.airportCode===next.departure.airportCode?Math.round((new Date(next.departure.at)-new Date(f.arrival.at))/60000):null;
+  const connection=minutes!==null&&minutes>=0?'<p class="address">Byte i '+esc(f.arrival.city)+' · '+minutes+' min</p>':'';
+  return '<article class="list-card" data-flight="'+esc(f.id)+'"><span class="list-badge">Flyg</span><h4>'+esc(f.flightNumber)+' · '+esc(f.operator)+'</h4>'+(f.onBehalfOf?'<p class="address">För '+esc(f.onBehalfOf)+'</p>':'')+endpointHtml(f.departure)+'<p class="address">↓ Ankomst</p>'+endpointHtml(f.arrival)+connection+'</article>';
+ }).join('')+'<p class="address">Tider enligt bokningen. Terminaler kan ändras.</p>';
+}
 function renderScheduleList(){
  const sections=guide.days.map(day=>{
   const bookings=guide.bookings.filter(b=>localBookingDate(b)===day.date).sort((a,b)=>new Date(a.startsAt)-new Date(b.startsAt));
   const bookedPlaces=new Set(bookings.map(b=>b.placeId));
   const stops=[...new Set(day.routeIds.flatMap(id=>routesById.get(id).segments.flatMap(s=>s.placeIds)))].filter(id=>!bookedPlaces.has(id)&&!guide.persistentPlaceIds.includes(id));
   const title=dateFormatter.format(new Date(day.date+'T12:00:00Z'));
-  return '<section class="day-section" data-day="'+esc(day.id)+'"><h2>'+esc(title[0].toUpperCase()+title.slice(1))+'</h2>'+(bookings.length?'<h3>Bokningar</h3>'+bookings.map(b=>{const place=requirePlace(b.placeId);return '<article class="list-card" data-booking="'+esc(b.id)+'"><span class="list-badge">Bokat</span><h4>'+esc(timeFormatter.format(new Date(b.startsAt)))+' · '+esc(place.name)+'</h4>'+listActions(place)+'</article>'}).join(''):'')+'<h3>Planerat program</h3><article class="list-card list-program">'+renderProgram(day.program)+'</article>'+(stops.length?'<h3>Valbara stopp längs rutten</h3><div class="optional-stops">'+stops.map(id=>'<button class="list-action" data-show-place="'+esc(id)+'">'+esc(requirePlace(id).name)+'</button>').join('')+'</div>':'')+'</section>';
+  return '<section class="day-section" data-day="'+esc(day.id)+'"><h2>'+esc(title[0].toUpperCase()+title.slice(1))+'</h2>'+renderFlightCards(day)+(bookings.length?'<h3>Bokningar</h3>'+bookings.map(b=>{const place=requirePlace(b.placeId);return '<article class="list-card" data-booking="'+esc(b.id)+'"><span class="list-badge">Bokat</span><h4>'+esc(timeFormatter.format(new Date(b.startsAt)))+' · '+esc(place.name)+'</h4>'+listActions(place)+'</article>'}).join(''):'')+'<h3>Planerat program</h3><article class="list-card list-program">'+renderProgram(day.program)+'</article>'+(stops.length?'<h3>Valbara stopp längs rutten</h3><div class="optional-stops">'+stops.map(id=>'<button class="list-action" data-show-place="'+esc(id)+'">'+esc(requirePlace(id).name)+'</button>').join('')+'</div>':'')+'</section>';
  }).join('');
- document.getElementById('schemaPanel').innerHTML='<h1>Schema</h1><p class="list-intro">Bokningar, dagens plan och valbara stopp. '+esc(guide.destination.name)+'.</p>'+sections;
+ document.getElementById('schemaPanel').innerHTML='<h1>Schema</h1><p class="list-intro">Flyg, bokningar, dagens plan och valbara stopp. '+esc(guide.destination.name)+'.</p>'+sections;
 }
 const filterBox=document.getElementById('placeFilters');
 filterBox.innerHTML=guide.categories.map(c=>'<button aria-pressed="true" data-category="'+esc(c.id)+'">'+esc(c.label)+'</button>').join('');

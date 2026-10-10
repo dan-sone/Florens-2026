@@ -1,8 +1,8 @@
 {
-  "$schema": "./guide.schema.v1.json",
-  "schemaVersion": 1,
-  "contentVersion": 3,
-  "updatedAt": "2026-10-10T10:37:02.529052Z",
+  "$schema": "./guide.schema.v2.json",
+  "schemaVersion": 2,
+  "contentVersion": 4,
+  "updatedAt": "2026-10-10T12:02:14.412377Z",
   "id": "florens-2026",
   "title": "Florens 2026",
   "destination": {
@@ -1218,5 +1218,71 @@
         "mapLabel": "Öppna i Apple Kartor ↗"
       }
     }
-  }
+  },
+  "flights": [
+    {
+      "id": "outbound-stockholm-vienna",
+      "dayId": "tue",
+      "flightNumber": "OS962",
+      "operator": "Austrian Airlines",
+      "departure": {
+        "airportCode": "ARN",
+        "airportName": "Arlanda",
+        "city": "Stockholm",
+        "at": "2026-10-13T10:05:00+02:00",
+        "timeZone": "Europe/Stockholm",
+        "terminal": "5"
+      },
+      "arrival": {
+        "airportCode": "VIE",
+        "airportName": "Vienna International Airport",
+        "city": "Wien",
+        "at": "2026-10-13T12:15:00+02:00",
+        "timeZone": "Europe/Vienna",
+        "terminal": "3"
+      }
+    },
+    {
+      "id": "outbound-vienna-florence",
+      "dayId": "tue",
+      "flightNumber": "OS535",
+      "operator": "Air Dolomiti",
+      "onBehalfOf": "Austrian Airlines",
+      "departure": {
+        "airportCode": "VIE",
+        "airportName": "Vienna International Airport",
+        "city": "Wien",
+        "at": "2026-10-13T12:45:00+02:00",
+        "timeZone": "Europe/Vienna",
+        "terminal": "3"
+      },
+      "arrival": {
+        "airportCode": "FLR",
+        "airportName": "Florence Peretola Airport",
+        "city": "Florens",
+        "at": "2026-10-13T14:05:00+02:00",
+        "timeZone": "Europe/Rome"
+      }
+    },
+    {
+      "id": "return-florence-stockholm",
+      "dayId": "sat",
+      "flightNumber": "SK1916",
+      "operator": "SAS",
+      "departure": {
+        "airportCode": "FLR",
+        "airportName": "Florence Peretola Airport",
+        "city": "Florens",
+        "at": "2026-10-17T17:20:00+02:00",
+        "timeZone": "Europe/Rome"
+      },
+      "arrival": {
+        "airportCode": "ARN",
+        "airportName": "Arlanda",
+        "city": "Stockholm",
+        "at": "2026-10-17T20:10:00+02:00",
+        "timeZone": "Europe/Stockholm"
+      }
+    }
+  ]
 }

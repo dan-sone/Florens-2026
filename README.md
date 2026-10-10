@@ -6,7 +6,7 @@ En statisk reseguide med återanvändbart kartgränssnitt. `index.html` innehål
 | --- | --- | --- |
 | `places.json` | `places.schema.v1.json` | Platser, positioner, länkar och verifieringsstatus |
 | `routes.json` | `routes.schema.v1.json` | Delsträckor, färdsätt och ordnade plats-id |
-| `guide.json` | `guide.schema.v1.json` | Titel, destination, tidszon, kartutsnitt, resdagar, program, bokningar och presentation |
+| `guide.json` | `guide.schema.v2.json` | Titel, destination, tidszon, kartutsnitt, resdagar, program, bokningar, flyg och presentation |
 
 Varje innehållsfil har `schemaVersion`, `contentVersion` och `updatedAt`. SchemaVersion ändras när datakontraktet ändras. ContentVersion ändras när innehållet i just den filen ändras. Versionerna är oberoende mellan filerna.
 
@@ -32,9 +32,9 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | --- | ---: | ---: |
 | places.json | 1 | 3 |
 | routes.json | 1 | 2 |
-| guide.json | 1 | 3 |
-| index.html | – | 1.2.0 |
-| valideringskod | – | 1.1.0 |
+| guide.json | 2 | 4 |
+| index.html | – | 1.3.0 |
+| valideringskod | – | 1.3.0 |
 | verification-report.v2.md | – | Rapportversion 2 |
 
 [Verifieringsrapport version 2](verification-report.v2.md) listar samtliga 69 platser, koordinatändringar, källor, öppettider, kontrollerade delsträckor och kvarstående osäkerheter. 66 poster uppfyller de fyra registerkontrollerna. Giannini, Cosi – Chiantigiana och Passamaneria Toscana är markerade `unresolved`. Exakt entrépunkt är inte separat verifierad för alla platser.
@@ -47,6 +47,14 @@ Vid ändrad position måste motsvarande navigeringskontroll återställas och ge
 
 Karta, Schema och Sevärdheter använder samma validerade JSON-innehåll. Schema visar bokningar i resans tidszon, planerat program och valbara ruttstopp. Sevärdheter visar samtliga platser i alfabetisk ordning, beskrivning, adress, boknings-/osäkerhetsstatus och samma navigeringsmål som kartan. Kategorifiltren följer kartans lager; hotellet är fortsatt permanent. Visa på kartan öppnar rätt markör och aktiverar dess lager vid behov. Vyn kan länkas med `#schema` eller `#sevardheter` och bevaras vid uppdatering.
 
-Innehåll och scheman har inte ändrats: platser 3, rutter 2 och guide 3; samtliga schemaversion 1.
+Listvyerna infördes i 1.2.0. Flygstödet infördes i 1.3.0 enligt nedan.
 
 Mobil- och surfplatteflöden kan regressionstestas med `node tools/check-list-views.cjs` i en miljö med Playwright och Chromium. `BROWSER_EXECUTABLE_PATH` kan ange en befintlig Chromium-installation. Testet kontrollerar dagar/bokningar, platser, delade URL:er, synkroniserade filter, marköröppning, vy efter omladdning och tangentbordsnavigering.
+
+## Flyg – programversion 1.3.0
+
+Guide schema v2 lägger till `flights` (tom lista för resor utan flyg). Innehållsversionen för guiden är 4; platser och rutter är oförändrade. V1-schemat finns kvar för äldre guider. Index och kontrollscript läser respektive dokuments versionsbestämda schemareferens.
+
+Varje flyg har unikt id, dayId, flightNumber, operator, eventuellt onBehalfOf samt departure/arrival. Varje ändpunkt har airportCode, airportName, city, at med UTC-offset, timeZone och eventuell terminal. Schema visar korten i avgångsordning med lokala tider och datum; bytestiden beräknas mellan flyg samma dag på samma flygplats. Terminaler visas enligt bokningen och kan ändras. Bokningsreferenser ingår inte i det offentliga innehållet och tillåts inte av schemat.
+
+Flyguppgifterna kommer från användarens bokning 10 oktober 2026: OS962 ARN–VIE 13 oktober 10:05–12:15, OS535 VIE–FLR 12:45–14:05, SK1916 FLR–ARN 17 oktober 17:20–20:10. Detta är bokade tider, inte en kontroll av aktuell flygstatus. Valideringen kontrollerar unika flyg-id, resdag, flygplatskod, tidszon/offset och ankomst efter avgång.
