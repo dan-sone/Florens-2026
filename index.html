@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="application-version" content="1.4.1">
+<meta name="application-version" content="1.4.2">
     
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
@@ -109,7 +109,7 @@ body[data-view]:not([data-view=karta]) #guide,body[data-view]:not([data-view=kar
 #placeFilters{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0}#placeFilters button{font-size:13px;border:1px solid #cbd5e1;border-radius:20px;background:white;padding:8px 12px;color:#475569}#placeFilters button[aria-pressed=true]{background:#075eab;color:white;border-color:#075eab}
 #placeCount{font-size:13px;color:#64748b;margin-bottom:12px}.optional-stops{display:flex;gap:7px;flex-wrap:wrap}.optional-stops button{margin:0}.list-empty{padding:24px;background:white;border-radius:14px;color:#64748b}
 </style>
-<link rel="stylesheet" href="place-sheet.css?v=1.4.1">
+<link rel="stylesheet" href="place-sheet.css?v=1.4.2">
 </head>
 <body data-view="karta"><nav id="viewTabs" role="tablist" aria-label="Guidevyer"><button role="tab" id="tab-karta" data-view="karta" aria-selected="true" aria-controls="map_1391adca8bfb43099964d4b8f21913ee">Karta</button><button role="tab" id="tab-schema" data-view="schema" aria-selected="false" aria-controls="schemaPanel" tabindex="-1">Schema</button><button role="tab" id="tab-sevardheter" data-view="sevardheter" aria-selected="false" aria-controls="placesPanel" tabindex="-1">Sevärdheter</button></nav>
 <main id="listView" hidden><section class="list-panel" id="schemaPanel" role="tabpanel" aria-labelledby="tab-schema" hidden></section><section class="list-panel" id="placesPanel" role="tabpanel" aria-labelledby="tab-sevardheter" hidden><h1>Sevärdheter</h1><p class="list-intro">Sevärdheter, hantverk, mat och shopping. Filtren följer kartan.</p><div id="placeFilters" aria-label="Kategorier"></div><p id="placeCount" aria-live="polite"></p><div id="placeList"></div></section></main>
@@ -339,7 +339,7 @@ function placeResources(place){
 }
 const placeSheet=document.getElementById('placeSheet'),sheetBody=document.getElementById('sheetBody');
 let sheetPlaceId=null,sheetTrigger=null,sheetLevel='compact',sheetDrag=null,suppressGrabClickUntil=0;
-const sheetGrab=document.getElementById('sheetGrab');
+const sheetGrab=document.getElementById('sheetGrab'),sheetHeader=placeSheet.querySelector('.sheet-header');
 function sheetSizes(){const max=parseFloat(getComputedStyle(placeSheet).maxHeight);return {max,compact:Math.min(max,Math.max(190,Math.min(350,max*.6)))};}
 function setSheetLevel(level,reveal=false){
  sheetLevel=level;placeSheet.dataset.level=level;
@@ -351,11 +351,13 @@ function setSheetLevel(level,reveal=false){
  }
  requestAnimationFrame(keepMarkerVisible);
 }
-sheetGrab.addEventListener('pointerdown',event=>{
- if(event.button!==0||placeSheet.hidden)return;
+function startSheetDrag(event){
+ if(event.button!==0||placeSheet.hidden||sheetGrab.hidden||event.target.closest('button:not(#sheetGrab)'))return;
  sheetDrag={id:event.pointerId,y:event.clientY,height:placeSheet.getBoundingClientRect().height,start:event.timeStamp,moved:false};
  placeSheet.classList.add('dragging');sheetGrab.setPointerCapture(event.pointerId);event.preventDefault();
-});
+}
+sheetGrab.addEventListener('pointerdown',startSheetDrag);
+sheetHeader.addEventListener('pointerdown',startSheetDrag);
 sheetGrab.addEventListener('pointermove',event=>{
  if(!sheetDrag||event.pointerId!==sheetDrag.id)return;
  const delta=sheetDrag.y-event.clientY;sheetDrag.moved ||= Math.abs(delta)>6;
@@ -377,9 +379,10 @@ sheetGrab.addEventListener('pointerup',event=>finishSheetDrag(event));
 sheetGrab.addEventListener('pointercancel',event=>finishSheetDrag(event,true));
 sheetGrab.addEventListener('click',event=>{if(event.detail===0||performance.now()>suppressGrabClickUntil)setSheetLevel(sheetLevel==='compact'?'expanded':'compact',true);});
 const expandedStories=new Set();
-function storyMarkup(id){
+function storyMarkup(id,inline=false){
  const story=storiesById.get(id);if(!story||!story.paragraphs.some(p=>p.trim())||!story.lookFor.trim())return '';
- return '<details class="place-story" data-story="'+esc(id)+'"'+(expandedStories.has(id)?' open':'')+'><summary>Historien bakom platsen</summary><div class="story-copy"><h3>'+esc(story.title)+'</h3>'+story.paragraphs.map(p=>'<p>'+esc(p)+'</p>').join('')+'<div class="story-look"><strong>Titta efter</strong><p>'+esc(story.lookFor)+'</p></div><details class="story-sources"><summary>Källor</summary>'+story.sources.map(s=>'<a href="'+esc(s.url)+'" target="_blank" rel="noopener">'+esc(s.label)+' ↗</a>').join('')+'</details></div></details>';
+ const copy='<div class="story-copy"><h3>'+esc(story.title)+'</h3>'+story.paragraphs.map(p=>'<p>'+esc(p)+'</p>').join('')+'<div class="story-look"><strong>Titta efter</strong><p>'+esc(story.lookFor)+'</p></div><details class="story-sources"><summary>Källor</summary>'+story.sources.map(s=>'<a href="'+esc(s.url)+'" target="_blank" rel="noopener">'+esc(s.label)+' ↗</a>').join('')+'</details></div>';
+ return inline?copy:'<details class="place-story" data-story="'+esc(id)+'"'+(expandedStories.has(id)?' open':'')+'><summary>Historien bakom platsen</summary>'+copy+'</details>';
 }
 function keepMarkerVisible(){
  if(!sheetPlaceId||placeSheet.hidden)return;
@@ -409,8 +412,10 @@ function openPlaceSheet(id){
  const hasMoreInfo=fullText!==lead.replace(/\s+/g,' ').trim();
  const uncertainty=place.verification.status==='unresolved'?'<p class="list-badge uncertain">Platsuppgifter behöver bekräftas</p>':'';
  const primary=place.position?'<div class="sheet-primary"><a href="'+esc(PlacesValidator.appleDirectionsLink(place,'walking'))+'" target="_blank" rel="noopener">Hitta hit</a><a class="secondary" href="'+esc(mapLink(place))+'" target="_blank" rel="noopener">Apple Kartor ↗</a></div>':'';
- sheetBody.innerHTML=(place.address?'<p class="sheet-address">'+esc(place.address)+'</p>':'')+'<p>'+esc(lead)+'</p>'+uncertainty+primary+storyMarkup(id)+'<details class="sheet-more" data-has-more-info="'+hasMoreInfo+'"><summary>'+(hasMoreInfo?'Mer om platsen':'Färdsätt och länkar')+'</summary>'+(hasMoreInfo?placeDescription(place):'')+'<div class="list-actions">'+(place.position?[['Gå','walking'],['Kollektivtrafik','transit'],['Bil/taxi','driving']].map(([label,mode])=>'<a class="list-action" href="'+esc(PlacesValidator.appleDirectionsLink(place,mode))+'" target="_blank" rel="noopener">'+label+'</a>').join(''):'')+placeResources(place)+'</div></details>';
- sheetGrab.hidden=!hasMoreInfo&&!sheetBody.querySelector('[data-story]');
+ const story=storyMarkup(id,true),hasExtra=hasMoreInfo||Boolean(story);
+ const more=hasExtra?'<details class="sheet-more" data-has-more-info="true" data-full-description="'+hasMoreInfo+'"'+(story?' data-story="'+esc(id)+'"':'')+'><summary>Mer om platsen</summary>'+(hasMoreInfo?placeDescription(place):'')+story+'</details>':'';
+ sheetBody.innerHTML=(place.address?'<p class="sheet-address">'+esc(place.address)+'</p>':'')+'<p class="sheet-lead">'+esc(lead)+'</p>'+uncertainty+primary+more+'<div class="list-actions sheet-links">'+(place.position?[['Kollektivtrafik','transit'],['Bil/taxi','driving']].map(([label,mode])=>'<a class="list-action" href="'+esc(PlacesValidator.appleDirectionsLink(place,mode))+'" target="_blank" rel="noopener">'+label+'</a>').join(''):'')+placeResources(place)+'</div>';
+ sheetGrab.hidden=!hasExtra;sheetHeader.classList.toggle('draggable',hasExtra);
  sheetBody.scrollTop=0;placeSheet.hidden=false;document.body.classList.add('place-open');marker?.getElement()?.classList.add('is-selected');
  setSheetLevel('compact');
  document.getElementById('sheetTitle').focus({preventScroll:true});requestAnimationFrame(keepMarkerVisible);
