@@ -1,8 +1,8 @@
 {
   "$schema": "./guide.schema.v1.json",
   "schemaVersion": 1,
-  "contentVersion": 1,
-  "updatedAt": "2026-10-10T10:03:10.045Z",
+  "contentVersion": 2,
+  "updatedAt": "2026-10-10T10:27:54.129677Z",
   "id": "florens-2026",
   "title": "Florens 2026",
   "destination": {
@@ -111,6 +111,14 @@
               "text": " · födelsedagsmiddag."
             }
           ]
+        },
+        {
+          "nodes": [
+            {
+              "type": "text",
+              "text": "Santa Reparata: Porta del Campanile på södra sidan, cirka 5 minuter före bokad tid. Baptisteriet: Porta Sud. Ghiberti Pass omfattar inte kupolen eller klocktornet."
+            }
+          ]
         }
       ]
     },
@@ -155,7 +163,16 @@
           "nodes": [
             {
               "type": "text",
-              "text": "Efteråt: lättare lunch på Pasticceria Cosi vid Via Chiantigiana (kontrollera läget) "
+              "text": "Efteråt: lunch på "
+            },
+            {
+              "type": "place",
+              "placeId": "pasticceria-cosi-chiantigiana",
+              "text": "Cosi – Chiantigiana i Bagno a Ripoli"
+            },
+            {
+              "type": "text",
+              "text": " (taxi, kontrollera öppet med filialen) "
             },
             {
               "type": "emphasis",
@@ -163,7 +180,25 @@
             },
             {
               "type": "text",
-              "text": " taxi till San Miniato, utsikt och lunch på Beppa Fioraia. Välj på plats."
+              "text": " taxi till "
+            },
+            {
+              "type": "place",
+              "placeId": "beppa-fioraia",
+              "text": "Beppa Fioraia"
+            },
+            {
+              "type": "text",
+              "text": " och lunch där. Därefter utsikt vid Piazzale Michelangelo och besök inne i "
+            },
+            {
+              "type": "place",
+              "placeId": "san-miniato-al-monte",
+              "text": "San Miniato"
+            },
+            {
+              "type": "text",
+              "text": " efter 15.30; kyrkan är stängd 13.00–15.30. Välj lunchalternativ på plats."
             }
           ]
         }

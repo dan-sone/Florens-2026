@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="application-version" content="1.1.0">
     
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
@@ -123,21 +124,14 @@ const guideReady = (async function(){
  function requirePlace(id){const p=placesById.get(id);if(!p)throw new Error('Okänd plats i guiden: '+id);return p;}
  function coordinates(place){if(!place.position)throw new Error('Platsen saknar position: '+place.id);return [place.position.latitude,place.position.longitude];}
  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
- function mapLink(place){
-  // Pending imports keep the existing Apple Maps search behavior.
-  // Only verified place identity may replace it with a direct place link.
-  if(place.verification.status==='verified'){
-   if(place.appleMaps.placeUrl)return place.appleMaps.placeUrl;
-   if(place.appleMaps.placeId)return 'https://maps.apple.com/?place-id='+encodeURIComponent(place.appleMaps.placeId);
-  }
-  return 'https://maps.apple.com/?q='+encodeURIComponent(place.name+' '+(place.address||guide.destination.searchSuffix));
- }
+ function mapLink(place){return PlacesValidator.applePlaceLink(place);}
  function renderPopup(place,presentation){
   // Import notes are retained in content, but are not part of the visitor-facing popup.
   const description=presentation.descriptionSeparator ? place.description.split(presentation.descriptionSeparator)[0] : place.description;
   const text=description.split('\n').map(line=>line.startsWith('Markören')?'<small>'+esc(line)+'</small>':esc(line)).join('<br>');
-  const website=place.website?'<a target="_blank" rel="noopener" href="'+esc(place.website)+'">Restaurangens webbplats ↗</a><br>':'';
-  return '<div style="'+esc(presentation.style||'')+'"><b>'+esc(place.name)+'</b><br>'+text+'<br><br>'+website+'<a target="_blank" rel="noopener" href="'+esc(mapLink(place))+'">'+esc(presentation.mapLabel||'Öppna i Apple Kartor ↗')+'</a></div>';
+  const uncertainty=place.verification.status==='unresolved'?'<small>'+esc(place.verification.checks.placeLink?'Plats/entré behöver bekräftas.':'Namngiven kartpunkt; företagskort ej verifierat.')+'</small><br>':'';
+  const website=place.website?'<a target="_blank" rel="noopener" href="'+esc(place.website)+'">Webbplats ↗</a><br>':'';
+  return '<div style="'+esc(presentation.style||'')+'"><b>'+esc(place.name)+'</b><br>'+text+'<br><br>'+uncertainty+website+'<a target="_blank" rel="noopener" href="'+esc(mapLink(place))+'">'+esc(presentation.mapLabel||'Öppna i Apple Kartor ↗')+'</a></div>';
  }
 var map_1391adca8bfb43099964d4b8f21913ee = L.map(
                 "map_1391adca8bfb43099964d4b8f21913ee",
@@ -227,7 +221,8 @@ function buildRoutes(){
   day.routeIds.forEach(id=>routesById.get(id).segments.forEach(segment=>{
    const pts=segment.placeIds.map(id=>coordinates(requirePlace(id)));
    const transport=segment.mode!=='walk';
-   L.polyline(pts,{color:'#007AFF',weight:4,opacity:.78,dashArray:transport?'7 7':null,lineCap:'round',lineJoin:'round'}).addTo(group);
+   const line=L.polyline(pts,{color:'#007AFF',weight:4,opacity:.78,dashArray:transport?'7 7':null,lineCap:'round',lineJoin:'round'}).addTo(group);
+   line.bindPopup('Schematisk förbindelse mellan stopp. Använd platsens navigeringsknappar för aktuell väg.');
   }));
   if(day.routeIds.length)dayRoutes[day.id]=group;
  });
@@ -291,10 +286,9 @@ m.on('popupopen',function(evt){
  const marker=evt.popup._source;const ll=marker&&marker.getLatLng?marker.getLatLng():null;if(!ll)return;
  const place=requirePlace(marker.placeId);
  const name=place.name;
- const dest=markerPresentation[place.id]?.directionsUsesAddress===false ? name+' '+guide.destination.searchSuffix : place.address || name+' '+guide.destination.searchSuffix;
  const row=document.createElement('div');row.className='navactions';
- const modes=[['Gå','w'],['Kollektivtrafik','r'],['Bil/taxi','d']];
- modes.forEach(([label,mode])=>{const a=document.createElement('a');a.textContent=label;a.target='_blank';a.rel='noopener';a.href='https://maps.apple.com/?daddr='+encodeURIComponent(dest)+'&dirflg='+mode;row.appendChild(a)});
+ const modes=[['Gå','walking'],['Kollektivtrafik','transit'],['Bil/taxi','driving']];
+ modes.forEach(([label,mode])=>{const a=document.createElement('a');a.textContent=label;a.target='_blank';a.rel='noopener';a.href=PlacesValidator.appleDirectionsLink(place,mode);row.appendChild(a)});
  const ai=document.createElement('button');ai.textContent='Fråga ChatGPT';ai.title='Kopierar platsfrågan och öppnar ChatGPT';ai.onclick=async()=>{
  const question='Berätta om '+name+' i '+guide.destination.name+': historia, kultur och vad som är särskilt intressant att uppmärksamma vid ett besök. Vi är särskilt intresserade av hantverk, konst och lokala traditioner.';
  try{await navigator.clipboard.writeText(question);alert('Frågan kopierad. Klistra in den i ChatGPT.')}catch(e){prompt('Kopiera frågan:',question)}

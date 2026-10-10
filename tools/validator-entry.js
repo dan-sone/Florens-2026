@@ -1,3 +1,4 @@
+export {applePlaceLink,appleDirectionsLink} from './map-links.js';
 import Ajv2020 from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
 
@@ -20,6 +21,18 @@ export function validateTrip(schemas,documents) {
   for(const name of ['places','routes','guide'])createValidator(schemas[name])(documents[name]);
   const {places,routes,guide}=documents;
   const placeMap=new Map(places.places.map(p=>[p.id,p]));
+  for(const place of places.places){
+    const {verification:v,appleMaps:a}=place;
+    if(a.placeUrl){const u=new URL(a.placeUrl);if(u.hostname!=='maps.apple.com')throw new Error('Platslänk måste gå till Apple Kartor: '+place.id);if(a.placeId&&u.searchParams.get('place-id')!==a.placeId)throw new Error('Plats-id och platslänk skiljer sig: '+place.id);}
+    if(v.checkedAt && v.sources.some(source=>new Date(source.checkedAt)>new Date(v.checkedAt)))throw new Error('Kontrolldatum föregår källkontrollen: '+place.id);
+    for(const [check,passed] of Object.entries(v.checks))if(passed&&!v.sources.some(source=>source.supports.includes(check)))throw new Error('Verifieringskälla saknas för '+check+': '+place.id);
+    if(v.checks.navigation){
+      const point=place.entrance?.position||place.position;
+      const target=point.latitude+','+point.longitude;
+      if(!v.sources.some(source=>source.supports.includes('navigation') && new URL(source.url).searchParams.get('destination')===target))throw new Error('Navigeringskontrollen avser en annan position: '+place.id);
+    }
+    if(v.status==='verified' && !v.sources.some(source=>source.supports.includes('placeLink') && source.url===a.placeUrl))throw new Error('Verifierat platskort saknar motsvarande källa: '+place.id);
+  }
   const routeIds=unique(routes.routes,'rutt');
   const dayIds=unique(guide.days,'dag');unique(guide.days,'datum','date');
   unique(guide.bookings,'bokning');const categories=unique(guide.categories,'kategori');

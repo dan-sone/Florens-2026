@@ -5,9 +5,14 @@ for(const name of ['places','routes','guide']){schemas[name]=JSON.parse(fs.readF
 const validate=d=>PlacesValidator.validateTrip(schemas,d);
 validate(documents);
 const cases=[
+ d=>d.places.places[0].appleMaps.placeId='I123',
+ d=>d.places.places[0].appleMaps.placeUrl='https://example.com/place?place-id='+d.places.places[0].appleMaps.placeId,
+ d=>d.places.places[0].position.longitude+=0.001,
+ d=>d.places.places[0].verification.sources=d.places.places[0].verification.sources.filter(s=>!s.supports.includes('navigation')),
+
  d=>d.places.places.push(d.places.places[0]),
  d=>d.places.places[0].position.latitude=91,
- d=>d.places.places[0].verification.status='verified',
+ d=>{d.places.places[0].verification.status='verified';d.places.places[0].verification.checks.navigation=false},
  d=>d.routes.contentVersion=0,
  d=>d.places.places[0].website='javascript:alert(1)',
  d=>d.places.places[0].position.extra=1,
@@ -36,3 +41,12 @@ const independent=structuredClone(documents);independent.guide.contentVersion=7;
 const next=structuredClone(documents);next.guide.id='next-trip';next.guide.title='Nästa resa';next.guide.destination={name:'Annan stad',searchSuffix:'Annan stad'};next.guide.map.center={latitude:59.3,longitude:18.1};next.guide.days.forEach((day,i)=>{day.id='day-'+(i+1);day.date='2027-01-'+(13+i)});next.guide.bookings.forEach(b=>b.startsAt=b.startsAt.replace('2026-10','2027-01'));validate(next);
 assert(!/Florens|Firenze|2026-10|hotel-la-scaletta|routeDefinitions/.test(fs.readFileSync('index.html','utf8')));
 console.log(`PASS: three schemas; ${documents.places.places.length} places, ${documents.routes.routes.length} routes, ${documents.guide.days.length} days, ${documents.guide.bookings.length} bookings; ${cases.length} invalid-input cases; independent versions and reusable trip content`);
+
+for(const place of documents.places.places){
+ const url=new URL(PlacesValidator.applePlaceLink(place));assert.equal(url.hostname,'maps.apple.com');assert.equal(url.pathname,'/place');
+ if(place.verification.checks.placeLink){assert.equal(url.searchParams.get('place-id'),place.appleMaps.placeId)}else{assert.equal(url.searchParams.get('coordinate'),place.position.latitude+','+place.position.longitude);assert.equal(url.searchParams.get('name'),place.name)}
+ for(const mode of ['walking','transit','driving']){const u=new URL(PlacesValidator.appleDirectionsLink(place,mode));assert.equal(u.pathname,'/directions');assert.equal(u.searchParams.get('mode'),mode);assert.equal(u.searchParams.get('destination'),place.position.latitude+','+place.position.longitude);if(place.verification.checks.placeLink&&place.verification.checks.position)assert.equal(u.searchParams.get('destination-place-id'),place.appleMaps.placeId);else assert(!u.searchParams.has('destination-place-id'));}
+}
+assert.throws(()=>PlacesValidator.appleDirectionsLink(documents.places.places[0],'flying'));
+const entrance=structuredClone(documents.places.places[0]);entrance.entrance={position:{latitude:43.7,longitude:11.2}};const toEntrance=new URL(PlacesValidator.appleDirectionsLink(entrance,'walking'));assert.equal(toEntrance.searchParams.get('destination'),'43.7,11.2');assert(!toEntrance.searchParams.has('destination-place-id'));
+console.log('PASS: all 69 place links and 207 navigation links, coordinate fallbacks, entrance preference, place-id/source/position consistency');

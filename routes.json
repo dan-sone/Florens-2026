@@ -1,8 +1,8 @@
 {
   "$schema": "./routes.schema.v1.json",
   "schemaVersion": 1,
-  "contentVersion": 1,
-  "updatedAt": "2026-10-10T10:03:10.045Z",
+  "contentVersion": 2,
+  "updatedAt": "2026-10-10T10:27:54.129677Z",
   "routes": [
     {
       "id": "tue",
@@ -69,7 +69,7 @@
       "segments": [
         {
           "id": "thu-1",
-          "mode": "transport",
+          "mode": "taxi",
           "placeIds": [
             "hotel-la-scaletta",
             "fondazione-arte-della-seta-lisio"
@@ -77,32 +77,34 @@
         },
         {
           "id": "thu-2",
-          "mode": "transport",
+          "mode": "taxi",
           "placeIds": [
             "fondazione-arte-della-seta-lisio",
-            "pasticceria-cosi-chiantigiana"
+            "pasticceria-cosi-chiantigiana",
+            "piazzale-michelangelo"
           ]
         },
         {
           "id": "thu-3",
-          "mode": "transport",
+          "mode": "taxi",
           "placeIds": [
             "fondazione-arte-della-seta-lisio",
-            "san-miniato-al-monte"
+            "beppa-fioraia"
           ]
         },
         {
           "id": "thu-4",
           "mode": "walk",
           "placeIds": [
-            "san-miniato-al-monte",
+            "beppa-fioraia",
             "piazzale-michelangelo",
+            "san-miniato-al-monte",
             "porta-san-niccolo"
           ]
         },
         {
           "id": "thu-5",
-          "mode": "transport",
+          "mode": "walk",
           "placeIds": [
             "porta-san-niccolo",
             "hotel-la-scaletta"

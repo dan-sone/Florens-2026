@@ -25,3 +25,19 @@ Valideringskoden ligger i `tools/validator-entry.js`. Efter ändringar där: kö
 ## Nästa resa
 
 Kopiera guiden till en separat katalog eller ett separat repository och ersätt de tre innehållsfilerna. Återanvänd index, scheman och valideringskod. Ange den nya resans plats-id, rutter, datum, tidszon och kartutsnitt. Behåll Florensguidens egna filer separat.
+
+## Version och verifiering, 10 oktober 2026
+
+| Fil | Schemaversion | Innehåll/programversion |
+| --- | ---: | ---: |
+| places.json | 1 | 2 |
+| routes.json | 1 | 2 |
+| guide.json | 1 | 2 |
+| index.html och valideringskod | – | 1.1.0 |
+| verification-report.v1.md | – | Rapportversion 1 |
+
+[Verifieringsrapport version 1](verification-report.v1.md) listar samtliga 69 platser, koordinatändringar, källor, öppettider, kontrollerade delsträckor och kvarstående osäkerheter. 66 poster uppfyller de fyra registerkontrollerna. Giannini, Cosi – Chiantigiana och Passamaneria Toscana är markerade `unresolved`. Exakt entrépunkt är inte separat verifierad för alla platser.
+
+`tools/map-links.js` skapar platskort och navigeringslänkar från kanoniska data. Verifierat företags-id används där det finns. Annars används en namngiven koordinatpunkt med reservation. Adressflaggor i presentationen påverkar inte längre navigeringsmålet. En senare verifierad `entrance.position` prioriteras för navigering.
+
+Vid ändrad position måste motsvarande navigeringskontroll återställas och genomföras på nytt. Valideringen kräver källstöd för markerade kontroller, samma Apple-id i URL och register, samt att navigeringskällans destination stämmer med aktuell punkt. Den kontrollerar inte fysiska verkligheten eller dagsaktuella öppettider automatiskt.
