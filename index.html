@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="application-version" content="1.4.0">
+<meta name="application-version" content="1.4.1">
     
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
@@ -109,11 +109,11 @@ body[data-view]:not([data-view=karta]) #guide,body[data-view]:not([data-view=kar
 #placeFilters{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0}#placeFilters button{font-size:13px;border:1px solid #cbd5e1;border-radius:20px;background:white;padding:8px 12px;color:#475569}#placeFilters button[aria-pressed=true]{background:#075eab;color:white;border-color:#075eab}
 #placeCount{font-size:13px;color:#64748b;margin-bottom:12px}.optional-stops{display:flex;gap:7px;flex-wrap:wrap}.optional-stops button{margin:0}.list-empty{padding:24px;background:white;border-radius:14px;color:#64748b}
 </style>
-<link rel="stylesheet" href="place-sheet.css?v=1.4.0">
+<link rel="stylesheet" href="place-sheet.css?v=1.4.1">
 </head>
 <body data-view="karta"><nav id="viewTabs" role="tablist" aria-label="Guidevyer"><button role="tab" id="tab-karta" data-view="karta" aria-selected="true" aria-controls="map_1391adca8bfb43099964d4b8f21913ee">Karta</button><button role="tab" id="tab-schema" data-view="schema" aria-selected="false" aria-controls="schemaPanel" tabindex="-1">Schema</button><button role="tab" id="tab-sevardheter" data-view="sevardheter" aria-selected="false" aria-controls="placesPanel" tabindex="-1">Sevärdheter</button></nav>
 <main id="listView" hidden><section class="list-panel" id="schemaPanel" role="tabpanel" aria-labelledby="tab-schema" hidden></section><section class="list-panel" id="placesPanel" role="tabpanel" aria-labelledby="tab-sevardheter" hidden><h1>Sevärdheter</h1><p class="list-intro">Sevärdheter, hantverk, mat och shopping. Filtren följer kartan.</p><div id="placeFilters" aria-label="Kategorier"></div><p id="placeCount" aria-live="polite"></p><div id="placeList"></div></section></main>
-<section id="placeSheet" role="region" aria-labelledby="sheetTitle" hidden><div class="sheet-handle" aria-hidden="true"></div><header class="sheet-header"><h2 id="sheetTitle" tabindex="-1"></h2><button type="button" class="sheet-close" id="sheetClose" aria-label="Stäng platskort">×</button></header><div class="sheet-body" id="sheetBody"></div></section>
+<section id="placeSheet" role="region" aria-labelledby="sheetTitle" hidden><button type="button" id="sheetGrab" class="sheet-grab" aria-label="Visa mer om platsen" aria-expanded="false" title="Dra uppåt eller nedåt"><span class="sheet-handle" aria-hidden="true"></span></button><header class="sheet-header"><h2 id="sheetTitle" tabindex="-1"></h2><button type="button" class="sheet-close" id="sheetClose" aria-label="Stäng platskort">×</button></header><div class="sheet-body" id="sheetBody"></div></section>
 <div id="guide"><label for="routeSelect" class="sr-only">Välj dagsrutt</label><select id="routeSelect" aria-label="Välj dagsrutt"></select><div id="daycard"><p>Välj dag för att visa dagsrutt och program.</p></div><div id="routeLegs"></div></div>
     
     
@@ -338,10 +338,47 @@ function placeResources(place){
  return (place.website?'<a class="list-action" target="_blank" rel="noopener" href="'+esc(place.website)+'">Webbplats ↗</a>':'')+'<button class="list-action" data-ask-place="'+esc(place.id)+'">Fråga ChatGPT</button>';
 }
 const placeSheet=document.getElementById('placeSheet'),sheetBody=document.getElementById('sheetBody');
-let sheetPlaceId=null,sheetTrigger=null;
+let sheetPlaceId=null,sheetTrigger=null,sheetLevel='compact',sheetDrag=null,suppressGrabClickUntil=0;
+const sheetGrab=document.getElementById('sheetGrab');
+function sheetSizes(){const max=parseFloat(getComputedStyle(placeSheet).maxHeight);return {max,compact:Math.min(max,Math.max(190,Math.min(350,max*.6)))};}
+function setSheetLevel(level,reveal=false){
+ sheetLevel=level;placeSheet.dataset.level=level;
+ const sizes=sheetSizes();placeSheet.style.height=(level==='expanded'?sizes.max:sizes.compact)+'px';
+ sheetGrab.setAttribute('aria-expanded',String(level==='expanded'));sheetGrab.setAttribute('aria-label',level==='expanded'?'Visa mindre om platsen':'Visa mer om platsen');
+ if(reveal){
+  if(level==='expanded'){const extra=sheetBody.querySelector('[data-story],.sheet-more[data-has-more-info="true"]');if(extra)extra.open=true;}
+  else{sheetBody.querySelectorAll(':scope > details[open]').forEach(details=>details.open=false);sheetBody.scrollTop=0;}
+ }
+ requestAnimationFrame(keepMarkerVisible);
+}
+sheetGrab.addEventListener('pointerdown',event=>{
+ if(event.button!==0||placeSheet.hidden)return;
+ sheetDrag={id:event.pointerId,y:event.clientY,height:placeSheet.getBoundingClientRect().height,start:event.timeStamp,moved:false};
+ placeSheet.classList.add('dragging');sheetGrab.setPointerCapture(event.pointerId);event.preventDefault();
+});
+sheetGrab.addEventListener('pointermove',event=>{
+ if(!sheetDrag||event.pointerId!==sheetDrag.id)return;
+ const delta=sheetDrag.y-event.clientY;sheetDrag.moved ||= Math.abs(delta)>6;
+ const sizes=sheetSizes();placeSheet.style.height=Math.max(sizes.compact,Math.min(sizes.max,sheetDrag.height+delta))+'px';event.preventDefault();
+});
+function finishSheetDrag(event,cancelled=false){
+ if(!sheetDrag||event.pointerId!==sheetDrag.id)return;
+ const drag=sheetDrag;sheetDrag=null;placeSheet.classList.remove('dragging');
+ if(sheetGrab.hasPointerCapture(event.pointerId))sheetGrab.releasePointerCapture(event.pointerId);
+ if(drag.moved){
+  suppressGrabClickUntil=performance.now()+400;
+  const delta=drag.y-event.clientY,sizes=sheetSizes();
+  const next=cancelled?sheetLevel:Math.abs(delta)>28?(delta>0?'expanded':'compact'):placeSheet.getBoundingClientRect().height>(sizes.max+sizes.compact)/2?'expanded':'compact';
+  setSheetLevel(next,!cancelled);
+ }else if(cancelled)setSheetLevel(sheetLevel);
+ else{suppressGrabClickUntil=performance.now()+400;setSheetLevel(sheetLevel==='compact'?'expanded':'compact',true);}
+}
+sheetGrab.addEventListener('pointerup',event=>finishSheetDrag(event));
+sheetGrab.addEventListener('pointercancel',event=>finishSheetDrag(event,true));
+sheetGrab.addEventListener('click',event=>{if(event.detail===0||performance.now()>suppressGrabClickUntil)setSheetLevel(sheetLevel==='compact'?'expanded':'compact',true);});
 const expandedStories=new Set();
 function storyMarkup(id){
- const story=storiesById.get(id);if(!story)return '';
+ const story=storiesById.get(id);if(!story||!story.paragraphs.some(p=>p.trim())||!story.lookFor.trim())return '';
  return '<details class="place-story" data-story="'+esc(id)+'"'+(expandedStories.has(id)?' open':'')+'><summary>Historien bakom platsen</summary><div class="story-copy"><h3>'+esc(story.title)+'</h3>'+story.paragraphs.map(p=>'<p>'+esc(p)+'</p>').join('')+'<div class="story-look"><strong>Titta efter</strong><p>'+esc(story.lookFor)+'</p></div><details class="story-sources"><summary>Källor</summary>'+story.sources.map(s=>'<a href="'+esc(s.url)+'" target="_blank" rel="noopener">'+esc(s.label)+' ↗</a>').join('')+'</details></div></details>';
 }
 function keepMarkerVisible(){
@@ -354,6 +391,7 @@ function keepMarkerVisible(){
 }
 function closePlaceSheet(restoreFocus=true){
  if(placeSheet.hidden)return;
+ if(sheetDrag){if(sheetGrab.hasPointerCapture(sheetDrag.id))sheetGrab.releasePointerCapture(sheetDrag.id);sheetDrag=null;placeSheet.classList.remove('dragging');}
  const marker=markersById.get(sheetPlaceId);marker?.getElement()?.classList.remove('is-selected');
  placeSheet.hidden=true;document.body.classList.remove('place-open');sheetPlaceId=null;
  if(restoreFocus&&sheetTrigger?.isConnected)sheetTrigger.focus({preventScroll:true});
@@ -367,20 +405,24 @@ function openPlaceSheet(id){
  const description=presentation.descriptionSeparator?place.description.split(presentation.descriptionSeparator)[0]:place.description;
  const firstSentence=description.split('\n').filter(line=>!line.startsWith('Markören')).join(' ').split(/(?<=\.)\s/)[0];
  const lead=firstSentence.length>220?firstSentence.slice(0,220).replace(/\s+\S*$/,'')+'…':firstSentence;
+ const fullText=description.split('\n').filter(line=>!line.startsWith('Markören')).join(' ').replace(/\s+/g,' ').trim();
+ const hasMoreInfo=fullText!==lead.replace(/\s+/g,' ').trim();
  const uncertainty=place.verification.status==='unresolved'?'<p class="list-badge uncertain">Platsuppgifter behöver bekräftas</p>':'';
  const primary=place.position?'<div class="sheet-primary"><a href="'+esc(PlacesValidator.appleDirectionsLink(place,'walking'))+'" target="_blank" rel="noopener">Hitta hit</a><a class="secondary" href="'+esc(mapLink(place))+'" target="_blank" rel="noopener">Apple Kartor ↗</a></div>':'';
- sheetBody.innerHTML=(place.address?'<p class="sheet-address">'+esc(place.address)+'</p>':'')+'<p>'+esc(lead)+'</p>'+uncertainty+primary+storyMarkup(id)+'<details class="sheet-more"><summary>Detaljer och fler val</summary>'+placeDescription(place)+'<div class="list-actions">'+(place.position?[['Gå','walking'],['Kollektivtrafik','transit'],['Bil/taxi','driving']].map(([label,mode])=>'<a class="list-action" href="'+esc(PlacesValidator.appleDirectionsLink(place,mode))+'" target="_blank" rel="noopener">'+label+'</a>').join(''):'')+placeResources(place)+'</div></details>';
+ sheetBody.innerHTML=(place.address?'<p class="sheet-address">'+esc(place.address)+'</p>':'')+'<p>'+esc(lead)+'</p>'+uncertainty+primary+storyMarkup(id)+'<details class="sheet-more" data-has-more-info="'+hasMoreInfo+'"><summary>'+(hasMoreInfo?'Mer om platsen':'Färdsätt och länkar')+'</summary>'+(hasMoreInfo?placeDescription(place):'')+'<div class="list-actions">'+(place.position?[['Gå','walking'],['Kollektivtrafik','transit'],['Bil/taxi','driving']].map(([label,mode])=>'<a class="list-action" href="'+esc(PlacesValidator.appleDirectionsLink(place,mode))+'" target="_blank" rel="noopener">'+label+'</a>').join(''):'')+placeResources(place)+'</div></details>';
+ sheetGrab.hidden=!hasMoreInfo&&!sheetBody.querySelector('[data-story]');
  sheetBody.scrollTop=0;placeSheet.hidden=false;document.body.classList.add('place-open');marker?.getElement()?.classList.add('is-selected');
+ setSheetLevel('compact');
  document.getElementById('sheetTitle').focus({preventScroll:true});requestAnimationFrame(keepMarkerVisible);
 }
-function syncStoryExpansion(event){const details=event.target;if(!details.matches?.('[data-story]'))return;if(details.open)expandedStories.add(details.dataset.story);else expandedStories.delete(details.dataset.story);if(placeSheet.contains(details))requestAnimationFrame(keepMarkerVisible);}
+function syncStoryExpansion(event){const details=event.target;if(details.matches?.('[data-story]')){if(details.open)expandedStories.add(details.dataset.story);else expandedStories.delete(details.dataset.story);}if(details.parentElement===sheetBody&&details.open&&!sheetDrag)setSheetLevel('expanded');}
 document.addEventListener('toggle',syncStoryExpansion,true);
 document.getElementById('sheetClose').addEventListener('click',()=>closePlaceSheet());
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!placeSheet.hidden){event.preventDefault();closePlaceSheet();}});
 placeSheet.addEventListener('click',event=>{const button=event.target.closest('[data-ask-place]');if(button)askAboutPlace(requirePlace(button.dataset.askPlace));});
 m.on('click',()=>closePlaceSheet(false));
 m.on('layerremove',()=>{if(sheetPlaceId&&!m.hasLayer(markersById.get(sheetPlaceId)))closePlaceSheet(false);});
-function updateSheetViewport(){document.documentElement.style.setProperty('--app-height',(window.visualViewport?.height||window.innerHeight)+'px');requestAnimationFrame(keepMarkerVisible);}
+function updateSheetViewport(){document.documentElement.style.setProperty('--app-height',(window.visualViewport?.height||window.innerHeight)+'px');if(!placeSheet.hidden&&!sheetDrag)setSheetLevel(sheetLevel);requestAnimationFrame(keepMarkerVisible);}
 window.addEventListener('resize',updateSheetViewport);window.visualViewport?.addEventListener('resize',updateSheetViewport);updateSheetViewport();
 function listActions(place){
  if(!place.position)return '<p class="address">Kartposition saknas ännu.</p><div class="list-actions">'+placeResources(place)+'</div>';

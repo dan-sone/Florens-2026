@@ -5,7 +5,7 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  const server=http.createServer((req,res)=>{const path=new URL(req.url,'http://localhost').pathname;const file=path==='/'?'index.html':path.slice(1);if(!fs.existsSync(file)){res.writeHead(404);return res.end()};res.setHeader('Content-Type',file.endsWith('.html')?'text/html':file.endsWith('.json')?'application/json':file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':'text/plain');res.end(fs.readFileSync(file))}).listen(8765,'127.0.0.1');
  const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{}),args:['--no-sandbox','--disable-dev-shm-usage']});
  try{
- const page=await browser.newPage({viewport:{width:390,height:844},ignoreHTTPSErrors:true});
+ const page=await browser.newPage({viewport:{width:390,height:844},hasTouch:true,ignoreHTTPSErrors:true});
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  const cache=new Map();
  await page.route(/^https?:\/\/(?!127\.0\.0\.1)/,async route=>{
@@ -58,7 +58,7 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
    const g=await guideReady;g.setView('karta');
    const frame=()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
    const bounds=()=>{const sheet=document.getElementById('placeSheet'),body=document.getElementById('sheetBody'),r=sheet.getBoundingClientRect();if(r.left<0||r.right>innerWidth+1||r.top<0||r.bottom>innerHeight+1||body.scrollWidth>body.clientWidth+1)throw new Error('Sheet overflow '+innerWidth+'×'+innerHeight+' '+document.getElementById('sheetTitle').textContent);};
-   for(const place of g.content.places){g.openPlaceSheet(place.id);await frame();bounds();const link=document.querySelector('.sheet-primary a');if(link.href!==PlacesValidator.appleDirectionsLink(place,'walking'))throw new Error('Wrong navigation');}
+   for(const place of g.content.places){g.openPlaceSheet(place.id);await frame();bounds();const link=document.querySelector('.sheet-primary a');if(link.href!==PlacesValidator.appleDirectionsLink(place,'walking'))throw new Error('Wrong navigation');const more=document.querySelector('#sheetBody .sheet-more'),hasMore=more.dataset.hasMoreInfo==='true',hasStory=Boolean(document.querySelector('#sheetBody [data-story]'));if(document.getElementById('sheetGrab').hidden!==( !hasMore&&!hasStory))throw new Error('Empty more-info choice');if(more.querySelector('summary').textContent!==(hasMore?'Mer om platsen':'Färdsätt och länkar'))throw new Error('Misleading information label');}
    for(const story of g.storyContent.stories){g.openPlaceSheet(story.placeId);document.querySelector('#sheetBody [data-story]').open=true;document.querySelector('#sheetBody .sheet-more').open=true;await frame();bounds();const text=document.querySelector('#sheetBody .story-copy').textContent;if(!text.includes(story.title)||!text.includes(story.lookFor)||!story.paragraphs.every(p=>text.includes(p)))throw new Error('Story text mismatch');}
    g.closePlaceSheet(false);g.setView('sevardheter');
    if(document.querySelectorAll('#placeList [data-story]').length!==g.storyContent.stories.length)throw new Error('Missing list story');
@@ -67,6 +67,24 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
   });
  }
  await page.setViewportSize({width:390,height:844});
+ // Real pointer capture, touch swipes and keyboard alternative on the grab handle.
+ await page.evaluate(async()=>{const g=await guideReady;g.setView('karta');g.openPlaceSheet('orsanmichele');});
+ await page.waitForTimeout(300);
+ const grab=page.locator('#sheetGrab'),sheet=page.locator('#placeSheet');
+ if(await sheet.getAttribute('data-level')==='expanded'){await grab.focus();await page.keyboard.press('Enter');await page.waitForTimeout(300);}
+ const compact=(await sheet.boundingBox()).height;
+ async function mouseDrag(delta){const r=await grab.boundingBox(),x=r.x+r.width/2,y=r.y+r.height/2;await page.mouse.move(x,y);await page.mouse.down();await page.mouse.move(x,y+delta,{steps:8});await page.mouse.up();await page.waitForTimeout(450);}
+ await mouseDrag(-150);assert.equal(await sheet.getAttribute('data-level'),'expanded');assert((await sheet.boundingBox()).height>compact+50);assert(await page.locator('#sheetBody [data-story]').evaluate(e=>e.open));
+ await mouseDrag(150);assert.equal(await sheet.getAttribute('data-level'),'compact');assert(!await page.locator('#sheetBody [data-story]').evaluate(e=>e.open));
+ const cdp=await page.context().newCDPSession(page);await cdp.send('Emulation.setTouchEmulationEnabled',{enabled:true});
+ async function touchDrag(delta){const r=await grab.boundingBox(),x=r.x+r.width/2,y=r.y+r.height/2;await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y}]});for(let step=1;step<=8;step++)await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x,y:y+delta*step/8}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await page.waitForTimeout(450);}
+ await touchDrag(-150);assert.equal(await sheet.getAttribute('data-level'),'expanded');
+ // Scrolling the content must not collapse the sheet.
+ const body=await page.locator('#sheetBody').boundingBox();await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:body.x+body.width/2,y:body.y+body.height-30}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:body.x+body.width/2,y:body.y+30}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});assert.equal(await sheet.getAttribute('data-level'),'expanded');
+ await touchDrag(150);assert.equal(await sheet.getAttribute('data-level'),'compact');
+ await grab.tap();await page.waitForTimeout(300);assert.equal(await sheet.getAttribute('data-level'),'expanded');
+ await cdp.send('Emulation.setTouchEmulationEnabled',{enabled:false});await grab.focus();await page.keyboard.press('Enter');await page.waitForTimeout(300);assert.equal(await sheet.getAttribute('data-level'),'compact');
+ await cdp.detach();
  await page.evaluate(async()=>{document.documentElement.style.fontSize='32px';const g=await guideReady;g.setView('karta');g.showPlaceOnMap('san-miniato-al-monte');});
  await page.waitForSelector('#placeSheet');
  if(!await page.locator('#sheetBody [data-story]').evaluate(e=>e.open))await page.locator('#sheetBody [data-story] summary').first().click();
@@ -84,6 +102,6 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  await page.evaluate(async()=>{const g=await guideReady;g.markersById.get('orsanmichele').getElement().click();});await page.waitForSelector('#placeSheet');
  assert.equal(await page.locator('.leaflet-popup').count(),0);
  await page.keyboard.press('Escape');assert(await page.locator('#placeSheet').isHidden());
- assert.deepEqual(errors,[]);console.log('PASS: existing map/list/flight flows, 69 sheets and 13 shared stories at five mobile/tablet sizes, 200% text, bounds/vertical scroll, marker click and keyboard close, unchanged canonical navigation');
+ assert.deepEqual(errors,[]);console.log('PASS: existing map/list/flight flows, 69 sheets and 13 shared stories at five mobile/tablet sizes, 200% text, mouse/touch drag in both directions, touch tap and keyboard toggle, no empty information choices, bounds/vertical scroll, marker click and keyboard close, unchanged canonical navigation');
  }finally{await browser.close();server.close()}
 })().catch(e=>{console.error(e.stack);process.exitCode=1});

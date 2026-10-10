@@ -2,7 +2,10 @@
 #placeSheet{position:fixed;bottom:calc(env(safe-area-inset-bottom,0px) + 8px);left:50%;transform:translateX(-50%);width:min(560px,calc(100% - 16px));max-height:min(76dvh,calc(var(--app-height,100dvh) - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px) - 88px));display:flex;flex-direction:column;z-index:1500;background:#fff;border:1px solid #e1e5eb;border-radius:24px;box-shadow:0 8px 40px #12253c30;font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;color:#182a3d;box-sizing:border-box;overflow:hidden}
 #placeSheet[hidden]{display:none!important}
 body.place-open #guide{visibility:hidden;pointer-events:none}
-.sheet-handle{width:34px;height:5px;border-radius:4px;background:#cbd1d8;margin:9px auto 2px;flex-shrink:0}
+.sheet-grab{width:100%;height:32px;min-height:32px;border:0;background:transparent;display:flex;align-items:center;justify-content:center;flex-shrink:0;touch-action:none;cursor:ns-resize;padding:0}.sheet-handle{display:block;width:34px;height:5px;border-radius:4px;background:#cbd1d8}
+#placeSheet{transition:height .22s cubic-bezier(.2,.8,.2,1)}#placeSheet.dragging{transition:none;user-select:none}.sheet-grab:focus-visible{outline:3px solid #8ac6ff;outline-offset:-4px}
+@media(prefers-reduced-motion:reduce){#placeSheet{transition:none}}
+.sheet-grab[hidden]{display:none}
 .sheet-header{display:flex;gap:12px;align-items:flex-start;padding:9px 16px 8px;flex-shrink:0;min-width:0}
 .sheet-header h2{font-size:1.25rem;font-weight:700;line-height:1.25;letter-spacing:-.025em;margin:6px 0 0;flex:1;min-width:0;max-height:min(25dvh,150px);overflow-y:auto;overflow-wrap:anywhere}
 #sheetTitle:focus{outline:none}
@@ -17,4 +20,4 @@ body.place-open #guide{visibility:hidden;pointer-events:none}
 .sheet-body button:focus-visible,.sheet-body a:focus-visible,.sheet-close:focus-visible,.place-story summary:focus-visible{outline:3px solid #8ac6ff;outline-offset:2px}
 .list-card{overflow-wrap:anywhere;min-width:0}.list-card .place-story{margin-top:14px}.list-card .story-copy p{font-size:.95rem}
 .leaflet-marker-icon.is-selected{filter:drop-shadow(0 0 5px #007aff)!important}
-@media(max-height:480px){#placeSheet{max-height:calc(var(--app-height,100dvh) - 82px);border-radius:18px}.sheet-header{padding-top:2px}.sheet-header h2{font-size:1.08rem}.sheet-handle{margin-top:6px}}
+@media(max-height:480px){#placeSheet{max-height:calc(var(--app-height,100dvh) - 82px);border-radius:18px}.sheet-header{padding-top:2px}.sheet-header h2{font-size:1.08rem}}

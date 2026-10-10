@@ -1,6 +1,8 @@
 # Reseguiden
 
-## Platskort och berättelser – 1.4.0
+## Platskort och berättelser – 1.4.1
+
+Kortets handtag kan dras uppåt för att öppna mer innehåll och nedåt för att återgå till den korta vyn. Ett tryck på handtaget växlar också läge; det fungerar även med tangentbord. Innehållet scrollas separat. Handtaget och ”Mer om platsen” visas endast när det finns ytterligare beskrivning eller berättelse. Övriga länkar finns kvar under ”Färdsätt och länkar”. Rörelsen respekterar inställningen för minskad animation.
 
 Markörer öppnar nu ett Apple-inspirerat kort längst ned, inte en flytande plats-popup. Kartan är fortsatt interaktiv. Namn och stängknapp ligger kvar överst, medan innehållet scrollas vertikalt inom kortet. Kortet använder dynamisk skärmhöjd och safe-area-insets, även i liggande läge. Dagskortet döljs tillfälligt när platskortet är öppet och återkommer när det stängs. Kryss, Escape eller tryck på den fria kartan stänger kortet; dragning/zoomning stänger det inte. Fokus återgår till markören vid kryss/Escape.
 
@@ -10,7 +12,7 @@ Historien bakom platsen är en utfällbar berättelse med Titta efter. Samma `st
 
 Schemaversion och innehållsversion är separata även för stories. Valideringen kräver källor, unika platsreferenser och befintliga placeId. Platser, positioner, rutter, bokningar och flyg är oförändrade från föregående publicering 1.3.3.
 
-`BROWSER_EXECUTABLE_PATH=/path/to/chromium node tools/check-list-views.cjs` kontrollerar befintliga flöden, alla platskort, samtliga berättelser, 320×568, 390×844, 844×390, 1024×768, 768×1024 samt 200% grundtextstorlek. Det kontrollerar kortets kanter, horisontellt överflöde, inre vertikal scrollning, delat berättelseinnehåll, navigeringsmål, markörklick och stängning med tangentbord. Fysisk iPhone/Safari är inte automatiskt testad.
+`BROWSER_EXECUTABLE_PATH=/path/to/chromium node tools/check-list-views.cjs` kontrollerar befintliga flöden, alla platskort, samtliga berättelser, 320×568, 390×844, 844×390, 1024×768, 768×1024 samt 200% grundtextstorlek. Det kontrollerar kortets kanter, horisontellt överflöde, inre vertikal scrollning, delat berättelseinnehåll, navigeringsmål, markörklick och stängning med tangentbord. Dragning testas i båda riktningarna med mus och emulerad touch, liksom tryck och tangentbordsväxling. Alla platser kontrolleras för tomma informationsval. Fysisk iPhone/Safari är inte automatiskt testad.
 
 En statisk reseguide med återanvändbart kartgränssnitt. `index.html` innehåller presentation och interaktion. Resans innehåll läses från fyra JSON-filer:
 
@@ -47,7 +49,7 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | routes.json | 1 | 3 |
 | guide.json | 2 | 6 |
 | stories.json | 1 | 1 |
-| index.html och place-sheet.css | – | 1.4.0 |
+| index.html och place-sheet.css | – | 1.4.1 |
 | valideringskod | – | 1.4.0 |
 | verification-report.v2.md | – | Rapportversion 2 |
 
