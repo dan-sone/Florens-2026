@@ -38,6 +38,11 @@ export function validateTrip(schemas,documents) {
   unique(guide.bookings,'bokning');const categories=unique(guide.categories,'kategori');
   if(dayIds.has(guide.defaultSelection.id))throw new Error('Standardvalet delar id med en dag');
   const requirePlace=(id,position=false)=>{const p=placeMap.get(id);if(!p)throw new Error('Okänt plats-id: '+id);if(position&&!p.position)throw new Error('Platsen saknar position: '+id);return p;};
+  if(documents.stories){
+    createValidator(schemas.stories)(documents.stories);
+    unique(documents.stories.stories,'berättelse','placeId');
+    for(const story of documents.stories.stories)requirePlace(story.placeId);
+  }
   for(const route of routes.routes){unique(route.segments,'delsträcka');for(const segment of route.segments)segment.placeIds.forEach(id=>requirePlace(id,true));}
   const checkProgram=program=>{for(const paragraph of program)for(const node of paragraph.nodes)if(node.type==='place')requirePlace(node.placeId);};
   checkProgram(guide.defaultSelection.program);

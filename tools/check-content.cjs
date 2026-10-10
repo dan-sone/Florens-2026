@@ -1,10 +1,15 @@
 const fs=require('fs'),vm=require('vm'),assert=require('assert/strict');
 vm.runInThisContext(fs.readFileSync('places-validator.js','utf8'));
 const schemas={},documents={};
-for(const name of ['places','routes','guide']){documents[name]=JSON.parse(fs.readFileSync(name+'.json'));assert.equal(documents[name].$schema,'./'+name+'.schema.v'+documents[name].schemaVersion+'.json');schemas[name]=JSON.parse(fs.readFileSync(documents[name].$schema));}
+for(const name of ['places','routes','guide','stories']){documents[name]=JSON.parse(fs.readFileSync(name+'.json'));assert.equal(documents[name].$schema,'./'+name+'.schema.v'+documents[name].schemaVersion+'.json');schemas[name]=JSON.parse(fs.readFileSync(documents[name].$schema));}
 const validate=d=>PlacesValidator.validateTrip(schemas,d);
 validate(documents);
 const cases=[
+ d=>d.stories.stories.push(d.stories.stories[0]),
+ d=>d.stories.stories[0].placeId='unknown-place',
+ d=>d.stories.stories[0].sources=[],
+ d=>d.stories.stories[0].sources[0].url='javascript:alert(1)',
+ d=>d.stories.schemaVersion=2,
  d=>d.guide.flights.push(d.guide.flights[0]),
  d=>d.guide.flights[0].dayId='unknown',
  d=>d.guide.flights[0].arrival.at=d.guide.flights[0].departure.at,
@@ -48,7 +53,7 @@ const independent=structuredClone(documents);independent.guide.contentVersion=7;
 // A different trip uses the same schemas and renderer contract.
 const next=structuredClone(documents);next.guide.id='next-trip';next.guide.title='Nästa resa';next.guide.destination={name:'Annan stad',searchSuffix:'Annan stad'};next.guide.map.center={latitude:59.3,longitude:18.1};next.guide.days.forEach((day,i)=>{day.id='day-'+(i+1);day.date='2027-01-'+(13+i)});next.guide.bookings.forEach(b=>b.startsAt=b.startsAt.replace('2026-10','2027-01'));next.guide.flights=[];validate(next);
 assert(!/Florens|Firenze|2026-10|hotel-la-scaletta|routeDefinitions/.test(fs.readFileSync('index.html','utf8')));
-console.log(`PASS: three schemas; ${documents.places.places.length} places, ${documents.routes.routes.length} routes, ${documents.guide.days.length} days, ${documents.guide.bookings.length} bookings; ${cases.length} invalid-input cases; independent versions and reusable trip content`);
+console.log(`PASS: four schemas; ${documents.places.places.length} places, ${documents.routes.routes.length} routes, ${documents.guide.days.length} days, ${documents.guide.bookings.length} bookings, ${documents.stories.stories.length} stories; ${cases.length} invalid-input cases; independent versions and reusable trip content`);
 
 for(const place of documents.places.places){
  const url=new URL(PlacesValidator.applePlaceLink(place));assert.equal(url.hostname,'maps.apple.com');assert.equal(url.pathname,'/place');

@@ -2,7 +2,7 @@
 const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chromium}=require('playwright');
 (async()=>{
  const executablePath=process.env.BROWSER_EXECUTABLE_PATH;
- const server=http.createServer((req,res)=>{const path=new URL(req.url,'http://localhost').pathname;const file=path==='/'?'index.html':path.slice(1);if(!fs.existsSync(file)){res.writeHead(404);return res.end()};res.setHeader('Content-Type',file.endsWith('.html')?'text/html':file.endsWith('.json')?'application/json':file.endsWith('.js')?'text/javascript':'text/plain');res.end(fs.readFileSync(file))}).listen(8765,'127.0.0.1');
+ const server=http.createServer((req,res)=>{const path=new URL(req.url,'http://localhost').pathname;const file=path==='/'?'index.html':path.slice(1);if(!fs.existsSync(file)){res.writeHead(404);return res.end()};res.setHeader('Content-Type',file.endsWith('.html')?'text/html':file.endsWith('.json')?'application/json':file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':'text/plain');res.end(fs.readFileSync(file))}).listen(8765,'127.0.0.1');
  const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{}),args:['--no-sandbox','--disable-dev-shm-usage']});
  try{
  const page=await browser.newPage({viewport:{width:390,height:844},ignoreHTTPSErrors:true});
@@ -29,7 +29,7 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  assert(await page.locator('[data-day="sat"]').evaluate(e=>Boolean(e.querySelector('.list-program').compareDocumentPosition(e.querySelector('[data-flight]'))&Node.DOCUMENT_POSITION_FOLLOWING)));
  assert((await page.locator('[data-day="tue"] .list-program').textContent()).includes('upptäck Florens'));
  assert.equal(await page.locator('[data-day="tue"] .list-program [data-place="serre-torrigiani-in-piazzetta"]').count(),1);
- await page.locator('[data-day="tue"] .list-program [data-place="serre-torrigiani-in-piazzetta"]').click();assert.equal(await page.locator('body').getAttribute('data-view'),'karta');await page.waitForSelector('.leaflet-popup');assert((await page.locator('.leaflet-popup').filter({hasText:'Serre Torrigiani'}).textContent()).includes('Serre Torrigiani'));await page.click('#tab-schema');
+ await page.locator('[data-day="tue"] .list-program [data-place="serre-torrigiani-in-piazzetta"]').click();assert.equal(await page.locator('body').getAttribute('data-view'),'karta');await page.waitForSelector('#placeSheet');assert((await page.locator('#sheetTitle').textContent()).includes('Serre Torrigiani'));await page.click('#tab-schema');assert(await page.locator('#placeSheet').isHidden());
  await page.locator('[data-flight="return-florence-stockholm"]').scrollIntoViewIfNeeded();await page.screenshot({path:'/tmp/return-flight-check.png'});
  await page.locator('#schemaPanel h1').scrollIntoViewIfNeeded();
  assert.equal(await page.locator('#schemaPanel').evaluate(e=>e.scrollWidth>e.clientWidth),false);
@@ -45,10 +45,45 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  assert.equal(await page.locator('#placesPanel').evaluate(e=>e.scrollWidth>e.clientWidth),false);
  // Each list navigation target must equal the map's canonical URL generator.
  const validLinks=await page.evaluate(async()=>{const g=await guideReady;for(const card of document.querySelectorAll('[data-place-card]')){const p=g.placesById.get(card.dataset.placeCard);const links=card.querySelectorAll('.list-actions a');for(const [i,mode]of ['walking','transit','driving'].entries())if(links[i].href!==PlacesValidator.appleDirectionsLink(p,mode))return false;if(links[3].href!==PlacesValidator.applePlaceLink(p))return false}return true});assert(validLinks);
- await page.locator('[data-place-card="beppa-fioraia"] [data-show-place]').click();assert.equal(await page.locator('body').getAttribute('data-view'),'karta');await page.waitForSelector('.navactions');assert((await page.locator('.leaflet-popup').filter({hasText:'Beppa Fioraia'}).textContent()).includes('Beppa Fioraia'));
+ await page.locator('[data-place-card="beppa-fioraia"] [data-show-place]').click();assert.equal(await page.locator('body').getAttribute('data-view'),'karta');await page.waitForSelector('#placeSheet');assert((await page.locator('#sheetTitle').textContent()).includes('Beppa Fioraia'));
  await page.click('#tab-schema');await page.reload({waitUntil:'load'});await page.evaluate(()=>guideReady);assert.equal(await page.locator('body').getAttribute('data-view'),'schema');
  await page.click('#tab-sevardheter');await page.keyboard.press('ArrowLeft');assert.equal(await page.locator('#tab-schema').getAttribute('aria-selected'),'true');
  await page.setViewportSize({width:1024,height:768});await page.click('#tab-sevardheter');assert.equal(await page.locator('#placesPanel').evaluate(e=>e.scrollWidth>e.clientWidth),false);
- assert.deepEqual(errors,[]);console.log('PASS list views: mobile/tablet layout, all five days/bookings and three flight cards with compact times/routes/connection, all 69 places and shared navigation URLs, category filters synchronized both ways, show marker, hash/refresh persistence, keyboard tabs');
+ // Every place card and every story must remain inside the screen, including landscape
+ // and large-text layouts. Story text is identical in the sheet and the list.
+ const sizes=[{width:320,height:568},{width:390,height:844},{width:844,height:390},{width:1024,height:768},{width:768,height:1024}];
+ for(const size of sizes){
+  await page.setViewportSize(size);
+  await page.evaluate(async()=>{
+   const g=await guideReady;g.setView('karta');
+   const frame=()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+   const bounds=()=>{const sheet=document.getElementById('placeSheet'),body=document.getElementById('sheetBody'),r=sheet.getBoundingClientRect();if(r.left<0||r.right>innerWidth+1||r.top<0||r.bottom>innerHeight+1||body.scrollWidth>body.clientWidth+1)throw new Error('Sheet overflow '+innerWidth+'×'+innerHeight+' '+document.getElementById('sheetTitle').textContent);};
+   for(const place of g.content.places){g.openPlaceSheet(place.id);await frame();bounds();const link=document.querySelector('.sheet-primary a');if(link.href!==PlacesValidator.appleDirectionsLink(place,'walking'))throw new Error('Wrong navigation');}
+   for(const story of g.storyContent.stories){g.openPlaceSheet(story.placeId);document.querySelector('#sheetBody [data-story]').open=true;document.querySelector('#sheetBody .sheet-more').open=true;await frame();bounds();const text=document.querySelector('#sheetBody .story-copy').textContent;if(!text.includes(story.title)||!text.includes(story.lookFor)||!story.paragraphs.every(p=>text.includes(p)))throw new Error('Story text mismatch');}
+   g.closePlaceSheet(false);g.setView('sevardheter');
+   if(document.querySelectorAll('#placeList [data-story]').length!==g.storyContent.stories.length)throw new Error('Missing list story');
+   for(const story of g.storyContent.stories){const details=document.querySelector('#placeList [data-story="'+story.placeId+'"]');details.open=true;if(!details.textContent.includes(story.lookFor))throw new Error('List story mismatch');}
+   await frame();const panel=document.getElementById('placesPanel');if(panel.scrollWidth>panel.clientWidth+1)throw new Error('List overflow');
+  });
+ }
+ await page.setViewportSize({width:390,height:844});
+ await page.evaluate(async()=>{document.documentElement.style.fontSize='32px';const g=await guideReady;g.setView('karta');g.showPlaceOnMap('san-miniato-al-monte');});
+ await page.waitForSelector('#placeSheet');
+ if(!await page.locator('#sheetBody [data-story]').evaluate(e=>e.open))await page.locator('#sheetBody [data-story] summary').first().click();
+ assert.equal(await page.locator('#sheetBody').evaluate(e=>e.scrollWidth>e.clientWidth+1),false);
+ const rect=await page.locator('#placeSheet').boundingBox();assert(rect.x>=0&&rect.y>=0&&rect.x+rect.width<=391&&rect.y+rect.height<=845);
+ assert(await page.locator('#sheetBody').evaluate(e=>e.scrollHeight>e.clientHeight));
+ await page.screenshot({path:'/tmp/place-sheet-large-text.png'});
+ await page.keyboard.press('Escape');assert(await page.locator('#placeSheet').isHidden());
+ await page.evaluate(async()=>{document.documentElement.style.fontSize='16px';const g=await guideReady;g.showPlaceOnMap('orsanmichele');});await page.waitForSelector('#placeSheet');
+ if(!await page.locator('#sheetBody [data-story]').evaluate(e=>e.open))await page.locator('#sheetBody [data-story] summary').first().click();
+ await page.screenshot({path:'/tmp/place-sheet-story.png'});
+ await page.click('#sheetClose');assert(await page.locator('#placeSheet').isHidden());
+ // Real marker click, keyboard close and no duplicate popup.
+ await page.evaluate(async()=>{const g=await guideReady;g.map.setView(g.markersById.get('orsanmichele').getLatLng(),16,{animate:false});});
+ await page.evaluate(async()=>{const g=await guideReady;g.markersById.get('orsanmichele').getElement().click();});await page.waitForSelector('#placeSheet');
+ assert.equal(await page.locator('.leaflet-popup').count(),0);
+ await page.keyboard.press('Escape');assert(await page.locator('#placeSheet').isHidden());
+ assert.deepEqual(errors,[]);console.log('PASS: existing map/list/flight flows, 69 sheets and 13 shared stories at five mobile/tablet sizes, 200% text, bounds/vertical scroll, marker click and keyboard close, unchanged canonical navigation');
  }finally{await browser.close();server.close()}
 })().catch(e=>{console.error(e.stack);process.exitCode=1});

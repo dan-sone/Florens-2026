@@ -1,9 +1,9 @@
 name: Validate guide content
 on:
   push:
-    paths: ['index.html', '*.json', 'places-validator.js', 'tools/**', 'package*.json', '.github/workflows/validate-guide.yml']
+    paths: ['index.html', '*.css', '*.json', 'places-validator.js', 'tools/**', 'package*.json', '.github/workflows/validate-guide.yml']
   pull_request:
-    paths: ['index.html', '*.json', 'places-validator.js', 'tools/**', 'package*.json', '.github/workflows/validate-guide.yml']
+    paths: ['index.html', '*.css', '*.json', 'places-validator.js', 'tools/**', 'package*.json', '.github/workflows/validate-guide.yml']
 permissions:
   contents: read
 jobs:

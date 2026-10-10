@@ -1,12 +1,25 @@
 # Reseguiden
 
-En statisk reseguide med återanvändbart kartgränssnitt. `index.html` innehåller presentation och interaktion. Resans innehåll läses från tre JSON-filer:
+## Platskort och berättelser – 1.4.0
+
+Markörer öppnar nu ett Apple-inspirerat kort längst ned, inte en flytande plats-popup. Kartan är fortsatt interaktiv. Namn och stängknapp ligger kvar överst, medan innehållet scrollas vertikalt inom kortet. Kortet använder dynamisk skärmhöjd och safe-area-insets, även i liggande läge. Dagskortet döljs tillfälligt när platskortet är öppet och återkommer när det stängs. Kryss, Escape eller tryck på den fria kartan stänger kortet; dragning/zoomning stänger det inte. Fokus återgår till markören vid kryss/Escape.
+
+Hitta hit använder samma kanoniska gångnavigering som tidigare. Apple Kartor finns direkt; kollektivtrafik, bil/taxi, webbplats, ChatGPT och fullständig platsbeskrivning ligger under Detaljer och fler val. Inget av den befintliga informationen har tagits bort.
+
+Historien bakom platsen är en utfällbar berättelse med Titta efter. Samma `stories.json` visas i platskortet och Sevärdheter; inget nytt filter eller någon ny flik behövs. 13 berättelser ingår i första innehållsversionen. Källor finns i ett separat utfällbart avsnitt med operatörs-, museums- och officiella turismsidor, kontrollerade 10 oktober 2026. Berättelserna är korta redaktionella återberättelser; betraktelserna under Titta efter är tips, inte nya boknings- eller öppettidsuppgifter.
+
+Schemaversion och innehållsversion är separata även för stories. Valideringen kräver källor, unika platsreferenser och befintliga placeId. Platser, positioner, rutter, bokningar och flyg är oförändrade från föregående publicering 1.3.3.
+
+`BROWSER_EXECUTABLE_PATH=/path/to/chromium node tools/check-list-views.cjs` kontrollerar befintliga flöden, alla platskort, samtliga berättelser, 320×568, 390×844, 844×390, 1024×768, 768×1024 samt 200% grundtextstorlek. Det kontrollerar kortets kanter, horisontellt överflöde, inre vertikal scrollning, delat berättelseinnehåll, navigeringsmål, markörklick och stängning med tangentbord. Fysisk iPhone/Safari är inte automatiskt testad.
+
+En statisk reseguide med återanvändbart kartgränssnitt. `index.html` innehåller presentation och interaktion. Resans innehåll läses från fyra JSON-filer:
 
 | Innehåll | Schema | Ansvar |
 | --- | --- | --- |
 | `places.json` | `places.schema.v1.json` | Platser, positioner, länkar och verifieringsstatus |
 | `routes.json` | `routes.schema.v1.json` | Delsträckor, färdsätt och ordnade plats-id |
 | `guide.json` | `guide.schema.v2.json` | Titel, destination, tidszon, kartutsnitt, resdagar, program, bokningar, flyg och presentation |
+| `stories.json` | `stories.schema.v1.json` | Korta platsberättelser, konkreta saker att titta efter och källor |
 
 Varje innehållsfil har `schemaVersion`, `contentVersion` och `updatedAt`. SchemaVersion ändras när datakontraktet ändras. ContentVersion ändras när innehållet i just den filen ändras. Versionerna är oberoende mellan filerna.
 
@@ -24,7 +37,7 @@ Valideringskoden ligger i `tools/validator-entry.js`. Efter ändringar där: kö
 
 ## Nästa resa
 
-Kopiera guiden till en separat katalog eller ett separat repository och ersätt de tre innehållsfilerna. Återanvänd index, scheman och valideringskod. Ange den nya resans plats-id, rutter, datum, tidszon och kartutsnitt. Behåll Florensguidens egna filer separat.
+Kopiera guiden till en separat katalog eller ett separat repository och ersätt innehållsfilerna. Återanvänd index, scheman, place-sheet.css och valideringskod. Ange den nya resans plats-id, rutter, datum, tidszon och kartutsnitt. Stories kan vara en tom lista. Behåll Florensguidens egna filer separat.
 
 ## Version och verifiering, 10 oktober 2026
 
@@ -33,8 +46,9 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | places.json | 1 | 4 |
 | routes.json | 1 | 3 |
 | guide.json | 2 | 6 |
-| index.html | – | 1.3.3 |
-| valideringskod | – | 1.3.0 |
+| stories.json | 1 | 1 |
+| index.html och place-sheet.css | – | 1.4.0 |
+| valideringskod | – | 1.4.0 |
 | verification-report.v2.md | – | Rapportversion 2 |
 
 [Verifieringsrapport version 2](verification-report.v2.md) listar samtliga 69 platser, koordinatändringar, källor, öppettider, kontrollerade delsträckor och kvarstående osäkerheter. 66 poster uppfyller de fyra registerkontrollerna. Giannini, Cosi – Chiantigiana och Passamaneria Toscana är markerade `unresolved`. Exakt entrépunkt är inte separat verifierad för alla platser.

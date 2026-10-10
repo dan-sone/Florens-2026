@@ -1,0 +1,99 @@
+{
+  "$schema": "./stories.schema.v1.json",
+  "schemaVersion": 1,
+  "contentVersion": 1,
+  "updatedAt": "2026-10-10T20:46:00Z",
+  "stories": [
+    {
+      "placeId": "orsanmichele",
+      "title": "När yrkesstolthet blev konst",
+      "paragraphs": ["Det här ser nästan mer ut som ett palats än en kyrka. Och byggnaden har faktiskt varit både spannmålsmarknad och förråd. Florens skrån gjorde sedan platsen till ett skyltfönster för sin tro och sitt kunnande: de beställde skulpturer av stora konstnärer till fasadens nischer. Tänk yrkesstolthet, prestige och reklam – hugget i sten och gjutet i brons."],
+      "lookFor": "Jämför figurerna och de färgade skråvapnen ovanför nischerna. Skulpturerna utomhus är kopior; originalen har flyttats in för att skyddas. Det är verkstädernas Florens ni ser här.",
+      "sources": [{"label": "Visit Tuscany · Orsanmichele", "url": "https://www.visittuscany.com/en/attractions/orsanmichele-museum/", "checkedAt": "2026-10-10"}]
+    },
+    {
+      "placeId": "duomo-santa-reparata",
+      "title": "En kupol byggd av problemlösare",
+      "paragraphs": ["Brunelleschis kupol är inte bara ett vackert tak. Den är resultatet av år av experiment med konstruktion, lyftanordningar och material. Bakom renässansens stora idéer stod människor som kunde mäta, bygga och få saker att fungera. I domkyrkomuseets kupolgalleri kommer ni nära just den världen: modeller och gamla verktyg gör mästerverket begripligt."],
+      "lookFor": "I museets kupolgalleri: titta på trämodellerna och byggverktygen. Försök sedan se kupolen utifrån som ett bygge, inte bara en silhuett. Museibesöket ingår i ert Ghiberti Pass; själva kupolbestigningen gör det inte.",
+      "sources": [{"label": "Opera del Duomo · Kupolgalleriet", "url": "https://duomo.firenze.it/en/490/galleria-della-cupola", "checkedAt": "2026-10-10"}]
+    },
+    {
+      "placeId": "uffizierna",
+      "title": "Världskonst i ett gammalt kontor",
+      "paragraphs": ["Namnet avslöjar något oväntat: Uffizi betyder kontor. Cosimo I de’ Medici lät Vasari samla stadens myndigheter under ett tak. Det som i dag känns som ett tempel för konsten började alltså som ett sätt att samla makten. Nästa gång ni går genom gården kan ni tänka mindre museum och mer renässansens regeringskvarter."],
+      "lookFor": "Stanna i den långa gården mellan byggnadens två flyglar och följ perspektivet mot Arno. Arkitekturen ordnar både blicken och rörelsen – nästan som en scen där staden är föreställningen.",
+      "sources": [{"label": "Gallerie degli Uffizi · Uffizipalatset", "url": "https://www.uffizi.it/en/artworks/ll-palazzo-degli-uffizi", "checkedAt": "2026-10-10"}]
+    },
+    {
+      "placeId": "palazzo-pitti",
+      "title": "Familjenamnet som blev kvar",
+      "paragraphs": ["Palatset bär fortfarande namnet Pitti, trots att Medici blev dess mest berömda invånare. Köpmannen Luca Pitti lät bygga det på 1400-talet. År 1549 köpte Eleonora av Toledo, Cosimo I:s hustru, byggnaden. Ett privat prestigebygge blev ett hovresidens – och fortsatte senare att användas av andra dynastier."],
+      "lookFor": "Kom nära fasadens grova stenblock och gå sedan några steg tillbaka. Ytan ser nästan rå ut, men helheten är noggrant ordnad. Det är en sorts maktdemonstration som går att känna med ögonen.",
+      "sources": [{"label": "Gallerie degli Uffizi · Palazzo Pittis historia", "url": "https://www.uffizi.it/en/pitti-palace/history", "checkedAt": "2026-10-10"}]
+    },
+    {
+      "placeId": "ponte-vecchio",
+      "title": "Två städer ovanpå varandra",
+      "paragraphs": ["På bron går ni bland butiker. Ovanför dem finns en helt annan väg: Vasaris korridor, byggd 1565 så att Medici kunde röra sig skyddat mellan Pitti och regeringspalatset. Samma bro rymmer alltså både handelns vardag och maktens privata genväg. Den stod också kvar när Florens andra broar förstördes under andra världskriget."],
+      "lookFor": "Titta upp efter den sammanhängande fönsterraden ovanför butikerna. Följ den med blicken mot Uffizi. Där blir den osynliga förbindelsen mellan palatsen plötsligt synlig.",
+      "sources": [{"label": "Gallerie degli Uffizi · Vasaris korridor", "url": "https://www.uffizi.it/en/corridoio-vasariano/history", "checkedAt": "2026-10-10"}, {"label": "FeelFlorence · Ponte Vecchio", "url": "https://www.feelflorence.it/en/points-interest/dantes-plaque-ponte-vecchio", "checkedAt": "2026-10-10"}]
+    },
+    {
+      "placeId": "piazza-della-repubblica",
+      "title": "Det gamla centrum som byggdes bort",
+      "paragraphs": ["Det här torget är betydligt yngre än det ser ut. Under det låg det romerska forumet, senare en tät värld av marknad, verkstäder och gränder. Under 1800-talets modernisering revs stora delar av området. Florens blev luftigare och pampigare – men förlorade också en bit av sin vardagshistoria."],
+      "lookFor": "Leta efter Colonna dell’Abbondanza, kolonnen som markerar mötet mellan den romerska stadens två huvudgator. Jämför sedan det öppna torget med de smala gränderna strax utanför.",
+      "sources": [{"label": "FeelFlorence · Piazza della Repubblica", "url": "https://www.feelflorence.it/en/points-interest/piazza-della-repubblica", "checkedAt": "2026-10-10"}]
+    },
+    {
+      "placeId": "piazza-della-signoria",
+      "title": "Maktens teater, mitt på torget",
+      "paragraphs": ["Här har Florens visat vem som bestämmer. Palazzo Vecchio är den politiska tyngdpunkten, och skulpturerna gör torget till något mer än en vacker samling konst. Här avrättades också predikanten Savonarola 1498, efter att ha haft stort inflytande i staden. Samma plats rymmer alltså både stolthet, makt och ett dramatiskt fall."],
+      "lookFor": "Jämför palatsets nästan borglika uttryck med skulpturerna framför det. Leta också efter den runda minnesplattan över Savonarola i stenläggningen. Den stora historien finns ibland under fötterna.",
+      "sources": [{"label": "FeelFlorence · Piazza della Signoria", "url": "https://www.feelflorence.it/it/punti-di-interesse/piazza-della-signoria", "checkedAt": "2026-10-10"}]
+    },
+    {
+      "placeId": "basilica-di-santo-spirito",
+      "title": "Renässans utan stora gester",
+      "paragraphs": ["Santo Spirito visar en annan sida av Florens än de överdådiga palatsen. Brunelleschi ritade kyrkan, men dog innan den blev färdig. Här kan ni känna hans idé om ett rum som blir vackert genom proportioner och rytm. Det är arkitektur som inte behöver ropa för att få uppmärksamhet."],
+      "lookFor": "När ni kommer in: följ pelarnas upprepning med blicken och se hur valven formar rummet. I det särskilda besöksstråket finns också den unge Michelangelos träkrucifix – ett helt annat uttryck än en monumental marmorskulptur.",
+      "sources": [{"label": "FeelFlorence · Santo Spirito", "url": "https://www.feelflorence.it/en/points-interest/basilica-di-santo-spirito", "checkedAt": "2026-10-10"}]
+    },
+    {
+      "placeId": "basilica-di-santa-croce",
+      "title": "När hantverket räddade konsten",
+      "paragraphs": ["Översvämningen 1966 gjorde Santa Croce till en symbol för Florens sårbarhet. Cimabues stora målade krucifix dränktes och skadades svårt. Räddningen krävde år av skickligt och nyskapande restaureringsarbete. Här möts två sorters mästerskap: att skapa ett verk och att bevara det när katastrofen har inträffat."],
+      "lookFor": "Om ni ser Cimabues krucifix, titta också på partierna där färgen gått förlorad. Skadorna är inte bara brister; de berättar vad föremålet har överlevt. Restaurering gör inte alltid det förflutna osynligt.",
+      "sources": [{"label": "Opera di Santa Croce · Cimabues krucifix", "url": "https://www.santacroceopera.it/en/catalogue-of-works/cimabue-crucifix/", "checkedAt": "2026-10-10"}, {"label": "Opera di Santa Croce · Restaureringen", "url": "https://www.santacroceopera.it/news-eventi/un-tesoro-fotografico-racconta-il-restauro-di-cimabue/", "checkedAt": "2026-10-10"}]
+    },
+    {
+      "placeId": "san-miniato-al-monte",
+      "title": "Textilhandlarnas örn över staden",
+      "paragraphs": ["Det är lätt att stanna vid utsikten. Men San Miniato berättar också hur nära handel och tro stod varandra. På toppen av fasaden finns en bronsörn, symbol för Calimala – skrået för tyghandlare som under lång tid beskyddade kyrkan. Textiliernas pengar och kyrkans skönhet hör ihop även här, högt ovanför centrum."],
+      "lookFor": "Leta efter örnen över fasaden, de vita och gröna marmormönstren och det gyllene mosaikfältet. Inne i kyrkan fortsätter geometrin i marmorgolvet. Tänk på det som mönsterarbete i sten.",
+      "sources": [{"label": "Abbazia San Miniato al Monte · Konst och historia", "url": "https://sanminiatoalmonte.it/abbazia-di-san-miniato/i-primi-secoli/", "checkedAt": "2026-10-10"}]
+    },
+    {
+      "placeId": "piazzale-michelangelo",
+      "title": "En modern ram runt en gammal stad",
+      "paragraphs": ["Utsikten känns tidlös, men själva terrassen är från 1869. Giuseppe Poggi skapade den när Florens var Italiens huvudstad. Det är alltså en modern stadsplanerares sätt att låta er betrakta den äldre staden. Här uppe blir Florens nästan en modell som går att läsa med blicken."],
+      "lookFor": "Hitta först Arno, sedan Ponte Vecchio och därefter Duomos kupol. Följ i tanken promenaden ni redan gjort. Stadens skala och sambandet mellan platserna blir mycket tydligare härifrån.",
+      "sources": [{"label": "Italia.it · Piazzale Michelangelo", "url": "https://www.italia.it/en/tuscany/florence/piazzale-michelangelo", "checkedAt": "2026-10-10"}]
+    },
+    {
+      "placeId": "fondazione-arte-della-seta-lisio",
+      "title": "Renässansen som fortfarande vävs",
+      "paragraphs": ["Giuseppe Lisio startade sin verksamhet 1906 för att återuppliva den äldre sidenvävningen. Dottern Fidalma bildade stiftelsen 1971 för att föra kunnandet vidare. Här är tradition inte bara något som står i en monter: den används för att skapa nya tyger och återskapa historiska. Det är ett levande samband mellan material, teknik och minne."],
+      "lookFor": "Under er visning: följ hur trådarnas rörelse blir ett mönster, och hur ljuset förändrar sidenets yta. Jämför gärna en väv med ett färdigt tyg – bakom den mjuka ytan finns en mycket exakt konstruktion.",
+      "sources": [{"label": "Fondazione Lisio · Historia", "url": "https://www.fondazionelisio.org/en/who-we-are/history", "checkedAt": "2026-10-10"}]
+    },
+    {
+      "placeId": "scuola-del-cuoio",
+      "title": "Ett hantverk som gav en framtid",
+      "paragraphs": ["Scuola del Cuoio började 1950 med ett konkret mål: att lära krigsföräldralösa ett yrke. Läderhantverkarna Marcello Gori och Silvano Casini samarbetade med franciskanerna i Santa Croce. Det gör platsen till mer än en butik med vackra väskor. Hantverket var ett sätt att bygga upp både människors liv och stadens vardag efter kriget."],
+      "lookFor": "När hantverkarna arbetar, lägg märke till hur materialet hålls, skärs och formas. Titta på kanterna och de små övergångarna i ett färdigt föremål – ofta syns kunnandet bäst där ingen dekoration döljer det.",
+      "sources": [{"label": "Scuola del Cuoio · Vår historia", "url": "https://scuoladelcuoio.it/en/content/4-our-history", "checkedAt": "2026-10-10"}]
+    }
+  ]
+}
