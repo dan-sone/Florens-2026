@@ -1447,6 +1447,28 @@ craftGroup.addTo(map_1391adca8bfb43099964d4b8f21913ee);
 foodGroup.addTo(map_1391adca8bfb43099964d4b8f21913ee);
 shoppingGroup.addTo(map_1391adca8bfb43099964d4b8f21913ee);
 var m=map_1391adca8bfb43099964d4b8f21913ee;
+// Liten uppdateringsknapp för webbappen: ny URL kringgår gammal HTML i cache.
+var refreshControl=L.control({position:'topleft'});
+refreshControl.onAdd=function(){
+ const box=L.DomUtil.create('div','leaflet-bar');
+ const button=L.DomUtil.create('button','',box);
+ button.type='button';
+ button.title='Uppdatera guiden';
+ button.setAttribute('aria-label','Uppdatera guiden');
+ button.textContent='↻';
+ button.style.cssText='display:block;width:34px;height:34px;padding:0;border:0;background:#fff;color:#222;font-size:25px;line-height:34px;cursor:pointer;border-radius:2px';
+ L.DomEvent.disableClickPropagation(box);
+ L.DomEvent.disableScrollPropagation(box);
+ button.addEventListener('click',function(){
+  button.disabled=true;
+  const url=new URL(window.location.href);
+  url.searchParams.set('v',Date.now().toString());
+  window.location.replace(url.href);
+ });
+ return box;
+};
+refreshControl.addTo(m);
+
 var schedule={
  all:'<p>Ingen dagsrutt visas. Alla platser och kategorier finns kvar på kartan.</p>',
  tue:'<p><b>14.05</b> landning i Florens · hotellet ungefär 15.30–16.00. Därefter: kort orientering i centrum. <b>Drink utomhus</b> (Serre Torrigiani i första hand), sedan spontan middag i Oltrarno.</p>',
