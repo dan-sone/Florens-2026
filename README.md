@@ -18,7 +18,7 @@ Alla åtgärder ligger på en gemensam rad med symbol och kort etikett: Gå, Kar
 
 Den valda platsen får en blå ring vid kartpositionen, tydlig ljusmarkering runt nålen och högre visningsordning. Endast en plats är markerad åt gången. Markeringen försvinner när kortet stängs eller ruttinformation öppnas. Kartans visningsområde flyttas vid behov så att markören syns ovanför kortet; koordinaterna ändras inte.
 
-Samma `stories.json` visas i platskortet och Sevärdheter; listans berättelser behåller sin egen utfällning. 13 berättelser ingår i första innehållsversionen. ”Läs vidare” visar länkarna som berättelsen bygger på: operatörs-, museums- och officiella turismsidor, kontrollerade 10 oktober 2026. Berättelserna är korta redaktionella återberättelser; betraktelserna under Titta efter är tips, inte nya boknings- eller öppettidsuppgifter.
+Samma `stories.json` visas i platskortet och Sevärdheter; listans berättelser behåller sin egen utfällning. Innehållsversion 2 har 27 berättelser, inklusive historia för samtliga 25 platser i kategorin `see-do`. De 14 nya berättelserna kompletterar torg, broar, kyrkor, museer och trädgårdar som tidigare saknade historia. ”Läs vidare” visar länkarna som berättelsen bygger på: operatörs-, museums- och officiella turismsidor, kontrollerade 10–11 oktober 2026. Berättelserna är korta redaktionella återberättelser; betraktelserna under Titta efter är tips, inte nya boknings- eller öppettidsuppgifter. Innehållsuppdateringen ändrar inte UI, platser, positioner eller schema.
 
 Schemaversion och innehållsversion är separata även för stories. Valideringen kräver källor, unika platsreferenser och befintliga placeId. Platser, positioner, rutter, bokningar och flyg är oförändrade från föregående publicering 1.3.3.
 
@@ -58,7 +58,7 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | places.json | 1 | 4 |
 | routes.json | 1 | 3 |
 | guide.json | 2 | 6 |
-| stories.json | 1 | 1 |
+| stories.json | 1 | 2 |
 | index.html och ui-theme.css | – | 1.5.0 |
 | place-sheet.css | – | 1.4.4 |
 | valideringskod | – | 1.4.0 |

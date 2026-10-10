@@ -1,8 +1,8 @@
 {
   "$schema": "./stories.schema.v1.json",
   "schemaVersion": 1,
-  "contentVersion": 1,
-  "updatedAt": "2026-10-10T20:46:00Z",
+  "contentVersion": 2,
+  "updatedAt": "2026-10-10T22:50:00Z",
   "stories": [
     {
       "placeId": "orsanmichele",
@@ -94,6 +94,104 @@
       "paragraphs": ["Scuola del Cuoio började 1950 med ett konkret mål: att lära krigsföräldralösa ett yrke. Läderhantverkarna Marcello Gori och Silvano Casini samarbetade med franciskanerna i Santa Croce. Det gör platsen till mer än en butik med vackra väskor. Hantverket var ett sätt att bygga upp både människors liv och stadens vardag efter kriget."],
       "lookFor": "När hantverkarna arbetar, lägg märke till hur materialet hålls, skärs och formas. Titta på kanterna och de små övergångarna i ett färdigt föremål – ofta syns kunnandet bäst där ingen dekoration döljer det.",
       "sources": [{"label": "Scuola del Cuoio · Vår historia", "url": "https://scuoladelcuoio.it/en/content/4-our-history", "checkedAt": "2026-10-10"}]
+    },
+    {
+      "placeId": "piazza-della-passera",
+      "title": "Ett gammalt kvarter med ett yngre torg",
+      "paragraphs": ["Det lilla torget känns som om det alltid funnits här. Men öppningen mellan husen skapades faktiskt på 1920-talet i Oltrarnos täta bebyggelse. Kvarteret har äldre minnen: en liten påfågel i sten vid ett gathörn gav en gång namn åt gatan. Här går stadens historia att läsa i en detalj, snarare än i ett stort monument."],
+      "lookFor": "Leta efter påfågelfragmentet i hörnet mellan Via Toscanella och Via dello Sprone. Se sedan hur det lilla öppna rummet låter kvarterets caféer och vardagsliv mötas.",
+      "sources": [{"label": "FeelFlorence · Piazza della Passera", "url": "https://www.feelflorence.it/en/points-interest/piazza-della-passera", "checkedAt": "2026-10-11"}]
+    },
+    {
+      "placeId": "piazza-del-carmine",
+      "title": "En bildrevolution bakom fasaden",
+      "paragraphs": ["Bakom kyrkan vid torget finns Brancaccikapellet. På 1420-talet arbetade Masolino och Masaccio här med berättelser om Petrus; senare fullbordade Filippino Lippi målningarna. Det blev en viktig plats för renässansens nya sätt att skildra människor och rum. När en brand förstörde stora delar av kyrkan 1771 överlevde kapellet. Den stilla platsen bär alltså på både konstnärligt nytänkande och osannolik överlevnad."],
+      "lookFor": "Från torget: lägg märke till kyrkans enkla fasad. Vid ett separat kapellbesök, titta på kropparnas tyngd, skuggorna och människornas ansiktsuttryck. Freskerna syns inte från torget.",
+      "sources": [{"label": "Florens museer · Brancaccikapellets historia", "url": "https://cultura.comune.firenze.it/pagina/musei-civici-fiorentini/cappella-brancacci-santa-maria-del-carmine", "checkedAt": "2026-10-11"}]
+    },
+    {
+      "placeId": "loggia-dei-lanzi",
+      "title": "När stadens mötesplats blev en scen",
+      "paragraphs": ["Loggian byggdes på 1300-talet för offentliga ceremonier och sammankomster. Under Cosimo I fick den en annan roll: soldater stationerades här och skulpturer gjorde platsen till ett museum under bar himmel. Namnet Lanzi kommer från landsknektarna. Cellinis Perseus och Giambolognas dramatiska grupper visar hur skickligt brons och marmor kunde formas till berättelser som tar plats i staden."],
+      "lookFor": "Jämför Perseus tydliga silhuett med de vridna kropparna i Giambolognas Sabinskornas bortrövande. Flytta er några steg i sidled och se hur berättelsen förändras med vinkeln.",
+      "sources": [{"label": "FeelFlorence · Loggia dei Lanzi", "url": "https://www.feelflorence.it/en/points-interest/loggia-de-lanzi", "checkedAt": "2026-10-11"}]
+    },
+    {
+      "placeId": "piazza-santa-trinita",
+      "title": "Romersk sten, florentinsk makt",
+      "paragraphs": ["Mitt på det lilla medeltida torget står en kolonn som började sitt liv i Caracallas termer i Rom. På 1500-talet lät Cosimo I sätta en staty av Rättvisan ovanpå den. Ett antikt byggnadsfragment blev därmed ett nytt maktbudskap. Runt torget möts kyrka, gamla familjepalats och hantverkets senare historia: Palazzo Spini Feroni rymmer Ferragamos modehus och museum."],
+      "lookFor": "Se upp mot Rättvisan på kolonnen och jämför det oregelbundna torget med palatsens strama fasader. Samma lilla plats visar flera seklers sätt att uttrycka status.",
+      "sources": [{"label": "FeelFlorence · Piazza Santa Trinita", "url": "https://www.feelflorence.it/en/points-interest/piazza-santa-trinita", "checkedAt": "2026-10-11"}]
+    },
+    {
+      "placeId": "ponte-santa-trinita",
+      "title": "Bron som staden byggde tillbaka",
+      "paragraphs": ["Efter Arnos översvämning 1557 fick Bartolomeo Ammannati uppdraget att bygga en ny bro åt Cosimo I. Resultatet blev ett av Florens elegantaste sätt att korsa floden. Men bron ni ser har också en modern historia: den förstördes under andra världskriget och återuppbyggdes i samma form och på samma plats 1958. Här är skönheten också ett uttryck för viljan att återställa en stad."],
+      "lookFor": "Betrakta de låga bågarna från flodstranden och leta efter de fyra årstidernas statyer vid broändarna. Från bron får ni också en fin vy mot Ponte Vecchio.",
+      "sources": [{"label": "FeelFlorence · Ponte Santa Trinita", "url": "https://www.feelflorence.it/en/points-interest/ponte-santa-trinita", "checkedAt": "2026-10-11"}]
+    },
+    {
+      "placeId": "porta-san-niccolo",
+      "title": "En port från den muromgärdade staden",
+      "paragraphs": ["Den ensamma porten byggdes 1324 för att försvara Oltrarno. Föreställ er murar som fortsätter åt båda håll: det här var en kontrollerad passage in till staden. San Niccolò har behållit sin ursprungliga höjd, till skillnad från Florens andra porttorn som sänktes. Tornet gör den medeltida stadens gräns synlig mitt i dagens öppna stadsrum."],
+      "lookFor": "Titta på portvalvet och tornets höjd från marken. Försök föreställa er hur annorlunda vägen mot centrum kändes när man först måste passera en försvarad stadsport.",
+      "sources": [{"label": "FeelFlorence · Torre San Niccolò", "url": "https://www.feelflorence.it/it/punti-di-interesse/torre-san-niccolo", "checkedAt": "2026-10-11"}]
+    },
+    {
+      "placeId": "santa-maria-novella",
+      "title": "När en platt vägg fick djup",
+      "paragraphs": ["I Santa Maria Novella målade Masaccio sin Treenighet på 1420-talet. Med renässansens nya perspektiv fick han en platt kyrkvägg att likna en öppning in i ett välvt kapell. Det är ett litet tekniskt mirakel gjort med färg och geometri. Målningen doldes senare bakom ett altare och återupptäcktes; även skelettet längst ned kom fram igen vid en restaurering 1952."],
+      "lookFor": "Vid ett besök inne i kyrkan: sök Treenigheten i vänstra sidoskeppets tredje travé. Följ valvets linjer med blicken och se hur de skapar djup på den plana väggen.",
+      "sources": [{"label": "Santa Maria Novella · Masaccios Treenighet", "url": "https://www.smn.it/en/artworks/masaccios-holy-trinity/", "checkedAt": "2026-10-11"}]
+    },
+    {
+      "placeId": "basilica-di-san-lorenzo",
+      "title": "Familjen Medici och ett nytt sätt att bygga",
+      "paragraphs": ["San Lorenzo har mycket gamla rötter, men kyrkan blev en nyckelplats för renässansen när Giovanni de’ Medici gav Brunelleschi uppdraget att bygga om den på 1400-talet. Arkitektur, familjens prestige och konstnärernas kunnande växte ihop. I Gamla sakristian möts Brunelleschis rum och Donatellos arbeten. Det här är en bra plats att se hur renässansens idéer blev verkliga miljöer."],
+      "lookFor": "Om ni går in, följ kolonnernas och bågarnas upprepning genom kyrkan. Jämför med Santo Spirito: samma arkitekts känsla för rytm och proportion går att känna igen.",
+      "sources": [{"label": "FeelFlorence · Basilica di San Lorenzo", "url": "https://www.feelflorence.it/it/punti-di-interesse/basilica-di-san-lorenzo", "checkedAt": "2026-10-11"}]
+    },
+    {
+      "placeId": "cappelle-medicee",
+      "title": "En familjs minne i marmor och sten",
+      "paragraphs": ["Medici ville bli ihågkomna med mer än namn på gravar. I Nya sakristian skapade Michelangelo en helhet av rum, gravmonument och figurer som gestaltar dagens gång. I Furstekapellet tog en annan sorts mästerskap över: färgad marmor och hårda stenar fogades till praktfulla ytor. Arbetet fortsatte i över två sekel. Här blir stadens tradition av stenintarsia ett monument över en dynasti."],
+      "lookFor": "Jämför Michelangelos Dag, Natt, Gryning och Skymning med Furstekapellets stenytor. Titta särskilt på fogarna och färgskiftningarna: mycket av det som liknar måleri är noggrant sammanfogad sten.",
+      "sources": [{"label": "FeelFlorence · Medici-kapellen", "url": "https://www.feelflorence.it/it/punti-di-interesse/museo-delle-cappelle-medicee", "checkedAt": "2026-10-11"}]
+    },
+    {
+      "placeId": "galleria-dellaccademia",
+      "title": "David flyttade in – hantverket blev kvar",
+      "paragraphs": ["Michelangelos David skapades 1501–1504 och stod länge vid Piazza della Signoria. År 1873 flyttades originalet till Accademia; vid torget finns i dag en kopia. Museet har äldre rötter som samling för konstundervisning. Därför är det passande att möta både det fullbordade mästerverket och Michelangelos Prigioni, där arbetet med att få fram en kropp ur stenen blir påtagligt."],
+      "lookFor": "Ge Prigioni en stund innan ni går fram till David. Jämför grova stenytor och bearbetade kroppsdelar, och sedan Davids händer och kroppshållning. Se både processen och resultatet.",
+      "sources": [{"label": "FeelFlorence · Galleria dell’Accademia", "url": "https://www.feelflorence.it/en/points-interest/galleria-dellaccademia-di-firenze-academy-gallery", "checkedAt": "2026-10-11"}]
+    },
+    {
+      "placeId": "museo-nazionale-del-bargello",
+      "title": "Från fängelse till konstnärlig tävling",
+      "paragraphs": ["Bargello började som ett offentligt palats på 1200-talet och blev senare både ordningsmaktens högkvarter och fängelse. Nu rymmer det skulptur och konsthantverk. En särskilt rolig jämförelse är Ghibertis och Brunelleschis tävlingsbidrag från 1401 till dopkapellets dörr. Samma uppgift, samma motiv – två olika lösningar. Renässansen blir plötsligt ett konkret samtal om form, material och skicklighet."],
+      "lookFor": "Leta efter de två relieferna med Abrahams offer av Isak. Jämför hur figurerna får plats och hur dramat berättas. Ge också Donatellos David tid: en helt annan tolkning än Michelangelos.",
+      "sources": [{"label": "FeelFlorence · Museo del Bargello", "url": "https://www.feelflorence.it/it/punti-di-interesse/museo-del-bargello", "checkedAt": "2026-10-11"}]
+    },
+    {
+      "placeId": "giardino-di-boboli",
+      "title": "En trädgård byggd som ett konstverk",
+      "paragraphs": ["Boboli började anläggas 1549 för Eleonora av Toledo, bakom Palazzo Pitti. Tribolo ritade en trädgård där naturen ordnades med samma omsorg som ett palats: axlar, häckar, fontäner och skulpturer. Senare tillkom bland annat Buontalentis konstgjorda grotta med snäckor och stalaktitliknande former. Här arbetade arkitektur, växter och vatten tillsammans för att skapa en värld åt hovet."],
+      "lookFor": "Se hur gångarna styr blicken och hur vyerna förändras när ni rör er uppför sluttningen. Vid grottan: jämför den till synes vilda naturen med de tydligt planerade formerna runtomkring.",
+      "sources": [{"label": "Uffizierna · Bobolis historia", "url": "https://www.uffizi.it/en/boboli-garden/history", "checkedAt": "2026-10-11"}]
+    },
+    {
+      "placeId": "palazzo-medici-riccardi",
+      "title": "Familjeporträtt förklädda till en helig resa",
+      "paragraphs": ["I palatsets lilla kapell målade Benozzo Gozzoli de vise männens färd från 1459. Men i det praktfulla följet finns också medlemmar av familjen Medici och tidens politiska gäster. En biblisk berättelse blev samtidigt en bild av familjens nätverk. De omsorgsfulla detaljerna fortsätter utanför målningen: ett snidat, förgyllt trätak och färgad marmor gör rummet till ett hantverksmässigt smyckeskrin."],
+      "lookFor": "Vid ett besök i kapellet: välj en dräkt, en hästsele eller en växt och studera detaljerna. Titta sedan upp på trätaket och ned på golvet – flera olika hantverk bygger samma helhet.",
+      "sources": [{"label": "Palazzo Medici Riccardi · De vise männens kapell", "url": "https://www.palazzomediciriccardi.it/en/the-magi-chapel/", "checkedAt": "2026-10-11"}]
+    },
+    {
+      "placeId": "giardino-delle-rose",
+      "title": "En utsikt att kliva in i",
+      "paragraphs": ["Rosenträdgården är mer än ett grönt stopp under Piazzale Michelangelo. Jean-Michel Folons skulpturer gör den till en plats där man kan leka med utsikten: en stor öppen resväska ramar in Florens som en bild. Här finns också en japansk trädgård, skänkt av vänorten Kyoto. Gamla Florens får sällskap av modern konst och ett stilla möte mellan två städer."],
+      "lookFor": "Sök Folons resväska Partir och betrakta Duomo och Palazzo Vecchio genom den. Leta också efter katten och bänken med en sittande man. Konsten och utsikten fungerar även när rosorna inte blommar.",
+      "sources": [{"label": "FeelFlorence · Rosenträdgården", "url": "https://www.feelflorence.it/en/points-interest/rose-garden", "checkedAt": "2026-10-11"}]
     }
   ]
 }
