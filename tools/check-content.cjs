@@ -5,6 +5,16 @@ for(const name of ['places','routes','guide','stories']){documents[name]=JSON.pa
 const validate=d=>PlacesValidator.validateTrip(schemas,d);
 validate(documents);
 const cases=[
+ d=>d.places.schemaVersion=1,
+ d=>d.places.places.find(p=>p.openingHours.status==='published').openingHours.sources=[],
+ d=>d.places.places.find(p=>p.openingHours.status==='published').openingHours.weekly[0].intervals[0].opens='25:00',
+ d=>d.places.places.find(p=>p.openingHours.status==='published').openingHours.weekly[0].intervals[0].closes=d.places.places.find(p=>p.openingHours.status==='published').openingHours.weekly[0].intervals[0].opens,
+ d=>d.places.places[0].openingHours.timeZone='invalid',
+ d=>d.places.places.find(p=>p.specialties).specialties.sources=[],
+ d=>d.places.places.find(p=>p.specialties).specialties.sources[0].url='javascript:alert(1)',
+ d=>d.places.places.find(p=>p.openingHours.weekly.some(r=>r.validUntil)).openingHours.weekly.find(r=>r.validUntil).validUntil='2020-01-01',
+ d=>d.places.places.find(p=>p.openingHours.exceptions.length).openingHours.exceptions[0].status='changed',
+
  d=>d.stories.stories.push(d.stories.stories[0]),
  d=>d.stories.stories[0].placeId='unknown-place',
  d=>d.stories.stories[0].sources=[],
@@ -64,4 +74,4 @@ assert.throws(()=>PlacesValidator.appleDirectionsLink(documents.places.places[0]
 const entrance=structuredClone(documents.places.places[0]);entrance.entrance={position:{latitude:43.7,longitude:11.2}};const toEntrance=new URL(PlacesValidator.appleDirectionsLink(entrance,'walking'));assert.equal(toEntrance.searchParams.get('destination'),'43.7,11.2');assert(!toEntrance.searchParams.has('destination-place-id'));
 console.log('PASS: all 69 place links and 207 navigation links, coordinate fallbacks, entrance preference, place-id/source/position consistency');
 
-const legacy=structuredClone(documents);legacy.guide.schemaVersion=1;legacy.guide.$schema='./guide.schema.v1.json';delete legacy.guide.flights;PlacesValidator.validateTrip({...schemas,guide:JSON.parse(fs.readFileSync('guide.schema.v1.json'))},legacy);console.log('PASS: flight validation and legacy guide schema v1 compatibility');
+const legacy=structuredClone(documents);legacy.guide.schemaVersion=1;legacy.guide.$schema='./guide.schema.v1.json';delete legacy.guide.flights;delete legacy.guide.defaultSelection.summary;legacy.guide.days.forEach(d=>delete d.summary);PlacesValidator.validateTrip({...schemas,guide:JSON.parse(fs.readFileSync('guide.schema.v1.json'))},legacy);console.log('PASS: flight validation and legacy guide schema v1 compatibility');

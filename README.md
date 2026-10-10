@@ -1,5 +1,13 @@
 # Reseguiden
 
+## Dagsguide och platsinnehåll – 1.6.0
+
+Dagsguiden är kompakt från start. Tryck på raden eller dra uppåt för programmet; dra nedåt för att fälla ihop. Den följer fingret och behåller sitt läge vid dagsbyte. Den separata dagväljaren använder systemets vanliga select. Vald kartnål blir något större med mjuk skugga; andra nålar dämpas medan platskortet visas. Ingen extra cirkel ritas.
+
+Platsregister schema v2 har separata fält för `openingHours` och `specialties`. Tider har tidszon, veckodagar, intervall (även över midnatt), valfri giltighetsperiod, daterade undantag/notiser och källor med kontrolldatum. Status skiljer publicerade tider från obekräftade tider, bokade besök och utomhusplatser. Köks-, butiks- och verkstadstider skiljs i etiketterna. Okända eller motstridiga tider visas med kontrollänk; ingen realtidsstatus för öppet/stängt beräknas. Säsongstider visas när giltigheten överlappar resan.
+
+29 platser har källbelagda specialiteter. Stories innehållsversion 3 har 40 berättelser, 13 fler om bland annat väveri, bokbinderi, stenarbete, vinbarer och glass. Castorinas beskrivning rättas till träsnideri. Guide schema v3 lägger till resans egna korta dagsrubriker; innehållsversion 7. Tidigare schemas v1/v2 behålls. Alla 69 platsidentiteter, koordinater, kartlänkar, entréuppgifter och geografiska verifieringar är oförändrade; även rutter, program, bokningar och flyg bevaras.
+
 ## Navigation och färgläge – 1.5.0
 
 `ui-theme.css` samlar färger och utseende för hela guiden. Flikar, dagsval, kartknappar och filter har rundade former, diskret glasbakgrund och en gemensam knappstil. Listkort använder samma kompakta åtgärdsrad som platskorten, med ”Visa” för att öppna platsen på guidens karta. Samma tre flikar, dagsrutter, filter och funktioner används som tidigare. Dagskortet håller sig inom skärmen och scrollar inuti när programmet är långt.
@@ -28,9 +36,9 @@ En statisk reseguide med återanvändbart kartgränssnitt. `index.html` innehål
 
 | Innehåll | Schema | Ansvar |
 | --- | --- | --- |
-| `places.json` | `places.schema.v1.json` | Platser, positioner, länkar och verifieringsstatus |
+| `places.json` | `places.schema.v2.json` | Platser, positioner, länkar och verifieringsstatus |
 | `routes.json` | `routes.schema.v1.json` | Delsträckor, färdsätt och ordnade plats-id |
-| `guide.json` | `guide.schema.v2.json` | Titel, destination, tidszon, kartutsnitt, resdagar, program, bokningar, flyg och presentation |
+| `guide.json` | `guide.schema.v3.json` | Titel, destination, tidszon, kartutsnitt, resdagar, program, bokningar, flyg och presentation |
 | `stories.json` | `stories.schema.v1.json` | Korta platsberättelser, konkreta saker att titta efter och källor |
 
 Varje innehållsfil har `schemaVersion`, `contentVersion` och `updatedAt`. SchemaVersion ändras när datakontraktet ändras. ContentVersion ändras när innehållet i just den filen ändras. Versionerna är oberoende mellan filerna.
@@ -55,13 +63,13 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 
 | Fil | Schemaversion | Innehåll/programversion |
 | --- | ---: | ---: |
-| places.json | 1 | 4 |
+| places.json | 2 | 5 |
 | routes.json | 1 | 3 |
-| guide.json | 2 | 6 |
-| stories.json | 1 | 2 |
-| index.html och ui-theme.css | – | 1.5.0 |
+| guide.json | 3 | 7 |
+| stories.json | 1 | 3 |
+| index.html och ui-theme.css | – | 1.6.0 |
 | place-sheet.css | – | 1.4.4 |
-| valideringskod | – | 1.4.0 |
+| valideringskod | – | 1.6.0 |
 | verification-report.v2.md | – | Rapportversion 2 |
 
 [Verifieringsrapport version 2](verification-report.v2.md) listar samtliga 69 platser, koordinatändringar, källor, öppettider, kontrollerade delsträckor och kvarstående osäkerheter. 66 poster uppfyller de fyra registerkontrollerna. Giannini, Cosi – Chiantigiana och Passamaneria Toscana är markerade `unresolved`. Exakt entrépunkt är inte separat verifierad för alla platser.

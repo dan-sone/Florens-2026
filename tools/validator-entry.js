@@ -23,6 +23,17 @@ export function validateTrip(schemas,documents) {
   const placeMap=new Map(places.places.map(p=>[p.id,p]));
   for(const place of places.places){
     const {verification:v,appleMaps:a}=place;
+    const hours=place.openingHours;
+    if(hours){
+      try{new Intl.DateTimeFormat('sv-SE',{timeZone:hours.timeZone});}catch{throw new Error('Ogiltig tidszon för öppettider: '+place.id);}
+      for(const rule of hours.weekly){
+        if(Boolean(rule.validFrom)!==Boolean(rule.validUntil)||rule.validFrom&&rule.validUntil<rule.validFrom)throw new Error('Ogiltig giltighetsperiod: '+place.id);
+        for(const interval of rule.intervals)if(interval.opens===interval.closes)throw new Error('Öppnings- och stängningstid är samma: '+place.id);
+      }
+      unique(hours.exceptions||[],'öppettidsundantag','date');
+      for(const exception of hours.exceptions||[]){if((exception.status==='changed')!==Boolean(exception.intervals))throw new Error('Ändrade tider kräver intervall: '+place.id);for(const interval of exception.intervals||[])if(interval.opens===interval.closes)throw new Error('Ogiltigt undantagsintervall: '+place.id);}
+    }
+
     if(a.placeUrl){const u=new URL(a.placeUrl);if(u.hostname!=='maps.apple.com')throw new Error('Platslänk måste gå till Apple Kartor: '+place.id);if(a.placeId&&u.searchParams.get('place-id')!==a.placeId)throw new Error('Plats-id och platslänk skiljer sig: '+place.id);}
     if(v.checkedAt && v.sources.some(source=>new Date(source.checkedAt)>new Date(v.checkedAt)))throw new Error('Kontrolldatum föregår källkontrollen: '+place.id);
     for(const [check,passed] of Object.entries(v.checks))if(passed&&!v.sources.some(source=>source.supports.includes(check)))throw new Error('Verifieringskälla saknas för '+check+': '+place.id);

@@ -1,8 +1,8 @@
 {
-  "$schema": "./places.schema.v1.json",
-  "schemaVersion": 1,
-  "contentVersion": 4,
-  "updatedAt": "2026-10-10T16:10:00Z",
+  "$schema": "./places.schema.v2.json",
+  "schemaVersion": 2,
+  "contentVersion": 5,
+  "updatedAt": "2026-10-10T23:10:59.604089Z",
   "places": [
     {
       "id": "hotel-la-scaletta",
@@ -60,7 +60,16 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Reception och incheckning: kontrollera med hotellet. Er bokning gäller som tidigare.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "duomo-santa-reparata",
@@ -127,7 +136,16 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Santa Reparata: Porta del Campanile på katedralens södra sida. Ghiberti Pass kräver start vid bokat klockslag. Exakt entrékoordinat är ännu inte verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "cuculia",
@@ -185,6 +203,63 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              4,
+              5,
+              6,
+              7
+            ],
+            "label": "Kök · tor–sön lunch",
+            "intervals": [
+              {
+                "opens": "12:30",
+                "closes": "15:00"
+              }
+            ]
+          },
+          {
+            "days": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "label": "Kök · tis–sön middag",
+            "intervals": [
+              {
+                "opens": "19:00",
+                "closes": "22:30"
+              }
+            ]
+          }
+        ],
+        "note": "Tiderna gäller köket. Måndag stängt; er onsdagsbokning ligger kvar.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.cuculia.it/contatti/",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Kreativ säsongsmat, à la carte och avsmakningsmenyer. Menyn varierar.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.cuculia.it/",
+            "checkedAt": "2026-10-10"
+          }
+        ]
       }
     },
     {
@@ -243,7 +318,16 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Taxi är färdsättet för den bokade resan. Separat gångväg till tomtens punkt kunde inte beräknas."
-      }
+      },
+      "openingHours": {
+        "status": "appointment",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Er guidade visning är bokad torsdag 15 oktober kl. 10.15. Övriga besök behöver avtalas med verksamheten.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "uffizierna",
@@ -309,7 +393,51 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Äldre uppgifter om Porta 3 är motstridiga; följ bokningsbekräftelsen och den aktuella officiella besökskartan. Exakt portkoordinat är inte verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "label": "Tis–sön",
+            "intervals": [
+              {
+                "opens": "08:15",
+                "closes": "18:30"
+              }
+            ]
+          }
+        ],
+        "note": "Måndag stängt. Biljettkassan stänger 17.30. Er bokning är fredag 16 oktober.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.uffizi.it/en/the-uffizi",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": [
+          {
+            "date": "2026-10-14",
+            "status": "notice",
+            "note": "Aviserad strejk. Kontrollera tillträde hos museet.",
+            "source": {
+              "label": "Öppna uppgifterna hos källan",
+              "url": "https://www.uffizi.it/en/the-uffizi",
+              "checkedAt": "2026-10-10"
+            }
+          }
+        ]
+      },
+      "specialties": null
     },
     {
       "id": "nugolo",
@@ -367,6 +495,48 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "label": "Middag · mån–lör",
+            "intervals": [
+              {
+                "opens": "19:30",
+                "closes": "00:00"
+              }
+            ]
+          }
+        ],
+        "note": "Sista sittning 21.30. Söndag stängt. Lördagslunch anges med olika sluttider på sidan; bekräfta den separat.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://ilnugolo.com/contatti/",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Säsongskök med kött, fisk och grönsaker samt örter från den egna odlingen.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://ilnugolo.com/cucina/",
+            "checkedAt": "2026-10-10"
+          }
+        ]
       }
     },
     {
@@ -416,7 +586,22 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "public-space",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Utomhusplats utan publicerade besökstider. Torn, byggnader, butiker och serveringar har egna tider.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.feelflorence.it/",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "palazzo-pitti",
@@ -465,7 +650,51 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "label": "Tis–sön",
+            "intervals": [
+              {
+                "opens": "08:15",
+                "closes": "18:30"
+              }
+            ]
+          }
+        ],
+        "note": "Måndag stängt. Biljettkassan stänger 17.30. Kontrollera tillfälliga salstängningar på webbplatsen.",
+        "sources": [
+          {
+            "label": "Officiella besöksuppgifter",
+            "url": "https://www.uffizi.it/en/pitti-palace",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": [
+          {
+            "date": "2026-10-14",
+            "status": "notice",
+            "note": "Aviserad strejk. Kontrollera tillträde hos museet.",
+            "source": {
+              "label": "Officiella besöksuppgifter",
+              "url": "https://www.uffizi.it/en/pitti-palace",
+              "checkedAt": "2026-10-10"
+            }
+          }
+        ]
+      },
+      "specialties": null
     },
     {
       "id": "piazza-della-passera",
@@ -514,7 +743,22 @@
           "navigation": true
         },
         "notes": "Apple-kortet heter Piazza della Passera och ligger på torget, men webbplats/telefon verkar avse en restaurang. Dessa uppgifter har inte importerats. Exakt entré är inte tillämplig för ett torg."
-      }
+      },
+      "openingHours": {
+        "status": "public-space",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Utomhusplats utan publicerade besökstider. Torn, byggnader, butiker och serveringar har egna tider.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.feelflorence.it/",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "piazza-santo-spirito",
@@ -563,7 +807,22 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "public-space",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Utomhusplats utan publicerade besökstider. Torn, byggnader, butiker och serveringar har egna tider.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.feelflorence.it/",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "basilica-di-santo-spirito",
@@ -612,7 +871,16 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "piazza-del-carmine",
@@ -661,7 +929,22 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "public-space",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Utomhusplats utan publicerade besökstider. Torn, byggnader, butiker och serveringar har egna tider.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.feelflorence.it/",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "piazza-della-signoria",
@@ -710,7 +993,22 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "public-space",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Utomhusplats utan publicerade besökstider. Torn, byggnader, butiker och serveringar har egna tider.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.feelflorence.it/",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "loggia-dei-lanzi",
@@ -759,7 +1057,16 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "orsanmichele",
@@ -808,7 +1115,16 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "piazza-della-repubblica",
@@ -857,7 +1173,22 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "public-space",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Utomhusplats utan publicerade besökstider. Torn, byggnader, butiker och serveringar har egna tider.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.feelflorence.it/",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "piazza-santa-trinita",
@@ -906,7 +1237,22 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "public-space",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Utomhusplats utan publicerade besökstider. Torn, byggnader, butiker och serveringar har egna tider.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.feelflorence.it/",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "ponte-santa-trinita",
@@ -955,7 +1301,22 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "public-space",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Utomhusplats utan publicerade besökstider. Torn, byggnader, butiker och serveringar har egna tider.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.feelflorence.it/",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "basilica-di-santa-croce",
@@ -1004,7 +1365,16 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "mercato-di-santambrogio",
@@ -1053,7 +1423,16 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "giulio-giannini-e-figlio",
@@ -1109,13 +1488,37 @@
           "navigation": true
         },
         "notes": "Positionen korrigerad enligt publicerad GPS, jämförd med företagets egen kartlänk vid Pitti/Velluti. Ingen säker Apple POI-matchning trots flera sökningar. Namngiven koordinatmarkering används; den är inte ett verifierat företagskort. Exakt dörrposition behöver bekräftas."
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Hantverkarprofilen anger bokade besök mån–fre 09–13.30 och 14–17. Bekräfta butikens drop-in-tider separat.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.firenzecreativa.it/iscritto/giulio-giannini-e-figlio/",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Handmarmorerat papper, bokbinderi, anteckningsböcker och album.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.giuliogiannini.com/en/history.html",
+            "checkedAt": "2026-10-10"
+          }
+        ]
       }
     },
     {
       "id": "scuola-del-cuoio",
       "name": "Scuola del Cuoio",
       "category": "craft",
-      "description": "Läderhantverk bakom Santa Croce\nApril–oktober: 10.00–18.30 alla dagar; hantverkarna arbetar måndag–fredag. Entré genom trädgården bakom Santa Croce, Via San Giuseppe 5R. Företagets uppgifter prioriteras framför avvikande Apple-tider.",
+      "description": "Läderhantverk bakom Santa Croce. Entré genom trädgården, Via San Giuseppe 5R. Butiksbesök och arbete i verkstaden har separata tider.",
       "address": "Via San Giuseppe 5R, Firenze",
       "position": {
         "latitude": 43.7677701,
@@ -1167,7 +1570,59 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "label": "Butik · april–oktober",
+            "intervals": [
+              {
+                "opens": "10:00",
+                "closes": "18:30"
+              }
+            ],
+            "validFrom": "2026-04-01",
+            "validUntil": "2026-10-31"
+          },
+          {
+            "days": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "label": "Hantverkare · mån–fre",
+            "intervals": [
+              {
+                "opens": "10:00",
+                "closes": "18:30"
+              }
+            ]
+          }
+        ],
+        "exceptions": [],
+        "note": "Tider kan variera. Entré genom trädgården bakom Santa Croce, Via San Giuseppe 5R.",
+        "sources": [
+          {
+            "label": "Scuola del Cuoio · tider för butik och hantverkare",
+            "url": "https://scuoladelcuoio.it/it/contattaci",
+            "checkedAt": "2026-10-10"
+          }
+        ]
+      },
+      "specialties": null
     },
     {
       "id": "museo-opificio-delle-pietre-dure",
@@ -1225,7 +1680,40 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "label": "Mån–lör",
+            "intervals": [
+              {
+                "opens": "08:15",
+                "closes": "14:00"
+              }
+            ]
+          }
+        ],
+        "note": "Biljettkassan stänger 13.30. Stängt söndagar, helgdagar och 24 juni. Kontrollera museets särskilda höstöppningar.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://opificiodellepietredure.cultura.gov.it/en/museum/",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "officina-profumo-farmaceutica-smn",
@@ -1283,7 +1771,16 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "porta-san-niccolo",
@@ -1341,7 +1838,22 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "public-space",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Utomhusplats utan publicerade besökstider. Torn, byggnader, butiker och serveringar har egna tider.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.feelflorence.it/it/punti-di-interesse/torre-san-niccolo",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "piazzale-michelangelo",
@@ -1390,7 +1902,22 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "public-space",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Utomhusplats utan publicerade besökstider. Torn, byggnader, butiker och serveringar har egna tider.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.feelflorence.it/",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "san-miniato-al-monte",
@@ -1448,7 +1975,44 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "label": "Mån–lör",
+            "intervals": [
+              {
+                "opens": "09:30",
+                "closes": "13:00"
+              },
+              {
+                "opens": "15:30",
+                "closes": "19:00"
+              }
+            ]
+          }
+        ],
+        "note": "Respektera gudstjänster. Kontrollera söndagsbesök separat; torsdagens besök bör ske efter 15.30.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://sanminiatoalmonte.it/contatti/",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "le-volpi-e-luva",
@@ -1506,6 +2070,48 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "label": "Mån–lör",
+            "intervals": [
+              {
+                "opens": "12:00",
+                "closes": "21:00"
+              }
+            ]
+          }
+        ],
+        "note": "Webbsidans uppgifter om söndagsöppet skiljer sig åt; bekräfta söndagen direkt.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.levolpieluva.com/visit-us-english",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Vin från mindre producenter, lokala druvsorter och ost till glaset.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.levolpieluva.com/home-english",
+            "checkedAt": "2026-10-10"
+          }
+        ]
       }
     },
     {
@@ -1555,7 +2161,16 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "enoteca-pitti-gola-e-cantina",
@@ -1613,6 +2228,30 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Webbsidan anger 12–23, lunch 12–15 och middag 19–22.30 men inte vilka veckodagar. Kontrollera önskad dag.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.pittigolaecantina.com/hours-location-reservations/",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Traditionellt italienskt vin från små producenter, vinprovning och mat.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.pittigolaecantina.com/",
+            "checkedAt": "2026-10-10"
+          }
+        ]
       }
     },
     {
@@ -1662,7 +2301,16 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "fuori-porta",
@@ -1720,6 +2368,63 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              2,
+              3,
+              4,
+              5
+            ],
+            "label": "Tis–fre",
+            "intervals": [
+              {
+                "opens": "12:00",
+                "closes": "15:30"
+              },
+              {
+                "opens": "19:00",
+                "closes": "23:30"
+              }
+            ]
+          },
+          {
+            "days": [
+              6,
+              7
+            ],
+            "label": "Lör–sön",
+            "intervals": [
+              {
+                "opens": "12:00",
+                "closes": "23:30"
+              }
+            ]
+          }
+        ],
+        "note": "Måndag stängt.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.fuoriporta.it/",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Crostoni – stora rostade bröd med olika pålägg – och italienska viner.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.fuoriporta.it/",
+            "checkedAt": "2026-10-10"
+          }
+        ]
       }
     },
     {
@@ -1778,6 +2483,49 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "label": "Alla dagar",
+            "intervals": [
+              {
+                "opens": "12:00",
+                "closes": "22:00"
+              }
+            ]
+          }
+        ],
+        "note": "Bordsbokning rekommenderas.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.palazzoguadagni.com/it/loggia-roof-bar-terrazza-firenze/",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Aperitivo och drinkar på takterrassen ovanför Santo Spirito.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.palazzoguadagni.com/it/loggia-roof-bar-terrazza-firenze/",
+            "checkedAt": "2026-10-10"
+          }
+        ]
       }
     },
     {
@@ -1827,7 +2575,16 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "mercato-centrale",
@@ -1876,7 +2633,16 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "pitti-mosaici",
@@ -1925,13 +2691,37 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Butikstider behöver bekräftas. Privat visning av verkstaden kan bokas via kontakt­sidan.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.pittimosaici.com/contact",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Handgjorda tavlor och bordsskivor av sammanfogad natursten.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.pittimosaici.com/about",
+            "checkedAt": "2026-10-10"
+          }
+        ]
       }
     },
     {
       "id": "castorina-1895",
       "name": "Castorina 1895",
       "category": "craft",
-      "description": "Traditionell specialbutik med konstnärs- och dekorationsmaterial.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
+      "description": "Familjeverkstad för träsnideri: ramar, ornament och dekorativa skulpturer. Ett hantverksstopp i Oltrarno.",
       "address": "Via Santo Spirito 15R, Firenze",
       "position": {
         "latitude": 43.7684524,
@@ -1974,6 +2764,51 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "label": "Mån–fre",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "13:00"
+              },
+              {
+                "opens": "14:00",
+                "closes": "18:00"
+              }
+            ]
+          }
+        ],
+        "note": "Helgtider anges inte på kontaktsidan.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.castorina1895.com/contatti/",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Träsnideri, dekorativa skulpturer, ramar och ornament.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.castorina1895.com/chi-siamo/",
+            "checkedAt": "2026-10-10"
+          }
+        ]
       }
     },
     {
@@ -2023,6 +2858,52 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "label": "Mån–lör",
+            "intervals": [
+              {
+                "opens": "10:00",
+                "closes": "13:30"
+              },
+              {
+                "opens": "15:00",
+                "closes": "19:30"
+              }
+            ]
+          }
+        ],
+        "note": "Söndag stängt.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.mio-concept.com/about-us",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Samtida konst, street art och handgjorda presenter från kreatörer.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.mio-concept.com/about-us",
+            "checkedAt": "2026-10-10"
+          }
+        ]
       }
     },
     {
@@ -2072,7 +2953,16 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "gelateria-della-passera",
@@ -2121,6 +3011,24 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Hantverksgelato och vattenbaserade frukt- och nötsorbeter. Smakerna varierar.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://gelateriadellapassera.it/gusti-ed-altro/",
+            "checkedAt": "2026-10-10"
+          }
+        ]
       }
     },
     {
@@ -2170,7 +3078,16 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "gelateria-la-carraia",
@@ -2219,6 +3136,30 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Webbsidan anger 11–24, vintertid 11–22, utan datum för säsongsbytet. Kontrollera kvällens stängningstid.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.gelaterialacarraia.it/en/",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Hantverksgelato med gräddiga smaker och fruktsorbeter.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.gelaterialacarraia.it/gelati-firenze/",
+            "checkedAt": "2026-10-10"
+          }
+        ]
       }
     },
     {
@@ -2268,6 +3209,24 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Gelato och semifreddi, en del av butikens långa tradition.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.feelflorence.it/en/points-interest/perche-no",
+            "checkedAt": "2026-10-10"
+          }
+        ]
       }
     },
     {
@@ -2317,6 +3276,24 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Gelato och Grancrema al caffè – deras affogato med espresso över glass.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://vivoli.it/",
+            "checkedAt": "2026-10-10"
+          }
+        ]
       }
     },
     {
@@ -2366,6 +3343,24 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Gelato och açaí na tigela, en brasiliansk açaískål.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://cantinadelgelato.it/?lang=en&page_id=1376",
+            "checkedAt": "2026-10-10"
+          }
+        ]
       }
     },
     {
@@ -2415,6 +3410,71 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              1,
+              2,
+              3,
+              4,
+              7
+            ],
+            "label": "Mån–tor & sön",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "00:00"
+              }
+            ]
+          },
+          {
+            "days": [
+              5
+            ],
+            "label": "Fre",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "01:00"
+              }
+            ]
+          },
+          {
+            "days": [
+              6
+            ],
+            "label": "Lör",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "02:00"
+              }
+            ]
+          }
+        ],
+        "note": "Sluttider efter midnatt gäller följande natt.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://serretorrigiani.it/serre-torrigiani-in-piazzetta/",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Cocktails och toskansk mat med örter från den egna trädgården.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://serretorrigiani.it/serre-torrigiani-in-piazzetta/",
+            "checkedAt": "2026-10-10"
+          }
+        ]
       }
     },
     {
@@ -2464,6 +3524,24 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Kaffe, bakverk, cocktails och caféets musiktradition.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.caffepaszkowski.com/en",
+            "checkedAt": "2026-10-10"
+          }
+        ]
       }
     },
     {
@@ -2513,6 +3591,24 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Spritz och cicchetti – små tilltugg som passar till aperitivo.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.leggimenu.it/menu/bulliebalenespritzecicchetti/",
+            "checkedAt": "2026-10-10"
+          }
+        ]
       }
     },
     {
@@ -2570,6 +3666,24 @@
           "navigation": true
         },
         "notes": "Rätt filial: Via Chiantigiana 52/54R, Bagno a Ripoli. Position från företagets egen koordinatlänk. Apple har fortfarande gamla Bar Anna & Roberto på platsen; dess id har inte tillskrivits Cosi. Namngiven koordinatmarkering används, inte ett verifierat företagskort. Aktuella öppettider bör kontrolleras med filialen på +39 055 6147820."
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Hantverksbakade brioche och bakverk till italiensk frukost.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.cosifirenze.com/colazione-allitaliana/",
+            "checkedAt": "2026-10-10"
+          }
+        ]
       }
     },
     {
@@ -2619,6 +3733,53 @@
           "navigation": true
         },
         "notes": "Tidigare användarbekräftad markörposition behålls. Apple-kortets punkt ligger cirka 17 m därifrån inom samma verksamhet; länken avser nu La Beppa Fioraias eget plats-id. Exakt entré är inte separat inmätt."
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "label": "Alla dagar",
+            "intervals": [
+              {
+                "opens": "12:30",
+                "closes": "14:30"
+              },
+              {
+                "opens": "19:30",
+                "closes": "23:00"
+              }
+            ]
+          }
+        ],
+        "note": "",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.beppafioraia.it/",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Toskanska chark- och ostfat, hemlagad pasta, grillat kött och peposo.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.beppafioraia.it/",
+            "checkedAt": "2026-10-10"
+          }
+        ]
       }
     },
     {
@@ -2668,7 +3829,91 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "label": "Mån–tor",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "17:30"
+              }
+            ]
+          },
+          {
+            "days": [
+              5
+            ],
+            "label": "Fre",
+            "intervals": [
+              {
+                "opens": "11:00",
+                "closes": "17:30"
+              }
+            ]
+          },
+          {
+            "days": [
+              6
+            ],
+            "label": "Lör",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "17:00"
+              }
+            ]
+          },
+          {
+            "days": [
+              7
+            ],
+            "label": "Sön",
+            "intervals": [
+              {
+                "opens": "13:00",
+                "closes": "17:00"
+              }
+            ]
+          }
+        ],
+        "note": "Sista insläpp normalt en timme före stängning. Religiösa helgdagar och gudstjänster har särskilda regler.",
+        "sources": [
+          {
+            "label": "Santa Maria Novella · besök och aktuella avvikelser",
+            "url": "https://www.smn.it/en/visit/",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": [
+          {
+            "date": "2026-10-15",
+            "status": "changed",
+            "note": "Torsdag 15 oktober: basilikan stänger tidigare, sista insläpp 14.00.",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "14:30"
+              }
+            ],
+            "source": {
+              "label": "Santa Maria Novella · besök och aktuella avvikelser",
+              "url": "https://www.smn.it/en/visit/",
+              "checkedAt": "2026-10-10"
+            }
+          }
+        ]
+      },
+      "specialties": null
     },
     {
       "id": "basilica-di-san-lorenzo",
@@ -2717,7 +3962,42 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "label": "Mån–lör",
+            "intervals": [
+              {
+                "opens": "10:00",
+                "closes": "17:30"
+              }
+            ],
+            "validFrom": "2026-01-01",
+            "validUntil": "2026-12-31"
+          }
+        ],
+        "note": "Söndag stängt. Biljettkassan stänger en timme före basilikan.",
+        "sources": [
+          {
+            "label": "Officiella besöksuppgifter",
+            "url": "https://www.feelflorence.it/it/punti-di-interesse/basilica-di-san-lorenzo",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "cappelle-medicee",
@@ -2766,7 +4046,42 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "label": "Tis–sön",
+            "intervals": [
+              {
+                "opens": "08:15",
+                "closes": "18:50"
+              }
+            ],
+            "validFrom": "2026-03-15",
+            "validUntil": "2026-12-31"
+          }
+        ],
+        "note": "Måndag stängt. Biljettkassan stänger 40 minuter före. Michelangelos hemliga rum kräver separat bokning.",
+        "sources": [
+          {
+            "label": "FeelFlorence · besöksuppgifter",
+            "url": "https://www.feelflorence.it/it/punti-di-interesse/museo-delle-cappelle-medicee",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "galleria-dellaccademia",
@@ -2815,7 +4130,42 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "label": "Tis–sön",
+            "intervals": [
+              {
+                "opens": "08:15",
+                "closes": "18:50"
+              }
+            ],
+            "validFrom": "2026-01-01",
+            "validUntil": "2026-12-31"
+          }
+        ],
+        "note": "Måndag stängt. Sista insläpp och biljettkassa 18.20.",
+        "sources": [
+          {
+            "label": "FeelFlorence · besöksuppgifter",
+            "url": "https://www.feelflorence.it/en/points-interest/galleria-dellaccademia-di-firenze-academy-gallery",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "museo-nazionale-del-bargello",
@@ -2864,7 +4214,42 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "label": "Tis–sön",
+            "intervals": [
+              {
+                "opens": "08:15",
+                "closes": "18:50"
+              }
+            ],
+            "validFrom": "2026-03-15",
+            "validUntil": "2026-12-31"
+          }
+        ],
+        "note": "Normalt måndag stängt; vissa måndagar har extra kvällsöppet. Biljettkassan stänger 50 minuter före.",
+        "sources": [
+          {
+            "label": "FeelFlorence · besöksuppgifter",
+            "url": "https://www.feelflorence.it/it/punti-di-interesse/museo-del-bargello",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "giardino-di-boboli",
@@ -2913,7 +4298,43 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "label": "13–17 oktober 2026",
+            "intervals": [
+              {
+                "opens": "08:15",
+                "closes": "18:30"
+              }
+            ],
+            "validFrom": "2026-10-13",
+            "validUntil": "2026-10-17"
+          }
+        ],
+        "note": "Sista insläpp en timme före stängning. Säsongstider varierar; stängt första och sista måndagen i månaden. Tillfälliga väderstängningar kan förekomma.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.uffizi.it/en/boboli-garden",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "palazzo-medici-riccardi",
@@ -2962,7 +4383,40 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              1,
+              2,
+              4,
+              5,
+              6,
+              7
+            ],
+            "label": "Alla dagar utom onsdag",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "19:00"
+              }
+            ]
+          }
+        ],
+        "note": "Onsdag stängt. Tillfälliga salstängningar anges på museets webbplats.",
+        "sources": [
+          {
+            "label": "Officiella besöksuppgifter",
+            "url": "https://www.palazzomediciriccardi.it/en/",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "giardino-delle-rose",
@@ -3011,7 +4465,43 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "label": "Oktober 2026 · alla dagar",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "18:00"
+              }
+            ],
+            "validFrom": "2026-10-01",
+            "validUntil": "2026-10-31"
+          }
+        ],
+        "note": "Tiderna varierar med säsong.",
+        "sources": [
+          {
+            "label": "Officiella besöksuppgifter",
+            "url": "https://www.feelflorence.it/en/points-interest/rose-garden",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "antico-setificio-fiorentino",
@@ -3060,6 +4550,30 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+      },
+      "openingHours": {
+        "status": "appointment",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Besök i väveriet bokas med verksamheten; inga vanliga drop-in-tider anges.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://anticosetificiofiorentino.com/en/experience",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Handvävda siden- och inredningstyger på historiska vävstolar.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://anticosetificiofiorentino.com/en",
+            "checkedAt": "2026-10-10"
+          }
+        ]
       }
     },
     {
@@ -3109,6 +4623,67 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "label": "Mån–fre",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "13:00"
+              },
+              {
+                "opens": "15:00",
+                "closes": "19:00"
+              }
+            ]
+          },
+          {
+            "days": [
+              6
+            ],
+            "label": "Lör",
+            "intervals": [
+              {
+                "opens": "10:00",
+                "closes": "13:00"
+              },
+              {
+                "opens": "15:00",
+                "closes": "19:00"
+              }
+            ]
+          }
+        ],
+        "note": "Söndag stängt.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.legatoriacozzifirenze.it/contact-us/",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Handbundna böcker och album, marmorerat papper och traditionellt bokbinderi.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.legatoriacozzifirenze.it/",
+            "checkedAt": "2026-10-10"
+          }
+        ]
       }
     },
     {
@@ -3158,6 +4733,24 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Marmorerat papper, läderarbeten och restaurering av äldre böcker.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.riccardoluci.com/en/",
+            "checkedAt": "2026-10-10"
+          }
+        ]
       }
     },
     {
@@ -3207,6 +4800,24 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Bilder i commesso fiorentino: naturstenens färger och ådring bildar motivet.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://scarpellimosaici.it/",
+            "checkedAt": "2026-10-10"
+          }
+        ]
       }
     },
     {
@@ -3256,6 +4867,24 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Italienska tyger, både aktuella kollektioner och äldre arkivtyger.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.casadeitessuti.com/fabrics/",
+            "checkedAt": "2026-10-10"
+          }
+        ]
       }
     },
     {
@@ -3314,6 +4943,59 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              1
+            ],
+            "label": "Mån",
+            "intervals": [
+              {
+                "opens": "15:30",
+                "closes": "19:30"
+              }
+            ]
+          },
+          {
+            "days": [
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "label": "Tis–lör",
+            "intervals": [
+              {
+                "opens": "09:30",
+                "closes": "19:30"
+              }
+            ]
+          }
+        ],
+        "note": "Söndag stängt.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.erminiagostino.it/contatti",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Tyger och sybehör, knappar och tillbehör för egna sömnadsprojekt.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.erminiagostino.it/merceria",
+            "checkedAt": "2026-10-10"
+          }
+        ]
       }
     },
     {
@@ -3363,6 +5045,30 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Webbsidan innehåller äldre sommartider från 2023. Bekräfta dagens butikstider.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.vallitessuti.com/negozio-firenze/",
+            "checkedAt": "2026-10-10"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Italienska modetyger i bland annat siden och ull.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.vallitessuti.com/",
+            "checkedAt": "2026-10-10"
+          }
+        ]
       }
     },
     {
@@ -3412,6 +5118,24 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Måttsydd hemtextil, dukar och sänglinne i bland annat jacquard.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.letelerietoscane.com/italiano/le_telerie_toscane_biancheria_tovaglie_lenzuola_su_misura_firenze.php",
+            "checkedAt": "2026-10-10"
+          }
+        ]
       }
     },
     {
@@ -3470,7 +5194,16 @@
           "navigation": true
         },
         "notes": "Adresskonflikt: Apple anger Piazza San Lorenzo 12/R; flera andra register anger Via del Canto dei Nelli 10. Befintlig markör behålls som osäker. Platskortet är kontrollerat men exakt aktuell butikspunkt/entré behöver bekräftas."
-      }
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "chalet-il-boschetto",
@@ -3519,7 +5252,16 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
-      }
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": null
     },
     {
       "id": "terrazze-michelangelo",
@@ -3568,6 +5310,24 @@
           "navigation": true
         },
         "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [],
+        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Pizza även vid lunch samt toskanska rätter nära utsiktsplatsen.",
+        "sources": [
+          {
+            "label": "Öppna uppgifterna hos källan",
+            "url": "https://www.terrazzemichelangelo.it/ristorante-pizzeria-firenze/",
+            "checkedAt": "2026-10-10"
+          }
+        ]
       }
     }
   ]

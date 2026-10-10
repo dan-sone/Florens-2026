@@ -1,8 +1,8 @@
 {
-  "$schema": "./guide.schema.v2.json",
-  "schemaVersion": 2,
-  "contentVersion": 6,
-  "updatedAt": "2026-10-10T16:10:00Z",
+  "$schema": "./guide.schema.v3.json",
+  "schemaVersion": 3,
+  "contentVersion": 7,
+  "updatedAt": "2026-10-10T23:08:09.975616Z",
   "id": "florens-2026",
   "title": "Florens 2026",
   "destination": {
@@ -29,7 +29,8 @@
           }
         ]
       }
-    ]
+    ],
+    "summary": "Utforska kartan"
   },
   "days": [
     {
@@ -69,7 +70,8 @@
             }
           ]
         }
-      ]
+      ],
+      "summary": "Upptäck Florens"
     },
     {
       "id": "wed",
@@ -129,7 +131,8 @@
             }
           ]
         }
-      ]
+      ],
+      "summary": "Duomo & födelsedagsmiddag"
     },
     {
       "id": "thu",
@@ -211,7 +214,8 @@
             }
           ]
         }
-      ]
+      ],
+      "summary": "Siden & utsikter"
     },
     {
       "id": "fri",
@@ -263,7 +267,8 @@
             }
           ]
         }
-      ]
+      ],
+      "summary": "Uffizi & kväll i Florens"
     },
     {
       "id": "sat",
@@ -322,7 +327,8 @@
             }
           ]
         }
-      ]
+      ],
+      "summary": "Sista dagen & hemresa"
     }
   ],
   "bookings": [
