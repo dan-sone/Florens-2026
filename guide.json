@@ -1,8 +1,8 @@
 {
   "$schema": "./guide.schema.v1.json",
   "schemaVersion": 1,
-  "contentVersion": 2,
-  "updatedAt": "2026-10-10T10:27:54.129677Z",
+  "contentVersion": 3,
+  "updatedAt": "2026-10-10T10:37:02.529052Z",
   "id": "florens-2026",
   "title": "Florens 2026",
   "destination": {
@@ -617,7 +617,7 @@
         "style": "width:210px;font-family:sans-serif",
         "tooltip": false,
         "directionsUsesAddress": true,
-        "mapLabel": "Öppna i Apple Kartor ↗"
+        "mapLabel": "Visa kartpunkt i Apple Kartor ↗"
       },
       "scuola-del-cuoio": {
         "icon": {
@@ -797,7 +797,7 @@
         "style": "",
         "tooltip": false,
         "directionsUsesAddress": true,
-        "mapLabel": "Visa adress i Apple Kartor ↗"
+        "mapLabel": "Öppna i Apple Kartor ↗"
       },
       "pitti-mosaici": {
         "icon": {
@@ -809,7 +809,7 @@
         "style": "",
         "tooltip": false,
         "directionsUsesAddress": true,
-        "mapLabel": "Visa adress i Apple Kartor ↗"
+        "mapLabel": "Öppna i Apple Kartor ↗"
       },
       "castorina-1895": {
         "icon": {
@@ -821,7 +821,7 @@
         "style": "",
         "tooltip": false,
         "directionsUsesAddress": true,
-        "mapLabel": "Visa adress i Apple Kartor ↗"
+        "mapLabel": "Öppna i Apple Kartor ↗"
       },
       "mio-concept-store": {
         "icon": {
@@ -843,7 +843,7 @@
         "style": "",
         "tooltip": false,
         "directionsUsesAddress": true,
-        "mapLabel": "Visa adress i Apple Kartor ↗"
+        "mapLabel": "Öppna i Apple Kartor ↗"
       },
       "giulia-materia": {
         "icon": {
@@ -855,7 +855,7 @@
         "style": "",
         "tooltip": false,
         "directionsUsesAddress": true,
-        "mapLabel": "Visa adress i Apple Kartor ↗"
+        "mapLabel": "Öppna i Apple Kartor ↗"
       },
       "gelateria-della-passera": {
         "icon": {
@@ -867,7 +867,7 @@
         "style": "",
         "tooltip": false,
         "directionsUsesAddress": true,
-        "mapLabel": "Visa adress i Apple Kartor ↗"
+        "mapLabel": "Öppna i Apple Kartor ↗"
       },
       "gelateria-dei-neri": {
         "icon": {
@@ -879,7 +879,7 @@
         "style": "",
         "tooltip": false,
         "directionsUsesAddress": true,
-        "mapLabel": "Visa adress i Apple Kartor ↗"
+        "mapLabel": "Öppna i Apple Kartor ↗"
       },
       "gelateria-la-carraia": {
         "icon": {
@@ -891,7 +891,7 @@
         "style": "",
         "tooltip": false,
         "directionsUsesAddress": true,
-        "mapLabel": "Visa adress i Apple Kartor ↗"
+        "mapLabel": "Öppna i Apple Kartor ↗"
       },
       "perche-no": {
         "icon": {
@@ -903,7 +903,7 @@
         "style": "",
         "tooltip": false,
         "directionsUsesAddress": true,
-        "mapLabel": "Visa adress i Apple Kartor ↗"
+        "mapLabel": "Öppna i Apple Kartor ↗"
       },
       "vivoli": {
         "icon": {
@@ -915,7 +915,7 @@
         "style": "",
         "tooltip": false,
         "directionsUsesAddress": true,
-        "mapLabel": "Visa adress i Apple Kartor ↗"
+        "mapLabel": "Öppna i Apple Kartor ↗"
       },
       "cantina-del-gelato": {
         "icon": {
@@ -927,7 +927,7 @@
         "style": "",
         "tooltip": false,
         "directionsUsesAddress": true,
-        "mapLabel": "Visa adress i Apple Kartor ↗"
+        "mapLabel": "Öppna i Apple Kartor ↗"
       },
       "serre-torrigiani-in-piazzetta": {
         "icon": {
@@ -939,7 +939,7 @@
         "style": "",
         "tooltip": false,
         "directionsUsesAddress": true,
-        "mapLabel": "Visa adress i Apple Kartor ↗"
+        "mapLabel": "Öppna i Apple Kartor ↗"
       },
       "caffe-concerto-paszkowski": {
         "icon": {
@@ -951,7 +951,7 @@
         "style": "",
         "tooltip": false,
         "directionsUsesAddress": true,
-        "mapLabel": "Visa adress i Apple Kartor ↗"
+        "mapLabel": "Öppna i Apple Kartor ↗"
       },
       "bulli-balene": {
         "icon": {
@@ -963,7 +963,7 @@
         "style": "",
         "tooltip": false,
         "directionsUsesAddress": true,
-        "mapLabel": "Visa adress i Apple Kartor ↗"
+        "mapLabel": "Öppna i Apple Kartor ↗"
       },
       "pasticceria-cosi-chiantigiana": {
         "icon": {
@@ -975,7 +975,7 @@
         "style": "",
         "tooltip": false,
         "directionsUsesAddress": true,
-        "mapLabel": "Visa adress i Apple Kartor ↗"
+        "mapLabel": "Visa kartpunkt i Apple Kartor ↗"
       },
       "beppa-fioraia": {
         "icon": {
@@ -987,7 +987,7 @@
         "style": "",
         "tooltip": false,
         "directionsUsesAddress": true,
-        "mapLabel": "Visa adress i Apple Kartor ↗"
+        "mapLabel": "Öppna i Apple Kartor ↗"
       },
       "santa-maria-novella": {
         "icon": {

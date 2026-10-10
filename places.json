@@ -1,8 +1,8 @@
 {
   "$schema": "./places.schema.v1.json",
   "schemaVersion": 1,
-  "contentVersion": 2,
-  "updatedAt": "2026-10-10T10:29:52.947985Z",
+  "contentVersion": 3,
+  "updatedAt": "2026-10-10T10:37:02.529052Z",
   "places": [
     {
       "id": "hotel-la-scaletta",
@@ -1347,7 +1347,7 @@
       "id": "piazzale-michelangelo",
       "name": "Piazzale Michelangelo",
       "category": "see-do",
-      "description": "Panorama över Florens\n\nAlternativ popuptext i index.html:\nValfri utsikt; buss eller taxi tillbaka.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "description": "Panorama över Florens\n\nAlternativ popuptext i index.html:\nValfri utsikt; buss eller taxi tillbaka.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
       "address": null,
       "position": {
         "latitude": 43.762819,
@@ -1396,7 +1396,7 @@
       "id": "san-miniato-al-monte",
       "name": "San Miniato al Monte",
       "category": "see-do",
-      "description": "Målet för utsiktspromenaden\n\nAlternativ popuptext i index.html:\nValfritt efter Lisio: taxi upp till kyrkan och utsikten.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.\nÖppet måndag–lördag 09.30–13.00 och 15.30–19.00 enligt klostrets egen webbplats. Planera torsdagens besök inne i kyrkan efter 15.30. Ingen turistvisning under gudstjänst.",
+      "description": "Målet för utsiktspromenaden\nÖppet måndag–lördag 09.30–13.00 och 15.30–19.00 enligt klostrets egen webbplats. Planera torsdagens besök inne i kyrkan efter 15.30. Ingen turistvisning under gudstjänst.\n\nAlternativ popuptext i index.html:\nValfritt efter Lisio: taxi upp till kyrkan och utsikten.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
       "address": "Via delle Porte Sante 34, Firenze",
       "position": {
         "latitude": 43.7595177,
@@ -1512,7 +1512,7 @@
       "id": "il-santino",
       "name": "Il Santino",
       "category": "food-drink",
-      "description": "Via di Santo Spirito 60R\nVinbar med små rätter och spännande viner.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "description": "Via di Santo Spirito 60R\nVinbar med små rätter och spännande viner.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
       "address": "Via di Santo Spirito 60R, Firenze",
       "position": {
         "latitude": 43.7689621,
@@ -1561,7 +1561,7 @@
       "id": "enoteca-pitti-gola-e-cantina",
       "name": "Enoteca Pitti Gola e Cantina",
       "category": "food-drink",
-      "description": "Piazza de’ Pitti 16\nVinfokus, små producenter och tilltugg mitt emot Pitti.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "description": "Piazza de’ Pitti 16\nVinfokus, små producenter och tilltugg mitt emot Pitti.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
       "address": "Piazza de’ Pitti 16, Firenze",
       "position": {
         "latitude": 43.7661198,
@@ -1619,7 +1619,7 @@
       "id": "enoteca-spontanea",
       "name": "Enoteca Spontanea",
       "category": "food-drink",
-      "description": "Via Maggio 61R\nIntressant vinbar på er promenad genom Oltrarno.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "description": "Via Maggio 61R\nIntressant vinbar på er promenad genom Oltrarno.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
       "address": "Via Maggio 61R, Firenze",
       "position": {
         "latitude": 43.7655711,
@@ -1668,7 +1668,7 @@
       "id": "fuori-porta",
       "name": "Fuori Porta",
       "category": "food-drink",
-      "description": "Via del Monte alle Croci 10R\nVin och lättare mat vid San Niccolò, bra vid utsiktspromenaden.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "description": "Via del Monte alle Croci 10R\nVin och lättare mat vid San Niccolò, bra vid utsiktspromenaden.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
       "address": "Via del Monte alle Croci 10R, Firenze",
       "position": {
         "latitude": 43.7633882,
@@ -1726,7 +1726,7 @@
       "id": "loggia-roof-bar",
       "name": "Loggia Roof Bar",
       "category": "food-drink",
-      "description": "Piazza Santo Spirito 9\nAperitivo med utsikt över Santo Spirito.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "description": "Piazza Santo Spirito 9\nAperitivo med utsikt över Santo Spirito.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
       "address": "Piazza Santo Spirito 9, Firenze",
       "position": {
         "latitude": 43.7662261,
@@ -1784,7 +1784,7 @@
       "id": "il-santo-bevitore",
       "name": "Il Santo Bevitore",
       "category": "food-drink",
-      "description": "Via Santo Spirito 64R\nAvslappnad restaurang med ambitiös vinlista; obokat alternativ.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "description": "Via Santo Spirito 64R\nAvslappnad restaurang med ambitiös vinlista; obokat alternativ.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
       "address": "Via Santo Spirito 64R, Firenze",
       "position": {
         "latitude": 43.7690562,
@@ -1833,7 +1833,7 @@
       "id": "mercato-centrale",
       "name": "Mercato Centrale",
       "category": "shopping",
-      "description": "Matmarknad och saluhall vid San Lorenzo; en bit från era huvudstråk.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "description": "Matmarknad och saluhall vid San Lorenzo; en bit från era huvudstråk.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
       "address": "Piazza del Mercato Centrale, Firenze",
       "position": {
         "latitude": 43.7766446,
@@ -1882,7 +1882,7 @@
       "id": "pitti-mosaici",
       "name": "Pitti Mosaici",
       "category": "craft",
-      "description": "Florentinsk stenmosaik (pietra dura) vid Piazza Pitti.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "description": "Florentinsk stenmosaik (pietra dura) vid Piazza Pitti.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
       "address": "Piazza de’ Pitti 23R, Firenze",
       "position": {
         "latitude": 43.7659882,
@@ -1931,7 +1931,7 @@
       "id": "castorina-1895",
       "name": "Castorina 1895",
       "category": "craft",
-      "description": "Traditionell specialbutik med konstnärs- och dekorationsmaterial.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "description": "Traditionell specialbutik med konstnärs- och dekorationsmaterial.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
       "address": "Via Santo Spirito 15R, Firenze",
       "position": {
         "latitude": 43.7684524,
@@ -1980,7 +1980,7 @@
       "id": "mio-concept-store",
       "name": "Mio Concept Store",
       "category": "shopping",
-      "description": "Design, presenter och ovanliga föremål nära Via della Spada.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "description": "Design, presenter och ovanliga föremål nära Via della Spada.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
       "address": "Via della Spada 34R, Firenze",
       "position": {
         "latitude": 43.7719386,
@@ -2029,7 +2029,7 @@
       "id": "giulia-materia",
       "name": "Giulia Materia",
       "category": "craft",
-      "description": "Liten butik för lokalt hantverk och design vid Pitti.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "description": "Liten butik för lokalt hantverk och design vid Pitti.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
       "address": "Sdrucciolo de’ Pitti 13R, Firenze",
       "position": {
         "latitude": 43.766205,
@@ -2078,7 +2078,7 @@
       "id": "gelateria-della-passera",
       "name": "Gelateria della Passera",
       "category": "food-drink",
-      "description": "Liten gelateria vid Piazza della Passera.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "description": "Liten gelateria vid Piazza della Passera.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
       "address": "Via Toscanella 15R, Firenze",
       "position": {
         "latitude": 43.767177,
@@ -2127,7 +2127,7 @@
       "id": "gelateria-dei-neri",
       "name": "Gelateria dei Neri",
       "category": "food-drink",
-      "description": "Välkänd gelateria nära Uffizi/Santa Croce.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "description": "Välkänd gelateria nära Uffizi/Santa Croce.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
       "address": "Via dei Neri 9R, Firenze",
       "position": {
         "latitude": 43.7677701,
@@ -2176,7 +2176,7 @@
       "id": "gelateria-la-carraia",
       "name": "Gelateria La Carraia",
       "category": "food-drink",
-      "description": "Glass vid Ponte alla Carraia, nära Oltrarno.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "description": "Glass vid Ponte alla Carraia, nära Oltrarno.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
       "address": "Piazza Nazario Sauro 25R, Firenze",
       "position": {
         "latitude": 43.769614,
@@ -2225,7 +2225,7 @@
       "id": "perche-no",
       "name": "Perché No!",
       "category": "food-drink",
-      "description": "Klassisk gelateria i centrum.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "description": "Klassisk gelateria i centrum.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
       "address": "Via dei Tavolini 19R, Firenze",
       "position": {
         "latitude": 43.7708033,
@@ -2274,7 +2274,7 @@
       "id": "vivoli",
       "name": "Vivoli",
       "category": "food-drink",
-      "description": "Klassisk florentinsk gelateria nära Santa Croce.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "description": "Klassisk florentinsk gelateria nära Santa Croce.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
       "address": "Via Isola delle Stinche 7R, Firenze",
       "position": {
         "latitude": 43.7699782,
@@ -2323,7 +2323,7 @@
       "id": "cantina-del-gelato",
       "name": "Cantina del Gelato",
       "category": "food-drink",
-      "description": "Glass på Oltrarno-sidan nära Ponte Vecchio.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "description": "Glass på Oltrarno-sidan nära Ponte Vecchio.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
       "address": "Via de’ Bardi 31, Firenze",
       "position": {
         "latitude": 43.7665653,
@@ -2372,7 +2372,7 @@
       "id": "serre-torrigiani-in-piazzetta",
       "name": "Serre Torrigiani in Piazzetta",
       "category": "food-drink",
-      "description": "Förstahandsval för ett glas ute vid Piazza dei Tre Re.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "description": "Förstahandsval för ett glas ute vid Piazza dei Tre Re.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
       "address": "Piazza dei Tre Re 1, Firenze",
       "position": {
         "latitude": 43.7711312,
@@ -2421,7 +2421,7 @@
       "id": "caffe-concerto-paszkowski",
       "name": "Caffè Concerto Paszkowski",
       "category": "food-drink",
-      "description": "Klassisk uteservering på Piazza della Repubblica.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "description": "Klassisk uteservering på Piazza della Repubblica.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
       "address": "Piazza della Repubblica 6, Firenze",
       "position": {
         "latitude": 43.7719428,
@@ -2470,7 +2470,7 @@
       "id": "bulli-balene",
       "name": "Bulli & Balene",
       "category": "food-drink",
-      "description": "Aperitivo i Oltrarno på hemvägen.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "description": "Aperitivo i Oltrarno på hemvägen.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
       "address": "Via dello Sprone 14R, Firenze",
       "position": {
         "latitude": 43.7671193,
@@ -2519,7 +2519,7 @@
       "id": "pasticceria-cosi-chiantigiana",
       "name": "Pasticceria Cosi – Chiantigiana",
       "category": "food-drink",
-      "description": "Via Chiantigiana 52/54R, lättare lunch eller bakverk efter Lisio. Markören är ungefärligt placerad vid adressen; kontrollera i Apple Kartor.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.\nFilialen ligger i Bagno a Ripoli, inte vid Piazza Gavinana. Apple-kort för nuvarande Cosi-verksamhet saknas ännu; telefon +39 055 6147820.",
+      "description": "Via Chiantigiana 52/54R, lättare lunch eller bakverk efter Lisio. Markören använder koordinaten på företagets egen kontaktsida.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.\nFilialen ligger i Bagno a Ripoli, inte vid Piazza Gavinana. Apple-kort för nuvarande Cosi-verksamhet saknas ännu; telefon +39 055 6147820.",
       "address": "Via Chiantigiana 52/54R, Bagno a Ripoli",
       "position": {
         "latitude": 43.73424696474809,
@@ -2576,7 +2576,7 @@
       "id": "beppa-fioraia",
       "name": "Beppa Fioraia",
       "category": "food-drink",
-      "description": "Alternativ lunch vid utsiktsutflykten, med trädgård.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "description": "Alternativ lunch vid utsiktsutflykten, med trädgård.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
       "address": "Via dell’Erta Canina 6R, Firenze",
       "position": {
         "latitude": 43.76279,
