@@ -10,7 +10,7 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  const cache=new Map();
  await page.route(/^https?:\/\/(?!127\.0\.0\.1)/,async route=>{
   const url=route.request().url();
-  if(url.includes('tile.openstreetmap.org'))return route.fulfill({status:200,contentType:'image/png',body:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=','base64')});
+  if(url.includes('tile.openstreetmap.org'))return route.fulfill({status:200,contentType:'image/svg+xml',body:'<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256"><rect width="256" height="256" fill="#dce2e6"/></svg>'});
   if(!cache.has(url))cache.set(url,new Promise((resolve,reject)=>require('child_process').execFile('curl',['-sSL','--fail','--max-time','30',url],{encoding:'buffer',maxBuffer:5000000},(e,data)=>e?reject(e):resolve(data))));
   try{await route.fulfill({status:200,body:await cache.get(url),contentType:url.endsWith('.css')?'text/css':url.endsWith('.js')?'text/javascript':undefined})}catch(e){await route.abort()}
  });
@@ -58,7 +58,7 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
    const g=await guideReady;g.setView('karta');
    const frame=()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
    const bounds=()=>{const sheet=document.getElementById('placeSheet'),body=document.getElementById('sheetBody'),r=sheet.getBoundingClientRect();if(r.left<0||r.right>innerWidth+1||r.top<0||r.bottom>innerHeight+1||body.scrollWidth>body.clientWidth+1)throw new Error('Sheet overflow '+innerWidth+'×'+innerHeight+' '+document.getElementById('sheetTitle').textContent);const buttons=[...body.querySelectorAll('.sheet-action')].map(e=>e.getBoundingClientRect());for(const b of buttons)if(b.width<44||b.height<44||Math.abs(b.top-buttons[0].top)>1||b.left<0||b.right>innerWidth+1)throw new Error('Action row does not fit');};
-   for(const place of g.content.places){g.openPlaceSheet(place.id);await frame();bounds();if(document.querySelector('[data-action="walking"]').href!==PlacesValidator.appleDirectionsLink(place,'walking'))throw new Error('Wrong navigation');if(document.querySelector('[data-action="transit"],[data-action="driving"]'))throw new Error('Duplicate transport buttons');if(document.querySelector('[data-action="maps"]').href!==PlacesValidator.applePlaceLink(place))throw new Error('Wrong map link');if(Boolean(document.querySelector('[data-action="website"]'))!==Boolean(place.website))throw new Error('Missing website');if(place.website&&document.querySelector('[data-action="website"]').href!==place.website)throw new Error('Wrong website');if(document.querySelector('[data-action="ask"]').dataset.askPlace!==place.id)throw new Error('Wrong ChatGPT target');if(document.getElementById('sheetGrab').hidden)throw new Error('Missing grab handle');if(document.querySelector('#sheetBody .sheet-more'))throw new Error('Extra read-more section');if(document.querySelectorAll('.selected-place-halo').length!==1||!g.markersById.get(place.id).getElement().classList.contains('is-selected'))throw new Error('Selected place missing');if(document.querySelectorAll('#sheetBody .story-copy details:not(.story-sources)').length)throw new Error('Nested story disclosure');}
+   for(const place of g.content.places){g.openPlaceSheet(place.id);await frame();bounds();if(document.querySelector('#sheetBody [data-action="walking"]').href!==PlacesValidator.appleDirectionsLink(place,'walking'))throw new Error('Wrong navigation');if(document.querySelector('#sheetBody [data-action="transit"],#sheetBody [data-action="driving"]'))throw new Error('Duplicate transport buttons');if(document.querySelector('#sheetBody [data-action="maps"]').href!==PlacesValidator.applePlaceLink(place))throw new Error('Wrong map link');if(Boolean(document.querySelector('#sheetBody [data-action="website"]'))!==Boolean(place.website))throw new Error('Missing website');if(place.website&&document.querySelector('#sheetBody [data-action="website"]').href!==place.website)throw new Error('Wrong website');if(document.querySelector('#sheetBody [data-action="ask"]').dataset.askPlace!==place.id)throw new Error('Wrong ChatGPT target');if(document.getElementById('sheetGrab').hidden)throw new Error('Missing grab handle');if(document.querySelector('#sheetBody .sheet-more'))throw new Error('Extra read-more section');if(document.querySelectorAll('.selected-place-halo').length!==1||!g.markersById.get(place.id).getElement().classList.contains('is-selected'))throw new Error('Selected place missing');if(document.querySelectorAll('#sheetBody .story-copy details:not(.story-sources)').length)throw new Error('Nested story disclosure');}
    for(const story of g.storyContent.stories){g.openPlaceSheet(story.placeId);await frame();bounds();const text=document.querySelector('#sheetBody .story-copy').textContent;if(!text.includes(story.title)||!text.includes(story.lookFor)||!story.paragraphs.every(p=>text.includes(p)))throw new Error('Story text mismatch');}
    g.closePlaceSheet(false);g.setView('sevardheter');
    if(document.querySelectorAll('#placeList [data-story]').length!==g.storyContent.stories.length)throw new Error('Missing list story');
@@ -103,7 +103,7 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  await grab.focus();await page.keyboard.press('Enter');
  await page.waitForTimeout(300);
  assert.equal(await page.locator('#sheetBody').evaluate(e=>e.scrollWidth>e.clientWidth+1),false);
- assert(await page.locator('.sheet-actions').evaluate(e=>{const rects=[...e.children].map(b=>b.getBoundingClientRect());return rects.every(r=>r.width>=44&&r.height>=44&&Math.abs(r.top-rects[0].top)<1&&r.right<=innerWidth&&r.left>=0);}));
+ assert(await page.locator('#sheetBody .sheet-actions').evaluate(e=>{const rects=[...e.children].map(b=>b.getBoundingClientRect());return rects.every(r=>r.width>=44&&r.height>=44&&Math.abs(r.top-rects[0].top)<1&&r.right<=innerWidth&&r.left>=0);}));
  assert.equal(await page.locator('#sheetBody .story-sources > summary').textContent(),'Läs vidare');
  const rect=await page.locator('#placeSheet').boundingBox();assert(rect.x>=0&&rect.y>=0&&rect.x+rect.width<=391&&rect.y+rect.height<=845);
  assert(await page.locator('#sheetBody').evaluate(e=>e.scrollHeight>e.clientHeight));
@@ -119,6 +119,33 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  await page.evaluate(async()=>{const g=await guideReady;g.markersById.get('orsanmichele').getElement().click();});await page.waitForSelector('#placeSheet');
  assert.equal(await page.locator('.leaflet-popup').count(),0);
  await page.keyboard.press('Escape');assert(await page.locator('#placeSheet').isHidden());
- assert.deepEqual(errors,[]);console.log('PASS: existing map/list/flight flows, 69 marked place sheets and 13 shared stories at five mobile/tablet sizes, 200% text, drag up to expand/down to close, touch tap and keyboard toggle, route sheet dismissal, fading overflow without read-more sections, bounds/vertical scroll, marker click and keyboard close, unchanged canonical navigation');
+ // Appearance follows OS changes live; every surface shares the same theme.
+ const positions=await page.evaluate(async()=>[...(await guideReady).markersById].map(([id,m])=>[id,m.getLatLng().lat,m.getLatLng().lng]));
+ for(const colorScheme of ['dark','light']){
+  await page.emulateMedia({colorScheme});
+  for(const size of sizes){
+   await page.setViewportSize(size);
+   await page.evaluate(async()=>{const g=await guideReady;g.closePlaceSheet(false);g.setView('karta');g.chooseDay(g.guide.defaultSelection.id);});
+   await page.waitForTimeout(100);
+   await page.evaluate(()=>{for(const id of ['viewTabs','guide']){const r=document.getElementById(id).getBoundingClientRect();if(r.left<0||r.right>innerWidth+1||r.top<0||r.bottom>innerHeight+1)throw new Error('Navigation overflow '+id);}for(const b of document.querySelectorAll('#viewTabs button,.leaflet-bar a,.leaflet-bar button,.leaflet-control-layers-toggle')){const r=b.getBoundingClientRect();if(r.width<44||r.height<44||r.left<0||r.right>innerWidth+1)throw new Error('Small navigation target');}});
+   await page.evaluate(async()=>{(await guideReady).showPlaceOnMap('orsanmichele');});await page.waitForTimeout(300);
+   assert.equal(await page.locator('.leaflet-tile-pane').evaluate(e=>getComputedStyle(e).filter==='none'),colorScheme==='light');
+   for(const view of ['schema','sevardheter']){await page.evaluate(async view=>(await guideReady).setView(view),view);assert.equal(await page.locator('#listView').evaluate(e=>e.scrollWidth>e.clientWidth+1),false);}
+  }
+  await page.setViewportSize({width:390,height:844});
+  await page.evaluate(async()=>{const g=await guideReady;g.setView('schema');});
+  // Check ordinary text and action labels against their opaque backgrounds.
+  const ratios=await page.evaluate(()=>{
+   const luminance=color=>{const rgb=color.match(/[\d.]+/g).slice(0,3).map(Number).map(v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4});return .2126*rgb[0]+.7152*rgb[1]+.0722*rgb[2]};
+   return ['#listView','.list-card','.list-action','.list-card [data-action="walking"]','.list-card [data-action="maps"]'].map(selector=>{const s=getComputedStyle(document.querySelector(selector)),a=luminance(s.color),b=luminance(s.backgroundColor);return {selector,ratio:(Math.max(a,b)+.05)/(Math.min(a,b)+.05)}});
+  });for(const r of ratios)assert(r.ratio>=4.5,JSON.stringify({colorScheme,...r}));
+  await page.locator('#schemaPanel h1').scrollIntoViewIfNeeded();await page.screenshot({path:'/tmp/navigation-'+colorScheme+'-schema.png'});
+  await page.evaluate(async()=>{const g=await guideReady;g.setView('karta');g.chooseDay('wed');});await page.waitForTimeout(200);await page.screenshot({path:'/tmp/navigation-'+colorScheme+'-map.png'});
+  await page.evaluate(async()=>{(await guideReady).showPlaceOnMap('orsanmichele');});await page.waitForTimeout(300);await grab.focus();await page.keyboard.press('Enter');await page.waitForTimeout(300);await page.locator('#sheetTitle').focus();await page.screenshot({path:'/tmp/navigation-'+colorScheme+'-place.png'});
+ }
+ assert.deepEqual(await page.evaluate(async()=>[...(await guideReady).markersById].map(([id,m])=>[id,m.getLatLng().lat,m.getLatLng().lng])),positions);
+ await page.emulateMedia({colorScheme:'dark',reducedMotion:'reduce',contrast:'more'});assert.equal(await page.locator('#viewTabs').evaluate(e=>getComputedStyle(e).backdropFilter),'none');assert.equal(await page.locator('#tab-karta').evaluate(e=>getComputedStyle(e).transitionDuration),'0s');
+ await page.emulateMedia({colorScheme:'light',reducedMotion:'no-preference',contrast:'no-preference'});
+ assert.deepEqual(errors,[]);console.log('PASS: existing map/list/flight flows, 69 marked place sheets and 13 shared stories at five mobile/tablet sizes, 200% text, drag up to expand/down to close, touch tap and keyboard toggle, route sheet dismissal, fading overflow, bounds/vertical scroll, marker click and keyboard close, unchanged canonical navigation');console.log('PASS: live OS light/dark switching for map, cards, lists and controls at five screen sizes; text contrast >=4.5; 44px navigation targets; reduced motion/high contrast; marker coordinates unchanged');
  }finally{await browser.close();server.close()}
 })().catch(e=>{console.error(e.stack);process.exitCode=1});

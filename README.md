@@ -1,5 +1,13 @@
 # Reseguiden
 
+## Navigation och färgläge – 1.5.0
+
+`ui-theme.css` samlar färger och utseende för hela guiden. Flikar, dagsval, kartknappar och filter har rundade former, diskret glasbakgrund och en gemensam knappstil. Listkort använder samma kompakta åtgärdsrad som platskorten, med ”Visa” för att öppna platsen på guidens karta. Samma tre flikar, dagsrutter, filter och funktioner används som tidigare. Dagskortet håller sig inom skärmen och scrollar inuti när programmet är långt.
+
+Ljust/mörkt läge följer enhetens `prefers-color-scheme` och växlar direkt utan omladdning. Kartplattorna får nattutseende separat, medan markörernas kategorifärger behålls. Text, kort, kontroller, platsmarkering och webbläsarens temafärg följer samma färgläge. Begränsad animation, ökad kontrast och minskad transparens respekteras där webbläsaren stöder inställningarna. Ingen manuell temaväljare behövs.
+
+Utseendet testas i både ljust och mörkt läge vid fem skärmstorlekar, även efter växling utan omladdning. Vanlig text och åtgärdsetiketter kontrolleras för minst 4,5:1 kontrast. Navigationens touchytor kontrolleras till minst 44×44 pixlar. Reducerad rörelse och ökad kontrast ingår. Neutrala kartplattor används i UI-testets skärmbilder; kartdata och markörpositioner ändras inte.
+
 ## Platskort och berättelser – 1.4.4
 
 Alla platskort och även ruttinformationen har en draglist med 48 pixlars touchyta över hela bredden. Hela namnraden kan också dras. Uppåt visar hela kortet; nedåt stänger det från både kort och stort läge. Ett tryck växlar kort/stort läge och handtaget fungerar med tangentbord. Beskrivning och historia visas som sammanhängande text utan ”Mer om platsen”. Text som fortsätter utanför den korta vyn tonas ut mot nederkanten; den stora vyn visar texten normalt och kan scrollas. Kort utan överflöd tonas inte ut. Rörelsen respekterar inställningen för minskad animation.
@@ -51,7 +59,8 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | routes.json | 1 | 3 |
 | guide.json | 2 | 6 |
 | stories.json | 1 | 1 |
-| index.html och place-sheet.css | – | 1.4.4 |
+| index.html och ui-theme.css | – | 1.5.0 |
+| place-sheet.css | – | 1.4.4 |
 | valideringskod | – | 1.4.0 |
 | verification-report.v2.md | – | Rapportversion 2 |
 
