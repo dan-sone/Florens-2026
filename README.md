@@ -1,12 +1,14 @@
 # Reseguiden
 
-## Platskort och berättelser – 1.4.3
+## Platskort och berättelser – 1.4.4
 
-Kortets hela namnrad och handtag kan dras uppåt för att öppna mer innehåll och nedåt för att återgå till den korta vyn. Handtagets touchyta är 48 pixlar hög över kortets hela bredd. Ett tryck växlar också läge; handtaget fungerar även med tangentbord. Innehållet scrollas separat. Ett enda ”Mer om platsen” samlar beskrivning, berättelse och Titta efter utan ytterligare utfällning av berättelsen. Valet och handtaget visas endast när det finns extra innehåll. Källor kan öppnas vid behov. Rörelsen respekterar inställningen för minskad animation.
+Alla platskort och även ruttinformationen har en draglist med 48 pixlars touchyta över hela bredden. Hela namnraden kan också dras. Uppåt visar hela kortet; nedåt stänger det från både kort och stort läge. Ett tryck växlar kort/stort läge och handtaget fungerar med tangentbord. Beskrivning och historia visas som sammanhängande text utan ”Mer om platsen”. Text som fortsätter utanför den korta vyn tonas ut mot nederkanten; den stora vyn visar texten normalt och kan scrollas. Kort utan överflöd tonas inte ut. Rörelsen respekterar inställningen för minskad animation.
 
 Markörer öppnar nu ett Apple-inspirerat kort längst ned, inte en flytande plats-popup. Kartan är fortsatt interaktiv. Namn och stängknapp ligger kvar överst, medan innehållet scrollas vertikalt inom kortet. Kortet använder dynamisk skärmhöjd och safe-area-insets, även i liggande läge. Dagskortet döljs tillfälligt när platskortet är öppet och återkommer när det stängs. Kryss, Escape eller tryck på den fria kartan stänger kortet; dragning/zoomning stänger det inte. Fokus återgår till markören vid kryss/Escape.
 
-Alla åtgärder ligger på en gemensam rad med symbol och kort etikett: Gå, Kartor, Buss (kollektivtrafik), Bil, Webb och Fråga (ChatGPT). Webb visas när platsen har en webbplats. Fullständiga tillgängliga namn förklarar varje val. Raden ryms även på 320 pixlars skärm med minst 44×44 pixlars touchytor. Samma kanoniska navigeringslänkar används. Den korta beskrivningen ersätts av fullständig text när den öppnas, så att samma text inte visas två gånger. All platsinformation finns kvar.
+Alla åtgärder ligger på en gemensam rad med symbol och kort etikett: Gå, Kartor, Webb och Fråga (ChatGPT). Webb visas när platsen har en webbplats. Buss och Bil har tagits bort från kort och listor; färdsätt kan väljas i Apple Kartor. Fullständiga tillgängliga namn förklarar varje val. Raden ryms även på 320 pixlars skärm med minst 44×44 pixlars touchytor. Samma kanoniska gång- och platslänkar används. All platsinformation finns kvar.
+
+Den valda platsen får en blå ring vid kartpositionen, tydlig ljusmarkering runt nålen och högre visningsordning. Endast en plats är markerad åt gången. Markeringen försvinner när kortet stängs eller ruttinformation öppnas. Kartans visningsområde flyttas vid behov så att markören syns ovanför kortet; koordinaterna ändras inte.
 
 Samma `stories.json` visas i platskortet och Sevärdheter; listans berättelser behåller sin egen utfällning. 13 berättelser ingår i första innehållsversionen. ”Läs vidare” visar länkarna som berättelsen bygger på: operatörs-, museums- och officiella turismsidor, kontrollerade 10 oktober 2026. Berättelserna är korta redaktionella återberättelser; betraktelserna under Titta efter är tips, inte nya boknings- eller öppettidsuppgifter.
 
@@ -49,7 +51,7 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | routes.json | 1 | 3 |
 | guide.json | 2 | 6 |
 | stories.json | 1 | 1 |
-| index.html och place-sheet.css | – | 1.4.3 |
+| index.html och place-sheet.css | – | 1.4.4 |
 | valideringskod | – | 1.4.0 |
 | verification-report.v2.md | – | Rapportversion 2 |
 

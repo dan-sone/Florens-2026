@@ -44,7 +44,7 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  await page.screenshot({path:'/tmp/places-list-check.png'});
  assert.equal(await page.locator('#placesPanel').evaluate(e=>e.scrollWidth>e.clientWidth),false);
  // Each list navigation target must equal the map's canonical URL generator.
- const validLinks=await page.evaluate(async()=>{const g=await guideReady;for(const card of document.querySelectorAll('[data-place-card]')){const p=g.placesById.get(card.dataset.placeCard);const links=card.querySelectorAll('.list-actions a');for(const [i,mode]of ['walking','transit','driving'].entries())if(links[i].href!==PlacesValidator.appleDirectionsLink(p,mode))return false;if(links[3].href!==PlacesValidator.applePlaceLink(p))return false}return true});assert(validLinks);
+ const validLinks=await page.evaluate(async()=>{const g=await guideReady;for(const card of document.querySelectorAll('[data-place-card]')){const p=g.placesById.get(card.dataset.placeCard);const links=card.querySelectorAll('.list-actions a');if(links[0].href!==PlacesValidator.appleDirectionsLink(p,'walking'))return false;if(links[1].href!==PlacesValidator.applePlaceLink(p))return false}return true});assert(validLinks);
  await page.locator('[data-place-card="beppa-fioraia"] [data-show-place]').click();assert.equal(await page.locator('body').getAttribute('data-view'),'karta');await page.waitForSelector('#placeSheet');assert((await page.locator('#sheetTitle').textContent()).includes('Beppa Fioraia'));
  await page.click('#tab-schema');await page.reload({waitUntil:'load'});await page.evaluate(()=>guideReady);assert.equal(await page.locator('body').getAttribute('data-view'),'schema');
  await page.click('#tab-sevardheter');await page.keyboard.press('ArrowLeft');assert.equal(await page.locator('#tab-schema').getAttribute('aria-selected'),'true');
@@ -58,8 +58,8 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
    const g=await guideReady;g.setView('karta');
    const frame=()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
    const bounds=()=>{const sheet=document.getElementById('placeSheet'),body=document.getElementById('sheetBody'),r=sheet.getBoundingClientRect();if(r.left<0||r.right>innerWidth+1||r.top<0||r.bottom>innerHeight+1||body.scrollWidth>body.clientWidth+1)throw new Error('Sheet overflow '+innerWidth+'×'+innerHeight+' '+document.getElementById('sheetTitle').textContent);const buttons=[...body.querySelectorAll('.sheet-action')].map(e=>e.getBoundingClientRect());for(const b of buttons)if(b.width<44||b.height<44||Math.abs(b.top-buttons[0].top)>1||b.left<0||b.right>innerWidth+1)throw new Error('Action row does not fit');};
-   for(const place of g.content.places){g.openPlaceSheet(place.id);await frame();bounds();for(const mode of ['walking','transit','driving'])if(document.querySelector('[data-action="'+mode+'"]').href!==PlacesValidator.appleDirectionsLink(place,mode))throw new Error('Wrong navigation');if(document.querySelector('[data-action="maps"]').href!==PlacesValidator.applePlaceLink(place))throw new Error('Wrong map link');if(Boolean(document.querySelector('[data-action="website"]'))!==Boolean(place.website))throw new Error('Missing website');if(place.website&&document.querySelector('[data-action="website"]').href!==place.website)throw new Error('Wrong website');if(document.querySelector('[data-action="ask"]').dataset.askPlace!==place.id)throw new Error('Wrong ChatGPT target');const more=document.querySelector('#sheetBody .sheet-more');if(document.getElementById('sheetGrab').hidden!==!more)throw new Error('Empty more-info choice');if(more&&more.querySelector('summary').textContent!=='Mer om platsen')throw new Error('Misleading information label');if(document.querySelectorAll('#sheetBody > details').length>1)throw new Error('Multiple information sections');if(document.querySelectorAll('#sheetBody .story-copy details:not(.story-sources)').length)throw new Error('Nested story disclosure');}
-   for(const story of g.storyContent.stories){g.openPlaceSheet(story.placeId);document.querySelector('#sheetBody [data-story]').open=true;document.querySelector('#sheetBody .sheet-more').open=true;await frame();bounds();const text=document.querySelector('#sheetBody .story-copy').textContent;if(!text.includes(story.title)||!text.includes(story.lookFor)||!story.paragraphs.every(p=>text.includes(p)))throw new Error('Story text mismatch');}
+   for(const place of g.content.places){g.openPlaceSheet(place.id);await frame();bounds();if(document.querySelector('[data-action="walking"]').href!==PlacesValidator.appleDirectionsLink(place,'walking'))throw new Error('Wrong navigation');if(document.querySelector('[data-action="transit"],[data-action="driving"]'))throw new Error('Duplicate transport buttons');if(document.querySelector('[data-action="maps"]').href!==PlacesValidator.applePlaceLink(place))throw new Error('Wrong map link');if(Boolean(document.querySelector('[data-action="website"]'))!==Boolean(place.website))throw new Error('Missing website');if(place.website&&document.querySelector('[data-action="website"]').href!==place.website)throw new Error('Wrong website');if(document.querySelector('[data-action="ask"]').dataset.askPlace!==place.id)throw new Error('Wrong ChatGPT target');if(document.getElementById('sheetGrab').hidden)throw new Error('Missing grab handle');if(document.querySelector('#sheetBody .sheet-more'))throw new Error('Extra read-more section');if(document.querySelectorAll('.selected-place-halo').length!==1||!g.markersById.get(place.id).getElement().classList.contains('is-selected'))throw new Error('Selected place missing');if(document.querySelectorAll('#sheetBody .story-copy details:not(.story-sources)').length)throw new Error('Nested story disclosure');}
+   for(const story of g.storyContent.stories){g.openPlaceSheet(story.placeId);await frame();bounds();const text=document.querySelector('#sheetBody .story-copy').textContent;if(!text.includes(story.title)||!text.includes(story.lookFor)||!story.paragraphs.every(p=>text.includes(p)))throw new Error('Story text mismatch');}
    g.closePlaceSheet(false);g.setView('sevardheter');
    if(document.querySelectorAll('#placeList [data-story]').length!==g.storyContent.stories.length)throw new Error('Missing list story');
    for(const story of g.storyContent.stories){const details=document.querySelector('#placeList [data-story="'+story.placeId+'"]');details.open=true;if(!details.textContent.includes(story.lookFor))throw new Error('List story mismatch');}
@@ -74,23 +74,33 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  if(await sheet.getAttribute('data-level')==='expanded'){await grab.focus();await page.keyboard.press('Enter');await page.waitForTimeout(300);}
  const compact=(await sheet.boundingBox()).height;
  async function mouseDrag(delta){const r=await grab.boundingBox(),x=r.x+r.width/2,y=r.y+r.height/2;await page.mouse.move(x,y);await page.mouse.down();await page.mouse.move(x,y+delta,{steps:8});await page.mouse.up();await page.waitForTimeout(450);}
- await mouseDrag(-150);assert.equal(await sheet.getAttribute('data-level'),'expanded');assert((await sheet.boundingBox()).height>compact+50);assert(await page.locator('#sheetBody [data-story]').evaluate(e=>e.open));
- await mouseDrag(150);assert.equal(await sheet.getAttribute('data-level'),'compact');assert(!await page.locator('#sheetBody [data-story]').evaluate(e=>e.open));
+ assert(await sheet.evaluate(e=>e.classList.contains('has-overflow')));assert.notEqual(await page.locator('#sheetBody').evaluate(e=>getComputedStyle(e).maskImage),'none');
+ assert(await page.evaluate(async()=>{const g=await guideReady,p=g.map.latLngToContainerPoint(g.markersById.get('orsanmichele').getLatLng());return p.x>=32&&p.x<=g.map.getSize().x-32&&p.y<=document.getElementById('placeSheet').getBoundingClientRect().top-24;}));
+ await page.screenshot({path:'/tmp/place-sheet-fade.png'});
+ await mouseDrag(-150);assert.equal(await sheet.getAttribute('data-level'),'expanded');assert((await sheet.boundingBox()).height>compact+50);assert.equal(await page.locator('#sheetBody').evaluate(e=>getComputedStyle(e).maskImage),'none');
+ assert(await page.evaluate(async()=>{const g=await guideReady,marker=g.markersById.get('orsanmichele'),point=g.map.latLngToContainerPoint(marker.getLatLng()),p=g.placesById.get('orsanmichele');return point.y<=document.getElementById('placeSheet').getBoundingClientRect().top-24&&point.y>=document.getElementById('viewTabs').getBoundingClientRect().bottom+46&&marker.getLatLng().lat===p.position.latitude&&marker.getLatLng().lng===p.position.longitude;}));
+ await mouseDrag(150);assert(await sheet.isHidden());assert.equal(await page.locator('.selected-place-halo').count(),0);
+ await page.evaluate(async()=>{(await guideReady).openPlaceSheet('orsanmichele');});await page.waitForTimeout(300);
  const cdp=await page.context().newCDPSession(page);await cdp.send('Emulation.setTouchEmulationEnabled',{enabled:true});
  async function touchDrag(delta,target=grab){const r=await target.boundingBox(),x=r.x+r.width/2,y=r.y+r.height/2;await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y}]});for(let step=1;step<=8;step++)await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x,y:y+delta*step/8}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await page.waitForTimeout(450);}
  await touchDrag(-150);assert.equal(await sheet.getAttribute('data-level'),'expanded');
  // Scrolling the content must not collapse the sheet.
  const body=await page.locator('#sheetBody').boundingBox();await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:body.x+body.width/2,y:body.y+body.height-30}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:body.x+body.width/2,y:body.y+30}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});assert.equal(await sheet.getAttribute('data-level'),'expanded');
- await touchDrag(150);assert.equal(await sheet.getAttribute('data-level'),'compact');
+ await touchDrag(150);assert(await sheet.isHidden());
+ await page.evaluate(async()=>{(await guideReady).openPlaceSheet('orsanmichele');});await page.waitForTimeout(300);
  assert((await grab.boundingBox()).height>=48);
  await touchDrag(-150,page.locator('#sheetTitle'));assert.equal(await sheet.getAttribute('data-level'),'expanded');
- await touchDrag(150,page.locator('#sheetTitle'));assert.equal(await sheet.getAttribute('data-level'),'compact');
+ await touchDrag(150,page.locator('#sheetTitle'));assert(await sheet.isHidden());
+ await page.evaluate(async()=>{(await guideReady).openPlaceSheet('orsanmichele');});await page.waitForTimeout(300);
  await grab.tap();await page.waitForTimeout(300);assert.equal(await sheet.getAttribute('data-level'),'expanded');
  await cdp.send('Emulation.setTouchEmulationEnabled',{enabled:false});await grab.focus();await page.keyboard.press('Enter');await page.waitForTimeout(300);assert.equal(await sheet.getAttribute('data-level'),'compact');
  await cdp.detach();
+ // A downward swipe also dismisses short cards and the route information sheet.
+ await page.evaluate(async()=>{const g=await guideReady;g.openPlaceSheet(g.content.places.find(p=>!g.storyContent.stories.some(s=>s.placeId===p.id)).id);});await page.waitForTimeout(300);await mouseDrag(100);assert(await sheet.isHidden());
+ await page.evaluate(async()=>{const g=await guideReady;Object.values(g.dayRoutes)[0].getLayers()[0].fire('click');});await page.waitForTimeout(300);assert.equal(await page.locator('#sheetTitle').textContent(),'Om rutten');assert(await grab.isVisible());assert.equal(await page.locator('.selected-place-halo').count(),0);await mouseDrag(100);assert(await sheet.isHidden());
  await page.evaluate(async()=>{document.documentElement.style.fontSize='32px';const g=await guideReady;g.setView('karta');g.showPlaceOnMap('san-miniato-al-monte');});
  await page.waitForSelector('#placeSheet');
- if(!await page.locator('#sheetBody [data-story]').evaluate(e=>e.open))await page.locator('#sheetBody [data-story] summary').first().click();
+ await grab.focus();await page.keyboard.press('Enter');
  await page.waitForTimeout(300);
  assert.equal(await page.locator('#sheetBody').evaluate(e=>e.scrollWidth>e.clientWidth+1),false);
  assert(await page.locator('.sheet-actions').evaluate(e=>{const rects=[...e.children].map(b=>b.getBoundingClientRect());return rects.every(r=>r.width>=44&&r.height>=44&&Math.abs(r.top-rects[0].top)<1&&r.right<=innerWidth&&r.left>=0);}));
@@ -100,7 +110,7 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  await page.screenshot({path:'/tmp/place-sheet-large-text.png'});
  await page.keyboard.press('Escape');assert(await page.locator('#placeSheet').isHidden());
  await page.evaluate(async()=>{document.documentElement.style.fontSize='16px';const g=await guideReady;g.showPlaceOnMap('orsanmichele');});await page.waitForSelector('#placeSheet');
- if(!await page.locator('#sheetBody [data-story]').evaluate(e=>e.open))await page.locator('#sheetBody [data-story] summary').first().click();
+ await grab.focus();await page.keyboard.press('Enter');
  await page.waitForTimeout(300);
  await page.screenshot({path:'/tmp/place-sheet-story.png'});
  await page.click('#sheetClose');assert(await page.locator('#placeSheet').isHidden());
@@ -109,6 +119,6 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  await page.evaluate(async()=>{const g=await guideReady;g.markersById.get('orsanmichele').getElement().click();});await page.waitForSelector('#placeSheet');
  assert.equal(await page.locator('.leaflet-popup').count(),0);
  await page.keyboard.press('Escape');assert(await page.locator('#placeSheet').isHidden());
- assert.deepEqual(errors,[]);console.log('PASS: existing map/list/flight flows, 69 sheets and 13 shared stories at five mobile/tablet sizes, 200% text, mouse/touch drag in both directions, touch tap and keyboard toggle, no empty information choices, bounds/vertical scroll, marker click and keyboard close, unchanged canonical navigation');
+ assert.deepEqual(errors,[]);console.log('PASS: existing map/list/flight flows, 69 marked place sheets and 13 shared stories at five mobile/tablet sizes, 200% text, drag up to expand/down to close, touch tap and keyboard toggle, route sheet dismissal, fading overflow without read-more sections, bounds/vertical scroll, marker click and keyboard close, unchanged canonical navigation');
  }finally{await browser.close();server.close()}
 })().catch(e=>{console.error(e.stack);process.exitCode=1});
