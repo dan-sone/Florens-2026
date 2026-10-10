@@ -1,0 +1,147 @@
+{
+  "$schema": "./routes.schema.v1.json",
+  "schemaVersion": 1,
+  "contentVersion": 1,
+  "updatedAt": "2026-10-10T10:03:10.045Z",
+  "routes": [
+    {
+      "id": "tue",
+      "segments": [
+        {
+          "id": "tue-1",
+          "mode": "walk",
+          "placeIds": [
+            "hotel-la-scaletta",
+            "ponte-vecchio",
+            "uffizierna",
+            "piazza-della-signoria",
+            "orsanmichele",
+            "piazza-della-repubblica",
+            "duomo-santa-reparata",
+            "serre-torrigiani-in-piazzetta",
+            "ponte-santa-trinita",
+            "hotel-la-scaletta"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wed",
+      "segments": [
+        {
+          "id": "wed-1",
+          "mode": "walk",
+          "placeIds": [
+            "hotel-la-scaletta",
+            "ponte-vecchio",
+            "duomo-santa-reparata"
+          ]
+        },
+        {
+          "id": "wed-2",
+          "mode": "walk",
+          "placeIds": [
+            "duomo-santa-reparata",
+            "ponte-vecchio",
+            "hotel-la-scaletta"
+          ]
+        },
+        {
+          "id": "wed-3",
+          "mode": "walk",
+          "placeIds": [
+            "hotel-la-scaletta",
+            "cuculia"
+          ]
+        },
+        {
+          "id": "wed-4",
+          "mode": "walk",
+          "placeIds": [
+            "cuculia",
+            "hotel-la-scaletta"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "thu",
+      "segments": [
+        {
+          "id": "thu-1",
+          "mode": "transport",
+          "placeIds": [
+            "hotel-la-scaletta",
+            "fondazione-arte-della-seta-lisio"
+          ]
+        },
+        {
+          "id": "thu-2",
+          "mode": "transport",
+          "placeIds": [
+            "fondazione-arte-della-seta-lisio",
+            "pasticceria-cosi-chiantigiana"
+          ]
+        },
+        {
+          "id": "thu-3",
+          "mode": "transport",
+          "placeIds": [
+            "fondazione-arte-della-seta-lisio",
+            "san-miniato-al-monte"
+          ]
+        },
+        {
+          "id": "thu-4",
+          "mode": "walk",
+          "placeIds": [
+            "san-miniato-al-monte",
+            "piazzale-michelangelo",
+            "porta-san-niccolo"
+          ]
+        },
+        {
+          "id": "thu-5",
+          "mode": "transport",
+          "placeIds": [
+            "porta-san-niccolo",
+            "hotel-la-scaletta"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fri",
+      "segments": [
+        {
+          "id": "fri-1",
+          "mode": "walk",
+          "placeIds": [
+            "hotel-la-scaletta",
+            "ponte-vecchio",
+            "uffizierna",
+            "basilica-di-santa-croce",
+            "mercato-di-santambrogio",
+            "nugolo",
+            "hotel-la-scaletta"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sat",
+      "segments": [
+        {
+          "id": "sat-1",
+          "mode": "walk",
+          "placeIds": [
+            "hotel-la-scaletta",
+            "palazzo-pitti",
+            "piazza-santo-spirito",
+            "hotel-la-scaletta"
+          ]
+        }
+      ]
+    }
+  ]
+}

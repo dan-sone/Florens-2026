@@ -91,7 +91,7 @@
 .leaflet-control-attribution{font-size:9px!important;background:rgba(255,255,255,.55)!important;padding:1px 3px!important} .leaflet-control-attribution a{color:#555!important}
 </style><!-- Positionskontroll: namn och adresser genomgångna. Vissa markörer är uppskattade på gatunivå; använd knappen Gå för navigering till verifierad adress i Apple Kartor. -->
 </head>
-<body><div id="guide"><label for="routeSelect" class="sr-only">Välj dagsrutt</label><select id="routeSelect" aria-label="Välj dagsrutt"><option value="all">Ingen rutt</option><option value="tue">Tis 13</option><option value="wed">Ons 14</option><option value="thu">Tor 15</option><option value="fri">Fre 16</option><option value="sat">Lör 17</option></select><div id="daycard"><p>Välj dag för att visa dagsrutt och program.</p></div><div id="routeLegs"></div></div>
+<body><div id="guide"><label for="routeSelect" class="sr-only">Välj dagsrutt</label><select id="routeSelect" aria-label="Välj dagsrutt"></select><div id="daycard"><p>Välj dag för att visa dagsrutt och program.</p></div><div id="routeLegs"></div></div>
     
     
     
@@ -101,15 +101,6 @@
 <script src="places-validator.js"></script>
 <script>
 // UI presentation belongs here; names, coordinates, descriptions and addresses belong in places.json.
-const markerPresentation = {"hotel-la-scaletta":{"icon":{"markerColor":"red","iconColor":"white","icon":"home","prefix":"glyphicon"},"style":"width:210px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Öppna i Apple Kartor ↗"},"duomo-santa-reparata":{"icon":{"markerColor":"red","iconColor":"white","icon":"tower","prefix":"glyphicon"},"style":"width:210px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Öppna i Apple Kartor ↗"},"cuculia":{"icon":{"markerColor":"red","iconColor":"white","icon":"cutlery","prefix":"fa"},"style":"width:210px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Öppna i Apple Kartor ↗"},"fondazione-arte-della-seta-lisio":{"icon":{"markerColor":"red","iconColor":"white","icon":"scissors","prefix":"fa"},"style":"width:210px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Öppna i Apple Kartor ↗"},"uffizierna":{"icon":{"markerColor":"red","iconColor":"white","icon":"tower","prefix":"glyphicon"},"style":"width:210px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Öppna i Apple Kartor ↗"},"nugolo":{"icon":{"markerColor":"red","iconColor":"white","icon":"cutlery","prefix":"fa"},"style":"width:210px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Öppna i Apple Kartor ↗"},"ponte-vecchio":{"icon":{"markerColor":"blue","iconColor":"white","icon":"tower","prefix":"glyphicon"},"style":"width:210px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":false,"mapLabel":"Öppna i Apple Kartor ↗"},"palazzo-pitti":{"icon":{"markerColor":"blue","iconColor":"white","icon":"tower","prefix":"glyphicon"},"style":"width:210px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Öppna i Apple Kartor ↗"},"piazza-della-passera":{"icon":{"markerColor":"blue","iconColor":"white","icon":"tower","prefix":"glyphicon"},"style":"width:210px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":false,"mapLabel":"Öppna i Apple Kartor ↗"},"piazza-santo-spirito":{"icon":{"markerColor":"orange","iconColor":"white","icon":"glass","prefix":"glyphicon"},"style":"width:210px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":false,"mapLabel":"Öppna i Apple Kartor ↗"},"basilica-di-santo-spirito":{"icon":{"markerColor":"blue","iconColor":"white","icon":"tower","prefix":"glyphicon"},"style":"width:210px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Öppna i Apple Kartor ↗"},"piazza-del-carmine":{"icon":{"markerColor":"blue","iconColor":"white","icon":"tower","prefix":"glyphicon"},"style":"width:210px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":false,"mapLabel":"Öppna i Apple Kartor ↗"},"piazza-della-signoria":{"icon":{"markerColor":"blue","iconColor":"white","icon":"tower","prefix":"glyphicon"},"style":"width:210px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":false,"mapLabel":"Öppna i Apple Kartor ↗"},"loggia-dei-lanzi":{"icon":{"markerColor":"blue","iconColor":"white","icon":"tower","prefix":"glyphicon"},"style":"width:210px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":false,"mapLabel":"Öppna i Apple Kartor ↗"},"orsanmichele":{"icon":{"markerColor":"blue","iconColor":"white","icon":"tower","prefix":"glyphicon"},"style":"width:210px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":false,"mapLabel":"Öppna i Apple Kartor ↗"},"piazza-della-repubblica":{"icon":{"markerColor":"blue","iconColor":"white","icon":"tower","prefix":"glyphicon"},"style":"width:210px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":false,"mapLabel":"Öppna i Apple Kartor ↗"},"piazza-santa-trinita":{"icon":{"markerColor":"blue","iconColor":"white","icon":"tower","prefix":"glyphicon"},"style":"width:210px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":false,"mapLabel":"Öppna i Apple Kartor ↗"},"ponte-santa-trinita":{"icon":{"markerColor":"blue","iconColor":"white","icon":"tower","prefix":"glyphicon"},"style":"width:210px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":false,"mapLabel":"Öppna i Apple Kartor ↗"},"basilica-di-santa-croce":{"icon":{"markerColor":"blue","iconColor":"white","icon":"tower","prefix":"glyphicon"},"style":"width:210px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Öppna i Apple Kartor ↗"},"mercato-di-santambrogio":{"icon":{"className":"shopping-pin-wrap","html":"<div class=\"shopping-pin\"><div class=\"pin\"><i class=\"fa fa-shopping-bag\"></i></div></div>","iconSize":[28,38],"iconAnchor":[14,36],"popupAnchor":[0,-34]},"style":"width:210px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Öppna i Apple Kartor ↗"},"giulio-giannini-e-figlio":{"icon":{"markerColor":"purple","iconColor":"white","icon":"scissors","prefix":"fa"},"style":"width:210px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Öppna i Apple Kartor ↗"},"scuola-del-cuoio":{"icon":{"markerColor":"purple","iconColor":"white","icon":"scissors","prefix":"fa"},"style":"width:210px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Öppna i Apple Kartor ↗"},"museo-opificio-delle-pietre-dure":{"icon":{"markerColor":"purple","iconColor":"white","icon":"scissors","prefix":"fa"},"style":"width:210px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Öppna i Apple Kartor ↗"},"officina-profumo-farmaceutica-smn":{"icon":{"markerColor":"purple","iconColor":"white","icon":"scissors","prefix":"fa"},"style":"width:210px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Öppna i Apple Kartor ↗"},"porta-san-niccolo":{"icon":{"markerColor":"blue","iconColor":"white","icon":"camera","prefix":"glyphicon"},"style":"width:210px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":false,"mapLabel":"Öppna i Apple Kartor ↗"},"piazzale-michelangelo":{"icon":{"markerColor":"blue","iconColor":"white","icon":"camera","prefix":"glyphicon"},"style":"width:210px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":false,"mapLabel":"Öppna i Apple Kartor ↗"},"san-miniato-al-monte":{"icon":{"markerColor":"blue","iconColor":"white","icon":"tower","prefix":"glyphicon"},"style":"width:210px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Öppna i Apple Kartor ↗"},"le-volpi-e-luva":{"icon":{"markerColor":"orange","iconColor":"white","icon":"cutlery","prefix":"fa"},"style":"width:210px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Öppna i Apple Kartor ↗"},"il-santino":{"icon":{"markerColor":"orange","iconColor":"white","icon":"cutlery","prefix":"fa"},"style":"width:225px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Öppna i Apple Kartor ↗"},"enoteca-pitti-gola-e-cantina":{"icon":{"markerColor":"orange","iconColor":"white","icon":"cutlery","prefix":"fa"},"style":"width:225px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Öppna i Apple Kartor ↗"},"enoteca-spontanea":{"icon":{"markerColor":"orange","iconColor":"white","icon":"cutlery","prefix":"fa"},"style":"width:225px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Öppna i Apple Kartor ↗"},"fuori-porta":{"icon":{"markerColor":"orange","iconColor":"white","icon":"cutlery","prefix":"fa"},"style":"width:225px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Öppna i Apple Kartor ↗"},"loggia-roof-bar":{"icon":{"markerColor":"orange","iconColor":"white","icon":"cutlery","prefix":"fa"},"style":"width:225px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Öppna i Apple Kartor ↗"},"il-santo-bevitore":{"icon":{"markerColor":"orange","iconColor":"white","icon":"cutlery","prefix":"fa"},"style":"width:225px;font-family:sans-serif","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Öppna i Apple Kartor ↗"},"mercato-centrale":{"icon":{"className":"shopping-pin-wrap","html":"<div class=\"shopping-pin\"><div class=\"pin\"><i class=\"fa fa-shopping-bag\"></i></div></div>","iconSize":[28,38],"iconAnchor":[14,36],"popupAnchor":[0,-34]},"style":"","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Visa adress i Apple Kartor ↗"},"pitti-mosaici":{"icon":{"markerColor":"purple","iconColor":"white","icon":"scissors","prefix":"fa"},"style":"","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Visa adress i Apple Kartor ↗"},"castorina-1895":{"icon":{"markerColor":"purple","iconColor":"white","icon":"scissors","prefix":"fa"},"style":"","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Visa adress i Apple Kartor ↗"},"mio-concept-store":{"icon":{"className":"shopping-pin-wrap","html":"<div class=\"shopping-pin\"><div class=\"pin\"><i class=\"fa fa-shopping-bag\"></i></div></div>","iconSize":[28,38],"iconAnchor":[14,36],"popupAnchor":[0,-34]},"style":"","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Visa adress i Apple Kartor ↗"},"giulia-materia":{"icon":{"markerColor":"purple","iconColor":"white","icon":"scissors","prefix":"fa"},"style":"","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Visa adress i Apple Kartor ↗"},"gelateria-della-passera":{"icon":{"markerColor":"orange","iconColor":"white","icon":"ice-cream","prefix":"fa"},"style":"","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Visa adress i Apple Kartor ↗"},"gelateria-dei-neri":{"icon":{"markerColor":"orange","iconColor":"white","icon":"ice-cream","prefix":"fa"},"style":"","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Visa adress i Apple Kartor ↗"},"gelateria-la-carraia":{"icon":{"markerColor":"orange","iconColor":"white","icon":"ice-cream","prefix":"fa"},"style":"","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Visa adress i Apple Kartor ↗"},"perche-no":{"icon":{"markerColor":"orange","iconColor":"white","icon":"ice-cream","prefix":"fa"},"style":"","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Visa adress i Apple Kartor ↗"},"vivoli":{"icon":{"markerColor":"orange","iconColor":"white","icon":"ice-cream","prefix":"fa"},"style":"","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Visa adress i Apple Kartor ↗"},"cantina-del-gelato":{"icon":{"markerColor":"orange","iconColor":"white","icon":"ice-cream","prefix":"fa"},"style":"","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Visa adress i Apple Kartor ↗"},"serre-torrigiani-in-piazzetta":{"icon":{"markerColor":"orange","iconColor":"white","icon":"glass","prefix":"glyphicon"},"style":"","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Visa adress i Apple Kartor ↗"},"caffe-concerto-paszkowski":{"icon":{"markerColor":"orange","iconColor":"white","icon":"glass","prefix":"glyphicon"},"style":"","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Visa adress i Apple Kartor ↗"},"bulli-balene":{"icon":{"markerColor":"orange","iconColor":"white","icon":"glass","prefix":"glyphicon"},"style":"","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Visa adress i Apple Kartor ↗"},"pasticceria-cosi-chiantigiana":{"icon":{"markerColor":"orange","iconColor":"white","icon":"cutlery","prefix":"fa"},"style":"","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Visa adress i Apple Kartor ↗"},"beppa-fioraia":{"icon":{"markerColor":"orange","iconColor":"white","icon":"cutlery","prefix":"fa"},"style":"","tooltip":false,"directionsUsesAddress":true,"mapLabel":"Visa adress i Apple Kartor ↗"},"santa-maria-novella":{"icon":{"markerColor":"blue","iconColor":"white","icon":"tower","prefix":"glyphicon"},"style":"min-width:210px","tooltip":false,"directionsUsesAddress":false,"mapLabel":"Visa i Apple Kartor ↗"},"basilica-di-san-lorenzo":{"icon":{"markerColor":"blue","iconColor":"white","icon":"tower","prefix":"glyphicon"},"style":"min-width:210px","tooltip":false,"directionsUsesAddress":false,"mapLabel":"Visa i Apple Kartor ↗"},"cappelle-medicee":{"icon":{"markerColor":"blue","iconColor":"white","icon":"tower","prefix":"glyphicon"},"style":"min-width:210px","tooltip":false,"directionsUsesAddress":false,"mapLabel":"Visa i Apple Kartor ↗"},"galleria-dellaccademia":{"icon":{"markerColor":"blue","iconColor":"white","icon":"tower","prefix":"glyphicon"},"style":"min-width:210px","tooltip":false,"directionsUsesAddress":false,"mapLabel":"Visa i Apple Kartor ↗"},"museo-nazionale-del-bargello":{"icon":{"markerColor":"blue","iconColor":"white","icon":"tower","prefix":"glyphicon"},"style":"min-width:210px","tooltip":false,"directionsUsesAddress":false,"mapLabel":"Visa i Apple Kartor ↗"},"giardino-di-boboli":{"icon":{"markerColor":"blue","iconColor":"white","icon":"tower","prefix":"glyphicon"},"style":"min-width:210px","tooltip":false,"directionsUsesAddress":false,"mapLabel":"Visa i Apple Kartor ↗"},"palazzo-medici-riccardi":{"icon":{"markerColor":"blue","iconColor":"white","icon":"tower","prefix":"glyphicon"},"style":"min-width:210px","tooltip":false,"directionsUsesAddress":false,"mapLabel":"Visa i Apple Kartor ↗"},"giardino-delle-rose":{"icon":{"markerColor":"blue","iconColor":"white","icon":"tower","prefix":"glyphicon"},"style":"min-width:210px","tooltip":false,"directionsUsesAddress":false,"mapLabel":"Visa i Apple Kartor ↗"},"antico-setificio-fiorentino":{"icon":{"markerColor":"purple","iconColor":"white","icon":"scissors","prefix":"fa"},"style":"min-width:220px","tooltip":false,"directionsUsesAddress":false,"mapLabel":"Öppna i Apple Kartor ↗"},"alberto-cozzi-legatoria":{"icon":{"markerColor":"purple","iconColor":"white","icon":"scissors","prefix":"fa"},"style":"min-width:220px","tooltip":false,"directionsUsesAddress":false,"mapLabel":"Öppna i Apple Kartor ↗"},"riccardo-luci-carta-marmorizzata":{"icon":{"markerColor":"purple","iconColor":"white","icon":"scissors","prefix":"fa"},"style":"min-width:220px","tooltip":false,"directionsUsesAddress":false,"mapLabel":"Öppna i Apple Kartor ↗"},"scarpelli-mosaici":{"icon":{"markerColor":"purple","iconColor":"white","icon":"scissors","prefix":"fa"},"style":"min-width:220px","tooltip":false,"directionsUsesAddress":false,"mapLabel":"Öppna i Apple Kartor ↗"},"casa-dei-tessuti":{"icon":{"markerColor":"purple","iconColor":"white","icon":"scissors","prefix":"fa"},"style":"min-width:220px","tooltip":false,"directionsUsesAddress":false,"mapLabel":"Öppna i Apple Kartor ↗"},"ermini-agostino":{"icon":{"markerColor":"purple","iconColor":"white","icon":"scissors","prefix":"fa"},"style":"min-width:220px","tooltip":false,"directionsUsesAddress":false,"mapLabel":"Öppna i Apple Kartor ↗"},"valli-tessuti":{"icon":{"markerColor":"purple","iconColor":"white","icon":"scissors","prefix":"fa"},"style":"min-width:220px","tooltip":false,"directionsUsesAddress":false,"mapLabel":"Öppna i Apple Kartor ↗"},"le-telerie-toscane":{"icon":{"markerColor":"purple","iconColor":"white","icon":"scissors","prefix":"fa"},"style":"min-width:220px","tooltip":false,"directionsUsesAddress":false,"mapLabel":"Öppna i Apple Kartor ↗"},"passamaneria-toscana":{"icon":{"markerColor":"purple","iconColor":"white","icon":"scissors","prefix":"fa"},"style":"min-width:220px","tooltip":false,"directionsUsesAddress":false,"mapLabel":"Öppna i Apple Kartor ↗"},"chalet-il-boschetto":{"icon":{"markerColor":"orange","iconColor":"white","icon":"cutlery","prefix":"fa"},"style":"","tooltip":true,"directionsUsesAddress":true,"mapLabel":"Öppna i Apple Kartor ↗"},"terrazze-michelangelo":{"icon":{"markerColor":"orange","iconColor":"white","icon":"cutlery","prefix":"fa"},"style":"","tooltip":true,"directionsUsesAddress":true,"mapLabel":"Öppna i Apple Kartor ↗"}};
-const bookedIds = ["duomo-santa-reparata", "cuculia", "fondazione-arte-della-seta-lisio", "uffizierna", "nugolo"];
-const routeDefinitions={
- tue:[['hotel-la-scaletta','ponte-vecchio','uffizierna','piazza-della-signoria','orsanmichele','piazza-della-repubblica','duomo-santa-reparata','serre-torrigiani-in-piazzetta','ponte-santa-trinita','hotel-la-scaletta']],
- wed:[['hotel-la-scaletta','ponte-vecchio','duomo-santa-reparata'],['duomo-santa-reparata','ponte-vecchio','hotel-la-scaletta'],['hotel-la-scaletta','cuculia'],['cuculia','hotel-la-scaletta']],
- thu:[['hotel-la-scaletta','fondazione-arte-della-seta-lisio'],['fondazione-arte-della-seta-lisio','pasticceria-cosi-chiantigiana'],['fondazione-arte-della-seta-lisio','san-miniato-al-monte'],['san-miniato-al-monte','piazzale-michelangelo','porta-san-niccolo'],['porta-san-niccolo','hotel-la-scaletta']],
- fri:[['hotel-la-scaletta','ponte-vecchio','uffizierna','basilica-di-santa-croce','mercato-di-santambrogio','nugolo','hotel-la-scaletta']],
- sat:[['hotel-la-scaletta','palazzo-pitti','piazza-santo-spirito','hotel-la-scaletta']]
-};
 
 const guideReady = (async function(){
  const version=new URL(window.location.href).searchParams.get('v') || Date.now().toString();
@@ -118,14 +109,19 @@ const guideReady = (async function(){
   if(!response.ok) throw new Error('Kunde inte läsa '+path+' ('+response.status+')');
   return response.json();
  }
- const [schema,content]=await Promise.all([readJson('places.schema.v1.json'),readJson('places.json')]);
- PlacesValidator.createValidator(schema)(content);
+ const names=['places','routes','guide'];
+ const entries=await Promise.all(names.map(async name=>{const [schema,data]=await Promise.all([readJson(name+'.schema.v1.json'),readJson(name+'.json')]);return [name,schema,data];}));
+ const schemas=Object.fromEntries(entries.map(([name,schema])=>[name,schema]));
+ const documents=Object.fromEntries(entries.map(([name,,data])=>[name,data]));
+ PlacesValidator.validateTrip(schemas,documents);
+ const {places:content,routes:routeContent,guide}=documents;
+ document.title=guide.title;
+ const markerPresentation=guide.presentation.placeOverrides;
+ const bookedIds=guide.bookings.map(b=>b.placeId);
  const placesById=new Map(content.places.map(p=>[p.id,p]));
+ const routesById=new Map(routeContent.routes.map(r=>[r.id,r]));
  function requirePlace(id){const p=placesById.get(id);if(!p)throw new Error('Okänd plats i guiden: '+id);return p;}
  function coordinates(place){if(!place.position)throw new Error('Platsen saknar position: '+place.id);return [place.position.latitude,place.position.longitude];}
- // Validate every reference before creating any map layers.
- Object.values(routeDefinitions).flat(2).forEach(id=>coordinates(requirePlace(id)));
- bookedIds.forEach(requirePlace);
  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  function mapLink(place){
   // Pending imports keep the existing Apple Maps search behavior.
@@ -134,11 +130,11 @@ const guideReady = (async function(){
    if(place.appleMaps.placeUrl)return place.appleMaps.placeUrl;
    if(place.appleMaps.placeId)return 'https://maps.apple.com/?place-id='+encodeURIComponent(place.appleMaps.placeId);
   }
-  return 'https://maps.apple.com/?q='+encodeURIComponent(place.name+' '+(place.address||'Firenze'));
+  return 'https://maps.apple.com/?q='+encodeURIComponent(place.name+' '+(place.address||guide.destination.searchSuffix));
  }
  function renderPopup(place,presentation){
   // Import notes are retained in content, but are not part of the visitor-facing popup.
-  const description=place.description.split('\n\nAlternativ popuptext i index.html:')[0];
+  const description=presentation.descriptionSeparator ? place.description.split(presentation.descriptionSeparator)[0] : place.description;
   const text=description.split('\n').map(line=>line.startsWith('Markören')?'<small>'+esc(line)+'</small>':esc(line)).join('<br>');
   const website=place.website?'<a target="_blank" rel="noopener" href="'+esc(place.website)+'">Restaurangens webbplats ↗</a><br>':'';
   return '<div style="'+esc(presentation.style||'')+'"><b>'+esc(place.name)+'</b><br>'+text+'<br><br>'+website+'<a target="_blank" rel="noopener" href="'+esc(mapLink(place))+'">'+esc(presentation.mapLabel||'Öppna i Apple Kartor ↗')+'</a></div>';
@@ -146,10 +142,10 @@ const guideReady = (async function(){
 var map_1391adca8bfb43099964d4b8f21913ee = L.map(
                 "map_1391adca8bfb43099964d4b8f21913ee",
                 {
-                    center: [43.7702, 11.2555],
+                    center: [guide.map.center.latitude, guide.map.center.longitude],
                     crs: L.CRS.EPSG3857,
                     ...{
-  "zoom": 14,
+  "zoom": guide.map.zoom,
   "zoomControl": true,
   "preferCanvas": false,
 }
@@ -205,7 +201,7 @@ function shoppingIcon(){return L.divIcon({className:'shopping-pin-wrap',html:'<d
 
  var m=map_1391adca8bfb43099964d4b8f21913ee;
  var bookedGroup=L.layerGroup(),seeDoGroup=L.layerGroup(),craftGroup=L.layerGroup(),foodGroup=L.layerGroup(),shoppingGroup=L.layerGroup();
- const groups={'see-do':seeDoGroup,'craft':craftGroup,'food-drink':foodGroup,'shopping':shoppingGroup};
+ const groups={'booked':bookedGroup,'see-do':seeDoGroup,'craft':craftGroup,'food-drink':foodGroup,'shopping':shoppingGroup,'hotel':L.layerGroup()};
  const markersById=new Map();
  content.places.forEach(place=>{
   if(!place.position)return; // A pending record without coordinates cannot be drawn.
@@ -217,26 +213,23 @@ function shoppingIcon(){return L.divIcon({className:'shopping-pin-wrap',html:'<d
   marker.placeId=place.id;
   if(presentation.tooltip)marker.bindTooltip(place.name);
   markersById.set(place.id,marker);
-  const group=place.category==='hotel'?m:bookedIds.includes(place.id)?bookedGroup:groups[place.category];
+  const group=guide.persistentPlaceIds.includes(place.id)?m:bookedIds.includes(place.id)?bookedGroup:groups[place.category];
   marker.addTo(group);
  });
  L.control.fullscreen({position:'topleft',title:'Full Screen',titleCancel:'Exit Full Screen',forceSeparateButton:false}).addTo(m);
  L.control.locate({}).addTo(m);
- var layerControl=L.control.layers(null,{
-  'Bokat':bookedGroup,'Se & göra':seeDoGroup,'Hantverk':craftGroup,'Mat & dryck':foodGroup,'Shopping':shoppingGroup
- },{position:'topright',collapsed:true}).addTo(m);
- [bookedGroup,seeDoGroup,craftGroup,foodGroup,shoppingGroup].forEach(g=>g.addTo(m));
+ var layerControl=L.control.layers(null,Object.fromEntries(guide.categories.map(c=>[c.label,groups[c.id]])),{position:'topright',collapsed:true}).addTo(m);
+ guide.categories.forEach(c=>groups[c.id].addTo(m));
 const dayRoutes={};
 function buildRoutes(){
- Object.entries(routeDefinitions).forEach(([day,parts])=>{
-  const g=L.featureGroup();
-  parts.forEach((stops,i)=>{
-   const pts=stops.map(id=>coordinates(requirePlace(id)));
-   // Torsdagens taxi/transport visas streckad; promenaddelen från San Miniato är heldragen.
-   const transport=(day==='thu' && i!==3);
-   L.polyline(pts,{color:'#007AFF',weight:4,opacity:.78,dashArray:transport?'7 7':null,lineCap:'round',lineJoin:'round'}).addTo(g);
-  });
-  dayRoutes[day]=g;
+ guide.days.forEach(day=>{
+  const group=L.featureGroup();
+  day.routeIds.forEach(id=>routesById.get(id).segments.forEach(segment=>{
+   const pts=segment.placeIds.map(id=>coordinates(requirePlace(id)));
+   const transport=segment.mode!=='walk';
+   L.polyline(pts,{color:'#007AFF',weight:4,opacity:.78,dashArray:transport?'7 7':null,lineCap:'round',lineJoin:'round'}).addTo(group);
+  }));
+  if(day.routeIds.length)dayRoutes[day.id]=group;
  });
 }
 buildRoutes();
@@ -267,14 +260,19 @@ refreshControl.onAdd=function(){
 };
 refreshControl.addTo(m);
 
-var schedule={
- all:'<p>Ingen dagsrutt visas. Alla platser och kategorier finns kvar på kartan.</p>',
- tue:'<p><b>14.05</b> landning i Florens · hotellet ungefär 15.30–16.00. Därefter: kort orientering i centrum. <b>Drink utomhus</b> (Serre Torrigiani i första hand), sedan spontan middag i Oltrarno.</p>',
- wed:'<p><b>11.30</b> <button data-place="duomo-santa-reparata">Duomo / Santa Reparata</button> · även Baptisteriet och museet.</p><p><b>19.45</b> <button data-place="cuculia">Cuculia</button> · födelsedagsmiddag.</p>',
- thu:'<p><b>09.35</b> <button data-place="fondazione-arte-della-seta-lisio">Taxi till Lisio</button> (ungefärlig avfärd) · <b>10.15</b> guidad visning, räkna med upp till två timmar eller mer.</p><p>Efteråt: lättare lunch på Pasticceria Cosi vid Via Chiantigiana (kontrollera läget) <i>eller</i> taxi till San Miniato, utsikt och lunch på Beppa Fioraia. Välj på plats.</p>',
- fri:'<p><b>10.30</b> <button data-place="uffizierna">Uffizi</button> · därefter lunch, butiker, barer och stros mot östra centrum.</p><p><b>19.30</b> <button data-place="nugolo">Nugolo</button> · promenad hem efter middagen.</p>',
- sat:'<p>Fri förmiddag kring Pitti/Oltrarno, shopping och lunch.</p><p><b>ca 14.15</b> hämta väskor · <b>ca 14.45</b> taxi till flygplatsen · <b>17.20</b> flyg.</p>'
-};
+function renderProgram(program){
+ return program.map(paragraph=>'<p>'+paragraph.nodes.map(node=>{
+  const text=esc(node.text);
+  if(node.type==='strong')return '<b>'+text+'</b>';
+  if(node.type==='emphasis')return '<i>'+text+'</i>';
+  if(node.type==='place')return '<button data-place="'+esc(node.placeId)+'">'+text+'</button>';
+  return text;
+ }).join('')+'</p>').join('');
+}
+const selections=[guide.defaultSelection,...guide.days];
+const schedule=Object.fromEntries(selections.map(day=>[day.id,renderProgram(day.program)]));
+const select=document.getElementById('routeSelect');
+select.replaceChildren(...selections.map(day=>{const option=document.createElement('option');option.value=day.id;option.textContent=day.label;return option;}));
 function chooseDay(day){
  renderRouteLinks(day);
  document.getElementById('routeSelect').value=day;
@@ -293,21 +291,24 @@ m.on('popupopen',function(evt){
  const marker=evt.popup._source;const ll=marker&&marker.getLatLng?marker.getLatLng():null;if(!ll)return;
  const place=requirePlace(marker.placeId);
  const name=place.name;
- const dest=markerPresentation[place.id]?.directionsUsesAddress===false ? name+' Firenze' : place.address || name+' Firenze';
+ const dest=markerPresentation[place.id]?.directionsUsesAddress===false ? name+' '+guide.destination.searchSuffix : place.address || name+' '+guide.destination.searchSuffix;
  const row=document.createElement('div');row.className='navactions';
  const modes=[['Gå','w'],['Kollektivtrafik','r'],['Bil/taxi','d']];
  modes.forEach(([label,mode])=>{const a=document.createElement('a');a.textContent=label;a.target='_blank';a.rel='noopener';a.href='https://maps.apple.com/?daddr='+encodeURIComponent(dest)+'&dirflg='+mode;row.appendChild(a)});
  const ai=document.createElement('button');ai.textContent='Fråga ChatGPT';ai.title='Kopierar platsfrågan och öppnar ChatGPT';ai.onclick=async()=>{
- const question='Berätta om '+name+' i Florens: historia, kultur och vad som är särskilt intressant att uppmärksamma vid ett besök. Vi är särskilt intresserade av hantverk, konst och lokala traditioner.';
+ const question='Berätta om '+name+' i '+guide.destination.name+': historia, kultur och vad som är särskilt intressant att uppmärksamma vid ett besök. Vi är särskilt intresserade av hantverk, konst och lokala traditioner.';
  try{await navigator.clipboard.writeText(question);alert('Frågan kopierad. Klistra in den i ChatGPT.')}catch(e){prompt('Kopiera frågan:',question)}
  window.open('https://chatgpt.com/','_blank','noopener');
  };row.appendChild(ai);const body=document.createElement('div');while(content.firstChild)body.appendChild(content.firstChild);body.appendChild(row);popup.setContent(body);
 });
-// Automatisk dagsvisning under resan, annars alla.
-const now=new Date();const fmt=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Rome',year:'numeric',month:'2-digit',day:'2-digit'}).format(now);
-const selected={'2026-10-13':'tue','2026-10-14':'wed','2026-10-15':'thu','2026-10-16':'fri','2026-10-17':'sat'}[fmt]||'all';chooseDay(selected);
+// Automatic day selection uses the trip's own timezone and dates.
+const parts=new Intl.DateTimeFormat('en-CA',{timeZone:guide.timeZone,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+const value=type=>parts.find(p=>p.type===type).value;
+const date=value('year')+'-'+value('month')+'-'+value('day');
+const selected=guide.days.find(day=>day.date===date)?.id || guide.defaultSelection.id;
+chooseDay(selected);
 
- return {map:m,content,placesById,markersById,dayRoutes,chooseDay};
+ return {map:m,content,guide,routeContent,placesById,markersById,dayRoutes,chooseDay};
 })();
 guideReady.catch(error=>{
  console.error(error);

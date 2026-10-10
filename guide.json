@@ -1,0 +1,1187 @@
+{
+  "$schema": "./guide.schema.v1.json",
+  "schemaVersion": 1,
+  "contentVersion": 1,
+  "updatedAt": "2026-10-10T10:03:10.045Z",
+  "id": "florens-2026",
+  "title": "Florens 2026",
+  "destination": {
+    "name": "Florens",
+    "searchSuffix": "Firenze"
+  },
+  "timeZone": "Europe/Rome",
+  "map": {
+    "center": {
+      "latitude": 43.7702,
+      "longitude": 11.2555
+    },
+    "zoom": 14
+  },
+  "defaultSelection": {
+    "id": "all",
+    "label": "Ingen rutt",
+    "program": [
+      {
+        "nodes": [
+          {
+            "type": "text",
+            "text": "Ingen dagsrutt visas. Alla platser och kategorier finns kvar på kartan."
+          }
+        ]
+      }
+    ]
+  },
+  "days": [
+    {
+      "id": "tue",
+      "date": "2026-10-13",
+      "label": "Tis 13",
+      "routeIds": [
+        "tue"
+      ],
+      "program": [
+        {
+          "nodes": [
+            {
+              "type": "strong",
+              "text": "14.05"
+            },
+            {
+              "type": "text",
+              "text": " landning i Florens · hotellet ungefär 15.30–16.00. Därefter: kort orientering i centrum. "
+            },
+            {
+              "type": "strong",
+              "text": "Drink utomhus"
+            },
+            {
+              "type": "text",
+              "text": " (Serre Torrigiani i första hand), sedan spontan middag i Oltrarno."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wed",
+      "date": "2026-10-14",
+      "label": "Ons 14",
+      "routeIds": [
+        "wed"
+      ],
+      "program": [
+        {
+          "nodes": [
+            {
+              "type": "strong",
+              "text": "11.30"
+            },
+            {
+              "type": "text",
+              "text": " "
+            },
+            {
+              "type": "place",
+              "placeId": "duomo-santa-reparata",
+              "text": "Duomo / Santa Reparata"
+            },
+            {
+              "type": "text",
+              "text": " · även Baptisteriet och museet."
+            }
+          ]
+        },
+        {
+          "nodes": [
+            {
+              "type": "strong",
+              "text": "19.45"
+            },
+            {
+              "type": "text",
+              "text": " "
+            },
+            {
+              "type": "place",
+              "placeId": "cuculia",
+              "text": "Cuculia"
+            },
+            {
+              "type": "text",
+              "text": " · födelsedagsmiddag."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "thu",
+      "date": "2026-10-15",
+      "label": "Tor 15",
+      "routeIds": [
+        "thu"
+      ],
+      "program": [
+        {
+          "nodes": [
+            {
+              "type": "strong",
+              "text": "09.35"
+            },
+            {
+              "type": "text",
+              "text": " "
+            },
+            {
+              "type": "place",
+              "placeId": "fondazione-arte-della-seta-lisio",
+              "text": "Taxi till Lisio"
+            },
+            {
+              "type": "text",
+              "text": " (ungefärlig avfärd) · "
+            },
+            {
+              "type": "strong",
+              "text": "10.15"
+            },
+            {
+              "type": "text",
+              "text": " guidad visning, räkna med upp till två timmar eller mer."
+            }
+          ]
+        },
+        {
+          "nodes": [
+            {
+              "type": "text",
+              "text": "Efteråt: lättare lunch på Pasticceria Cosi vid Via Chiantigiana (kontrollera läget) "
+            },
+            {
+              "type": "emphasis",
+              "text": "eller"
+            },
+            {
+              "type": "text",
+              "text": " taxi till San Miniato, utsikt och lunch på Beppa Fioraia. Välj på plats."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fri",
+      "date": "2026-10-16",
+      "label": "Fre 16",
+      "routeIds": [
+        "fri"
+      ],
+      "program": [
+        {
+          "nodes": [
+            {
+              "type": "strong",
+              "text": "10.30"
+            },
+            {
+              "type": "text",
+              "text": " "
+            },
+            {
+              "type": "place",
+              "placeId": "uffizierna",
+              "text": "Uffizi"
+            },
+            {
+              "type": "text",
+              "text": " · därefter lunch, butiker, barer och stros mot östra centrum."
+            }
+          ]
+        },
+        {
+          "nodes": [
+            {
+              "type": "strong",
+              "text": "19.30"
+            },
+            {
+              "type": "text",
+              "text": " "
+            },
+            {
+              "type": "place",
+              "placeId": "nugolo",
+              "text": "Nugolo"
+            },
+            {
+              "type": "text",
+              "text": " · promenad hem efter middagen."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sat",
+      "date": "2026-10-17",
+      "label": "Lör 17",
+      "routeIds": [
+        "sat"
+      ],
+      "program": [
+        {
+          "nodes": [
+            {
+              "type": "text",
+              "text": "Fri förmiddag kring Pitti/Oltrarno, shopping och lunch."
+            }
+          ]
+        },
+        {
+          "nodes": [
+            {
+              "type": "strong",
+              "text": "ca 14.15"
+            },
+            {
+              "type": "text",
+              "text": " hämta väskor · "
+            },
+            {
+              "type": "strong",
+              "text": "ca 14.45"
+            },
+            {
+              "type": "text",
+              "text": " taxi till flygplatsen · "
+            },
+            {
+              "type": "strong",
+              "text": "17.20"
+            },
+            {
+              "type": "text",
+              "text": " flyg."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "bookings": [
+    {
+      "id": "duomo-santa-reparata-booking",
+      "placeId": "duomo-santa-reparata",
+      "startsAt": "2026-10-14T11:30:00+02:00"
+    },
+    {
+      "id": "cuculia-booking",
+      "placeId": "cuculia",
+      "startsAt": "2026-10-14T19:45:00+02:00"
+    },
+    {
+      "id": "fondazione-arte-della-seta-lisio-booking",
+      "placeId": "fondazione-arte-della-seta-lisio",
+      "startsAt": "2026-10-15T10:15:00+02:00"
+    },
+    {
+      "id": "uffizierna-booking",
+      "placeId": "uffizierna",
+      "startsAt": "2026-10-16T10:30:00+02:00"
+    },
+    {
+      "id": "nugolo-booking",
+      "placeId": "nugolo",
+      "startsAt": "2026-10-16T19:30:00+02:00"
+    }
+  ],
+  "persistentPlaceIds": [
+    "hotel-la-scaletta"
+  ],
+  "categories": [
+    {
+      "id": "booked",
+      "label": "Bokat"
+    },
+    {
+      "id": "see-do",
+      "label": "Se & göra"
+    },
+    {
+      "id": "craft",
+      "label": "Hantverk"
+    },
+    {
+      "id": "food-drink",
+      "label": "Mat & dryck"
+    },
+    {
+      "id": "shopping",
+      "label": "Shopping"
+    }
+  ],
+  "presentation": {
+    "placeOverrides": {
+      "hotel-la-scaletta": {
+        "icon": {
+          "markerColor": "red",
+          "iconColor": "white",
+          "icon": "home",
+          "prefix": "glyphicon"
+        },
+        "style": "width:210px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "duomo-santa-reparata": {
+        "icon": {
+          "markerColor": "red",
+          "iconColor": "white",
+          "icon": "tower",
+          "prefix": "glyphicon"
+        },
+        "style": "width:210px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "cuculia": {
+        "icon": {
+          "markerColor": "red",
+          "iconColor": "white",
+          "icon": "cutlery",
+          "prefix": "fa"
+        },
+        "style": "width:210px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "fondazione-arte-della-seta-lisio": {
+        "icon": {
+          "markerColor": "red",
+          "iconColor": "white",
+          "icon": "scissors",
+          "prefix": "fa"
+        },
+        "style": "width:210px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "uffizierna": {
+        "icon": {
+          "markerColor": "red",
+          "iconColor": "white",
+          "icon": "tower",
+          "prefix": "glyphicon"
+        },
+        "style": "width:210px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "nugolo": {
+        "icon": {
+          "markerColor": "red",
+          "iconColor": "white",
+          "icon": "cutlery",
+          "prefix": "fa"
+        },
+        "style": "width:210px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "ponte-vecchio": {
+        "icon": {
+          "markerColor": "blue",
+          "iconColor": "white",
+          "icon": "tower",
+          "prefix": "glyphicon"
+        },
+        "style": "width:210px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": false,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "palazzo-pitti": {
+        "icon": {
+          "markerColor": "blue",
+          "iconColor": "white",
+          "icon": "tower",
+          "prefix": "glyphicon"
+        },
+        "style": "width:210px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "piazza-della-passera": {
+        "icon": {
+          "markerColor": "blue",
+          "iconColor": "white",
+          "icon": "tower",
+          "prefix": "glyphicon"
+        },
+        "style": "width:210px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": false,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "piazza-santo-spirito": {
+        "icon": {
+          "markerColor": "orange",
+          "iconColor": "white",
+          "icon": "glass",
+          "prefix": "glyphicon"
+        },
+        "style": "width:210px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": false,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "basilica-di-santo-spirito": {
+        "icon": {
+          "markerColor": "blue",
+          "iconColor": "white",
+          "icon": "tower",
+          "prefix": "glyphicon"
+        },
+        "style": "width:210px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "piazza-del-carmine": {
+        "icon": {
+          "markerColor": "blue",
+          "iconColor": "white",
+          "icon": "tower",
+          "prefix": "glyphicon"
+        },
+        "style": "width:210px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": false,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "piazza-della-signoria": {
+        "icon": {
+          "markerColor": "blue",
+          "iconColor": "white",
+          "icon": "tower",
+          "prefix": "glyphicon"
+        },
+        "style": "width:210px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": false,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "loggia-dei-lanzi": {
+        "icon": {
+          "markerColor": "blue",
+          "iconColor": "white",
+          "icon": "tower",
+          "prefix": "glyphicon"
+        },
+        "style": "width:210px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": false,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "orsanmichele": {
+        "icon": {
+          "markerColor": "blue",
+          "iconColor": "white",
+          "icon": "tower",
+          "prefix": "glyphicon"
+        },
+        "style": "width:210px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": false,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "piazza-della-repubblica": {
+        "icon": {
+          "markerColor": "blue",
+          "iconColor": "white",
+          "icon": "tower",
+          "prefix": "glyphicon"
+        },
+        "style": "width:210px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": false,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "piazza-santa-trinita": {
+        "icon": {
+          "markerColor": "blue",
+          "iconColor": "white",
+          "icon": "tower",
+          "prefix": "glyphicon"
+        },
+        "style": "width:210px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": false,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "ponte-santa-trinita": {
+        "icon": {
+          "markerColor": "blue",
+          "iconColor": "white",
+          "icon": "tower",
+          "prefix": "glyphicon"
+        },
+        "style": "width:210px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": false,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "basilica-di-santa-croce": {
+        "icon": {
+          "markerColor": "blue",
+          "iconColor": "white",
+          "icon": "tower",
+          "prefix": "glyphicon"
+        },
+        "style": "width:210px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "mercato-di-santambrogio": {
+        "icon": {
+          "className": "shopping-pin-wrap",
+          "html": "<div class=\"shopping-pin\"><div class=\"pin\"><i class=\"fa fa-shopping-bag\"></i></div></div>",
+          "iconSize": [
+            28,
+            38
+          ],
+          "iconAnchor": [
+            14,
+            36
+          ],
+          "popupAnchor": [
+            0,
+            -34
+          ]
+        },
+        "style": "width:210px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "giulio-giannini-e-figlio": {
+        "icon": {
+          "markerColor": "purple",
+          "iconColor": "white",
+          "icon": "scissors",
+          "prefix": "fa"
+        },
+        "style": "width:210px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "scuola-del-cuoio": {
+        "icon": {
+          "markerColor": "purple",
+          "iconColor": "white",
+          "icon": "scissors",
+          "prefix": "fa"
+        },
+        "style": "width:210px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "museo-opificio-delle-pietre-dure": {
+        "icon": {
+          "markerColor": "purple",
+          "iconColor": "white",
+          "icon": "scissors",
+          "prefix": "fa"
+        },
+        "style": "width:210px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "officina-profumo-farmaceutica-smn": {
+        "icon": {
+          "markerColor": "purple",
+          "iconColor": "white",
+          "icon": "scissors",
+          "prefix": "fa"
+        },
+        "style": "width:210px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "porta-san-niccolo": {
+        "icon": {
+          "markerColor": "blue",
+          "iconColor": "white",
+          "icon": "camera",
+          "prefix": "glyphicon"
+        },
+        "style": "width:210px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": false,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "piazzale-michelangelo": {
+        "icon": {
+          "markerColor": "blue",
+          "iconColor": "white",
+          "icon": "camera",
+          "prefix": "glyphicon"
+        },
+        "style": "width:210px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": false,
+        "mapLabel": "Öppna i Apple Kartor ↗",
+        "descriptionSeparator": "\n\nAlternativ popuptext i index.html:"
+      },
+      "san-miniato-al-monte": {
+        "icon": {
+          "markerColor": "blue",
+          "iconColor": "white",
+          "icon": "tower",
+          "prefix": "glyphicon"
+        },
+        "style": "width:210px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Öppna i Apple Kartor ↗",
+        "descriptionSeparator": "\n\nAlternativ popuptext i index.html:"
+      },
+      "le-volpi-e-luva": {
+        "icon": {
+          "markerColor": "orange",
+          "iconColor": "white",
+          "icon": "cutlery",
+          "prefix": "fa"
+        },
+        "style": "width:210px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "il-santino": {
+        "icon": {
+          "markerColor": "orange",
+          "iconColor": "white",
+          "icon": "cutlery",
+          "prefix": "fa"
+        },
+        "style": "width:225px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "enoteca-pitti-gola-e-cantina": {
+        "icon": {
+          "markerColor": "orange",
+          "iconColor": "white",
+          "icon": "cutlery",
+          "prefix": "fa"
+        },
+        "style": "width:225px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "enoteca-spontanea": {
+        "icon": {
+          "markerColor": "orange",
+          "iconColor": "white",
+          "icon": "cutlery",
+          "prefix": "fa"
+        },
+        "style": "width:225px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "fuori-porta": {
+        "icon": {
+          "markerColor": "orange",
+          "iconColor": "white",
+          "icon": "cutlery",
+          "prefix": "fa"
+        },
+        "style": "width:225px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "loggia-roof-bar": {
+        "icon": {
+          "markerColor": "orange",
+          "iconColor": "white",
+          "icon": "cutlery",
+          "prefix": "fa"
+        },
+        "style": "width:225px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "il-santo-bevitore": {
+        "icon": {
+          "markerColor": "orange",
+          "iconColor": "white",
+          "icon": "cutlery",
+          "prefix": "fa"
+        },
+        "style": "width:225px;font-family:sans-serif",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "mercato-centrale": {
+        "icon": {
+          "className": "shopping-pin-wrap",
+          "html": "<div class=\"shopping-pin\"><div class=\"pin\"><i class=\"fa fa-shopping-bag\"></i></div></div>",
+          "iconSize": [
+            28,
+            38
+          ],
+          "iconAnchor": [
+            14,
+            36
+          ],
+          "popupAnchor": [
+            0,
+            -34
+          ]
+        },
+        "style": "",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Visa adress i Apple Kartor ↗"
+      },
+      "pitti-mosaici": {
+        "icon": {
+          "markerColor": "purple",
+          "iconColor": "white",
+          "icon": "scissors",
+          "prefix": "fa"
+        },
+        "style": "",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Visa adress i Apple Kartor ↗"
+      },
+      "castorina-1895": {
+        "icon": {
+          "markerColor": "purple",
+          "iconColor": "white",
+          "icon": "scissors",
+          "prefix": "fa"
+        },
+        "style": "",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Visa adress i Apple Kartor ↗"
+      },
+      "mio-concept-store": {
+        "icon": {
+          "className": "shopping-pin-wrap",
+          "html": "<div class=\"shopping-pin\"><div class=\"pin\"><i class=\"fa fa-shopping-bag\"></i></div></div>",
+          "iconSize": [
+            28,
+            38
+          ],
+          "iconAnchor": [
+            14,
+            36
+          ],
+          "popupAnchor": [
+            0,
+            -34
+          ]
+        },
+        "style": "",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Visa adress i Apple Kartor ↗"
+      },
+      "giulia-materia": {
+        "icon": {
+          "markerColor": "purple",
+          "iconColor": "white",
+          "icon": "scissors",
+          "prefix": "fa"
+        },
+        "style": "",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Visa adress i Apple Kartor ↗"
+      },
+      "gelateria-della-passera": {
+        "icon": {
+          "markerColor": "orange",
+          "iconColor": "white",
+          "icon": "ice-cream",
+          "prefix": "fa"
+        },
+        "style": "",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Visa adress i Apple Kartor ↗"
+      },
+      "gelateria-dei-neri": {
+        "icon": {
+          "markerColor": "orange",
+          "iconColor": "white",
+          "icon": "ice-cream",
+          "prefix": "fa"
+        },
+        "style": "",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Visa adress i Apple Kartor ↗"
+      },
+      "gelateria-la-carraia": {
+        "icon": {
+          "markerColor": "orange",
+          "iconColor": "white",
+          "icon": "ice-cream",
+          "prefix": "fa"
+        },
+        "style": "",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Visa adress i Apple Kartor ↗"
+      },
+      "perche-no": {
+        "icon": {
+          "markerColor": "orange",
+          "iconColor": "white",
+          "icon": "ice-cream",
+          "prefix": "fa"
+        },
+        "style": "",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Visa adress i Apple Kartor ↗"
+      },
+      "vivoli": {
+        "icon": {
+          "markerColor": "orange",
+          "iconColor": "white",
+          "icon": "ice-cream",
+          "prefix": "fa"
+        },
+        "style": "",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Visa adress i Apple Kartor ↗"
+      },
+      "cantina-del-gelato": {
+        "icon": {
+          "markerColor": "orange",
+          "iconColor": "white",
+          "icon": "ice-cream",
+          "prefix": "fa"
+        },
+        "style": "",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Visa adress i Apple Kartor ↗"
+      },
+      "serre-torrigiani-in-piazzetta": {
+        "icon": {
+          "markerColor": "orange",
+          "iconColor": "white",
+          "icon": "glass",
+          "prefix": "glyphicon"
+        },
+        "style": "",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Visa adress i Apple Kartor ↗"
+      },
+      "caffe-concerto-paszkowski": {
+        "icon": {
+          "markerColor": "orange",
+          "iconColor": "white",
+          "icon": "glass",
+          "prefix": "glyphicon"
+        },
+        "style": "",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Visa adress i Apple Kartor ↗"
+      },
+      "bulli-balene": {
+        "icon": {
+          "markerColor": "orange",
+          "iconColor": "white",
+          "icon": "glass",
+          "prefix": "glyphicon"
+        },
+        "style": "",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Visa adress i Apple Kartor ↗"
+      },
+      "pasticceria-cosi-chiantigiana": {
+        "icon": {
+          "markerColor": "orange",
+          "iconColor": "white",
+          "icon": "cutlery",
+          "prefix": "fa"
+        },
+        "style": "",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Visa adress i Apple Kartor ↗"
+      },
+      "beppa-fioraia": {
+        "icon": {
+          "markerColor": "orange",
+          "iconColor": "white",
+          "icon": "cutlery",
+          "prefix": "fa"
+        },
+        "style": "",
+        "tooltip": false,
+        "directionsUsesAddress": true,
+        "mapLabel": "Visa adress i Apple Kartor ↗"
+      },
+      "santa-maria-novella": {
+        "icon": {
+          "markerColor": "blue",
+          "iconColor": "white",
+          "icon": "tower",
+          "prefix": "glyphicon"
+        },
+        "style": "min-width:210px",
+        "tooltip": false,
+        "directionsUsesAddress": false,
+        "mapLabel": "Visa i Apple Kartor ↗"
+      },
+      "basilica-di-san-lorenzo": {
+        "icon": {
+          "markerColor": "blue",
+          "iconColor": "white",
+          "icon": "tower",
+          "prefix": "glyphicon"
+        },
+        "style": "min-width:210px",
+        "tooltip": false,
+        "directionsUsesAddress": false,
+        "mapLabel": "Visa i Apple Kartor ↗"
+      },
+      "cappelle-medicee": {
+        "icon": {
+          "markerColor": "blue",
+          "iconColor": "white",
+          "icon": "tower",
+          "prefix": "glyphicon"
+        },
+        "style": "min-width:210px",
+        "tooltip": false,
+        "directionsUsesAddress": false,
+        "mapLabel": "Visa i Apple Kartor ↗"
+      },
+      "galleria-dellaccademia": {
+        "icon": {
+          "markerColor": "blue",
+          "iconColor": "white",
+          "icon": "tower",
+          "prefix": "glyphicon"
+        },
+        "style": "min-width:210px",
+        "tooltip": false,
+        "directionsUsesAddress": false,
+        "mapLabel": "Visa i Apple Kartor ↗"
+      },
+      "museo-nazionale-del-bargello": {
+        "icon": {
+          "markerColor": "blue",
+          "iconColor": "white",
+          "icon": "tower",
+          "prefix": "glyphicon"
+        },
+        "style": "min-width:210px",
+        "tooltip": false,
+        "directionsUsesAddress": false,
+        "mapLabel": "Visa i Apple Kartor ↗"
+      },
+      "giardino-di-boboli": {
+        "icon": {
+          "markerColor": "blue",
+          "iconColor": "white",
+          "icon": "tower",
+          "prefix": "glyphicon"
+        },
+        "style": "min-width:210px",
+        "tooltip": false,
+        "directionsUsesAddress": false,
+        "mapLabel": "Visa i Apple Kartor ↗"
+      },
+      "palazzo-medici-riccardi": {
+        "icon": {
+          "markerColor": "blue",
+          "iconColor": "white",
+          "icon": "tower",
+          "prefix": "glyphicon"
+        },
+        "style": "min-width:210px",
+        "tooltip": false,
+        "directionsUsesAddress": false,
+        "mapLabel": "Visa i Apple Kartor ↗"
+      },
+      "giardino-delle-rose": {
+        "icon": {
+          "markerColor": "blue",
+          "iconColor": "white",
+          "icon": "tower",
+          "prefix": "glyphicon"
+        },
+        "style": "min-width:210px",
+        "tooltip": false,
+        "directionsUsesAddress": false,
+        "mapLabel": "Visa i Apple Kartor ↗"
+      },
+      "antico-setificio-fiorentino": {
+        "icon": {
+          "markerColor": "purple",
+          "iconColor": "white",
+          "icon": "scissors",
+          "prefix": "fa"
+        },
+        "style": "min-width:220px",
+        "tooltip": false,
+        "directionsUsesAddress": false,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "alberto-cozzi-legatoria": {
+        "icon": {
+          "markerColor": "purple",
+          "iconColor": "white",
+          "icon": "scissors",
+          "prefix": "fa"
+        },
+        "style": "min-width:220px",
+        "tooltip": false,
+        "directionsUsesAddress": false,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "riccardo-luci-carta-marmorizzata": {
+        "icon": {
+          "markerColor": "purple",
+          "iconColor": "white",
+          "icon": "scissors",
+          "prefix": "fa"
+        },
+        "style": "min-width:220px",
+        "tooltip": false,
+        "directionsUsesAddress": false,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "scarpelli-mosaici": {
+        "icon": {
+          "markerColor": "purple",
+          "iconColor": "white",
+          "icon": "scissors",
+          "prefix": "fa"
+        },
+        "style": "min-width:220px",
+        "tooltip": false,
+        "directionsUsesAddress": false,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "casa-dei-tessuti": {
+        "icon": {
+          "markerColor": "purple",
+          "iconColor": "white",
+          "icon": "scissors",
+          "prefix": "fa"
+        },
+        "style": "min-width:220px",
+        "tooltip": false,
+        "directionsUsesAddress": false,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "ermini-agostino": {
+        "icon": {
+          "markerColor": "purple",
+          "iconColor": "white",
+          "icon": "scissors",
+          "prefix": "fa"
+        },
+        "style": "min-width:220px",
+        "tooltip": false,
+        "directionsUsesAddress": false,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "valli-tessuti": {
+        "icon": {
+          "markerColor": "purple",
+          "iconColor": "white",
+          "icon": "scissors",
+          "prefix": "fa"
+        },
+        "style": "min-width:220px",
+        "tooltip": false,
+        "directionsUsesAddress": false,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "le-telerie-toscane": {
+        "icon": {
+          "markerColor": "purple",
+          "iconColor": "white",
+          "icon": "scissors",
+          "prefix": "fa"
+        },
+        "style": "min-width:220px",
+        "tooltip": false,
+        "directionsUsesAddress": false,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "passamaneria-toscana": {
+        "icon": {
+          "markerColor": "purple",
+          "iconColor": "white",
+          "icon": "scissors",
+          "prefix": "fa"
+        },
+        "style": "min-width:220px",
+        "tooltip": false,
+        "directionsUsesAddress": false,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "chalet-il-boschetto": {
+        "icon": {
+          "markerColor": "orange",
+          "iconColor": "white",
+          "icon": "cutlery",
+          "prefix": "fa"
+        },
+        "style": "",
+        "tooltip": true,
+        "directionsUsesAddress": true,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "terrazze-michelangelo": {
+        "icon": {
+          "markerColor": "orange",
+          "iconColor": "white",
+          "icon": "cutlery",
+          "prefix": "fa"
+        },
+        "style": "",
+        "tooltip": true,
+        "directionsUsesAddress": true,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      }
+    }
+  }
+}
