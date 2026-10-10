@@ -1,0 +1,2756 @@
+{
+  "$schema": "./places.schema.v1.json",
+  "schemaVersion": 1,
+  "contentVersion": 1,
+  "updatedAt": "2026-10-10T11:34:35+02:00",
+  "places": [
+    {
+      "id": "hotel-la-scaletta",
+      "name": "Hotel La Scaletta",
+      "category": "hotel",
+      "description": "Ert hotell · 13–17 oktober",
+      "address": "Via de’ Guicciardini 13, Firenze",
+      "position": {
+        "latitude": 43.7667626,
+        "longitude": 11.2493264
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Via%20de%E2%80%99%20Guicciardini%2013%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "duomo-santa-reparata",
+      "name": "Duomo / Santa Reparata",
+      "category": "see-do",
+      "description": "Ons 14/10 · 11.30 · Ghiberti Pass. Ingång Porta Campanile (södra sidan)",
+      "address": "Porta del Campanile, Piazza del Duomo, Firenze",
+      "position": {
+        "latitude": 43.77285,
+        "longitude": 11.256
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nMarkerad som bokad i index.html. Bokningsuppgifterna i beskrivningen är bevarade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Porta%20del%20Campanile%2C%20Piazza%20del%20Duomo%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "cuculia",
+      "name": "Cuculia",
+      "category": "food-drink",
+      "description": "Ons 14/10 · 19.45 · födelsedagsmiddag",
+      "address": "Via dei Serragli 3R, Firenze",
+      "position": {
+        "latitude": 43.76805,
+        "longitude": 11.24585
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nMarkerad som bokad i index.html. Bokningsuppgifterna i beskrivningen är bevarade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Via%20dei%20Serragli%203R%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "fondazione-arte-della-seta-lisio",
+      "name": "Fondazione Arte della Seta Lisio",
+      "category": "craft",
+      "description": "Tors 15/10 · 10.15 · guidad visning · taxi",
+      "address": "Via Benedetto Fortini 143, Firenze",
+      "position": {
+        "latitude": 43.746056,
+        "longitude": 11.286585
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nMarkerad som bokad i index.html. Bokningsuppgifterna i beskrivningen är bevarade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Via%20Benedetto%20Fortini%20143%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "uffizierna",
+      "name": "Uffizierna",
+      "category": "see-do",
+      "description": "Fre 16/10 · 10.30 · följ entréskyltar och biljettens instruktion",
+      "address": "Piazzale degli Uffizi 6, Firenze",
+      "position": {
+        "latitude": 43.768333,
+        "longitude": 11.255278
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nMarkerad som bokad i index.html. Bokningsuppgifterna i beskrivningen är bevarade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Piazzale%20degli%20Uffizi%206%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "nugolo",
+      "name": "Nugolo",
+      "category": "food-drink",
+      "description": "Fre 16/10 · 19.30 · Via della Mattonaia 27R",
+      "address": "Via della Mattonaia 27R, Firenze",
+      "position": {
+        "latitude": 43.77182,
+        "longitude": 11.268021
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nMarkerad som bokad i index.html. Bokningsuppgifterna i beskrivningen är bevarade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Via%20della%20Mattonaia%2027R%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "ponte-vecchio",
+      "name": "Ponte Vecchio",
+      "category": "see-do",
+      "description": "Florens klassiska bro",
+      "address": null,
+      "position": {
+        "latitude": 43.768,
+        "longitude": 11.2531
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Ponte%20Vecchio%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "palazzo-pitti",
+      "name": "Palazzo Pitti",
+      "category": "see-do",
+      "description": "Palats och Pitti-kvarteren",
+      "address": "Piazza de’ Pitti 1, Firenze",
+      "position": {
+        "latitude": 43.7652,
+        "longitude": 11.2501
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Piazza%20de%E2%80%99%20Pitti%201%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "piazza-della-passera",
+      "name": "Piazza della Passera",
+      "category": "see-do",
+      "description": "Litet torg i Oltrarno",
+      "address": null,
+      "position": {
+        "latitude": 43.7668,
+        "longitude": 11.2507
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Piazza%20della%20Passera%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "piazza-santo-spirito",
+      "name": "Piazza Santo Spirito",
+      "category": "food-drink",
+      "description": "Livligt kvarter för aperitivo",
+      "address": null,
+      "position": {
+        "latitude": 43.7662,
+        "longitude": 11.2476
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Piazza%20Santo%20Spirito%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "basilica-di-santo-spirito",
+      "name": "Basilica di Santo Spirito",
+      "category": "see-do",
+      "description": "Kyrka av Brunelleschi",
+      "address": "Piazza Santo Spirito 30, Firenze",
+      "position": {
+        "latitude": 43.766,
+        "longitude": 11.2474
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Piazza%20Santo%20Spirito%2030%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "piazza-del-carmine",
+      "name": "Piazza del Carmine",
+      "category": "see-do",
+      "description": "Vägen mot San Frediano",
+      "address": null,
+      "position": {
+        "latitude": 43.7677,
+        "longitude": 11.243
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Piazza%20del%20Carmine%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "piazza-della-signoria",
+      "name": "Piazza della Signoria",
+      "category": "see-do",
+      "description": "Palazzo Vecchio och skulpturer",
+      "address": null,
+      "position": {
+        "latitude": 43.7696,
+        "longitude": 11.2557
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Piazza%20della%20Signoria%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "loggia-dei-lanzi",
+      "name": "Loggia dei Lanzi",
+      "category": "see-do",
+      "description": "Skulpturer under arkaderna",
+      "address": null,
+      "position": {
+        "latitude": 43.7694,
+        "longitude": 11.2556
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Loggia%20dei%20Lanzi%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "orsanmichele",
+      "name": "Orsanmichele",
+      "category": "see-do",
+      "description": "Ovanlig kyrka och medeltida arkitektur",
+      "address": null,
+      "position": {
+        "latitude": 43.7708,
+        "longitude": 11.2549
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Orsanmichele%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "piazza-della-repubblica",
+      "name": "Piazza della Repubblica",
+      "category": "see-do",
+      "description": "Centralt torg",
+      "address": null,
+      "position": {
+        "latitude": 43.7718,
+        "longitude": 11.2541
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Piazza%20della%20Repubblica%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "piazza-santa-trinita",
+      "name": "Piazza Santa Trinita",
+      "category": "see-do",
+      "description": "På vägen mot bron",
+      "address": null,
+      "position": {
+        "latitude": 43.7696,
+        "longitude": 11.2514
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Piazza%20Santa%20Trinita%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "ponte-santa-trinita",
+      "name": "Ponte Santa Trinita",
+      "category": "see-do",
+      "description": "Fin vy över Ponte Vecchio",
+      "address": null,
+      "position": {
+        "latitude": 43.76934,
+        "longitude": 11.25036
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Ponte%20Santa%20Trinita%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "basilica-di-santa-croce",
+      "name": "Basilica di Santa Croce",
+      "category": "see-do",
+      "description": "Kyrka och torg",
+      "address": "Piazza Santa Croce 16, Firenze",
+      "position": {
+        "latitude": 43.7687,
+        "longitude": 11.2625
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Piazza%20Santa%20Croce%2016%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "mercato-di-santambrogio",
+      "name": "Mercato di Sant’Ambrogio",
+      "category": "shopping",
+      "description": "Lokal matmarknad, förmiddag",
+      "address": "Piazza Lorenzo Ghiberti, Firenze",
+      "position": {
+        "latitude": 43.77048,
+        "longitude": 11.26804
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Piazza%20Lorenzo%20Ghiberti%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "giulio-giannini-e-figlio",
+      "name": "Giulio Giannini e Figlio",
+      "category": "craft",
+      "description": "Via dei Velluti 1 · marmorerat papper och bokbinderi",
+      "address": "Via dei Velluti 1R, Firenze",
+      "position": {
+        "latitude": 43.76596,
+        "longitude": 11.25032
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Via%20dei%20Velluti%201R%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "scuola-del-cuoio",
+      "name": "Scuola del Cuoio",
+      "category": "craft",
+      "description": "Läderhantverk bakom Santa Croce",
+      "address": "Via San Giuseppe 5R, Firenze",
+      "position": {
+        "latitude": 43.768,
+        "longitude": 11.2632
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Via%20San%20Giuseppe%205R%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "museo-opificio-delle-pietre-dure",
+      "name": "Museo Opificio delle Pietre Dure",
+      "category": "craft",
+      "description": "Florentinsk stenintarsia och teknik",
+      "address": "Via degli Alfani 78, Firenze",
+      "position": {
+        "latitude": 43.7762,
+        "longitude": 11.2588
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Via%20degli%20Alfani%2078%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "officina-profumo-farmaceutica-smn",
+      "name": "Officina Profumo-Farmaceutica SMN",
+      "category": "craft",
+      "description": "Historisk apotekar- och parfymmiljö",
+      "address": "Via della Scala 16, Firenze",
+      "position": {
+        "latitude": 43.7744,
+        "longitude": 11.2487
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Via%20della%20Scala%2016%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "porta-san-niccolo",
+      "name": "Porta San Niccolò",
+      "category": "see-do",
+      "description": "Start på utsiktspromenaden",
+      "address": null,
+      "position": {
+        "latitude": 43.7647,
+        "longitude": 11.2654
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Porta%20San%20Niccol%C3%B2%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "piazzale-michelangelo",
+      "name": "Piazzale Michelangelo",
+      "category": "see-do",
+      "description": "Panorama över Florens\n\nAlternativ popuptext i index.html:\nValfri utsikt; buss eller taxi tillbaka.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "address": null,
+      "position": {
+        "latitude": 43.7629,
+        "longitude": 11.265
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Piazzale%20Michelangelo%2C%20Firenze\"]\nSammanslagen dubblett: {\"position\": [43.7629, 11.265], \"categories\": [\"see-do\"], \"links\": [\"https://maps.apple.com/?q=Piazzale%20Michelangelo%20Firenze\"]}"
+      }
+    },
+    {
+      "id": "san-miniato-al-monte",
+      "name": "San Miniato al Monte",
+      "category": "see-do",
+      "description": "Målet för utsiktspromenaden\n\nAlternativ popuptext i index.html:\nValfritt efter Lisio: taxi upp till kyrkan och utsikten.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "address": "Via delle Porte Sante 34, Firenze",
+      "position": {
+        "latitude": 43.7599,
+        "longitude": 11.2649
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Via%20delle%20Porte%20Sante%2034%2C%20Firenze\"]\nSammanslagen dubblett: {\"position\": [43.7599, 11.2649], \"categories\": [\"see-do\"], \"links\": [\"https://maps.apple.com/?q=San%20Miniato%20al%20Monte%20Firenze\"]}"
+      }
+    },
+    {
+      "id": "le-volpi-e-luva",
+      "name": "Le Volpi e l’Uva",
+      "category": "food-drink",
+      "description": "Vinbar och smårätter nära Ponte Vecchio",
+      "address": "Piazza dei Rossi 1R, Firenze",
+      "position": {
+        "latitude": 43.7675,
+        "longitude": 11.2525
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Piazza%20dei%20Rossi%201R%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "il-santino",
+      "name": "Il Santino",
+      "category": "food-drink",
+      "description": "Via di Santo Spirito 60R\nVinbar med små rätter och spännande viner.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "address": "Via di Santo Spirito 60R, Firenze",
+      "position": {
+        "latitude": 43.7681,
+        "longitude": 11.246
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Il%20Santino%20Via%20di%20Santo%20Spirito%2060R\"]"
+      }
+    },
+    {
+      "id": "enoteca-pitti-gola-e-cantina",
+      "name": "Enoteca Pitti Gola e Cantina",
+      "category": "food-drink",
+      "description": "Piazza de’ Pitti 16\nVinfokus, små producenter och tilltugg mitt emot Pitti.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "address": "Piazza de’ Pitti 16, Firenze",
+      "position": {
+        "latitude": 43.7655,
+        "longitude": 11.2502
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Enoteca%20Pitti%20Gola%20e%20Cantina%20Piazza%20de%E2%80%99%20Pitti%2016\"]"
+      }
+    },
+    {
+      "id": "enoteca-spontanea",
+      "name": "Enoteca Spontanea",
+      "category": "food-drink",
+      "description": "Via Maggio 61R\nIntressant vinbar på er promenad genom Oltrarno.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "address": "Via Maggio 61R, Firenze",
+      "position": {
+        "latitude": 43.7668,
+        "longitude": 11.2487
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Enoteca%20Spontanea%20Via%20Maggio%2061R\"]"
+      }
+    },
+    {
+      "id": "fuori-porta",
+      "name": "Fuori Porta",
+      "category": "food-drink",
+      "description": "Via del Monte alle Croci 10R\nVin och lättare mat vid San Niccolò, bra vid utsiktspromenaden.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "address": "Via del Monte alle Croci 10R, Firenze",
+      "position": {
+        "latitude": 43.7629,
+        "longitude": 11.2655
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Fuori%20Porta%20Via%20del%20Monte%20alle%20Croci%2010R\"]"
+      }
+    },
+    {
+      "id": "loggia-roof-bar",
+      "name": "Loggia Roof Bar",
+      "category": "food-drink",
+      "description": "Piazza Santo Spirito 9\nAperitivo med utsikt över Santo Spirito.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "address": "Piazza Santo Spirito 9, Firenze",
+      "position": {
+        "latitude": 43.7667,
+        "longitude": 11.2473
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Loggia%20Roof%20Bar%20Piazza%20Santo%20Spirito%209\"]"
+      }
+    },
+    {
+      "id": "il-santo-bevitore",
+      "name": "Il Santo Bevitore",
+      "category": "food-drink",
+      "description": "Via Santo Spirito 64R\nAvslappnad restaurang med ambitiös vinlista; obokat alternativ.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "address": "Via Santo Spirito 64R, Firenze",
+      "position": {
+        "latitude": 43.7681,
+        "longitude": 11.2458
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Il%20Santo%20Bevitore%20Via%20Santo%20Spirito%2064R\"]"
+      }
+    },
+    {
+      "id": "mercato-centrale",
+      "name": "Mercato Centrale",
+      "category": "shopping",
+      "description": "Matmarknad och saluhall vid San Lorenzo; en bit från era huvudstråk.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "address": "Piazza del Mercato Centrale, Firenze",
+      "position": {
+        "latitude": 43.7761,
+        "longitude": 11.2538
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Mercato%20Centrale%20Firenze\"]"
+      }
+    },
+    {
+      "id": "pitti-mosaici",
+      "name": "Pitti Mosaici",
+      "category": "craft",
+      "description": "Florentinsk stenmosaik (pietra dura) vid Piazza Pitti.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "address": "Piazza de’ Pitti 23R, Firenze",
+      "position": {
+        "latitude": 43.76545,
+        "longitude": 11.25
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Pitti%20Mosaici%20Firenze\"]"
+      }
+    },
+    {
+      "id": "castorina-1895",
+      "name": "Castorina 1895",
+      "category": "craft",
+      "description": "Traditionell specialbutik med konstnärs- och dekorationsmaterial.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "address": "Via Santo Spirito 15R, Firenze",
+      "position": {
+        "latitude": 43.76835,
+        "longitude": 11.24955
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Castorina%201895%20Firenze\"]"
+      }
+    },
+    {
+      "id": "mio-concept-store",
+      "name": "Mio Concept Store",
+      "category": "shopping",
+      "description": "Design, presenter och ovanliga föremål nära Via della Spada.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "address": "Via della Spada 34R, Firenze",
+      "position": {
+        "latitude": 43.77195,
+        "longitude": 11.25017
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Mio%20Concept%20Store%20Firenze\"]"
+      }
+    },
+    {
+      "id": "giulia-materia",
+      "name": "Giulia Materia",
+      "category": "craft",
+      "description": "Liten butik för lokalt hantverk och design vid Pitti.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "address": "Sdrucciolo de’ Pitti 13R, Firenze",
+      "position": {
+        "latitude": 43.76575,
+        "longitude": 11.25011
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Giulia%20Materia%20Firenze\"]"
+      }
+    },
+    {
+      "id": "gelateria-della-passera",
+      "name": "Gelateria della Passera",
+      "category": "food-drink",
+      "description": "Liten gelateria vid Piazza della Passera.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "address": "Via Toscanella 15R, Firenze",
+      "position": {
+        "latitude": 43.76682,
+        "longitude": 11.25063
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Gelateria%20della%20Passera%20Firenze\"]"
+      }
+    },
+    {
+      "id": "gelateria-dei-neri",
+      "name": "Gelateria dei Neri",
+      "category": "food-drink",
+      "description": "Välkänd gelateria nära Uffizi/Santa Croce.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "address": "Via dei Neri 9R, Firenze",
+      "position": {
+        "latitude": 43.76895,
+        "longitude": 11.2598
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Gelateria%20dei%20Neri%20Firenze\"]"
+      }
+    },
+    {
+      "id": "gelateria-la-carraia",
+      "name": "Gelateria La Carraia",
+      "category": "food-drink",
+      "description": "Glass vid Ponte alla Carraia, nära Oltrarno.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "address": "Piazza Nazario Sauro 25R, Firenze",
+      "position": {
+        "latitude": 43.76915,
+        "longitude": 11.2444
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Gelateria%20La%20Carraia%20Firenze\"]"
+      }
+    },
+    {
+      "id": "perche-no",
+      "name": "Perché No!",
+      "category": "food-drink",
+      "description": "Klassisk gelateria i centrum.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "address": "Via dei Tavolini 19R, Firenze",
+      "position": {
+        "latitude": 43.77115,
+        "longitude": 11.2555
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Perch%C3%A9%20No!%20Firenze\"]"
+      }
+    },
+    {
+      "id": "vivoli",
+      "name": "Vivoli",
+      "category": "food-drink",
+      "description": "Klassisk florentinsk gelateria nära Santa Croce.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "address": "Via Isola delle Stinche 7R, Firenze",
+      "position": {
+        "latitude": 43.76942,
+        "longitude": 11.2592
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Vivoli%20Firenze\"]"
+      }
+    },
+    {
+      "id": "cantina-del-gelato",
+      "name": "Cantina del Gelato",
+      "category": "food-drink",
+      "description": "Glass på Oltrarno-sidan nära Ponte Vecchio.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "address": "Via de’ Bardi 31, Firenze",
+      "position": {
+        "latitude": 43.7672,
+        "longitude": 11.25652
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Cantina%20del%20Gelato%20Firenze\"]"
+      }
+    },
+    {
+      "id": "serre-torrigiani-in-piazzetta",
+      "name": "Serre Torrigiani in Piazzetta",
+      "category": "food-drink",
+      "description": "Förstahandsval för ett glas ute vid Piazza dei Tre Re.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "address": "Piazza dei Tre Re 1, Firenze",
+      "position": {
+        "latitude": 43.7712,
+        "longitude": 11.2551
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Serre%20Torrigiani%20in%20Piazzetta%20Firenze\"]"
+      }
+    },
+    {
+      "id": "caffe-concerto-paszkowski",
+      "name": "Caffè Concerto Paszkowski",
+      "category": "food-drink",
+      "description": "Klassisk uteservering på Piazza della Repubblica.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "address": "Piazza della Repubblica 6, Firenze",
+      "position": {
+        "latitude": 43.7717,
+        "longitude": 11.2538
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Caff%C3%A8%20Concerto%20Paszkowski%20Firenze\"]"
+      }
+    },
+    {
+      "id": "bulli-balene",
+      "name": "Bulli & Balene",
+      "category": "food-drink",
+      "description": "Aperitivo i Oltrarno på hemvägen.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "address": "Via dello Sprone 14R, Firenze",
+      "position": {
+        "latitude": 43.76672,
+        "longitude": 11.25023
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Bulli%20%26%20Balene%20Firenze\"]"
+      }
+    },
+    {
+      "id": "pasticceria-cosi-chiantigiana",
+      "name": "Pasticceria Cosi – Chiantigiana",
+      "category": "food-drink",
+      "description": "Via Chiantigiana 52/54R, lättare lunch eller bakverk efter Lisio. Markören är ungefärligt placerad vid adressen; kontrollera i Apple Kartor.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "address": "Via Chiantigiana 52/54R, Bagno a Ripoli",
+      "position": {
+        "latitude": 43.74038,
+        "longitude": 11.29292
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Pasticceria%20Cosi%20%E2%80%93%20Chiantigiana%20Firenze\"]"
+      }
+    },
+    {
+      "id": "beppa-fioraia",
+      "name": "Beppa Fioraia",
+      "category": "food-drink",
+      "description": "Alternativ lunch vid utsiktsutflykten, med trädgård.\nMarkören visar området. Använd Gå för exakt adress i Apple Kartor.",
+      "address": "Via dell’Erta Canina 6R, Firenze",
+      "position": {
+        "latitude": 43.76279,
+        "longitude": 11.26097
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Beppa%20Fioraia%20Firenze\"]"
+      }
+    },
+    {
+      "id": "santa-maria-novella",
+      "name": "Santa Maria Novella",
+      "category": "see-do",
+      "description": "Piazza Santa Maria Novella\nRenässansfasad och kyrkorum.",
+      "address": "Piazza Santa Maria Novella",
+      "position": {
+        "latitude": 43.77468,
+        "longitude": 11.24942
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Santa%20Maria%20Novella%20Piazza%20Santa%20Maria%20Novella%20Firenze\"]"
+      }
+    },
+    {
+      "id": "basilica-di-san-lorenzo",
+      "name": "Basilica di San Lorenzo",
+      "category": "see-do",
+      "description": "Piazza di San Lorenzo\nBrunelleschis kyrka och Medicis historia.",
+      "address": "Piazza di San Lorenzo",
+      "position": {
+        "latitude": 43.77493,
+        "longitude": 11.25422
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Basilica%20di%20San%20Lorenzo%20Piazza%20di%20San%20Lorenzo%20Firenze\"]"
+      }
+    },
+    {
+      "id": "cappelle-medicee",
+      "name": "Cappelle Medicee",
+      "category": "see-do",
+      "description": "Piazza di Madonna degli Aldobrandini 6\nMichelangelos skulpturer och praktfullt pietra dura-arbete.",
+      "address": "Piazza di Madonna degli Aldobrandini 6",
+      "position": {
+        "latitude": 43.77502,
+        "longitude": 11.25337
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Cappelle%20Medicee%20Piazza%20di%20Madonna%20degli%20Aldobrandini%206%20Firenze\"]"
+      }
+    },
+    {
+      "id": "galleria-dellaccademia",
+      "name": "Galleria dell’Accademia",
+      "category": "see-do",
+      "description": "Via Ricasoli 58/60\nMichelangelos David; museibesök kräver tid.",
+      "address": "Via Ricasoli 58/60",
+      "position": {
+        "latitude": 43.77692,
+        "longitude": 11.25876
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Galleria%20dell%E2%80%99Accademia%20Via%20Ricasoli%2058%2F60%20Firenze\"]"
+      }
+    },
+    {
+      "id": "museo-nazionale-del-bargello",
+      "name": "Museo Nazionale del Bargello",
+      "category": "see-do",
+      "description": "Via del Proconsolo 4\nRenässansskulptur och konsthantverk.",
+      "address": "Via del Proconsolo 4",
+      "position": {
+        "latitude": 43.77045,
+        "longitude": 11.2586
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Museo%20Nazionale%20del%20Bargello%20Via%20del%20Proconsolo%204%20Firenze\"]"
+      }
+    },
+    {
+      "id": "giardino-di-boboli",
+      "name": "Giardino di Boboli",
+      "category": "see-do",
+      "description": "Palazzo Pitti / Piazza de’ Pitti\nHistorisk trädgård bakom Palazzo Pitti.",
+      "address": "Palazzo Pitti / Piazza de’ Pitti",
+      "position": {
+        "latitude": 43.76377,
+        "longitude": 11.24972
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Giardino%20di%20Boboli%20Palazzo%20Pitti%20%2F%20Piazza%20de%E2%80%99%20Pitti%20Firenze\"]"
+      }
+    },
+    {
+      "id": "palazzo-medici-riccardi",
+      "name": "Palazzo Medici Riccardi",
+      "category": "see-do",
+      "description": "Via Cavour 3\nMedicifamiljens renässanspalats.",
+      "address": "Via Cavour 3",
+      "position": {
+        "latitude": 43.77515,
+        "longitude": 11.25557
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Palazzo%20Medici%20Riccardi%20Via%20Cavour%203%20Firenze\"]"
+      }
+    },
+    {
+      "id": "giardino-delle-rose",
+      "name": "Giardino delle Rose",
+      "category": "see-do",
+      "description": "Viale Giuseppe Poggi 2\nRosenträdgård med utsikt nedanför Piazzale Michelangelo.",
+      "address": "Viale Giuseppe Poggi 2",
+      "position": {
+        "latitude": 43.76158,
+        "longitude": 11.2653
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Giardino%20delle%20Rose%20Viale%20Giuseppe%20Poggi%202%20Firenze\"]"
+      }
+    },
+    {
+      "id": "antico-setificio-fiorentino",
+      "name": "Antico Setificio Fiorentino",
+      "category": "craft",
+      "description": "Via Lorenzo Bartolini 4\nHistoriskt sidenväveri med gamla vävstolar. Tidigare bortvalt som bokat besök; besök i verkstaden endast efter överenskommelse.",
+      "address": "Via Lorenzo Bartolini 4",
+      "position": {
+        "latitude": 43.7708588,
+        "longitude": 11.2412205
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Antico%20Setificio%20Fiorentino%2C%20Via%20Lorenzo%20Bartolini%204%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "alberto-cozzi-legatoria",
+      "name": "Alberto Cozzi – Legatoria",
+      "category": "craft",
+      "description": "Via del Parione 35R\nTraditionellt bokbinderi med handgjorda anteckningsböcker och marmorerat papper.",
+      "address": "Via del Parione 35R",
+      "position": {
+        "latitude": 43.77069,
+        "longitude": 11.24973
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Alberto%20Cozzi%20%E2%80%93%20Legatoria%2C%20Via%20del%20Parione%2035R%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "riccardo-luci-carta-marmorizzata",
+      "name": "Riccardo Luci – Carta Marmorizzata",
+      "category": "craft",
+      "description": "Via del Parione 35A/R\nMarmorerat papper och läder, bokbinderi och egen verkstad; nära Alberto Cozzi.\nMarkören är ungefärlig; använd Apple Kartor för entrén.",
+      "address": "Via del Parione 35A/R",
+      "position": {
+        "latitude": 43.77069,
+        "longitude": 11.2498
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Riccardo%20Luci%20%E2%80%93%20Carta%20Marmorizzata%2C%20Via%20del%20Parione%2035A%2FR%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "scarpelli-mosaici",
+      "name": "Scarpelli Mosaici",
+      "category": "craft",
+      "description": "Via Ricasoli 59R\nFlorentinsk stenmosaik, pietra dura, i en specialiserad verkstad.\nMarkören är ungefärlig; använd Apple Kartor för entrén.",
+      "address": "Via Ricasoli 59R",
+      "position": {
+        "latitude": 43.77655,
+        "longitude": 11.2588
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Scarpelli%20Mosaici%2C%20Via%20Ricasoli%2059R%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "casa-dei-tessuti",
+      "name": "Casa dei Tessuti",
+      "category": "craft",
+      "description": "Via dei Pecori 20/R\nKlassisk tygaffär med italienska mode- och skrädderityger, bland annat siden och ull.\nMarkören är ungefärlig; använd Apple Kartor för entrén.",
+      "address": "Via dei Pecori 20/R",
+      "position": {
+        "latitude": 43.7724,
+        "longitude": 11.253
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Casa%20dei%20Tessuti%2C%20Via%20dei%20Pecori%2020%2FR%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "ermini-agostino",
+      "name": "Ermini Agostino",
+      "category": "craft",
+      "description": "Borgo San Lorenzo 3\nTraditionell tygaffär med kvalitetsvävar i närheten av Duomo.\nMarkören är ungefärlig; använd Apple Kartor för entrén.",
+      "address": "Borgo San Lorenzo 3",
+      "position": {
+        "latitude": 43.7737,
+        "longitude": 11.2543
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Ermini%20Agostino%2C%20Borgo%20San%20Lorenzo%203%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "valli-tessuti",
+      "name": "Valli Tessuti",
+      "category": "craft",
+      "description": "Via della Vigna Nuova 81/R\nItalienska mode- och skrädderityger, siden, ull och andra exklusiva material.",
+      "address": "Via della Vigna Nuova 81/R",
+      "position": {
+        "latitude": 43.77103,
+        "longitude": 11.24888
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Valli%20Tessuti%2C%20Via%20della%20Vigna%20Nuova%2081%2FR%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "le-telerie-toscane",
+      "name": "Le Telerie Toscane",
+      "category": "craft",
+      "description": "Sdrucciolo de’ Pitti 15R\nToscanska hemtextilier, linne, dukar och textilier med traditionella mönster.",
+      "address": "Sdrucciolo de’ Pitti 15R",
+      "position": {
+        "latitude": 43.76622,
+        "longitude": 11.24928
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Le%20Telerie%20Toscane%2C%20Sdrucciolo%20de%E2%80%99%20Pitti%2015R%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "passamaneria-toscana",
+      "name": "Passamaneria Toscana",
+      "category": "craft",
+      "description": "Via del Canto dei Nelli 10\nDekorativa textilier, band och passamanteri. Adressuppgifter varierar mellan källor; kontrollera före besök.\nMarkören är ungefärlig; använd Apple Kartor för entrén.",
+      "address": "Via del Canto dei Nelli 10",
+      "position": {
+        "latitude": 43.7748,
+        "longitude": 11.2536
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Passamaneria%20Toscana%2C%20Via%20del%20Canto%20dei%20Nelli%2010%2C%20Firenze\"]"
+      }
+    },
+    {
+      "id": "chalet-il-boschetto",
+      "name": "Chalet il Boschetto",
+      "category": "food-drink",
+      "description": "Piazzale Michelangelo, vid Giardino dell’Iris.\nEnkel kiosk med schiacciata, panini, piadine, kaffe och dryck. Några sittplatser; även takeaway till utsikten.\nSpontant lunchalternativ. Öppettiderna varierar mellan källor; kontrollera på plats.",
+      "address": "Chalet il Boschetto, Piazzale Michelangelo, Firenze",
+      "position": {
+        "latitude": 43.7621498,
+        "longitude": 11.2655096
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://maps.apple.com/?q=Chalet%20il%20Boschetto%20Piazzale%20Michelangelo%20Firenze\"]"
+      }
+    },
+    {
+      "id": "terrazze-michelangelo",
+      "name": "Terrazze Michelangelo",
+      "category": "food-drink",
+      "description": "Viale Michelangiolo 61, Firenze.\nAvslappnat lunchalternativ nära Piazzale Michelangelo, med pizza och italienska rätter. Restaurangens webbplats anger pizza även till lunch.\nObokat alternativ till kiosklunch.",
+      "address": "Terrazze Michelangelo, Viale Michelangiolo 61, Firenze",
+      "position": {
+        "latitude": 43.761308,
+        "longitude": 11.266932
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": "https://www.terrazzemichelangelo.it/ristorante-pizzeria-firenze/",
+      "verification": {
+        "status": "pending",
+        "checkedAt": null,
+        "sources": [
+          {
+            "url": "https://github.com/dan-sone/Florens-2026/blob/main/index.html",
+            "title": "Importkälla: befintlig index.html (ej extern platsverifiering); GitHub blob SHA: ea6900c8dc54d54d6f22e88c682f351d1ce684cf",
+            "checkedAt": "2026-10-10T11:34:35+02:00",
+            "supports": [
+              "identity",
+              "position",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Importerat från index.html; position, adress och länkar är inte externt verifierade.\nBefintliga kart-/webblänkar: [\"https://www.terrazzemichelangelo.it/ristorante-pizzeria-firenze/\", \"https://maps.apple.com/?q=Terrazze%20Michelangelo%20Viale%20Michelangiolo%2061%20Firenze\"]"
+      }
+    }
+  ]
+}

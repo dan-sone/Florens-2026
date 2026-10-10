@@ -1,0 +1,16 @@
+{
+  "name": "florens-2026",
+  "version": "1.0.0",
+  "description": "Schema validation for the Florence travel guide",
+  "scripts": {
+    "build": "node tools/build-validator.cjs",
+    "check": "node tools/check-content.cjs"
+  },
+  "type": "commonjs",
+  "devDependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "esbuild": "^0.25.12"
+  },
+  "private": true
+}
