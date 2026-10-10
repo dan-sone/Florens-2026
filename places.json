@@ -1,8 +1,8 @@
 {
   "$schema": "./places.schema.v1.json",
   "schemaVersion": 1,
-  "contentVersion": 3,
-  "updatedAt": "2026-10-10T10:37:02.529052Z",
+  "contentVersion": 4,
+  "updatedAt": "2026-10-10T16:10:00Z",
   "places": [
     {
       "id": "hotel-la-scaletta",
@@ -133,7 +133,7 @@
       "id": "cuculia",
       "name": "Cuculia",
       "category": "food-drink",
-      "description": "Ons 14/10 · 19.45 · födelsedagsmiddag",
+      "description": "Ons 14/10 · 19.45 · födelsedagsmiddag för 2 personer.",
       "address": "Via dei Serragli 3R, Firenze",
       "position": {
         "latitude": 43.7682311,
@@ -191,7 +191,7 @@
       "id": "fondazione-arte-della-seta-lisio",
       "name": "Fondazione Arte della Seta Lisio",
       "category": "craft",
-      "description": "Tors 15/10 · 10.15 · guidad visning · taxi",
+      "description": "Tors 15/10 · 10.15 · bokad guidad visning med Cecilia Cerchiarini. Taxi från hotellet cirka 09.35. Räkna med upp till två timmar eller mer.",
       "address": "Via Benedetto Fortini 143, Firenze",
       "position": {
         "latitude": 43.7454328,
@@ -315,7 +315,7 @@
       "id": "nugolo",
       "name": "Nugolo",
       "category": "food-drink",
-      "description": "Fre 16/10 · 19.30 · Via della Mattonaia 27R",
+      "description": "Fre 16/10 · 19.30 · bokat för 2 personer. Via della Mattonaia 27R.\nGratis avbokning eller ändring fram till 24 timmar före bokningen (tors 15/10 kl. 19.30). Senare avbokning, ändring eller uteblivet besök kan debiteras €100.",
       "address": "Via della Mattonaia 27R, Firenze",
       "position": {
         "latitude": 43.7718531,
@@ -1059,7 +1059,7 @@
       "id": "giulio-giannini-e-figlio",
       "name": "Giulio Giannini e Figlio",
       "category": "craft",
-      "description": "Via dei Velluti 1 · marmorerat papper och bokbinderi",
+      "description": "Via dei Velluti 1 vid Piazza Pitti · handmarmorerat papper och bokbinderi.\nSpontant stopp om vi är i närheten, utan bokning. Titta på papper, anteckningsböcker och album i butik/verkstad; möjlighet att köpa ett minne. Ingen workshop är bokad.",
       "address": "Via dei Velluti 1R, Firenze",
       "position": {
         "latitude": 43.7664069,

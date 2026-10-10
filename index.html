@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="application-version" content="1.3.2">
+<meta name="application-version" content="1.3.3">
     
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
@@ -296,9 +296,7 @@ function chooseDay(day){
 document.getElementById('routeSelect').addEventListener('change',e=>chooseDay(e.target.value));
 document.getElementById('daycard').addEventListener('click',e=>{
  const button=e.target.closest('[data-place]');if(!button)return;
- const id=button.dataset.place;const marker=markersById.get(id);
- if(marker && m.hasLayer(marker)){m.setView(marker.getLatLng(),16);marker.openPopup();}
- else window.open(mapLink(requirePlace(id)),'_blank');
+ showPlaceOnMap(button.dataset.place);
 });
 m.on('popupopen',function(evt){
  const popup=evt.popup, el=popup.getElement();if(!el)return;
@@ -309,11 +307,8 @@ m.on('popupopen',function(evt){
  const row=document.createElement('div');row.className='navactions';
  const modes=[['Gå','walking'],['Kollektivtrafik','transit'],['Bil/taxi','driving']];
  modes.forEach(([label,mode])=>{const a=document.createElement('a');a.textContent=label;a.target='_blank';a.rel='noopener';a.href=PlacesValidator.appleDirectionsLink(place,mode);row.appendChild(a)});
- const ai=document.createElement('button');ai.textContent='Fråga ChatGPT';ai.title='Kopierar platsfrågan och öppnar ChatGPT';ai.onclick=async()=>{
- const question='Berätta om '+name+' i '+guide.destination.name+': historia, kultur och vad som är särskilt intressant att uppmärksamma vid ett besök. Vi är särskilt intresserade av hantverk, konst och lokala traditioner.';
- try{await navigator.clipboard.writeText(question);alert('Frågan kopierad. Klistra in den i ChatGPT.')}catch(e){prompt('Kopiera frågan:',question)}
- window.open('https://chatgpt.com/','_blank','noopener');
- };row.appendChild(ai);const body=document.createElement('div');while(content.firstChild)body.appendChild(content.firstChild);body.appendChild(row);popup.setContent(body);
+ const ai=document.createElement('button');ai.textContent='Fråga ChatGPT';ai.title='Kopierar platsfrågan och öppnar ChatGPT';ai.onclick=()=>askAboutPlace(place);
+ row.appendChild(ai);const body=document.createElement('div');while(content.firstChild)body.appendChild(content.firstChild);body.appendChild(row);popup.setContent(body);
 });
 // Automatic day selection uses the trip's own timezone and dates.
 const parts=new Intl.DateTimeFormat('en-CA',{timeZone:guide.timeZone,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
@@ -340,9 +335,24 @@ function showPlaceOnMap(id){
  if(group!==m&&!m.hasLayer(group))group.addTo(m);
  setView('karta');requestAnimationFrame(()=>{m.setView(marker.getLatLng(),16,{animate:false});marker.openPopup()});
 }
+function askAboutPlace(place){
+ const question='Berätta om '+place.name+' i '+guide.destination.name+': historia, kultur och vad som är särskilt intressant att uppmärksamma vid ett besök. Vi är särskilt intresserade av hantverk, konst och lokala traditioner.';
+ // Open while the click still has user activation, including on iPhone.
+ window.open('https://chatgpt.com/','_blank','noopener');
+ if(navigator.clipboard?.writeText)navigator.clipboard.writeText(question).then(()=>alert('Frågan kopierad. Klistra in den i ChatGPT.')).catch(()=>prompt('Kopiera frågan:',question));
+ else prompt('Kopiera frågan:',question);
+}
+function placeDescription(place){
+ const presentation=markerPresentation[place.id]||{};
+ const description=presentation.descriptionSeparator?place.description.split(presentation.descriptionSeparator)[0]:place.description;
+ return '<p>'+esc(description.split('\n').filter(line=>!line.startsWith('Markören')).join('\n')).replace(/\n/g,'<br>')+'</p>';
+}
+function placeResources(place){
+ return (place.website?'<a class="list-action" target="_blank" rel="noopener" href="'+esc(place.website)+'">Webbplats ↗</a>':'')+'<button class="list-action" data-ask-place="'+esc(place.id)+'">Fråga ChatGPT</button>';
+}
 function listActions(place){
- if(!place.position)return '<p class="address">Kartposition saknas ännu.</p>';
- return '<div class="list-actions"><button class="list-action" data-show-place="'+esc(place.id)+'">Visa på kartan</button>'+[['Gå','walking'],['Kollektivtrafik','transit'],['Bil/taxi','driving']].map(([label,mode])=>'<a class="list-action" target="_blank" rel="noopener" href="'+esc(PlacesValidator.appleDirectionsLink(place,mode))+'">'+label+'</a>').join('')+'<a class="list-action" target="_blank" rel="noopener" href="'+esc(mapLink(place))+'">Apple Kartor ↗</a></div>';
+ if(!place.position)return '<p class="address">Kartposition saknas ännu.</p><div class="list-actions">'+placeResources(place)+'</div>';
+ return '<div class="list-actions"><button class="list-action" data-show-place="'+esc(place.id)+'">Visa på kartan</button>'+[['Gå','walking'],['Kollektivtrafik','transit'],['Bil/taxi','driving']].map(([label,mode])=>'<a class="list-action" target="_blank" rel="noopener" href="'+esc(PlacesValidator.appleDirectionsLink(place,mode))+'">'+label+'</a>').join('')+'<a class="list-action" target="_blank" rel="noopener" href="'+esc(mapLink(place))+'">Apple Kartor ↗</a>'+placeResources(place)+'</div>';
 }
 const dateFormatter=new Intl.DateTimeFormat('sv-SE',{timeZone:'UTC',weekday:'long',day:'numeric',month:'long'});
 const bookingDateFormatter=new Intl.DateTimeFormat('en-CA',{timeZone:guide.timeZone,year:'numeric',month:'2-digit',day:'2-digit'});
@@ -365,12 +375,13 @@ function renderScheduleList(){
  const sections=guide.days.map(day=>{
   const bookings=guide.bookings.filter(b=>localBookingDate(b)===day.date).sort((a,b)=>new Date(a.startsAt)-new Date(b.startsAt));
   const bookedPlaces=new Set(bookings.map(b=>b.placeId));
-  const stops=[...new Set(day.routeIds.flatMap(id=>routesById.get(id).segments.flatMap(s=>s.placeIds)))].filter(id=>!bookedPlaces.has(id)&&!guide.persistentPlaceIds.includes(id));
+  const allBookedPlaces=new Set(bookedIds);
+  const stops=[...new Set(day.routeIds.flatMap(id=>routesById.get(id).segments.flatMap(s=>s.placeIds)))].filter(id=>!allBookedPlaces.has(id)&&!guide.persistentPlaceIds.includes(id));
   const title=dateFormatter.format(new Date(day.date+'T12:00:00Z'));
   const flightsAfterProgram=day.id===guide.days[guide.days.length-1].id;
-  return '<section class="day-section" data-day="'+esc(day.id)+'"><h2>'+esc(title[0].toUpperCase()+title.slice(1))+'</h2>'+(flightsAfterProgram?'':renderFlightCards(day))+(bookings.length?'<h3>Bokningar</h3>'+bookings.map(b=>{const place=requirePlace(b.placeId);return '<article class="list-card" data-booking="'+esc(b.id)+'"><span class="list-badge">Bokat</span><h4>'+esc(timeFormatter.format(new Date(b.startsAt)))+' · '+esc(place.name)+'</h4>'+listActions(place)+'</article>'}).join(''):'')+'<h3>Planerat program</h3><article class="list-card list-program">'+renderProgram(day.program)+'</article>'+(stops.length?'<h3>Valbara stopp längs rutten</h3><div class="optional-stops">'+stops.map(id=>'<button class="list-action" data-show-place="'+esc(id)+'">'+esc(requirePlace(id).name)+'</button>').join('')+'</div>':'')+(flightsAfterProgram?renderFlightCards(day):'')+'</section>';
+  return '<section class="day-section" data-day="'+esc(day.id)+'"><h2>'+esc(title[0].toUpperCase()+title.slice(1))+'</h2>'+(flightsAfterProgram?'':renderFlightCards(day))+(bookings.length?'<h3>Bokningar</h3>'+bookings.map(b=>{const place=requirePlace(b.placeId);return '<article class="list-card" data-booking="'+esc(b.id)+'"><span class="list-badge">Bokat</span><h4>'+esc(timeFormatter.format(new Date(b.startsAt)))+' · '+esc(place.name)+'</h4>'+placeDescription(place)+(place.address?'<p class="address">'+esc(place.address)+'</p>':'')+listActions(place)+'</article>'}).join(''):'')+'<h3>Planerat program</h3><article class="list-card list-program">'+renderProgram(day.program)+'</article>'+(stops.length?'<h3>Valbara stopp längs rutten</h3><div class="optional-stops">'+stops.map(id=>'<button class="list-action" data-show-place="'+esc(id)+'">'+esc(requirePlace(id).name)+'</button>').join('')+'</div>':'')+(flightsAfterProgram?renderFlightCards(day):'')+'</section>';
  }).join('');
- document.getElementById('schemaPanel').innerHTML='<h1>Schema</h1><p class="list-intro">Flyg, bokningar, dagens plan och valbara stopp. '+esc(guide.destination.name)+'.</p>'+sections;
+ document.getElementById('schemaPanel').innerHTML='<h1>Schema</h1><p class="list-intro">Flyg, bokningar, dagens plan och valbara stopp. '+esc(guide.destination.name)+'.</p>'+guide.persistentPlaceIds.map(id=>{const place=requirePlace(id);return '<article class="list-card" data-stay="'+esc(id)+'"><span class="list-badge">Boende</span><h2>'+esc(place.name)+'</h2>'+placeDescription(place)+(place.address?'<p class="address">'+esc(place.address)+'</p>':'')+listActions(place)+'</article>'}).join('')+sections;
 }
 const filterBox=document.getElementById('placeFilters');
 filterBox.innerHTML=guide.categories.map(c=>'<button aria-pressed="true" data-category="'+esc(c.id)+'">'+esc(c.label)+'</button>').join('');
@@ -389,7 +400,7 @@ function renderPlaceList(){
 }
 filterBox.addEventListener('click',event=>{const button=event.target.closest('[data-category]');if(!button)return;const group=groups[button.dataset.category];if(m.hasLayer(group))m.removeLayer(group);else group.addTo(m);renderPlaceList()});
 m.on('overlayadd overlayremove',()=>{if(currentView==='sevardheter')renderPlaceList()});
-listView.addEventListener('click',event=>{const button=event.target.closest('[data-show-place],[data-place]');if(button)showPlaceOnMap(button.dataset.showPlace||button.dataset.place)});
+listView.addEventListener('click',event=>{const ask=event.target.closest('[data-ask-place]');if(ask){askAboutPlace(requirePlace(ask.dataset.askPlace));return;}const button=event.target.closest('[data-show-place],[data-place]');if(button)showPlaceOnMap(button.dataset.showPlace||button.dataset.place)});
 document.getElementById('viewTabs').addEventListener('click',event=>{const button=event.target.closest('[data-view]');if(button)setView(button.dataset.view)});
 document.getElementById('viewTabs').addEventListener('keydown',event=>{const tabs=[...document.querySelectorAll('#viewTabs [data-view]')];const index=tabs.indexOf(document.activeElement);if(index<0||!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;event.preventDefault();const next=event.key==='Home'?0:event.key==='End'?tabs.length-1:(index+(event.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;setView(tabs[next].dataset.view);tabs[next].focus()});
 renderScheduleList();setView(location.hash.slice(1));
@@ -404,3 +415,4 @@ guideReady.catch(error=>{
  card.style.display='block';
 });
 </script></html>
+

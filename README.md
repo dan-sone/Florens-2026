@@ -30,10 +30,10 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 
 | Fil | Schemaversion | Innehåll/programversion |
 | --- | ---: | ---: |
-| places.json | 1 | 3 |
-| routes.json | 1 | 2 |
-| guide.json | 2 | 5 |
-| index.html | – | 1.3.2 |
+| places.json | 1 | 4 |
+| routes.json | 1 | 3 |
+| guide.json | 2 | 6 |
+| index.html | – | 1.3.3 |
 | valideringskod | – | 1.3.0 |
 | verification-report.v2.md | – | Rapportversion 2 |
 
@@ -62,3 +62,9 @@ Flyguppgifterna kommer från användarens bokning 10 oktober 2026: OS962 ARN–V
 Programversion 1.3.1 komprimerar flygkorten till tider, flygplatskoder, flightnummer och operatör samt eventuell bytestid. Terminaler och fullständiga flygplatsnamn finns kvar i JSON men visas inte i schemat. Datum visas separat endast vid ankomst en annan dag. Guide schema v2 och innehållsversion 4 är oförändrade.
 
 Programversion 1.3.2 visar avgångsterminal efter flygbolaget när bokningen anger den. Sista resdagens flyg visas efter program och valbara stopp; övriga dagar före programmet. Guideinnehåll 5 ändrar tisdagens text till ”upptäck Florens” och länkar Serre Torrigiani till dess befintliga platskort. Schemaversioner är oförändrade.
+
+## Komplettering mot resbesluten – 1.3.3
+
+Hotellet visas även i Schema. Bokningskort visar platsens besöksinformation och adress. Webbplats och Fråga ChatGPT finns i listvyerna, med samma plats-id som kartan. Programknappar öppnar markören och aktiverar dess lager även om det dolts. Giannini anges som spontant obokat stopp i lördagens Oltrarno-program och rutt. Lisio kompletteras med Cecilia Cerchiarini; Cuculia och Nugolo med två personer; Nugolo med det bokade avbokningsvillkoret. Bokade platser listas inte som valbara besök andra dagar bara för att promenaden passerar dem.
+
+Kontroll: innehållsvalidatorn godkänner tre scheman, 69 platser, fem rutter, fem resdagar, fem bokningar, flyg och samtliga kart-/navigeringslänkar. JavaScript och renderat schema kontrollerat med hotellet, detaljerade bokningar, webbplats-/ChatGPT-knappar och flygordning. Visuellt Playwright-test kunde inte köras lokalt eftersom Chromium saknas. Tidigare geografiska osäkerheter i verifieringsrapporten kvarstår; denna ändring ändrar inga positioner eller Apple-id:n.

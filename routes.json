@@ -1,8 +1,8 @@
 {
   "$schema": "./routes.schema.v1.json",
   "schemaVersion": 1,
-  "contentVersion": 2,
-  "updatedAt": "2026-10-10T10:27:54.129677Z",
+  "contentVersion": 3,
+  "updatedAt": "2026-10-10T16:10:00Z",
   "routes": [
     {
       "id": "tue",
@@ -139,6 +139,7 @@
           "placeIds": [
             "hotel-la-scaletta",
             "palazzo-pitti",
+            "giulio-giannini-e-figlio",
             "piazza-santo-spirito",
             "hotel-la-scaletta"
           ]

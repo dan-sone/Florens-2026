@@ -1,8 +1,8 @@
 {
   "$schema": "./guide.schema.v2.json",
   "schemaVersion": 2,
-  "contentVersion": 5,
-  "updatedAt": "2026-10-10T12:18:30.758270Z",
+  "contentVersion": 6,
+  "updatedAt": "2026-10-10T16:10:00Z",
   "id": "florens-2026",
   "title": "Florens 2026",
   "destination": {
@@ -278,6 +278,19 @@
             {
               "type": "text",
               "text": "Fri förmiddag kring Pitti/Oltrarno, shopping och lunch."
+            },
+            {
+              "type": "text",
+              "text": " Spontant stopp om vi är i närheten: "
+            },
+            {
+              "type": "place",
+              "placeId": "giulio-giannini-e-figlio",
+              "text": "Giannini e Figlio"
+            },
+            {
+              "type": "text",
+              "text": " – marmorerat papper och bokbinderi, utan bokning."
             }
           ]
         },
