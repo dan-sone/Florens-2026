@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="application-version" content="1.3.1">
+<meta name="application-version" content="1.3.2">
     
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
@@ -358,7 +358,7 @@ function renderFlightCards(day){
   const minutes=next&&f.arrival.airportCode===next.departure.airportCode?Math.round((new Date(next.departure.at)-new Date(f.arrival.at))/60000):null;
   const connection=minutes!==null&&minutes>=0?'<p class="address">Byte i '+esc(f.arrival.city)+' · '+minutes+' min</p>':'';
   const dateNote=arrivalDate(f.arrival)!==day.date?' · '+dateFormatter.format(new Date(arrivalDate(f.arrival)+'T12:00:00Z')):'';
-  return '<article class="list-card" data-flight="'+esc(f.id)+'"><h4>'+esc(clock(f.departure))+'–'+esc(clock(f.arrival))+' · '+esc(f.departure.airportCode)+' → '+esc(f.arrival.airportCode)+esc(dateNote)+'</h4><p class="address">'+esc(f.flightNumber)+' · '+esc(f.operator)+'</p>'+connection+'</article>';
+  return '<article class="list-card" data-flight="'+esc(f.id)+'"><h4>'+esc(clock(f.departure))+'–'+esc(clock(f.arrival))+' · '+esc(f.departure.airportCode)+' → '+esc(f.arrival.airportCode)+esc(dateNote)+'</h4><p class="address">'+esc(f.flightNumber)+' · '+esc(f.operator)+(f.departure.terminal?' · Terminal '+esc(f.departure.terminal):'')+'</p>'+connection+'</article>';
  }).join('');
 }
 function renderScheduleList(){
@@ -367,7 +367,8 @@ function renderScheduleList(){
   const bookedPlaces=new Set(bookings.map(b=>b.placeId));
   const stops=[...new Set(day.routeIds.flatMap(id=>routesById.get(id).segments.flatMap(s=>s.placeIds)))].filter(id=>!bookedPlaces.has(id)&&!guide.persistentPlaceIds.includes(id));
   const title=dateFormatter.format(new Date(day.date+'T12:00:00Z'));
-  return '<section class="day-section" data-day="'+esc(day.id)+'"><h2>'+esc(title[0].toUpperCase()+title.slice(1))+'</h2>'+renderFlightCards(day)+(bookings.length?'<h3>Bokningar</h3>'+bookings.map(b=>{const place=requirePlace(b.placeId);return '<article class="list-card" data-booking="'+esc(b.id)+'"><span class="list-badge">Bokat</span><h4>'+esc(timeFormatter.format(new Date(b.startsAt)))+' · '+esc(place.name)+'</h4>'+listActions(place)+'</article>'}).join(''):'')+'<h3>Planerat program</h3><article class="list-card list-program">'+renderProgram(day.program)+'</article>'+(stops.length?'<h3>Valbara stopp längs rutten</h3><div class="optional-stops">'+stops.map(id=>'<button class="list-action" data-show-place="'+esc(id)+'">'+esc(requirePlace(id).name)+'</button>').join('')+'</div>':'')+'</section>';
+  const flightsAfterProgram=day.id===guide.days[guide.days.length-1].id;
+  return '<section class="day-section" data-day="'+esc(day.id)+'"><h2>'+esc(title[0].toUpperCase()+title.slice(1))+'</h2>'+(flightsAfterProgram?'':renderFlightCards(day))+(bookings.length?'<h3>Bokningar</h3>'+bookings.map(b=>{const place=requirePlace(b.placeId);return '<article class="list-card" data-booking="'+esc(b.id)+'"><span class="list-badge">Bokat</span><h4>'+esc(timeFormatter.format(new Date(b.startsAt)))+' · '+esc(place.name)+'</h4>'+listActions(place)+'</article>'}).join(''):'')+'<h3>Planerat program</h3><article class="list-card list-program">'+renderProgram(day.program)+'</article>'+(stops.length?'<h3>Valbara stopp längs rutten</h3><div class="optional-stops">'+stops.map(id=>'<button class="list-action" data-show-place="'+esc(id)+'">'+esc(requirePlace(id).name)+'</button>').join('')+'</div>':'')+(flightsAfterProgram?renderFlightCards(day):'')+'</section>';
  }).join('');
  document.getElementById('schemaPanel').innerHTML='<h1>Schema</h1><p class="list-intro">Flyg, bokningar, dagens plan och valbara stopp. '+esc(guide.destination.name)+'.</p>'+sections;
 }

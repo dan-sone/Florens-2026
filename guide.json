@@ -1,8 +1,8 @@
 {
   "$schema": "./guide.schema.v2.json",
   "schemaVersion": 2,
-  "contentVersion": 4,
-  "updatedAt": "2026-10-10T12:02:14.412377Z",
+  "contentVersion": 5,
+  "updatedAt": "2026-10-10T12:18:30.758270Z",
   "id": "florens-2026",
   "title": "Florens 2026",
   "destination": {
@@ -48,7 +48,7 @@
             },
             {
               "type": "text",
-              "text": " landning i Florens · hotellet ungefär 15.30–16.00. Därefter: kort orientering i centrum. "
+              "text": " landning i Florens · hotellet ungefär 15.30–16.00. Därefter: upptäck Florens. "
             },
             {
               "type": "strong",
@@ -56,7 +56,16 @@
             },
             {
               "type": "text",
-              "text": " (Serre Torrigiani i första hand), sedan spontan middag i Oltrarno."
+              "text": " ("
+            },
+            {
+              "type": "place",
+              "placeId": "serre-torrigiani-in-piazzetta",
+              "text": "Serre Torrigiani"
+            },
+            {
+              "type": "text",
+              "text": " i första hand), sedan spontan middag i Oltrarno."
             }
           ]
         }
