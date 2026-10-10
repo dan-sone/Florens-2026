@@ -33,7 +33,7 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | places.json | 1 | 3 |
 | routes.json | 1 | 2 |
 | guide.json | 2 | 4 |
-| index.html | – | 1.3.0 |
+| index.html | – | 1.3.1 |
 | valideringskod | – | 1.3.0 |
 | verification-report.v2.md | – | Rapportversion 2 |
 
@@ -58,3 +58,5 @@ Guide schema v2 lägger till `flights` (tom lista för resor utan flyg). Innehå
 Varje flyg har unikt id, dayId, flightNumber, operator, eventuellt onBehalfOf samt departure/arrival. Varje ändpunkt har airportCode, airportName, city, at med UTC-offset, timeZone och eventuell terminal. Schema visar korten i avgångsordning med lokala tider och datum; bytestiden beräknas mellan flyg samma dag på samma flygplats. Terminaler visas enligt bokningen och kan ändras. Bokningsreferenser ingår inte i det offentliga innehållet och tillåts inte av schemat.
 
 Flyguppgifterna kommer från användarens bokning 10 oktober 2026: OS962 ARN–VIE 13 oktober 10:05–12:15, OS535 VIE–FLR 12:45–14:05, SK1916 FLR–ARN 17 oktober 17:20–20:10. Detta är bokade tider, inte en kontroll av aktuell flygstatus. Valideringen kontrollerar unika flyg-id, resdag, flygplatskod, tidszon/offset och ankomst efter avgång.
+
+Programversion 1.3.1 komprimerar flygkorten till tider, flygplatskoder, flightnummer och operatör samt eventuell bytestid. Terminaler och fullständiga flygplatsnamn finns kvar i JSON men visas inte i schemat. Datum visas separat endast vid ankomst en annan dag. Guide schema v2 och innehållsversion 4 är oförändrade.

@@ -25,8 +25,7 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  assert.equal(await page.locator('[data-flight]').count(),guide.flights.length);
  for(const flight of guide.flights){const card=page.locator('[data-flight="'+flight.id+'"]');assert.equal(await card.count(),1);assert.equal(await card.locator('xpath=..').getAttribute('data-day'),flight.dayId);const text=await card.textContent();for(const value of [flight.flightNumber,flight.operator,flight.departure.airportCode,flight.arrival.airportCode,flight.departure.at.slice(11,16),flight.arrival.at.slice(11,16)])assert(text.includes(value));}
  assert((await page.locator('[data-flight="outbound-stockholm-vienna"]').textContent()).includes('30 min'));
- assert((await page.locator('[data-flight="outbound-stockholm-vienna"]').textContent()).includes('Terminal 5'));
- assert((await page.locator('[data-flight="outbound-vienna-florence"]').textContent()).includes('Terminal 3'));
+ assert(!(await page.locator('[data-flight]').allTextContents()).join(' ').includes('Terminal'));
  await page.locator('[data-flight="return-florence-stockholm"]').scrollIntoViewIfNeeded();await page.screenshot({path:'/tmp/return-flight-check.png'});
  await page.locator('#schemaPanel h1').scrollIntoViewIfNeeded();
  assert.equal(await page.locator('#schemaPanel').evaluate(e=>e.scrollWidth>e.clientWidth),false);
@@ -46,6 +45,6 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  await page.click('#tab-schema');await page.reload({waitUntil:'load'});await page.evaluate(()=>guideReady);assert.equal(await page.locator('body').getAttribute('data-view'),'schema');
  await page.click('#tab-sevardheter');await page.keyboard.press('ArrowLeft');assert.equal(await page.locator('#tab-schema').getAttribute('aria-selected'),'true');
  await page.setViewportSize({width:1024,height:768});await page.click('#tab-sevardheter');assert.equal(await page.locator('#placesPanel').evaluate(e=>e.scrollWidth>e.clientWidth),false);
- assert.deepEqual(errors,[]);console.log('PASS list views: mobile/tablet layout, all five days/bookings and three flight cards with local times/terminals/connection, all 69 places and shared navigation URLs, category filters synchronized both ways, show marker, hash/refresh persistence, keyboard tabs');
+ assert.deepEqual(errors,[]);console.log('PASS list views: mobile/tablet layout, all five days/bookings and three flight cards with compact times/routes/connection, all 69 places and shared navigation URLs, category filters synchronized both ways, show marker, hash/refresh persistence, keyboard tabs');
  }finally{await browser.close();server.close()}
 })().catch(e=>{console.error(e.stack);process.exitCode=1});

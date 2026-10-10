@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="application-version" content="1.3.0">
+<meta name="application-version" content="1.3.1">
     
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
@@ -351,18 +351,15 @@ const localBookingDate=b=>{const parts=bookingDateFormatter.formatToParts(new Da
 function renderFlightCards(day){
  const flights=(guide.flights||[]).filter(f=>f.dayId===day.id).sort((a,b)=>new Date(a.departure.at)-new Date(b.departure.at));
  if(!flights.length)return '';
- const endpointHtml=e=>{
-  const date=new Date(e.at);
-  const clock=new Intl.DateTimeFormat('sv-SE',{timeZone:e.timeZone,hour:'2-digit',minute:'2-digit'}).format(date);
-  const localDate=new Intl.DateTimeFormat('sv-SE',{timeZone:e.timeZone,day:'numeric',month:'long'}).format(date);
-  return '<p><strong>'+esc(clock)+' · '+esc(e.city)+' ('+esc(e.airportCode)+')</strong><br>'+esc(e.airportName)+(e.terminal?' · Terminal '+esc(e.terminal):'')+'<br><small>'+esc(localDate)+' · lokal tid</small></p>';
- };
+ const clock=e=>new Intl.DateTimeFormat('sv-SE',{timeZone:e.timeZone,hour:'2-digit',minute:'2-digit'}).format(new Date(e.at));
+ const arrivalDate=e=>new Intl.DateTimeFormat('sv-SE',{timeZone:e.timeZone,year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(e.at));
  return '<h3>Flyg</h3>'+flights.map((f,i)=>{
   const next=flights[i+1];
   const minutes=next&&f.arrival.airportCode===next.departure.airportCode?Math.round((new Date(next.departure.at)-new Date(f.arrival.at))/60000):null;
   const connection=minutes!==null&&minutes>=0?'<p class="address">Byte i '+esc(f.arrival.city)+' · '+minutes+' min</p>':'';
-  return '<article class="list-card" data-flight="'+esc(f.id)+'"><span class="list-badge">Flyg</span><h4>'+esc(f.flightNumber)+' · '+esc(f.operator)+'</h4>'+(f.onBehalfOf?'<p class="address">För '+esc(f.onBehalfOf)+'</p>':'')+endpointHtml(f.departure)+'<p class="address">↓ Ankomst</p>'+endpointHtml(f.arrival)+connection+'</article>';
- }).join('')+'<p class="address">Tider enligt bokningen. Terminaler kan ändras.</p>';
+  const dateNote=arrivalDate(f.arrival)!==day.date?' · '+dateFormatter.format(new Date(arrivalDate(f.arrival)+'T12:00:00Z')):'';
+  return '<article class="list-card" data-flight="'+esc(f.id)+'"><h4>'+esc(clock(f.departure))+'–'+esc(clock(f.arrival))+' · '+esc(f.departure.airportCode)+' → '+esc(f.arrival.airportCode)+esc(dateNote)+'</h4><p class="address">'+esc(f.flightNumber)+' · '+esc(f.operator)+'</p>'+connection+'</article>';
+ }).join('');
 }
 function renderScheduleList(){
  const sections=guide.days.map(day=>{
