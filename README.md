@@ -1,14 +1,14 @@
 # Reseguiden
 
-## Platskort och berättelser – 1.4.2
+## Platskort och berättelser – 1.4.3
 
 Kortets hela namnrad och handtag kan dras uppåt för att öppna mer innehåll och nedåt för att återgå till den korta vyn. Handtagets touchyta är 48 pixlar hög över kortets hela bredd. Ett tryck växlar också läge; handtaget fungerar även med tangentbord. Innehållet scrollas separat. Ett enda ”Mer om platsen” samlar beskrivning, berättelse och Titta efter utan ytterligare utfällning av berättelsen. Valet och handtaget visas endast när det finns extra innehåll. Källor kan öppnas vid behov. Rörelsen respekterar inställningen för minskad animation.
 
 Markörer öppnar nu ett Apple-inspirerat kort längst ned, inte en flytande plats-popup. Kartan är fortsatt interaktiv. Namn och stängknapp ligger kvar överst, medan innehållet scrollas vertikalt inom kortet. Kortet använder dynamisk skärmhöjd och safe-area-insets, även i liggande läge. Dagskortet döljs tillfälligt när platskortet är öppet och återkommer när det stängs. Kryss, Escape eller tryck på den fria kartan stänger kortet; dragning/zoomning stänger det inte. Fokus återgår till markören vid kryss/Escape.
 
-Hitta hit använder samma kanoniska gångnavigering som tidigare. Apple Kartor finns direkt; kollektivtrafik, bil/taxi, webbplats och ChatGPT ligger i en gemensam länkrad utan separat utfällning. Den korta beskrivningen ersätts av fullständig text när den öppnas, så att samma text inte visas två gånger. All platsinformation finns kvar.
+Alla åtgärder ligger på en gemensam rad med symbol och kort etikett: Gå, Kartor, Buss (kollektivtrafik), Bil, Webb och Fråga (ChatGPT). Webb visas när platsen har en webbplats. Fullständiga tillgängliga namn förklarar varje val. Raden ryms även på 320 pixlars skärm med minst 44×44 pixlars touchytor. Samma kanoniska navigeringslänkar används. Den korta beskrivningen ersätts av fullständig text när den öppnas, så att samma text inte visas två gånger. All platsinformation finns kvar.
 
-Samma `stories.json` visas i platskortet och Sevärdheter; listans berättelser behåller sin egen utfällning. 13 berättelser ingår i första innehållsversionen. Källor finns i ett separat utfällbart avsnitt med operatörs-, museums- och officiella turismsidor, kontrollerade 10 oktober 2026. Berättelserna är korta redaktionella återberättelser; betraktelserna under Titta efter är tips, inte nya boknings- eller öppettidsuppgifter.
+Samma `stories.json` visas i platskortet och Sevärdheter; listans berättelser behåller sin egen utfällning. 13 berättelser ingår i första innehållsversionen. ”Läs vidare” visar länkarna som berättelsen bygger på: operatörs-, museums- och officiella turismsidor, kontrollerade 10 oktober 2026. Berättelserna är korta redaktionella återberättelser; betraktelserna under Titta efter är tips, inte nya boknings- eller öppettidsuppgifter.
 
 Schemaversion och innehållsversion är separata även för stories. Valideringen kräver källor, unika platsreferenser och befintliga placeId. Platser, positioner, rutter, bokningar och flyg är oförändrade från föregående publicering 1.3.3.
 
@@ -49,7 +49,7 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | routes.json | 1 | 3 |
 | guide.json | 2 | 6 |
 | stories.json | 1 | 1 |
-| index.html och place-sheet.css | – | 1.4.2 |
+| index.html och place-sheet.css | – | 1.4.3 |
 | valideringskod | – | 1.4.0 |
 | verification-report.v2.md | – | Rapportversion 2 |
 

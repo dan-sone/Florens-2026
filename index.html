@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="application-version" content="1.4.2">
+<meta name="application-version" content="1.4.3">
     
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
@@ -109,7 +109,7 @@ body[data-view]:not([data-view=karta]) #guide,body[data-view]:not([data-view=kar
 #placeFilters{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0}#placeFilters button{font-size:13px;border:1px solid #cbd5e1;border-radius:20px;background:white;padding:8px 12px;color:#475569}#placeFilters button[aria-pressed=true]{background:#075eab;color:white;border-color:#075eab}
 #placeCount{font-size:13px;color:#64748b;margin-bottom:12px}.optional-stops{display:flex;gap:7px;flex-wrap:wrap}.optional-stops button{margin:0}.list-empty{padding:24px;background:white;border-radius:14px;color:#64748b}
 </style>
-<link rel="stylesheet" href="place-sheet.css?v=1.4.2">
+<link rel="stylesheet" href="place-sheet.css?v=1.4.3">
 </head>
 <body data-view="karta"><nav id="viewTabs" role="tablist" aria-label="Guidevyer"><button role="tab" id="tab-karta" data-view="karta" aria-selected="true" aria-controls="map_1391adca8bfb43099964d4b8f21913ee">Karta</button><button role="tab" id="tab-schema" data-view="schema" aria-selected="false" aria-controls="schemaPanel" tabindex="-1">Schema</button><button role="tab" id="tab-sevardheter" data-view="sevardheter" aria-selected="false" aria-controls="placesPanel" tabindex="-1">Sevärdheter</button></nav>
 <main id="listView" hidden><section class="list-panel" id="schemaPanel" role="tabpanel" aria-labelledby="tab-schema" hidden></section><section class="list-panel" id="placesPanel" role="tabpanel" aria-labelledby="tab-sevardheter" hidden><h1>Sevärdheter</h1><p class="list-intro">Sevärdheter, hantverk, mat och shopping. Filtren följer kartan.</p><div id="placeFilters" aria-label="Kategorier"></div><p id="placeCount" aria-live="polite"></p><div id="placeList"></div></section></main>
@@ -337,6 +337,13 @@ function placeDescription(place){
 function placeResources(place){
  return (place.website?'<a class="list-action" target="_blank" rel="noopener" href="'+esc(place.website)+'">Webbplats ↗</a>':'')+'<button class="list-action" data-ask-place="'+esc(place.id)+'">Fråga ChatGPT</button>';
 }
+function sheetActions(place){
+ const icons={walking:'<circle cx="13" cy="4" r="2"/><path d="m7 21 4-7-2-4 3-4 3 5 4 1M11 14l5 7M9 10l-4 3"/>',maps:'<path d="m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2zM9 3v16M15 5v16"/>',transit:'<rect x="5" y="3" width="14" height="16" rx="3"/><path d="M5 11h14M8 19v2M16 19v2M8 6h8"/><circle cx="8" cy="15" r="1"/><circle cx="16" cy="15" r="1"/>',driving:'<path d="m5 10 2-6h10l2 6M4 17v3M20 17v3"/><rect x="3" y="10" width="18" height="7" rx="2"/><path d="M6 13h2M16 13h2"/>',website:'<circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/>',ask:'<path d="M21 11a9 9 0 0 1-9 9H3l2-5a9 9 0 1 1 16-4Z"/><path d="M9 9a3 3 0 0 1 6 0c0 2-3 2-3 4M12 16h.01"/>'};
+ const actions=place.position?[{key:'walking',label:'Gå',name:'Hitta hit till fots',href:PlacesValidator.appleDirectionsLink(place,'walking')},{key:'maps',label:'Kartor',name:'Öppna platsen i Apple Kartor',href:mapLink(place)},{key:'transit',label:'Buss',name:'Vägbeskrivning med kollektivtrafik',href:PlacesValidator.appleDirectionsLink(place,'transit')},{key:'driving',label:'Bil',name:'Vägbeskrivning med bil eller taxi',href:PlacesValidator.appleDirectionsLink(place,'driving')}]:[];
+ if(place.website)actions.push({key:'website',label:'Webb',name:'Platsens webbplats',href:place.website});
+ actions.push({key:'ask',label:'Fråga',name:'Fråga ChatGPT om platsen'});
+ return '<div class="sheet-actions" role="group" aria-label="Val för platsen">'+actions.map(a=>{const body='<svg viewBox="0 0 24 24" aria-hidden="true">'+icons[a.key]+'</svg><span>'+a.label+'</span>';const attrs=' class="sheet-action" data-action="'+a.key+'" aria-label="'+esc(a.name)+'" title="'+esc(a.name)+'"';return a.href?'<a'+attrs+' href="'+esc(a.href)+'" target="_blank" rel="noopener">'+body+'</a>':'<button type="button"'+attrs+' data-ask-place="'+esc(place.id)+'">'+body+'</button>';}).join('')+'</div>';
+}
 const placeSheet=document.getElementById('placeSheet'),sheetBody=document.getElementById('sheetBody');
 let sheetPlaceId=null,sheetTrigger=null,sheetLevel='compact',sheetDrag=null,suppressGrabClickUntil=0;
 const sheetGrab=document.getElementById('sheetGrab'),sheetHeader=placeSheet.querySelector('.sheet-header');
@@ -381,7 +388,7 @@ sheetGrab.addEventListener('click',event=>{if(event.detail===0||performance.now(
 const expandedStories=new Set();
 function storyMarkup(id,inline=false){
  const story=storiesById.get(id);if(!story||!story.paragraphs.some(p=>p.trim())||!story.lookFor.trim())return '';
- const copy='<div class="story-copy"><h3>'+esc(story.title)+'</h3>'+story.paragraphs.map(p=>'<p>'+esc(p)+'</p>').join('')+'<div class="story-look"><strong>Titta efter</strong><p>'+esc(story.lookFor)+'</p></div><details class="story-sources"><summary>Källor</summary>'+story.sources.map(s=>'<a href="'+esc(s.url)+'" target="_blank" rel="noopener">'+esc(s.label)+' ↗</a>').join('')+'</details></div>';
+ const copy='<div class="story-copy"><h3>'+esc(story.title)+'</h3>'+story.paragraphs.map(p=>'<p>'+esc(p)+'</p>').join('')+'<div class="story-look"><strong>Titta efter</strong><p>'+esc(story.lookFor)+'</p></div><details class="story-sources"><summary>Läs vidare</summary>'+story.sources.map(s=>'<a href="'+esc(s.url)+'" target="_blank" rel="noopener">'+esc(s.label)+' ↗</a>').join('')+'</details></div>';
  return inline?copy:'<details class="place-story" data-story="'+esc(id)+'"'+(expandedStories.has(id)?' open':'')+'><summary>Historien bakom platsen</summary>'+copy+'</details>';
 }
 function keepMarkerVisible(){
@@ -411,10 +418,9 @@ function openPlaceSheet(id){
  const fullText=description.split('\n').filter(line=>!line.startsWith('Markören')).join(' ').replace(/\s+/g,' ').trim();
  const hasMoreInfo=fullText!==lead.replace(/\s+/g,' ').trim();
  const uncertainty=place.verification.status==='unresolved'?'<p class="list-badge uncertain">Platsuppgifter behöver bekräftas</p>':'';
- const primary=place.position?'<div class="sheet-primary"><a href="'+esc(PlacesValidator.appleDirectionsLink(place,'walking'))+'" target="_blank" rel="noopener">Hitta hit</a><a class="secondary" href="'+esc(mapLink(place))+'" target="_blank" rel="noopener">Apple Kartor ↗</a></div>':'';
  const story=storyMarkup(id,true),hasExtra=hasMoreInfo||Boolean(story);
  const more=hasExtra?'<details class="sheet-more" data-has-more-info="true" data-full-description="'+hasMoreInfo+'"'+(story?' data-story="'+esc(id)+'"':'')+'><summary>Mer om platsen</summary>'+(hasMoreInfo?placeDescription(place):'')+story+'</details>':'';
- sheetBody.innerHTML=(place.address?'<p class="sheet-address">'+esc(place.address)+'</p>':'')+'<p class="sheet-lead">'+esc(lead)+'</p>'+uncertainty+primary+more+'<div class="list-actions sheet-links">'+(place.position?[['Kollektivtrafik','transit'],['Bil/taxi','driving']].map(([label,mode])=>'<a class="list-action" href="'+esc(PlacesValidator.appleDirectionsLink(place,mode))+'" target="_blank" rel="noopener">'+label+'</a>').join(''):'')+placeResources(place)+'</div>';
+ sheetBody.innerHTML=(place.address?'<p class="sheet-address">'+esc(place.address)+'</p>':'')+'<p class="sheet-lead">'+esc(lead)+'</p>'+uncertainty+sheetActions(place)+more;
  sheetGrab.hidden=!hasExtra;sheetHeader.classList.toggle('draggable',hasExtra);
  sheetBody.scrollTop=0;placeSheet.hidden=false;document.body.classList.add('place-open');marker?.getElement()?.classList.add('is-selected');
  setSheetLevel('compact');
