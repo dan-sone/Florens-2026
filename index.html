@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="application-version" content="1.1.0">
+<meta name="application-version" content="1.2.0">
     
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
@@ -91,8 +91,28 @@
 #guide{width:auto;max-width:calc(100vw - 100px);min-width:125px;padding:4px 6px}#routeSelect{appearance:auto;width:100%;max-width:160px;min-height:34px;padding:5px 8px;border:0;border-radius:8px;background:rgba(255,255,255,.72);color:#1f2937;font-size:.9rem;font-weight:600}#daycard{display:none}#guide:focus-within #daycard{display:block;max-width:280px}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}@media(max-width:440px){#guide{width:auto;left:50%;max-width:calc(100vw - 110px)}.leaflet-top.leaflet-right{top:52px}}
 .leaflet-control-attribution{font-size:9px!important;background:rgba(255,255,255,.55)!important;padding:1px 3px!important} .leaflet-control-attribution a{color:#555!important}
 </style><!-- Positionskontroll: namn och adresser genomgångna. Vissa markörer är uppskattade på gatunivå; använd knappen Gå för navigering till verifierad adress i Apple Kartor. -->
+<style>
+#viewTabs{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);left:50%;transform:translateX(-50%);display:flex;width:min(370px,calc(100% - 20px));padding:4px;gap:3px;background:#fff;border:1px solid #e0e5eb;border-radius:14px;box-shadow:0 3px 16px #152b4520;z-index:2000;font-family:system-ui,-apple-system,sans-serif}
+#viewTabs button{flex:1;border:0;border-radius:10px;padding:10px 5px;background:transparent;color:#475569;font-size:14px;font-weight:600;cursor:pointer}
+#viewTabs button[aria-selected=true]{background:#075eab;color:white}
+#viewTabs button:focus-visible,.list-action:focus-visible,#placeFilters button:focus-visible{outline:3px solid #8ac6ff;outline-offset:2px}
+.leaflet-top{top:calc(env(safe-area-inset-top,0px) + 68px)!important}
+#listView{position:fixed;inset:0;background:#f4f6f8;overflow-y:auto;z-index:1200;padding:calc(env(safe-area-inset-top,0px) + 78px) 16px calc(env(safe-area-inset-bottom,0px) + 24px);font-family:system-ui,-apple-system,sans-serif;color:#182a3d}
+#listView[hidden],.list-panel[hidden]{display:none!important}
+body[data-view]:not([data-view=karta]) #guide,body[data-view]:not([data-view=karta]) .folium-map{visibility:hidden;pointer-events:none}
+.list-panel{max-width:780px;margin:auto}.list-panel h1{font-size:25px;font-weight:700;margin:0 0 5px}.list-intro{color:#64748b;font-size:14px;margin-bottom:20px}
+.day-section{margin:0 0 26px}.day-section h2{font-size:19px;font-weight:700;margin:0 0 10px}.day-section h3{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#64748b;margin:16px 0 8px}
+.list-card{background:#fff;border:1px solid #e0e5eb;border-radius:14px;padding:16px;margin-bottom:10px;box-shadow:0 2px 4px #142d4510}.list-card h2,.list-card h4{font-size:17px;font-weight:650;margin:0 0 7px}.list-card p{font-size:14px;line-height:1.55;margin:5px 0}.list-card .address{font-size:13px;color:#64748b}
+.list-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}.list-action{display:inline-block;font:inherit;font-size:13px;font-weight:600;text-decoration:none;border:0;border-radius:8px;padding:8px 10px;color:#075eab;background:#eaf3fb;cursor:pointer}.list-action:hover{background:#d6eafb;color:#075eab;text-decoration:none}
+.list-program button{border:0;padding:0;background:none;color:#075eab;text-decoration:underline;font:inherit;text-align:left}.list-program p{margin:0 0 10px}.list-program p:last-child{margin-bottom:0}
+.list-badge{display:inline-block;color:#276044;background:#e7f3eb;border-radius:6px;padding:3px 7px;font-size:11px;font-weight:600;margin:0 0 8px}.list-badge.optional{color:#655332;background:#f6efdf}.list-badge.uncertain{color:#8a4d16;background:#fff2dd}
+#placeFilters{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0}#placeFilters button{font-size:13px;border:1px solid #cbd5e1;border-radius:20px;background:white;padding:8px 12px;color:#475569}#placeFilters button[aria-pressed=true]{background:#075eab;color:white;border-color:#075eab}
+#placeCount{font-size:13px;color:#64748b;margin-bottom:12px}.optional-stops{display:flex;gap:7px;flex-wrap:wrap}.optional-stops button{margin:0}.list-empty{padding:24px;background:white;border-radius:14px;color:#64748b}
+</style>
 </head>
-<body><div id="guide"><label for="routeSelect" class="sr-only">Välj dagsrutt</label><select id="routeSelect" aria-label="Välj dagsrutt"></select><div id="daycard"><p>Välj dag för att visa dagsrutt och program.</p></div><div id="routeLegs"></div></div>
+<body data-view="karta"><nav id="viewTabs" role="tablist" aria-label="Guidevyer"><button role="tab" id="tab-karta" data-view="karta" aria-selected="true" aria-controls="map_1391adca8bfb43099964d4b8f21913ee">Karta</button><button role="tab" id="tab-schema" data-view="schema" aria-selected="false" aria-controls="schemaPanel" tabindex="-1">Schema</button><button role="tab" id="tab-sevardheter" data-view="sevardheter" aria-selected="false" aria-controls="placesPanel" tabindex="-1">Sevärdheter</button></nav>
+<main id="listView" hidden><section class="list-panel" id="schemaPanel" role="tabpanel" aria-labelledby="tab-schema" hidden></section><section class="list-panel" id="placesPanel" role="tabpanel" aria-labelledby="tab-sevardheter" hidden><h1>Sevärdheter</h1><p class="list-intro">Sevärdheter, hantverk, mat och shopping. Filtren följer kartan.</p><div id="placeFilters" aria-label="Kategorier"></div><p id="placeCount" aria-live="polite"></p><div id="placeList"></div></section></main>
+<div id="guide"><label for="routeSelect" class="sr-only">Välj dagsrutt</label><select id="routeSelect" aria-label="Välj dagsrutt"></select><div id="daycard"><p>Välj dag för att visa dagsrutt och program.</p></div><div id="routeLegs"></div></div>
     
     
     
@@ -302,7 +322,66 @@ const date=value('year')+'-'+value('month')+'-'+value('day');
 const selected=guide.days.find(day=>day.date===date)?.id || guide.defaultSelection.id;
 chooseDay(selected);
 
- return {map:m,content,guide,routeContent,placesById,markersById,dayRoutes,chooseDay};
+
+// Version 1.2.0: the three views share the same validated trip documents.
+let currentView='karta';
+const listView=document.getElementById('listView');
+function setView(view){
+ if(!['karta','schema','sevardheter'].includes(view))view='karta';
+ currentView=view;document.body.dataset.view=view;listView.hidden=view==='karta';
+ document.getElementById('schemaPanel').hidden=view!=='schema';document.getElementById('placesPanel').hidden=view!=='sevardheter';
+ document.querySelectorAll('#viewTabs [data-view]').forEach(button=>{const active=button.dataset.view===view;button.setAttribute('aria-selected',String(active));button.tabIndex=active?0:-1});
+ if(view==='sevardheter')renderPlaceList();if(view==='karta')requestAnimationFrame(()=>m.invalidateSize());
+ const url=new URL(location.href);url.hash=view==='karta'?'':view;history.replaceState(null,'',url);
+}
+function showPlaceOnMap(id){
+ const marker=markersById.get(id);if(!marker){const place=requirePlace(id);if(place.position)window.open(mapLink(place),'_blank','noopener');else if(place.website)window.open(place.website,'_blank','noopener');return;}
+ const group=guide.persistentPlaceIds.includes(id)?m:bookedIds.includes(id)?bookedGroup:groups[requirePlace(id).category];
+ if(group!==m&&!m.hasLayer(group))group.addTo(m);
+ setView('karta');requestAnimationFrame(()=>{m.setView(marker.getLatLng(),16,{animate:false});marker.openPopup()});
+}
+function listActions(place){
+ if(!place.position)return '<p class="address">Kartposition saknas ännu.</p>';
+ return '<div class="list-actions"><button class="list-action" data-show-place="'+esc(place.id)+'">Visa på kartan</button>'+[['Gå','walking'],['Kollektivtrafik','transit'],['Bil/taxi','driving']].map(([label,mode])=>'<a class="list-action" target="_blank" rel="noopener" href="'+esc(PlacesValidator.appleDirectionsLink(place,mode))+'">'+label+'</a>').join('')+'<a class="list-action" target="_blank" rel="noopener" href="'+esc(mapLink(place))+'">Apple Kartor ↗</a></div>';
+}
+const dateFormatter=new Intl.DateTimeFormat('sv-SE',{timeZone:'UTC',weekday:'long',day:'numeric',month:'long'});
+const bookingDateFormatter=new Intl.DateTimeFormat('en-CA',{timeZone:guide.timeZone,year:'numeric',month:'2-digit',day:'2-digit'});
+const timeFormatter=new Intl.DateTimeFormat('sv-SE',{timeZone:guide.timeZone,hour:'2-digit',minute:'2-digit'});
+const localBookingDate=b=>{const parts=bookingDateFormatter.formatToParts(new Date(b.startsAt));const get=type=>parts.find(p=>p.type===type).value;return get('year')+'-'+get('month')+'-'+get('day')};
+function renderScheduleList(){
+ const sections=guide.days.map(day=>{
+  const bookings=guide.bookings.filter(b=>localBookingDate(b)===day.date).sort((a,b)=>new Date(a.startsAt)-new Date(b.startsAt));
+  const bookedPlaces=new Set(bookings.map(b=>b.placeId));
+  const stops=[...new Set(day.routeIds.flatMap(id=>routesById.get(id).segments.flatMap(s=>s.placeIds)))].filter(id=>!bookedPlaces.has(id)&&!guide.persistentPlaceIds.includes(id));
+  const title=dateFormatter.format(new Date(day.date+'T12:00:00Z'));
+  return '<section class="day-section" data-day="'+esc(day.id)+'"><h2>'+esc(title[0].toUpperCase()+title.slice(1))+'</h2>'+(bookings.length?'<h3>Bokningar</h3>'+bookings.map(b=>{const place=requirePlace(b.placeId);return '<article class="list-card" data-booking="'+esc(b.id)+'"><span class="list-badge">Bokat</span><h4>'+esc(timeFormatter.format(new Date(b.startsAt)))+' · '+esc(place.name)+'</h4>'+listActions(place)+'</article>'}).join(''):'')+'<h3>Planerat program</h3><article class="list-card list-program">'+renderProgram(day.program)+'</article>'+(stops.length?'<h3>Valbara stopp längs rutten</h3><div class="optional-stops">'+stops.map(id=>'<button class="list-action" data-show-place="'+esc(id)+'">'+esc(requirePlace(id).name)+'</button>').join('')+'</div>':'')+'</section>';
+ }).join('');
+ document.getElementById('schemaPanel').innerHTML='<h1>Schema</h1><p class="list-intro">Bokningar, dagens plan och valbara stopp. '+esc(guide.destination.name)+'.</p>'+sections;
+}
+const filterBox=document.getElementById('placeFilters');
+filterBox.innerHTML=guide.categories.map(c=>'<button aria-pressed="true" data-category="'+esc(c.id)+'">'+esc(c.label)+'</button>').join('');
+function placeVisible(place){return guide.persistentPlaceIds.includes(place.id)||m.hasLayer(groups[bookedIds.includes(place.id)?'booked':place.category])}
+function renderPlaceList(){
+ filterBox.querySelectorAll('[data-category]').forEach(button=>button.setAttribute('aria-pressed',String(m.hasLayer(groups[button.dataset.category]))));
+ const visible=content.places.filter(placeVisible).sort((a,b)=>a.name.localeCompare(b.name,'sv'));
+ document.getElementById('placeCount').textContent=visible.length+' av '+content.places.length+' platser';
+ document.getElementById('placeList').innerHTML=visible.length?visible.map(place=>{
+  const presentation=markerPresentation[place.id]||{};
+  const description=presentation.descriptionSeparator?place.description.split(presentation.descriptionSeparator)[0]:place.description;
+  const category=guide.categories.find(c=>c.id===place.category)?.label||'Boende';
+  const badge=bookedIds.includes(place.id)?'<span class="list-badge">Bokat</span>':'<span class="list-badge optional">'+esc(category)+'</span>';
+  return '<article class="list-card" data-place-card="'+esc(place.id)+'">'+badge+'<h2>'+esc(place.name)+'</h2><p>'+esc(description.split('\n').filter(line=>!line.startsWith('Markören')).join('\n')).replace(/\n/g,'<br>')+'</p>'+(place.address?'<p class="address">'+esc(place.address)+'</p>':'')+(place.verification.status==='unresolved'?'<span class="list-badge uncertain">Uppgifter behöver bekräftas</span>':'')+listActions(place)+'</article>';
+ }).join(''):'<p class="list-empty">Inga platser i de valda kategorierna.</p>';
+}
+filterBox.addEventListener('click',event=>{const button=event.target.closest('[data-category]');if(!button)return;const group=groups[button.dataset.category];if(m.hasLayer(group))m.removeLayer(group);else group.addTo(m);renderPlaceList()});
+m.on('overlayadd overlayremove',()=>{if(currentView==='sevardheter')renderPlaceList()});
+listView.addEventListener('click',event=>{const button=event.target.closest('[data-show-place],[data-place]');if(button)showPlaceOnMap(button.dataset.showPlace||button.dataset.place)});
+document.getElementById('viewTabs').addEventListener('click',event=>{const button=event.target.closest('[data-view]');if(button)setView(button.dataset.view)});
+document.getElementById('viewTabs').addEventListener('keydown',event=>{const tabs=[...document.querySelectorAll('#viewTabs [data-view]')];const index=tabs.indexOf(document.activeElement);if(index<0||!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;event.preventDefault();const next=event.key==='Home'?0:event.key==='End'?tabs.length-1:(index+(event.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;setView(tabs[next].dataset.view);tabs[next].focus()});
+renderScheduleList();setView(location.hash.slice(1));
+window.addEventListener('hashchange',()=>setView(location.hash.slice(1)));
+
+ return {map:m,content,guide,routeContent,placesById,markersById,dayRoutes,chooseDay,setView,showPlaceOnMap};
 })();
 guideReady.catch(error=>{
  console.error(error);
