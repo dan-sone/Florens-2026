@@ -1,8 +1,8 @@
 {
   "$schema": "./guide.schema.v5.json",
   "schemaVersion": 5,
-  "contentVersion": 14,
-  "updatedAt": "2026-10-11T10:55:25Z",
+  "contentVersion": 15,
+  "updatedAt": "2026-10-11T22:03:17.642Z",
   "id": "florens-2026",
   "title": "Florens 2026",
   "destination": {
@@ -1828,6 +1828,7 @@
         "hotel-la-scaletta",
         "palazzo-pitti",
         "giardino-di-boboli",
+        "forte-di-belvedere",
         "basilica-di-santo-spirito",
         "piazza-santo-spirito",
         "piazza-della-passera",
