@@ -1,3 +1,7 @@
+## Kompakt lagermeny och Välj dag – UI 1.15.1
+
+Lagermenyn och övriga kartkort delar samma glasfärg, kant, skugga och blur. Lagerkontrollens yttre behållare är transparent och saknar blur, så menyn inte får en extra glasnivå. Menyn använder innehållsbredd med skärmgräns; kryssrutorna ligger på högersidan, närmast knappen, med 44 px rader. Läget Ingen rutt visar Välj dag och förklarar hur dagvalet visar plan och rutt, och hur Ingen rutt döljer ruttlinjerna. Det kortet får bara den höjd förklaringen behöver. Guide har schema 5, innehåll 14; övrigt innehåll, platser, positioner och rutter är oförändrade.
+
 ## Lagertext och kartkortens gester – UI 1.15.0
 
 Leaflet 1.9.3 har en mer specifik öppet-läge-regel som sätter lagermenyn till position:relative. Den skrev över vår tidigare placering. Menyn har nu en uttrycklig absolut placering även i öppet läge. Leaflets verkliga, nästlade etiketter läggs som flexrader med separat checkbox, ikon och radbrytande text. Testet återger bibliotekets konfliktregel och etikettstruktur samt kontrollerar normala och dubblerade textstorlekar.
@@ -153,11 +157,12 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | --- | ---: | ---: |
 | places.json | 5 | 10 |
 | routes.json | 1 | 6 |
-| guide.json | 5 | 13 |
+| guide.json | 5 | 14 |
 | stories.json | 1 | 4 |
 | history.json | 2 | 2 |
 | taxonomy.json | 1 | 2 |
-| index.html, ui-theme.css och place-sheet.css | – | 1.15.0 |
+| index.html och ui-theme.css | – | 1.15.1 |
+| place-sheet.css | – | 1.15.0 |
 | place-presentation.js | – | 1.13.0 |
 
 | valideringskod | – | 1.7.0 |

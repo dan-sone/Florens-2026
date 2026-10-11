@@ -199,3 +199,11 @@ body.place-open .leaflet-control-scale{visibility:hidden}
 .leaflet-control-layers-list label>span>input{flex:0 0 19px;margin:0}
 .leaflet-control-layers-list label>span>span{flex:1;min-width:0}
 .leaflet-control-layers-list .category-legend{display:flex;max-width:100%;min-width:0;white-space:normal;overflow-wrap:anywhere}
+
+/* A single glass surface per popup: avoid nesting the layer menu inside a
+   blurred control, which changes its apparent opacity on Safari. */
+.leaflet-top.leaflet-right .leaflet-control-layers{background:transparent!important;border:0!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+.leaflet-control-layers-toggle{box-sizing:border-box;background:var(--glass)!important;border:1px solid var(--glass-edge)!important;box-shadow:var(--shadow),inset 0 1px 0 var(--glass-edge)!important;-webkit-backdrop-filter:blur(28px) saturate(145%);backdrop-filter:blur(28px) saturate(145%)}
+.leaflet-control-layers .leaflet-control-layers-list{right:50px;width:max-content;max-width:min(320px,calc(100vw - 78px - env(safe-area-inset-left,0px) - env(safe-area-inset-right,0px)));padding:8px 10px;background:var(--glass)!important;border:1px solid var(--glass-edge)!important;box-shadow:var(--shadow),inset 0 1px 0 var(--glass-edge)!important;-webkit-backdrop-filter:blur(28px) saturate(145%);backdrop-filter:blur(28px) saturate(145%)}
+.leaflet-control-layers-list label>span{flex-direction:row-reverse;gap:10px}
+@media(prefers-reduced-transparency:reduce),(prefers-contrast:more){.leaflet-control-layers-toggle,.leaflet-control-layers .leaflet-control-layers-list{-webkit-backdrop-filter:none;backdrop-filter:none}}

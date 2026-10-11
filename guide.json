@@ -1,8 +1,8 @@
 {
   "$schema": "./guide.schema.v5.json",
   "schemaVersion": 5,
-  "contentVersion": 13,
-  "updatedAt": "2026-10-11T09:56:43Z",
+  "contentVersion": 14,
+  "updatedAt": "2026-10-11T10:55:25Z",
   "id": "florens-2026",
   "title": "Florens 2026",
   "destination": {
@@ -25,12 +25,12 @@
         "nodes": [
           {
             "type": "text",
-            "text": "Ingen dagsrutt visas. Alla platser och kategorier finns kvar på kartan."
+            "text": "Välj en dag för att se dagens plan och rutt på kartan. Välj ”Ingen rutt” för att utforska kartan utan ruttlinjer."
           }
         ]
       }
     ],
-    "summary": "Utforska kartan"
+    "summary": "Välj dag"
   },
   "days": [
     {
