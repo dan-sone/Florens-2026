@@ -5,6 +5,8 @@ for(const name of ['places','routes','guide','stories','history']){documents[nam
 const validate=d=>PlacesValidator.validateTrip(schemas,d);
 validate(documents);
 const cases=[
+ d=>d.places.places[0].focus='',
+ d=>d.places.places[0].focus='x'.repeat(161),
  d=>d.guide.discoveryAreas.push(d.guide.discoveryAreas[0]),
  d=>d.guide.discoveryAreas[0].placeIds[0]='unknown-place',
  d=>d.guide.discoveryAreas[1].placeIds.push(d.guide.discoveryAreas[0].placeIds[0]),
@@ -101,3 +103,5 @@ const legacyHistory=structuredClone(documents);legacyHistory.history.schemaVersi
 for(const chapter of documents.history.chapters)for(const image of chapter.images||[])assert(fs.statSync(image.src).size>0,'Missing history image: '+image.src);
 
 const previousGuide=structuredClone(documents);previousGuide.guide.schemaVersion=3;previousGuide.guide.$schema='./guide.schema.v3.json';delete previousGuide.guide.discoveryAreas;PlacesValidator.validateTrip({...schemas,guide:JSON.parse(fs.readFileSync('guide.schema.v3.json'))},previousGuide);console.log('PASS: discovery areas cover every place exactly once and guide schema v3 compatibility');
+
+const previousPlaces=structuredClone(documents);previousPlaces.places.schemaVersion=2;previousPlaces.places.$schema='./places.schema.v2.json';previousPlaces.places.places.forEach(p=>delete p.focus);PlacesValidator.validateTrip({...schemas,places:JSON.parse(fs.readFileSync('places.schema.v2.json'))},previousPlaces);console.log('PASS: places schema v2 compatibility');

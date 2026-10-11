@@ -1,3 +1,9 @@
+## Kategorier och läsvy – UI 1.10.0
+
+Sevärdheterna grupperas först efter kartans kategorier och därefter i den redaktionella områdesordningen. Hotellet finns kvar i karta och schema men visas inte bland sevärdheterna. Korten använder samma ikonkonfiguration som respektive kartnål; filter och kategorirubriker kombinerar symbol och kategorifärg.
+
+Stängda kort visar namn och en kort `focus`-text, utan adress eller bokningsdetaljer. `places.schema.v3.json` har schema 3 och `places.json` innehåll 8. Alla koordinater, adresser, företagslänkar och tidigare texter är oförändrade. Översikt behåller individuellt öppnade kort; Läsvy visar alla synliga kort öppna även efter filtrering och kartbesök. Visningsläget sparas per resa. Guide och områdesordning är oförändrade.
+
 ## Upptäcktsvänliga sevärdheter – UI 1.9.0
 
 Platserna visas i åtta redaktionellt ordnade områden, med kvarteren kring hotellet först. Kompakta platskort öppnas på samma sätt som Historia och Schema. Berättelser och praktisk information ligger tillsammans i kortet; öppningsläget och läspositionen bevaras vid återkomst från kartan. Filter och kategorimarkeringar följer kartans kategorifärger, med rött för bokat och ofylld färgpunkt för avstängda filter. Dag/natt använder samma färgvariabler som kartans lagerlista.
@@ -72,7 +78,7 @@ En statisk reseguide med återanvändbart kartgränssnitt. `index.html` innehål
 
 | Innehåll | Schema | Ansvar |
 | --- | --- | --- |
-| `places.json` | `places.schema.v2.json` | Platser, positioner, länkar och verifieringsstatus |
+| `places.json` | `places.schema.v3.json` | Platser, positioner, länkar och verifieringsstatus |
 | `routes.json` | `routes.schema.v1.json` | Delsträckor, färdsätt och ordnade plats-id |
 | `guide.json` | `guide.schema.v4.json` | Titel, destination, tidszon, kartutsnitt, resdagar, program, bokningar, flyg och presentation |
 | `stories.json` | `stories.schema.v1.json` | Korta platsberättelser, konkreta saker att titta efter och källor |
@@ -100,12 +106,12 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 
 | Fil | Schemaversion | Innehåll/programversion |
 | --- | ---: | ---: |
-| places.json | 2 | 7 |
+| places.json | 3 | 8 |
 | routes.json | 1 | 6 |
 | guide.json | 4 | 11 |
 | stories.json | 1 | 4 |
 | history.json | 2 | 2 |
-| index.html och ui-theme.css | – | 1.9.0 |
+| index.html och ui-theme.css | – | 1.10.0 |
 | place-sheet.css | – | 1.4.4 |
 | valideringskod | – | 1.7.0 |
 | verification-report.v2.md | – | Rapportversion 2 |

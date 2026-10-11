@@ -74,13 +74,13 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  await page.locator('#schemaPanel h1').scrollIntoViewIfNeeded();
  assert.equal(await page.locator('#schemaPanel').evaluate(e=>e.scrollWidth>e.clientWidth),false);
  await page.screenshot({path:'/tmp/schema-list-check.png'});
- await page.click('#tab-sevardheter');assert.equal(await page.locator('[data-place-card]').count(),JSON.parse(fs.readFileSync('places.json')).places.length);
+ await page.click('#tab-sevardheter');assert.equal(await page.locator('[data-place-card]').count(),JSON.parse(fs.readFileSync('places.json')).places.filter(p=>p.category!=='hotel').length);
  assert.equal(await page.locator('[data-place-card="beppa-fioraia"] .list-actions a').nth(0).getAttribute('href'),PlacesLink());
  function PlacesLink(){const u=new URL('https://maps.apple.com/directions');u.searchParams.set('destination','43.76279,11.26097');u.searchParams.set('mode','walking');u.searchParams.set('destination-place-id','IE09241B81B7B5B19');return u.href;}
  await page.locator('#placeFilters [data-category="craft"]').click();assert.equal(await page.locator('[data-place-card="scuola-del-cuoio"]').count(),0);
  await page.click('#tab-karta');assert.equal(await page.locator('.leaflet-control-layers-overlays input').nth(2).isChecked(),false);
  await page.locator('.leaflet-control-layers').hover();await page.locator('.leaflet-control-layers-overlays input').nth(2).check();
- await page.click('#tab-sevardheter');assert.equal(await page.locator('[data-place-card]').count(),JSON.parse(fs.readFileSync('places.json')).places.length);
+ await page.click('#tab-sevardheter');assert.equal(await page.locator('[data-place-card]').count(),JSON.parse(fs.readFileSync('places.json')).places.filter(p=>p.category!=='hotel').length);
  await page.screenshot({path:'/tmp/places-list-check.png'});
  assert.equal(await page.locator('#placesPanel').evaluate(e=>e.scrollWidth>e.clientWidth),false);
  // Each list navigation target must equal the map's canonical URL generator.
