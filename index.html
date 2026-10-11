@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="application-version" content="1.18.3">
+<meta name="application-version" content="1.18.4">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
@@ -104,7 +104,7 @@ body[data-view]:not([data-view=karta]) #guide,body[data-view]:not([data-view=kar
 #placeCount{font-size:13px;color:#64748b;margin-bottom:12px}.optional-stops{display:flex;gap:7px;flex-wrap:wrap}.optional-stops button{margin:0}.list-empty{padding:24px;background:white;border-radius:14px;color:#64748b}
 </style>
 <link rel="stylesheet" href="place-sheet.css?v=1.17.1">
-<link rel="stylesheet" href="ui-theme.css?v=1.18.3">
+<link rel="stylesheet" href="ui-theme.css?v=1.18.4">
 </head>
 <body data-view="karta"><nav id="viewTabs" role="tablist" aria-label="Guidevyer"><button role="tab" id="tab-karta" data-view="karta" aria-selected="true" aria-controls="map_1391adca8bfb43099964d4b8f21913ee"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2zM9 3v16M15 5v16"/></svg>Karta</button><button role="tab" id="tab-schema" data-view="schema" aria-selected="false" aria-controls="schemaPanel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4M17 3v4M3 10h18M7 14h3M14 14h3M7 17h3"/></svg>Dagar</button><button role="tab" id="tab-sevardheter" data-view="sevardheter" aria-selected="false" aria-controls="placesPanel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Sevärdheter</button><button role="tab" id="tab-historia" data-view="historia" aria-selected="false" aria-controls="historyPanel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5c-3-2-6-2-9-1v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-3-1-6-1-9 1Zm0 0v15"/></svg>Historia</button></nav>
 <main id="listView" hidden><section class="list-panel" id="schemaPanel" role="tabpanel" aria-labelledby="tab-schema" hidden></section><section class="list-panel" id="placesPanel" role="tabpanel" aria-labelledby="tab-sevardheter" hidden><h1>Sevärdheter</h1><p class="list-intro">Välj kategori och upptäck platserna. Öppna ett kort eller välj läsvyn för att läsa allt.</p><div id="placeFilters" aria-label="Kategorier"></div><div class="places-view-mode" role="group" aria-label="Visning av platser"><button type="button" data-places-mode="overview" aria-pressed="true">Kategori</button><button type="button" data-places-mode="area" aria-pressed="false">Område</button><button type="button" data-places-mode="reading" aria-pressed="false">Läsvy</button></div><p id="placeCount" aria-live="polite"></p><div id="placeList"></div></section><section class="list-panel" id="historyPanel" role="tabpanel" aria-labelledby="tab-historia" hidden></section></main>
@@ -357,7 +357,7 @@ function refreshMapLayout(animate=false){
  if(mapLayoutFrame)cancelAnimationFrame(mapLayoutFrame);
  const start=performance.now();document.body.classList.toggle('view-transitioning',animate);
  const frame=()=>{m.invalidateSize({pan:true,animate:false,debounceMoveend:true});if(!placeSheet.hidden)setSheetLevel(sheetLevel);
-  if(animate&&performance.now()-start<1450)mapLayoutFrame=requestAnimationFrame(frame);
+  if(animate&&performance.now()-start<450)mapLayoutFrame=requestAnimationFrame(frame);
   else{mapLayoutFrame=0;document.body.classList.remove('view-transitioning');}
  };mapLayoutFrame=requestAnimationFrame(frame);
 }
@@ -368,7 +368,7 @@ function updateReadingPanel(show,animate){
  listView.inert=!show;listView.setAttribute('aria-hidden',String(!show));
  if(!animate){listView.hidden=!show;return;}
  listView.hidden=false;
- const animation=listView.animate([start,show?{opacity:1,transform:'translateX(0)'}:{opacity:0,transform:'translateX(-100%)'}],{duration:1400,easing:'cubic-bezier(.22,.61,.36,1)',fill:'both'});
+ const animation=listView.animate([start,show?{opacity:1,transform:'translateX(0)'}:{opacity:0,transform:'translateX(-100%)'}],{duration:400,easing:'cubic-bezier(.22,.61,.36,1)',fill:'both'});
  panelAnimation=animation;
  animation.finished.then(()=>{if(panelAnimation!==animation)return;listView.hidden=!show;animation.cancel();panelAnimation=null;}).catch(()=>{});
 }

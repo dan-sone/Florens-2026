@@ -1,3 +1,7 @@
+## Snabbare sidopanel – UI 1.18.4
+
+Sidopanelens öppning/stängning och kartans ändrade läsyta tar nu 0,4 sekunder, tidigare 1,4 sekunder. Visa behåller sin lugna kameraförflyttning på 1,4 sekunder. Övrig funktion och innehåll är oförändrade.
+
 ## Mjuka växlingar mellan karta och läsvyer – UI 1.18.3
 
 När läspanelen öppnas eller stängs glider kartans vänsterkant och bredd till det nya läget över 1,4 sekunder, med samma lugna takt som Visa. Panelen glider och tonas in/ut samtidigt. Leaflet räknar om den synliga ytan under rörelsen för att kartan ska följa layouten. Navigationen ligger kvar på samma plats. Byten mellan läsvyer behåller en pågående öppning, och snabba byten tillbaka vänder rörelsen från dess aktuella läge. En stängande panel är inert och gömd för hjälpmedel tills animationen är klar. Minskad rörelse och första laddningen använder omedelbar layout. Mindre skärmar behåller sina helskärmsvyer.
@@ -225,8 +229,8 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | stories.json | 1 | 4 |
 | history.json | 2 | 2 |
 | taxonomy.json | 1 | 2 |
-| index.html | – | 1.18.3 |
-| ui-theme.css | – | 1.18.3 |
+| index.html | – | 1.18.4 |
+| ui-theme.css | – | 1.18.4 |
 | place-sheet.css | – | 1.17.1 |
 | place-presentation.js | – | 1.16.1 |
 

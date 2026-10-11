@@ -270,8 +270,8 @@ body.place-open .leaflet-top.leaflet-right{visibility:hidden;pointer-events:none
 }
 @media(max-height:360px){.leaflet-top.leaflet-right{gap:4px}.leaflet-control-layers .leaflet-control-layers-list{max-height:calc(var(--app-height,100dvh) - var(--map-controls-bottom) - 156px)}}
 
-/* Read/map transitions follow the same unhurried pace as focusing a place. */
+/* Read/map transitions are quick; focusing a place keeps its slower camera motion. */
 @media(min-width:900px) and (min-height:500px) and (prefers-reduced-motion:no-preference){
- body.view-ready .folium-map{transition:left 1.4s cubic-bezier(.22,.61,.36,1),width 1.4s cubic-bezier(.22,.61,.36,1)}
- body.view-ready .leaflet-control-scale{transition:left 1.4s cubic-bezier(.22,.61,.36,1)}
+ body.view-ready .folium-map{transition:left 0.4s cubic-bezier(.22,.61,.36,1),width 0.4s cubic-bezier(.22,.61,.36,1)}
+ body.view-ready .leaflet-control-scale{transition:left 0.4s cubic-bezier(.22,.61,.36,1)}
 }
