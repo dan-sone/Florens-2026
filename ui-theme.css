@@ -88,3 +88,9 @@ html,body{background:var(--page);color:var(--text);font-family:-apple-system,Bli
 .history-place-hint{display:block;font-size:12px;line-height:1.4;color:var(--muted);font-weight:400;margin-top:2px}
 .history-link-arrow{flex:0 0 auto;color:var(--muted)}
 @media(prefers-reduced-motion:reduce){.history-chevron{transition:none}}
+
+.history-image{margin:20px 0 24px;min-width:0}
+.history-image img{display:block;width:100%;height:auto;max-height:360px;object-fit:contain;border-radius:14px;background:var(--control)}
+.history-image figcaption{margin-top:10px;font-size:13px;line-height:1.55;color:var(--muted);overflow-wrap:anywhere}
+.history-image-credit{display:block;margin-top:6px;font-size:12px;line-height:1.55}
+.history-image-credit a{color:inherit;text-decoration:underline;text-underline-offset:3px}

@@ -5,12 +5,19 @@ for(const name of ['places','routes','guide','stories','history']){documents[nam
 const validate=d=>PlacesValidator.validateTrip(schemas,d);
 validate(documents);
 const cases=[
+ d=>delete d.history.chapters[1].images[0].credit,
+ d=>delete d.history.chapters[1].images[0].licenseUrl,
+ d=>d.history.chapters[1].images[0].src='../unsafe.webp',
+ d=>d.history.chapters[1].images[0].afterParagraph=4,
+ d=>d.history.chapters[1].images[0].alt='',
+ d=>d.history.chapters[1].images[0].caption='',
+
  d=>d.history.chapters.push(d.history.chapters[0]),
  d=>d.history.chapters[0].placeIds[0]='unknown-place',
  d=>d.history.chapters[0].placeIds.push(d.history.chapters[0].placeIds[0]),
  d=>d.history.chapters[0].sources=[],
  d=>d.history.chapters[0].sources[0].url='javascript:alert(1)',
- d=>d.history.schemaVersion=2,
+ d=>d.history.schemaVersion=3,
  d=>d.history.contentVersion=0,
  d=>d.stories.stories=d.stories.stories.filter(s=>s.placeId!==d.history.chapters[0].placeIds[0]),
 
@@ -84,3 +91,6 @@ const entrance=structuredClone(documents.places.places[0]);entrance.entrance={po
 console.log(`PASS: all ${documents.places.places.length} place links and ${documents.places.places.length*3} navigation links, coordinate fallbacks, entrance preference, place-id/source/position consistency`);
 
 const legacy=structuredClone(documents);legacy.guide.schemaVersion=1;legacy.guide.$schema='./guide.schema.v1.json';delete legacy.guide.flights;delete legacy.guide.defaultSelection.summary;legacy.guide.days.forEach(d=>delete d.summary);PlacesValidator.validateTrip({...schemas,guide:JSON.parse(fs.readFileSync('guide.schema.v1.json'))},legacy);console.log('PASS: flight validation and legacy guide schema v1 compatibility');
+
+const legacyHistory=structuredClone(documents);legacyHistory.history.schemaVersion=1;legacyHistory.history.$schema='./history.schema.v1.json';legacyHistory.history.chapters.forEach(c=>delete c.images);PlacesValidator.validateTrip({...schemas,history:JSON.parse(fs.readFileSync('history.schema.v1.json'))},legacyHistory);console.log('PASS: legacy history schema v1 compatibility');
+for(const chapter of documents.history.chapters)for(const image of chapter.images||[])assert(fs.statSync(image.src).size>0,'Missing history image: '+image.src);

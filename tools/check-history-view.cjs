@@ -2,7 +2,7 @@
 const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chromium}=require('playwright');
 (async()=>{
  const executablePath=process.env.BROWSER_EXECUTABLE_PATH;
- const server=http.createServer((req,res)=>{const path=new URL(req.url,'http://localhost').pathname;const file=path==='/'?'index.html':path.slice(1);if(!fs.existsSync(file)){res.writeHead(404);return res.end()};res.setHeader('Content-Type',file.endsWith('.html')?'text/html':file.endsWith('.json')?'application/json':file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':'text/plain');res.end(fs.readFileSync(file))}).listen(8765,'127.0.0.1');
+ const server=http.createServer((req,res)=>{const path=new URL(req.url,'http://localhost').pathname;const file=path==='/'?'index.html':path.slice(1);if(!fs.existsSync(file)){res.writeHead(404);return res.end()};res.setHeader('Content-Type',file.endsWith('.html')?'text/html':file.endsWith('.json')?'application/json':file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':file.endsWith('.webp')?'image/webp':'text/plain');res.end(fs.readFileSync(file))}).listen(8765,'127.0.0.1');
  const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{}),args:['--no-sandbox','--disable-dev-shm-usage']});
  try{
  const page=await browser.newPage({viewport:{width:390,height:844},hasTouch:true,ignoreHTTPSErrors:true});
@@ -28,6 +28,18 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  await first.locator('.history-heading').focus();await page.keyboard.press('Enter');assert(await first.evaluate(e=>e.open));
  await page.keyboard.press('Enter');assert(!(await first.evaluate(e=>e.open)));
  await page.evaluate(()=>document.querySelectorAll('.history-reading').forEach(d=>d.open=true));
+ for(const chapter of historyData.chapters)for(const image of chapter.images||[]){
+  const figure=page.locator('[data-history-chapter="'+chapter.id+'"] .history-image');
+  const img=figure.locator('img');await img.scrollIntoViewIfNeeded();
+  await img.evaluate(e=>e.decode());assert.equal(await img.getAttribute('alt'),image.alt);
+  assert.deepEqual(await img.evaluate(e=>[e.naturalWidth,e.naturalHeight]),[image.width,image.height]);
+  assert((await figure.textContent()).includes(image.caption));assert((await figure.textContent()).includes(image.credit));
+  assert.equal(await figure.locator('a').first().getAttribute('href'),image.sourceUrl);
+  assert.equal(await figure.locator('a').last().getAttribute('href'),image.licenseUrl);
+  assert.equal(await img.evaluate(e=>getComputedStyle(e).objectFit),'contain');
+  await page.screenshot({path:'/tmp/history-image-'+chapter.id+'.png'});
+ }
+ assert.equal(await page.locator('.history-image').count(),3);
  for(const chapter of historyData.chapters)for(const id of chapter.placeIds){
   await page.locator('[data-history-chapter="'+chapter.id+'"] [data-show-place="'+id+'"]').click();
   assert.equal(await page.locator('body').getAttribute('data-view'),'karta');
@@ -40,7 +52,7 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
   await page.emulateMedia({colorScheme});await page.waitForTimeout(250);
   for(const size of [{width:320,height:568},{width:390,height:844},{width:844,height:390},{width:768,height:1024}]){
    await page.setViewportSize(size);
-   await page.evaluate(()=>{document.querySelectorAll('#historyPanel details').forEach(d=>d.open=true);document.querySelectorAll('#historyPanel h1,#historyPanel h2,#historyPanel h3,#historyPanel p,#historyPanel summary,#historyPanel .list-action,#historyPanel .history-place-name,#historyPanel .history-place-hint').forEach(e=>{if(!e.dataset.fontBefore)e.dataset.fontBefore=getComputedStyle(e).fontSize;e.style.fontSize=parseFloat(e.dataset.fontBefore)*2+'px';});});
+   await page.evaluate(()=>{document.querySelectorAll('#historyPanel details').forEach(d=>d.open=true);document.querySelectorAll('#historyPanel figcaption,#historyPanel .history-image-credit,#historyPanel h1,#historyPanel h2,#historyPanel h3,#historyPanel p,#historyPanel summary,#historyPanel .list-action,#historyPanel .history-place-name,#historyPanel .history-place-hint').forEach(e=>{if(!e.dataset.fontBefore)e.dataset.fontBefore=getComputedStyle(e).fontSize;e.style.fontSize=parseFloat(e.dataset.fontBefore)*2+'px';});});
    assert.equal(await page.locator('#historyPanel').evaluate(e=>e.scrollWidth>e.clientWidth+1),false);
   }
   await page.evaluate(()=>document.querySelectorAll('#historyPanel [data-font-before]').forEach(e=>e.style.fontSize=''));await page.waitForTimeout(250);

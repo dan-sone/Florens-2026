@@ -1,3 +1,9 @@
+## Historiska bilder – UI 1.8.0
+
+Tre bilder från Wikimedia Commons visas i historietexten med datering, bildtext, upphov och länk till original och public domain-licens. Catena-bilden är uttryckligen en kopia från 1887 av en vy från sent 1400-tal. Hela bilderna bevaras utan beskärning och laddas vid behov från lokala WebP-filer i `assets/history/`.
+
+`history.json` har schema 2 och innehåll 2. `history.schema.v2.json` lägger till valfria bilder med obligatoriska uppgifter om källa och rättigheter; schema 1 finns kvar. Valideringen kontrollerar även placeringen i texten, och webbläsartestet verifierar att alla tre bilder laddas med rätt mått, bildtexter och länkar.
+
 # Reseguiden
 
 ## Historievyns navigation – UI 1.7.1
@@ -6,7 +12,7 @@ Kapitelrubrik och ingress är en stor tryckyta med en pil som visar öppet/stän
 
 ## Florens berättar – UI 1.7.0
 
-Ny Historievy med fem kapitel, fördjupning, befintliga platsberättelser och Visa på kartan. Historiken ligger i `history.json` (innehåll 1) med eget `history.schema.v1.json` (schema 1). Platsreferenser och berättelser valideras tillsammans med resans övriga innehåll. Fyra navigationsval ryms på mobil; dag/natt följer operativsystemet. Befintliga platser, positioner, rutter, bokningar och flyg är oförändrade.
+Ny Historievy med fem kapitel, fördjupning, befintliga platsberättelser och Visa på kartan. Historiken ligger i `history.json` (innehåll 2) med eget `history.schema.v2.json` (schema 2). Platsreferenser och berättelser valideras tillsammans med resans övriga innehåll. Fyra navigationsval ryms på mobil; dag/natt följer operativsystemet. Befintliga platser, positioner, rutter, bokningar och flyg är oförändrade.
 
 ## Torsdagens rutt – innehållsuppdatering
 
@@ -58,7 +64,7 @@ En statisk reseguide med återanvändbart kartgränssnitt. `index.html` innehål
 | `routes.json` | `routes.schema.v1.json` | Delsträckor, färdsätt och ordnade plats-id |
 | `guide.json` | `guide.schema.v3.json` | Titel, destination, tidszon, kartutsnitt, resdagar, program, bokningar, flyg och presentation |
 | `stories.json` | `stories.schema.v1.json` | Korta platsberättelser, konkreta saker att titta efter och källor |
-| `history.json` | `history.schema.v1.json` | Stadens historiekapitel, perioder, platsreferenser och källor |
+| `history.json` | `history.schema.v2.json` | Stadens historiekapitel, perioder, platsreferenser och källor |
 
 Varje innehållsfil har `schemaVersion`, `contentVersion` och `updatedAt`. SchemaVersion ändras när datakontraktet ändras. ContentVersion ändras när innehållet i just den filen ändras. Versionerna är oberoende mellan filerna.
 
@@ -86,8 +92,8 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | routes.json | 1 | 6 |
 | guide.json | 3 | 10 |
 | stories.json | 1 | 4 |
-| history.json | 1 | 1 |
-| index.html och ui-theme.css | – | 1.7.1 |
+| history.json | 2 | 2 |
+| index.html och ui-theme.css | – | 1.8.0 |
 | place-sheet.css | – | 1.4.4 |
 | valideringskod | – | 1.7.0 |
 | verification-report.v2.md | – | Rapportversion 2 |

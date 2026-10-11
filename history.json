@@ -1,8 +1,8 @@
 {
-  "$schema": "./history.schema.v1.json",
-  "schemaVersion": 1,
-  "contentVersion": 1,
-  "updatedAt": "2026-10-11T06:45:06.458994Z",
+  "$schema": "./history.schema.v2.json",
+  "schemaVersion": 2,
+  "contentVersion": 2,
+  "updatedAt": "2026-10-11T07:18:38Z",
   "title": "Florens berättar",
   "intro": "Fem berättelser om staden ni promenerar genom. Från romarnas gatunät till levande vävstolar och trädgårdar med utsikt. Öppna ett kapitel och hitta historien på kartan.",
   "chapters": [
@@ -44,6 +44,26 @@
           "label": "Visit Tuscany · Orsanmichele och skråna",
           "url": "https://www.visittuscany.com/en/attractions/orsanmichele-museum/",
           "checkedAt": "2026-10-11"
+        },
+        {
+          "label": "Palazzo Vecchio: Veduta della Catena – motiv och kopia",
+          "url": "https://artsandculture.google.com/story/la-veduta-della-catena-florence-and-its-monuments-palazzo-vecchio-museum/bgUhVU6eaWEIJQ?hl=en",
+          "checkedAt": "2026-10-11"
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/history/catena.webp",
+          "width": 1200,
+          "height": 519,
+          "afterParagraph": 1,
+          "alt": "Panoramabild av det muromgärdade Florens, med Arno och stadens kyrkor.",
+          "caption": "Florens under sent 1400-tal. Veduta della Catena: Francesco och Raffaello Petrinis kopia från 1887 efter en äldre förlaga tillskriven Francesco Rosselli.",
+          "credit": "Francesco och Raffaello Petrini",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Francesco_Rosselli_(attribution)._Pianta_della_Catena,_1470.jpg",
+          "licenseName": "Public domain",
+          "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "checkedAt": "2026-10-11"
         }
       ]
     },
@@ -64,6 +84,21 @@
         {
           "label": "Gallerie degli Uffizi · Museets historia",
           "url": "https://www.uffizi.it/gli-uffizi/storia",
+          "checkedAt": "2026-10-11"
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/history/cosimo.webp",
+          "width": 801,
+          "height": 983,
+          "afterParagraph": 1,
+          "alt": "Cosimo I de’ Medici avbildad i rustning av Bronzino.",
+          "caption": "Cosimo I de’ Medici i rustning, 1545. Porträtt av Agnolo Bronzino, i Uffiziernas samling.",
+          "credit": "Agnolo Bronzino",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Angelo_Bronzino_036.jpg",
+          "licenseName": "Public domain",
+          "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
           "checkedAt": "2026-10-11"
         }
       ]
@@ -121,6 +156,21 @@
         {
           "label": "FeelFlorence · Rosenträdgården",
           "url": "https://www.feelflorence.it/en/points-interest/rose-garden",
+          "checkedAt": "2026-10-11"
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/history/mercato.webp",
+          "width": 482,
+          "height": 640,
+          "afterParagraph": 1,
+          "alt": "En smal gata med höga hus i Florens gamla marknadsområde, fotograferad på 1880-talet.",
+          "caption": "Via del Fuoco i det gamla marknadsområdet Mercato Vecchio, 1880-talet. Fotografi av Alinari.",
+          "credit": "Alinari",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Alinari,_Veduta_di_via_del_Fuoco_nel_Mercato_Vecchio_a_Firenze,_1880s.jpg",
+          "licenseName": "Public domain",
+          "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
           "checkedAt": "2026-10-11"
         }
       ]

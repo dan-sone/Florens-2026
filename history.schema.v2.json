@@ -1,0 +1,212 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Destination history schema v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "contentVersion",
+    "updatedAt",
+    "title",
+    "intro",
+    "chapters"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "./history.schema.v2.json"
+    },
+    "schemaVersion": {
+      "const": 2
+    },
+    "contentVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "intro": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 600
+    },
+    "chapters": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 20,
+      "items": {
+        "$ref": "#/$defs/chapter"
+      }
+    }
+  },
+  "$defs": {
+    "chapter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "period",
+        "title",
+        "teaser",
+        "paragraphs",
+        "placeIds",
+        "sources"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "period": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "teaser": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 400
+        },
+        "paragraphs": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1200
+          }
+        },
+        "placeIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          }
+        },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/source"
+          }
+        },
+        "images": {
+          "type": "array",
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/$defs/image"
+          }
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "label",
+        "url",
+        "checkedAt"
+      ],
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "checkedAt": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "image": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "src",
+        "width",
+        "height",
+        "afterParagraph",
+        "alt",
+        "caption",
+        "credit",
+        "licenseName",
+        "sourceUrl",
+        "licenseUrl",
+        "checkedAt"
+      ],
+      "properties": {
+        "src": {
+          "type": "string",
+          "pattern": "^assets/history/[a-z0-9]+(?:-[a-z0-9]+)*\\.webp$"
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "afterParagraph": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4
+        },
+        "alt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 800
+        },
+        "caption": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 800
+        },
+        "credit": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 800
+        },
+        "licenseName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 800
+        },
+        "sourceUrl": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "licenseUrl": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "checkedAt": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    }
+  }
+}

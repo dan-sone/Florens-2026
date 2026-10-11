@@ -58,6 +58,7 @@ export function validateTrip(schemas,documents) {
     createValidator(schemas.history)(documents.history);
     unique(documents.history.chapters,'historiekapitel');
     const storyIds=new Set((documents.stories?.stories||[]).map(s=>s.placeId));
+    for(const chapter of documents.history.chapters)for(const image of chapter.images||[])if(image.afterParagraph>chapter.paragraphs.length)throw new Error('Bildens stycke saknas: '+chapter.id);
     for(const chapter of documents.history.chapters)for(const id of chapter.placeIds){requirePlace(id,true);if(!storyIds.has(id))throw new Error('Platsberättelse saknas för historiekapitlet: '+id);}
   }
   for(const route of routes.routes){unique(route.segments,'delsträcka');for(const segment of route.segments)segment.placeIds.forEach(id=>requirePlace(id,true));}
