@@ -1,3 +1,11 @@
+## Läsning bredvid kartan – UI 1.17.0
+
+Dagar, Sevärdheter och Historia visas i en vänsterpanel när skärmen är minst 900 px bred och 500 px hög. Kartans verkliga behållare får återstående bredd; den täcks inte av läspanelen. Flikarna ligger ovanför panelens innehåll. Karta återgår till hela kartbredden. Mindre och låga skärmar behåller helskärmsvyerna.
+
+Visa på kartan behåller läspanelen på större skärmar och öppnar platskortet inom kartans fria yta. På telefon återgår samma knapp till kartvyn. Kartan räknar om storleken vid vybyte, visning av en plats och passage av storleksgränsen. Scrollposition och öppna kort bevaras. Panelen har en ljus/mörk läsbar glasbakgrund och stöd för minskad transparens.
+
+Navigationstestet omfattar alla tre läsvyerna, 1024×768 och 1366×1024, stående iPad 834×1194, telefon 390×844 och låg bred skärm 956×440, dag/natt, kartans fria yta, popupens gränser, hotellkort under tisdag, återställd scroll och öppna kort samt växling mellan panel och helskärm. Tester använder en lokal Leaflet-adapter; fysisk Safari är inte verifierad. Platser, positioner, rutter och alla innehålls- och schemaversioner är oförändrade.
+
 ## Hotellet under ankomstdagen – UI 1.16.2
 
 Boendekortet visas nu inne i tisdagens dagkort, efter utresans flyg. Det fristående kortet överst i Dagar är borttaget. Hotellinformation, länkar, kartvisning och alla innehålls- och schemaversioner är oförändrade.
@@ -177,8 +185,8 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | stories.json | 1 | 4 |
 | history.json | 2 | 2 |
 | taxonomy.json | 1 | 2 |
-| index.html | – | 1.16.2 |
-| ui-theme.css | – | 1.16.0 |
+| index.html | – | 1.17.0 |
+| ui-theme.css | – | 1.17.0 |
 | place-sheet.css | – | 1.15.0 |
 | place-presentation.js | – | 1.16.1 |
 

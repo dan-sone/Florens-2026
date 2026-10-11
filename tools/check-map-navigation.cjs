@@ -42,6 +42,33 @@ window.L={map:id=>new MapView(id),CRS:{EPSG3857:{}},control,layerGroup:()=>new G
  const textBounds=await page.locator('.category-legend').evaluateAll(es=>es.map(e=>{const r=e.getBoundingClientRect();return {left:r.left,right:r.right}}));for(const b of textBounds)assert(b.left>=0&&b.right<=size.width);await page.locator('.category-legend').evaluateAll(es=>es.forEach(e=>e.style.fontSize=(parseFloat(getComputedStyle(e).fontSize)*2)+'px'));assert.equal(await page.locator('.leaflet-control-layers-list').evaluate(e=>e.scrollWidth>e.clientWidth+1),false,'200% layer text');await page.locator('.category-legend').evaluateAll(es=>es.forEach(e=>e.style.fontSize=''));await page.locator('.leaflet-control-layers-toggle').click();assert(await page.locator('.leaflet-control-layers-list').isHidden());}
  await page.click('#routeToggle');assert.equal(await page.locator('.leaflet-control-layers-overlays').isHidden(),true);
  await page.click('#tab-schema');assert.equal(await page.locator('#schemaPanel h1').textContent(),'Dagar');assert(await page.locator('#guide').isHidden());await page.click('#tab-karta');
+ // Responsive reading views retain state while the map stays unobstructed.
+ for(const colorScheme of ['light','dark']){
+  await page.emulateMedia({colorScheme});
+  for(const viewport of [{width:1024,height:768},{width:1366,height:1024},{width:834,height:1194},{width:390,height:844},{width:956,height:440}]){
+   await page.setViewportSize(viewport);
+   const wide=viewport.width>=900&&viewport.height>=500;
+   for(const view of ['schema','sevardheter','historia']){
+    await page.click('#tab-'+view);await page.waitForTimeout(80);
+    const geometry=await page.evaluate(()=>{const panel=document.getElementById('listView'),map=document.querySelector('.folium-map'),tabs=document.getElementById('viewTabs');const rect=e=>{const r=e.getBoundingClientRect();return {x:r.x,right:r.right,width:r.width,bottom:r.bottom}};return {panel:rect(panel),map:rect(map),tabs:rect(tabs),visible:getComputedStyle(map).visibility,overflow:panel.scrollWidth>panel.clientWidth+1}});
+    assert(!geometry.overflow,JSON.stringify({viewport,view,geometry}));
+    if(wide)assert.equal(await page.locator('#viewTabs button').evaluateAll(es=>es.some(e=>e.scrollWidth>e.clientWidth+1)),false,'panel tab labels fit '+JSON.stringify(viewport));
+    if(wide){assert.equal(geometry.visible,'visible');assert(geometry.map.x>=geometry.panel.right-1);assert(geometry.map.width>=500);assert(geometry.tabs.right<=geometry.panel.right+1);assert(geometry.map.right<=viewport.width+1)}else{assert.equal(geometry.visible,'hidden');assert.equal(geometry.panel.width,viewport.width)}
+   }
+  }
+  await page.setViewportSize({width:1024,height:768});await page.click('#tab-schema');
+  await page.locator('[data-day=tue]>.schedule-heading').click();
+  assert.equal(await page.locator('[data-day=tue] [data-stay]').count(),1);
+  await page.evaluate(()=>document.getElementById('listView').scrollTop=180);const scroll=await page.locator('#listView').evaluate(e=>e.scrollTop);
+  await page.click('#tab-historia');await page.click('#tab-schema');assert(await page.locator('[data-day=tue]').evaluate(e=>e.open));assert.equal(await page.locator('#listView').evaluate(e=>e.scrollTop),scroll);
+  await page.locator('[data-day=tue] [data-show-place="hotel-la-scaletta"]').click();await page.waitForTimeout(150);
+  assert.equal(await page.locator('body').getAttribute('data-view'),'schema');assert(await page.locator('#placeSheet').isVisible());
+  const panel=await page.locator('#listView').boundingBox(),popup=await page.locator('#placeSheet').boundingBox();assert(popup.x>=panel.x+panel.width);assert(popup.x+popup.width<=1025);
+  await page.screenshot({path:'/tmp/reading-panel-'+colorScheme+'.png'});await page.locator('#sheetClose').click();
+  await page.setViewportSize({width:390,height:844});assert.equal(await page.locator('.folium-map').evaluate(e=>getComputedStyle(e).visibility),'hidden');assert(await page.locator('[data-day=tue]').evaluate(e=>e.open));
+  await page.locator('[data-day=tue] [data-show-place="hotel-la-scaletta"]').click();await page.waitForTimeout(100);assert.equal(await page.locator('body').getAttribute('data-view'),'karta');await page.locator('#sheetClose').click();
+  await page.click('#tab-schema');await page.locator('[data-day=tue]>.schedule-heading').click();await page.click('#tab-karta');
+ }
  // Real pointer capture and native content scrolling exercise the production sheet.
  await page.setViewportSize({width:390,height:844});
  await page.evaluate(async()=>{const g=await guideReady;g.setView('karta');g.openPlaceSheet('orsanmichele')});await page.waitForTimeout(300);
@@ -61,6 +88,6 @@ window.L={map:id=>new MapView(id),CRS:{EPSG3857:{}},control,layerGroup:()=>new G
  await page.screenshot({path:'/tmp/place-sheet-scroll.png'}); await page.locator('#sheetClose').click();await cdp.send('Emulation.setTouchEmulationEnabled',{enabled:false});
  await page.setViewportSize({width:320,height:568});await page.locator('.leaflet-control-layers-toggle').click();await page.screenshot({path:'/tmp/layers-320.png'});
  await page.setViewportSize({width:390,height:844});await page.click('#routeToggle');await page.waitForTimeout(300);await page.screenshot({path:'/tmp/map-navigation-dark.png'});assert.deepEqual(errors,[]);
- console.log('PASS: production app navigation, control order, days/routes button and day selection, keyboard/close exclusivity, uniform glass and action colors, Leaflet expanded CSS/text bounds, sheet mouse/touch scroll and drag, compact header and 44px touch targets at six phone/tablet sizes in light/dark. Local Leaflet adapter; remote plugins and physical Safari are outside this check.');
+ console.log('PASS: responsive reading panels, map and popup bounds, preserved scroll/open cards and mobile transitions; production app navigation, control order, days/routes button and day selection, keyboard/close exclusivity, uniform glass and action colors, Leaflet expanded CSS/text bounds, sheet mouse/touch scroll and drag, compact header and 44px touch targets at six phone/tablet sizes in light/dark. Local Leaflet adapter; remote plugins and physical Safari are outside this check.');
  }finally{await browser.close();server.close()}
 })().catch(e=>{console.error(e);process.exitCode=1});
