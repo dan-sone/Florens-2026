@@ -30,12 +30,12 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
   assert.equal(await page.locator('#viewTabs').evaluate(e=>e.scrollWidth>e.clientWidth+1),false);
   assert(await page.locator('#viewTabs button').evaluateAll(es=>es.every(e=>e.getBoundingClientRect().height>=44&&e.getBoundingClientRect().left>=0&&e.getBoundingClientRect().right<=innerWidth)));
  }
- for(const chapter of historyData.chapters){const card=page.locator('[data-history-chapter="'+chapter.id+'"]');for(const p of chapter.paragraphs)assert((await card.textContent()).includes(p));for(const id of chapter.placeIds)assert.equal(await card.locator('[data-show-place="'+id+'"]').count(),2);}
+ for(const chapter of historyData.chapters){const card=page.locator('[data-history-chapter="'+chapter.id+'"]');for(const p of chapter.paragraphs)assert((await card.textContent()).includes(p));for(const id of chapter.placeIds)assert.equal(await card.locator('[data-show-place="'+id+'"]').count(),1);}
  await page.setViewportSize({width:390,height:844});await page.emulateMedia({colorScheme:'light'});
  await page.locator('#historyPanel h1').scrollIntoViewIfNeeded();await page.screenshot({path:'/tmp/history-light.png'});
  await page.locator('[data-history-chapter="changing-city"] .history-map-links [data-show-place="giardino-delle-rose"]').click();
  assert.equal(await page.locator('body').getAttribute('data-view'),'karta');assert((await page.locator('#sheetTitle').textContent()).includes('Rosenträdgården'));
- await page.click('#tab-historia');assert(await page.locator('[data-history-chapter="changing-city"] .history-reading').evaluate(e=>e.open));
+ await page.click('#tab-historia');assert(await page.locator('[data-history-chapter="changing-city"]').evaluate(e=>e.open));
  await page.reload({waitUntil:'load'});await page.evaluate(()=>guideReady);assert.equal(await page.locator('body').getAttribute('data-view'),'historia');
  await page.emulateMedia({colorScheme:'dark'});await page.waitForTimeout(250);await page.screenshot({path:'/tmp/history-dark.png'});await page.emulateMedia({colorScheme:'light'});
  await page.click('#tab-schema');assert(await page.locator('#schemaPanel').isVisible());

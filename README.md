@@ -1,5 +1,9 @@
 # Reseguiden
 
+## Historievyns navigation – UI 1.7.1
+
+Kapitelrubrik och ingress är en stor tryckyta med en pil som visar öppet/stängt. Den separata Läs berättelsen-länken och dubblerade platsknappar är borttagna. Varje plats har en enda rad som öppnar dess befintliga kartkort och platsberättelse. Historik, platsinnehåll, positioner, rutter, bokningar och schema-/innehållsversioner är oförändrade. Läsposition och öppna kapitel behålls vid växling mellan historia och karta.
+
 ## Florens berättar – UI 1.7.0
 
 Ny Historievy med fem kapitel, fördjupning, befintliga platsberättelser och Visa på kartan. Historiken ligger i `history.json` (innehåll 1) med eget `history.schema.v1.json` (schema 1). Platsreferenser och berättelser valideras tillsammans med resans övriga innehåll. Fyra navigationsval ryms på mobil; dag/natt följer operativsystemet. Befintliga platser, positioner, rutter, bokningar och flyg är oförändrade.
@@ -83,7 +87,7 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | guide.json | 3 | 10 |
 | stories.json | 1 | 4 |
 | history.json | 1 | 1 |
-| index.html och ui-theme.css | – | 1.7.0 |
+| index.html och ui-theme.css | – | 1.7.1 |
 | place-sheet.css | – | 1.4.4 |
 | valideringskod | – | 1.7.0 |
 | verification-report.v2.md | – | Rapportversion 2 |

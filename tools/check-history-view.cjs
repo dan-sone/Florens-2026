@@ -18,19 +18,37 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  await page.evaluate(()=>guideReady);
 
  await page.click('#tab-historia');
+
+ const historyData=JSON.parse(fs.readFileSync('history.json'));
+ assert(!(await page.locator('#historyPanel').textContent()).includes('Läs berättelsen'));
+ for(const chapter of historyData.chapters){const card=page.locator('[data-history-chapter="'+chapter.id+'"]');for(const id of chapter.placeIds)assert.equal(await card.locator('[data-show-place="'+id+'"]').count(),1);}
+ const first=page.locator('[data-history-chapter]').first();
+ await first.locator('.history-heading').tap();assert(await first.evaluate(e=>e.open));
+ await first.locator('.history-heading').tap();assert(!(await first.evaluate(e=>e.open)));
+ await first.locator('.history-heading').focus();await page.keyboard.press('Enter');assert(await first.evaluate(e=>e.open));
+ await page.keyboard.press('Enter');assert(!(await first.evaluate(e=>e.open)));
+ await page.evaluate(()=>document.querySelectorAll('.history-reading').forEach(d=>d.open=true));
+ for(const chapter of historyData.chapters)for(const id of chapter.placeIds){
+  await page.locator('[data-history-chapter="'+chapter.id+'"] [data-show-place="'+id+'"]').click();
+  assert.equal(await page.locator('body').getAttribute('data-view'),'karta');
+  const expectedName=await page.evaluate(async id=>(await guideReady).placesById.get(id).name,id);
+  await page.waitForFunction(name=>document.getElementById('sheetTitle').textContent===name,expectedName);
+  assert.equal(await page.locator('#sheetTitle').textContent(),expectedName);
+  await page.click('#tab-historia');assert(await page.locator('[data-history-chapter="'+chapter.id+'"]').evaluate(e=>e.open));
+ }
  for(const colorScheme of ['dark','light']){
   await page.emulateMedia({colorScheme});await page.waitForTimeout(250);
   for(const size of [{width:320,height:568},{width:390,height:844},{width:844,height:390},{width:768,height:1024}]){
    await page.setViewportSize(size);
-   await page.evaluate(()=>{document.querySelectorAll('#historyPanel details').forEach(d=>d.open=true);document.querySelectorAll('#historyPanel h1,#historyPanel h2,#historyPanel h3,#historyPanel p,#historyPanel summary,#historyPanel .list-action').forEach(e=>{if(!e.dataset.fontBefore)e.dataset.fontBefore=getComputedStyle(e).fontSize;e.style.fontSize=parseFloat(e.dataset.fontBefore)*2+'px';});});
+   await page.evaluate(()=>{document.querySelectorAll('#historyPanel details').forEach(d=>d.open=true);document.querySelectorAll('#historyPanel h1,#historyPanel h2,#historyPanel h3,#historyPanel p,#historyPanel summary,#historyPanel .list-action,#historyPanel .history-place-name,#historyPanel .history-place-hint').forEach(e=>{if(!e.dataset.fontBefore)e.dataset.fontBefore=getComputedStyle(e).fontSize;e.style.fontSize=parseFloat(e.dataset.fontBefore)*2+'px';});});
    assert.equal(await page.locator('#historyPanel').evaluate(e=>e.scrollWidth>e.clientWidth+1),false);
   }
   await page.evaluate(()=>document.querySelectorAll('#historyPanel [data-font-before]').forEach(e=>e.style.fontSize=''));await page.waitForTimeout(250);
   const ratios=await page.evaluate(()=>{
    const luminance=c=>{const v=c.match(/[\d.]+/g).slice(0,3).map(Number).map(v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4});return .2126*v[0]+.7152*v[1]+.0722*v[2];};
-   return ['.history-map-links .list-action','.history-place .list-action','.history-reading>summary','.history-card p'].map(selector=>{const e=document.querySelector(selector),s=getComputedStyle(e);const bg=s.backgroundColor==='rgba(0, 0, 0, 0)'?getComputedStyle(e.closest('.list-card')).backgroundColor:s.backgroundColor;const a=luminance(s.color),b=luminance(bg);return {selector,ratio:(Math.max(a,b)+.05)/(Math.min(a,b)+.05)}});
+   return ['.history-place-name','.history-place-hint','.history-heading','.history-card p'].map(selector=>{const e=document.querySelector(selector),s=getComputedStyle(e);const bg=s.backgroundColor==='rgba(0, 0, 0, 0)'?getComputedStyle(e.closest('.list-card')).backgroundColor:s.backgroundColor;const raw=e.closest('.history-place-link')?getComputedStyle(e.closest('.history-place-link')).backgroundColor:bg;const parts=raw.match(/[\d.]+/g).map(Number),base=bg.match(/[\d.]+/g).map(Number),alpha=parts[3]??1;const resolved='rgb('+parts.slice(0,3).map((v,i)=>v*alpha+base[i]*(1-alpha)).join(',')+')';const a=luminance(s.color),b=luminance(resolved);return {selector,ratio:(Math.max(a,b)+.05)/(Math.min(a,b)+.05)}});
   });for(const r of ratios)assert(r.ratio>=4.5,JSON.stringify({colorScheme,...r}));
-  await page.setViewportSize({width:390,height:844});await page.evaluate(()=>{document.querySelectorAll('#historyPanel details').forEach(d=>d.open=false);document.getElementById('listView').scrollTop=0});await page.screenshot({path:'/tmp/history-'+colorScheme+'.png'});
+  await page.setViewportSize({width:390,height:844});await page.evaluate(()=>{document.querySelectorAll('#historyPanel details').forEach(d=>d.open=false);document.getElementById('listView').scrollTop=0});await page.waitForTimeout(250);await page.screenshot({path:'/tmp/history-'+colorScheme+'.png'});
  }
  await page.evaluate(()=>document.getElementById('listView').scrollTop=500);
  const before=await page.locator('#listView').evaluate(e=>e.scrollTop);
