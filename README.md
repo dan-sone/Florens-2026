@@ -1,5 +1,9 @@
 # Reseguiden
 
+## Torsdagens rutt – innehållsuppdatering
+
+Beppa Fioraia är borttaget som stopp i torsdagens rutt och program, men finns kvar som plats på kartan och i platslistan. Taxi efter Lisio går nu till Piazzale Michelangelo, med lunch i området före kyrkobesöket efter 15.30. Återvägen via Porta San Niccolò är oförändrad.
+
 ## Kartkontroller och borttaget stopp – 1.6.2
 
 Cosi – Chiantigiana är borttaget ur platsregistret, torsdagens program och dess alternativa taxirutt. Övriga platsuppgifter och positioner är oförändrade. Kartans knappar för fullskärm, position, lager och uppdatering ligger till höger. Zoomknapparna +/− är borttagna; nypzoom fungerar som tidigare.
@@ -68,8 +72,8 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | Fil | Schemaversion | Innehåll/programversion |
 | --- | ---: | ---: |
 | places.json | 2 | 6 |
-| routes.json | 1 | 4 |
-| guide.json | 3 | 8 |
+| routes.json | 1 | 5 |
+| guide.json | 3 | 9 |
 | stories.json | 1 | 3 |
 | index.html och ui-theme.css | – | 1.6.2 |
 | place-sheet.css | – | 1.4.4 |

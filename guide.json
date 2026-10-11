@@ -1,8 +1,8 @@
 {
   "$schema": "./guide.schema.v3.json",
   "schemaVersion": 3,
-  "contentVersion": 8,
-  "updatedAt": "2026-10-11T06:11:13.526493Z",
+  "contentVersion": 9,
+  "updatedAt": "2026-10-11T06:28:29.968433Z",
   "id": "florens-2026",
   "title": "Florens 2026",
   "destination": {
@@ -179,12 +179,12 @@
             },
             {
               "type": "place",
-              "placeId": "beppa-fioraia",
-              "text": "Beppa Fioraia"
+              "placeId": "piazzale-michelangelo",
+              "text": "Piazzale Michelangelo"
             },
             {
               "type": "text",
-              "text": " och lunch där. Därefter utsikt vid Piazzale Michelangelo och besök inne i "
+              "text": " för lunch i området och utsikt. Därefter besök inne i "
             },
             {
               "type": "place",

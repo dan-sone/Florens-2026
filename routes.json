@@ -1,8 +1,8 @@
 {
   "$schema": "./routes.schema.v1.json",
   "schemaVersion": 1,
-  "contentVersion": 4,
-  "updatedAt": "2026-10-11T06:11:13.526493Z",
+  "contentVersion": 5,
+  "updatedAt": "2026-10-11T06:28:29.968433Z",
   "routes": [
     {
       "id": "tue",
@@ -80,14 +80,13 @@
           "mode": "taxi",
           "placeIds": [
             "fondazione-arte-della-seta-lisio",
-            "beppa-fioraia"
+            "piazzale-michelangelo"
           ]
         },
         {
           "id": "thu-4",
           "mode": "walk",
           "placeIds": [
-            "beppa-fioraia",
             "piazzale-michelangelo",
             "san-miniato-al-monte",
             "porta-san-niccolo"
