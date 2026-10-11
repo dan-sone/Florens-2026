@@ -1,10 +1,20 @@
 const fs=require('fs'),vm=require('vm'),assert=require('assert/strict');
 vm.runInThisContext(fs.readFileSync('places-validator.js','utf8'));
 const schemas={},documents={};
-for(const name of ['places','routes','guide','stories','history']){documents[name]=JSON.parse(fs.readFileSync(name+'.json'));assert.equal(documents[name].$schema,'./'+name+'.schema.v'+documents[name].schemaVersion+'.json');schemas[name]=JSON.parse(fs.readFileSync(documents[name].$schema));}
+for(const name of ['places','routes','guide','stories','history','taxonomy']){documents[name]=JSON.parse(fs.readFileSync(name+'.json'));assert.equal(documents[name].$schema,'./'+name+'.schema.v'+documents[name].schemaVersion+'.json');schemas[name]=JSON.parse(fs.readFileSync(documents[name].$schema));}
 const validate=d=>PlacesValidator.validateTrip(schemas,d);
 validate(documents);
 const cases=[
+ d=>d.taxonomy.categories.push(d.taxonomy.categories[0]),
+ d=>d.taxonomy.subcategories.push(d.taxonomy.subcategories[0]),
+ d=>d.taxonomy.categories[0].colors.light='red',
+ d=>d.taxonomy.categories[0].iconId='missing-icon',
+ d=>d.taxonomy.subcategories[0].categoryId='missing-category',
+ d=>d.taxonomy.subcategories[0].iconId='missing-icon',
+ d=>d.taxonomy.icons.church=['<script>'],
+ d=>d.places.places[1].subcategory='ice-cream',
+ d=>d.places.places[0].subcategory='not-defined',
+
  d=>d.places.places[0].subcategory='',
  d=>d.places.places[0].subcategory='x'.repeat(81),
  d=>d.places.places[0].focus='',
@@ -88,7 +98,7 @@ const independent=structuredClone(documents);independent.guide.contentVersion=7;
 // A different trip uses the same schemas and renderer contract.
 const next=structuredClone(documents);next.guide.id='next-trip';next.guide.title='Nästa resa';next.guide.destination={name:'Annan stad',searchSuffix:'Annan stad'};next.guide.map.center={latitude:59.3,longitude:18.1};next.guide.days.forEach((day,i)=>{day.id='day-'+(i+1);day.date='2027-01-'+(13+i)});next.guide.bookings.forEach(b=>b.startsAt=b.startsAt.replace('2026-10','2027-01'));next.guide.flights=[];validate(next);
 assert(!/Florens|Firenze|2026-10|hotel-la-scaletta|routeDefinitions/.test(fs.readFileSync('index.html','utf8')));
-console.log(`PASS: five schemas; ${documents.places.places.length} places, ${documents.routes.routes.length} routes, ${documents.guide.days.length} days, ${documents.guide.bookings.length} bookings, ${documents.stories.stories.length} stories; ${documents.history.chapters.length} history chapters; ${cases.length} invalid-input cases; independent versions and reusable trip content`);
+console.log(`PASS: six schemas; ${documents.places.places.length} places, ${documents.routes.routes.length} routes, ${documents.guide.days.length} days, ${documents.guide.bookings.length} bookings, ${documents.stories.stories.length} stories; ${documents.history.chapters.length} history chapters; ${cases.length} invalid-input cases; independent versions and reusable trip content`);
 
 for(const place of documents.places.places){
  const url=new URL(PlacesValidator.applePlaceLink(place));assert.equal(url.hostname,'maps.apple.com');assert.equal(url.pathname,'/place');
@@ -99,12 +109,12 @@ assert.throws(()=>PlacesValidator.appleDirectionsLink(documents.places.places[0]
 const entrance=structuredClone(documents.places.places[0]);entrance.entrance={position:{latitude:43.7,longitude:11.2}};const toEntrance=new URL(PlacesValidator.appleDirectionsLink(entrance,'walking'));assert.equal(toEntrance.searchParams.get('destination'),'43.7,11.2');assert(!toEntrance.searchParams.has('destination-place-id'));
 console.log(`PASS: all ${documents.places.places.length} place links and ${documents.places.places.length*3} navigation links, coordinate fallbacks, entrance preference, place-id/source/position consistency`);
 
-const legacy=structuredClone(documents);legacy.guide.schemaVersion=1;legacy.guide.$schema='./guide.schema.v1.json';delete legacy.guide.discoveryAreas;delete legacy.guide.flights;delete legacy.guide.defaultSelection.summary;legacy.guide.days.forEach(d=>delete d.summary);PlacesValidator.validateTrip({...schemas,guide:JSON.parse(fs.readFileSync('guide.schema.v1.json'))},legacy);console.log('PASS: flight validation and legacy guide schema v1 compatibility');
+const legacy=structuredClone(documents);legacy.guide.categories.forEach(c=>c.label=documents.taxonomy.categories.find(t=>t.id===c.id).label);Object.values(legacy.guide.presentation.placeOverrides).forEach(p=>{delete p.markerGeometry;p.icon=null});legacy.guide.schemaVersion=1;legacy.guide.$schema='./guide.schema.v1.json';delete legacy.guide.discoveryAreas;delete legacy.guide.flights;delete legacy.guide.defaultSelection.summary;legacy.guide.days.forEach(d=>delete d.summary);PlacesValidator.validateTrip({...schemas,guide:JSON.parse(fs.readFileSync('guide.schema.v1.json'))},legacy);console.log('PASS: flight validation and legacy guide schema v1 compatibility');
 
 const legacyHistory=structuredClone(documents);legacyHistory.history.schemaVersion=1;legacyHistory.history.$schema='./history.schema.v1.json';legacyHistory.history.chapters.forEach(c=>delete c.images);PlacesValidator.validateTrip({...schemas,history:JSON.parse(fs.readFileSync('history.schema.v1.json'))},legacyHistory);console.log('PASS: legacy history schema v1 compatibility');
 for(const chapter of documents.history.chapters)for(const image of chapter.images||[])assert(fs.statSync(image.src).size>0,'Missing history image: '+image.src);
 
-const previousGuide=structuredClone(documents);previousGuide.guide.schemaVersion=3;previousGuide.guide.$schema='./guide.schema.v3.json';delete previousGuide.guide.discoveryAreas;PlacesValidator.validateTrip({...schemas,guide:JSON.parse(fs.readFileSync('guide.schema.v3.json'))},previousGuide);console.log('PASS: discovery areas cover every place exactly once and guide schema v3 compatibility');
+const previousGuide=structuredClone(documents);previousGuide.guide.categories.forEach(c=>c.label=documents.taxonomy.categories.find(t=>t.id===c.id).label);Object.values(previousGuide.guide.presentation.placeOverrides).forEach(p=>{delete p.markerGeometry;p.icon=null});previousGuide.guide.schemaVersion=3;previousGuide.guide.$schema='./guide.schema.v3.json';delete previousGuide.guide.discoveryAreas;PlacesValidator.validateTrip({...schemas,guide:JSON.parse(fs.readFileSync('guide.schema.v3.json'))},previousGuide);console.log('PASS: discovery areas cover every place exactly once and guide schema v3 compatibility');
 
 const previousPlaces=structuredClone(documents);previousPlaces.places.schemaVersion=2;previousPlaces.places.$schema='./places.schema.v2.json';previousPlaces.places.places.forEach(p=>{delete p.focus;delete p.subcategory;});PlacesValidator.validateTrip({...schemas,places:JSON.parse(fs.readFileSync('places.schema.v2.json'))},previousPlaces);console.log('PASS: places schema v2 compatibility');
 

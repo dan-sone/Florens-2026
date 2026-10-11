@@ -49,6 +49,15 @@ export function validateTrip(schemas,documents) {
   unique(guide.bookings,'bokning');const categories=unique(guide.categories,'kategori');
   if(dayIds.has(guide.defaultSelection.id))throw new Error('Standardvalet delar id med en dag');
   const requirePlace=(id,position=false)=>{const p=placeMap.get(id);if(!p)throw new Error('Okänt plats-id: '+id);if(position&&!p.position)throw new Error('Platsen saknar position: '+id);return p;};
+  if(documents.taxonomy){
+    createValidator(schemas.taxonomy)(documents.taxonomy);
+    const t=documents.taxonomy,categoryIds=unique(t.categories,'registerkategori'),subIds=unique(t.subcategories,'underkategori'),bySub=new Map(t.subcategories.map(s=>[s.id,s]));
+    for(const category of t.categories)if(!t.icons[category.iconId])throw new Error('Kategori saknar ikon: '+category.id);
+    for(const sub of t.subcategories){if(!categoryIds.has(sub.categoryId))throw new Error('Underkategori har okänd kategori: '+sub.id);if(!t.icons[sub.iconId])throw new Error('Underkategori saknar ikon: '+sub.id);if(t.categories.find(c=>c.id===sub.categoryId).kind!=='place')throw new Error('Underkategori måste tillhöra platskategori: '+sub.id);}
+    for(const category of guide.categories)if(!categoryIds.has(category.id))throw new Error('Okänt kategorifilter: '+category.id);
+    for(const place of places.places){if(!categoryIds.has(place.category))throw new Error('Platsen saknar kategori i registret: '+place.id);if(places.schemaVersion>=5){if(!subIds.has(place.subcategory))throw new Error('Okänd underkategori: '+place.id);if(bySub.get(place.subcategory).categoryId!==place.category)throw new Error('Underkategori tillhör fel kategori: '+place.id);}}
+    if(guide.schemaVersion>=5&&Object.values(guide.presentation.placeOverrides).some(p=>p.icon))throw new Error('Ikon ska ligga i det gemensamma registret');
+  }
   if(guide.discoveryAreas){
     unique(guide.discoveryAreas,'upptäcktsområde');const assigned=new Set();
     for(const area of guide.discoveryAreas)for(const id of area.placeIds){requirePlace(id);if(assigned.has(id))throw new Error('Platsen finns i flera upptäcktsområden: '+id);assigned.add(id);}

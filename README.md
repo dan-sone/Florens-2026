@@ -1,3 +1,11 @@
+## Gemensamma kategorier och oberoende filter – UI 1.13.0
+
+`taxonomy.json` är appens gemensamma register för kategorinamn, färger i dag/natt och SVG-ikoner. Underkategorier har stabila id:n och egna ikoner; de ärver huvudkategorins färg. `place-presentation.js` används av kartnålar, kartfilter, platskort, popup, schema och historievyn. Bokat är en separat status, inte en färg som ersätter platsens kategori.
+
+Kategori, Område och Läsvy finns kvar. Sortering: kategori → underkategorins svenska namn → platsnamn. Kartans filter och sevärdhetsvyns filter har oberoende tillstånd. Visa på kartan kan tillfälligt visa en dold markör utan att ändra kartans filter. Markören återgår när kortet stängs. Positioner, länkar, resdagar, rutter, bokningar och flyg är oförändrade.
+
+Versioner: taxonomy schema 1 / innehåll 1; places schema 5 / innehåll 10; guide schema 5 / innehåll 12. Övriga innehållsversioner är oförändrade. Äldre scheman finns kvar. Kör `npm run check` och `BROWSER_EXECUTABLE_PATH=/path/to/chromium node tools/check-place-order.cjs` för strukturell validering, gemensam presentation, sortering och filterseparation utan externa kartbibliotek. Testet körs i Chromium; fysisk iPhone/Safari är inte verifierad.
+
 ## Endast ändrad sortering – UI 1.12.0
 
 Kategori, Område och Läsvy och deras utseende är kvar. Sorteringsnyckeln är kategori, underkategori (till exempel Glass och Utsikter), därefter platsnamn i svensk bokstavsordning. Områdesvyn använder nyckeln inom varje område; läsvyn följer vald gruppering. Inga extra rubriker eller navigationsval läggs till. Underkategori sparas som ett valfritt fält i registret: places schema 4, innehåll 9. Äldre innehåll använder Övrigt som reserv. Övriga platsuppgifter, positioner och länkar är oförändrade.
@@ -82,15 +90,16 @@ Schemaversion och innehållsversion är separata även för stories. Valideringe
 
 `BROWSER_EXECUTABLE_PATH=/path/to/chromium node tools/check-list-views.cjs` kontrollerar befintliga flöden, alla platskort, samtliga berättelser, 320×568, 390×844, 844×390, 1024×768, 768×1024 samt 200% grundtextstorlek. Det kontrollerar kortets kanter, horisontellt överflöde, inre vertikal scrollning, delat berättelseinnehåll, navigeringsmål, markörklick och stängning med tangentbord. Dragning testas i båda riktningarna med mus och emulerad touch, liksom tryck och tangentbordsväxling. Alla platser kontrolleras för tomma informationsval. Fysisk iPhone/Safari är inte automatiskt testad.
 
-En statisk reseguide med återanvändbart kartgränssnitt. `index.html` innehåller presentation och interaktion. Resans innehåll läses från fyra JSON-filer:
+En statisk reseguide med återanvändbart kartgränssnitt. `index.html` innehåller presentation och interaktion. Resans innehåll läses från sex JSON-filer:
 
 | Innehåll | Schema | Ansvar |
 | --- | --- | --- |
-| `places.json` | `places.schema.v4.json` | Platser, positioner, länkar och verifieringsstatus |
+| `places.json` | `places.schema.v5.json` | Platser, positioner, länkar och verifieringsstatus |
 | `routes.json` | `routes.schema.v1.json` | Delsträckor, färdsätt och ordnade plats-id |
-| `guide.json` | `guide.schema.v4.json` | Titel, destination, tidszon, kartutsnitt, resdagar, program, bokningar, flyg och presentation |
+| `guide.json` | `guide.schema.v5.json` | Titel, destination, tidszon, kartutsnitt, resdagar, program, bokningar, flyg och presentation |
 | `stories.json` | `stories.schema.v1.json` | Korta platsberättelser, konkreta saker att titta efter och källor |
 | `history.json` | `history.schema.v2.json` | Stadens historiekapitel, perioder, platsreferenser och källor |
+| `taxonomy.json` | `taxonomy.schema.v1.json` | Gemensamma kategorier, underkategorier, färger och SVG-ikoner |
 
 Varje innehållsfil har `schemaVersion`, `contentVersion` och `updatedAt`. SchemaVersion ändras när datakontraktet ändras. ContentVersion ändras när innehållet i just den filen ändras. Versionerna är oberoende mellan filerna.
 
@@ -104,7 +113,7 @@ Kartan visar samma delsträckor som tidigare. Linjerna mellan platserna är inte
 
 Kör `npm ci` och `npm run check`. Kontroll sker också vid laddning i webbläsaren och automatiskt i GitHub. Samtliga scheman, unika id:n, länkar mellan filerna, nödvändiga positioner, bokningsdatum och kategorier kontrolleras. Geografisk riktighet och företagsidentitet kräver separat källverifiering; strukturellt godkända data blir inte automatiskt verifierade.
 
-Valideringskoden ligger i `tools/validator-entry.js`. Efter ändringar där: kör `npm run build` och spara den genererade `places-validator.js`. Trots filnamnet validerar den alla fem innehållsfilerna med deras egna scheman.
+Valideringskoden ligger i `tools/validator-entry.js`. Efter ändringar där: kör `npm run build` och spara den genererade `places-validator.js`. Trots filnamnet validerar den alla sex innehållsfilerna med deras egna scheman.
 
 ## Nästa resa
 
@@ -114,12 +123,13 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 
 | Fil | Schemaversion | Innehåll/programversion |
 | --- | ---: | ---: |
-| places.json | 4 | 9 |
+| places.json | 5 | 10 |
 | routes.json | 1 | 6 |
-| guide.json | 4 | 11 |
+| guide.json | 5 | 12 |
 | stories.json | 1 | 4 |
 | history.json | 2 | 2 |
-| index.html och ui-theme.css | – | 1.12.0 |
+| taxonomy.json | 1 | 1 |
+| index.html, ui-theme.css och place-presentation.js | – | 1.13.0 |
 | place-sheet.css | – | 1.4.4 |
 | valideringskod | – | 1.7.0 |
 | verification-report.v2.md | – | Rapportversion 2 |

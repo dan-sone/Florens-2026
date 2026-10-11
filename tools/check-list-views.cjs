@@ -78,9 +78,9 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  assert.equal(await page.locator('[data-place-card="beppa-fioraia"] .list-actions a').nth(0).getAttribute('href'),PlacesLink());
  function PlacesLink(){const u=new URL('https://maps.apple.com/directions');u.searchParams.set('destination','43.76279,11.26097');u.searchParams.set('mode','walking');u.searchParams.set('destination-place-id','IE09241B81B7B5B19');return u.href;}
  await page.locator('#placeFilters [data-category="craft"]').click();assert.equal(await page.locator('[data-place-card="scuola-del-cuoio"]').count(),0);
- await page.click('#tab-karta');assert.equal(await page.locator('.leaflet-control-layers-overlays input').nth(2).isChecked(),false);
- await page.locator('.leaflet-control-layers').hover();await page.locator('.leaflet-control-layers-overlays input').nth(2).check();
- await page.click('#tab-sevardheter');assert.equal(await page.locator('[data-place-card]').count(),JSON.parse(fs.readFileSync('places.json')).places.filter(p=>p.category!=='hotel').length);
+ await page.click('#tab-karta');assert.equal(await page.locator('.leaflet-control-layers-overlays input').nth(2).isChecked(),true);
+ await page.locator('.leaflet-control-layers').hover();await page.locator('.leaflet-control-layers-overlays input').nth(2).uncheck();
+ await page.click('#tab-sevardheter');assert.equal(await page.locator('[data-place-card="scuola-del-cuoio"]').count(),0);await page.locator('#placeFilters [data-category="craft"]').click();assert.equal(await page.locator('[data-place-card]').count(),67);
  await page.screenshot({path:'/tmp/places-list-check.png'});
  assert.equal(await page.locator('#placesPanel').evaluate(e=>e.scrollWidth>e.clientWidth),false);
  // Each list navigation target must equal the map's canonical URL generator.
@@ -186,7 +186,7 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  await touchDrag(180,dayHandle);await page.selectOption('#routeSelect','thu');assert.equal(await daySheet.getAttribute('data-level'),'compact');
  await page.screenshot({path:'/tmp/day-guide-compact.png'});await dayHandle.tap();await page.waitForTimeout(300);await page.screenshot({path:'/tmp/day-guide-expanded.png'});
  await page.evaluate(async()=>{const g=await guideReady;g.showPlaceOnMap('beppa-fioraia');await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));const selected=g.markersById.get('beppa-fioraia').getElement();const other=[...document.querySelectorAll('.leaflet-marker-icon')].find(e=>e!==selected);if(!document.getElementById('sheetBody').textContent.includes('peposo')||!document.getElementById('sheetBody').textContent.includes('12:30–14:30'))throw new Error('Missing hours/specialty');});
- await page.waitForTimeout(300);assert.equal(await page.locator('.is-selected > .pin-face').evaluate(e=>getComputedStyle(e).transform),'matrix(1.25, 0, 0, 1.25, 0, 0)');assert(await page.locator('.awesome-marker:not(.is-selected)').first().evaluate(e=>Number(getComputedStyle(e).opacity)===1));
+ await page.waitForTimeout(300);assert.equal(await page.locator('.is-selected > .pin-face').evaluate(e=>getComputedStyle(e).transform),'matrix(1.25, 0, 0, 1.25, 0, 0)');assert(await page.locator('.registry-pin:not(.is-selected)').first().evaluate(e=>Number(getComputedStyle(e).opacity)===1));
  await page.evaluate(async()=>{const g=await guideReady;g.closePlaceSheet(false);if(document.querySelector('.is-selected'))throw new Error('Pin state not cleared');g.setView('sevardheter');});
  assert((await page.locator('[data-place-card="beppa-fioraia"]').textContent()).includes('peposo'));
  console.log('PASS: day-guide touch up/down, tap and keyboard, native day selection, persistent state, compact height and screen bounds; structured hours/specialties in map and list; selected pin scaling/reset; other pins unchanged');

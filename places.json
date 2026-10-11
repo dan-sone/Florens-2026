@@ -1,8 +1,8 @@
 {
-  "$schema": "./places.schema.v4.json",
-  "schemaVersion": 4,
-  "contentVersion": 9,
-  "updatedAt": "2026-10-11T09:04:54Z",
+  "$schema": "./places.schema.v5.json",
+  "schemaVersion": 5,
+  "contentVersion": 10,
+  "updatedAt": "2026-10-11T09:34:16Z",
   "places": [
     {
       "id": "hotel-la-scaletta",
@@ -71,7 +71,7 @@
       },
       "specialties": null,
       "focus": "Ert hotell vid Ponte Vecchio",
-      "subcategory": "Boende"
+      "subcategory": "hotels"
     },
     {
       "id": "duomo-santa-reparata",
@@ -149,7 +149,7 @@
       },
       "specialties": null,
       "focus": "Domkyrkan, kupolen och Santa Reparata",
-      "subcategory": "Kyrkor & kapell"
+      "subcategory": "churches"
     },
     {
       "id": "cuculia",
@@ -266,7 +266,7 @@
         ]
       },
       "focus": "Kreativ mat och födelsedagsmiddag",
-      "subcategory": "Restauranger"
+      "subcategory": "restaurants"
     },
     {
       "id": "fondazione-arte-della-seta-lisio",
@@ -335,7 +335,7 @@
       },
       "specialties": null,
       "focus": "Sidenvävning, brokad och sammet",
-      "subcategory": "Textil & siden"
+      "subcategory": "textiles"
     },
     {
       "id": "uffizierna",
@@ -447,7 +447,7 @@
       },
       "specialties": null,
       "focus": "Renässanskonst och de stora mästarna",
-      "subcategory": "Museer & palats"
+      "subcategory": "museums"
     },
     {
       "id": "nugolo",
@@ -549,7 +549,7 @@
         ]
       },
       "focus": "Kreativ mat och vin",
-      "subcategory": "Restauranger"
+      "subcategory": "restaurants"
     },
     {
       "id": "ponte-vecchio",
@@ -615,7 +615,7 @@
       },
       "specialties": null,
       "focus": "Historisk bro med guldsmedsbutiker",
-      "subcategory": "Torg & stadsmiljö"
+      "subcategory": "bridges"
     },
     {
       "id": "palazzo-pitti",
@@ -710,7 +710,7 @@
       },
       "specialties": null,
       "focus": "Palats, konst och Medicis historia",
-      "subcategory": "Museer & palats"
+      "subcategory": "museums"
     },
     {
       "id": "piazza-della-passera",
@@ -776,7 +776,7 @@
       },
       "specialties": null,
       "focus": "Litet kvarterstorg med caféer och glass",
-      "subcategory": "Torg & stadsmiljö"
+      "subcategory": "city"
     },
     {
       "id": "piazza-santo-spirito",
@@ -842,7 +842,7 @@
       },
       "specialties": null,
       "focus": "Kvartersliv och aperitivo",
-      "subcategory": "Aperitivo & barer"
+      "subcategory": "bars"
     },
     {
       "id": "basilica-di-santo-spirito",
@@ -902,7 +902,7 @@
       },
       "specialties": null,
       "focus": "Brunelleschis arkitektur och renässanskonst",
-      "subcategory": "Kyrkor & kapell"
+      "subcategory": "churches"
     },
     {
       "id": "piazza-del-carmine",
@@ -968,7 +968,7 @@
       },
       "specialties": null,
       "focus": "Kvarterstorg i San Frediano",
-      "subcategory": "Torg & stadsmiljö"
+      "subcategory": "city"
     },
     {
       "id": "piazza-della-signoria",
@@ -1034,7 +1034,7 @@
       },
       "specialties": null,
       "focus": "Palazzo Vecchio och skulpturer",
-      "subcategory": "Torg & stadsmiljö"
+      "subcategory": "city"
     },
     {
       "id": "loggia-dei-lanzi",
@@ -1094,7 +1094,7 @@
       },
       "specialties": null,
       "focus": "Skulpturer i en öppen loggia",
-      "subcategory": "Torg & stadsmiljö"
+      "subcategory": "city"
     },
     {
       "id": "orsanmichele",
@@ -1154,7 +1154,7 @@
       },
       "specialties": null,
       "focus": "Handelsgillenas kyrka och skulpturer",
-      "subcategory": "Kyrkor & kapell"
+      "subcategory": "churches"
     },
     {
       "id": "piazza-della-repubblica",
@@ -1220,7 +1220,7 @@
       },
       "specialties": null,
       "focus": "Stadens historia och klassiska caféer",
-      "subcategory": "Torg & stadsmiljö"
+      "subcategory": "city"
     },
     {
       "id": "piazza-santa-trinita",
@@ -1286,7 +1286,7 @@
       },
       "specialties": null,
       "focus": "Historiskt torg och kyrkomiljö",
-      "subcategory": "Torg & stadsmiljö"
+      "subcategory": "city"
     },
     {
       "id": "ponte-santa-trinita",
@@ -1352,7 +1352,7 @@
       },
       "specialties": null,
       "focus": "Broarkitektur och utsikt mot Ponte Vecchio",
-      "subcategory": "Utsikter"
+      "subcategory": "bridges"
     },
     {
       "id": "basilica-di-santa-croce",
@@ -1412,7 +1412,7 @@
       },
       "specialties": null,
       "focus": "Konst, hantverk och historiska gravmonument",
-      "subcategory": "Kyrkor & kapell"
+      "subcategory": "churches"
     },
     {
       "id": "mercato-di-santambrogio",
@@ -1472,7 +1472,7 @@
       },
       "specialties": null,
       "focus": "Lokal matmarknad",
-      "subcategory": "Matmarknader"
+      "subcategory": "food-markets"
     },
     {
       "id": "giulio-giannini-e-figlio",
@@ -1554,7 +1554,7 @@
         ]
       },
       "focus": "Handmarmorerat papper och bokbinderi",
-      "subcategory": "Papper & bokbinderi"
+      "subcategory": "paper"
     },
     {
       "id": "scuola-del-cuoio",
@@ -1666,7 +1666,7 @@
       },
       "specialties": null,
       "focus": "Läderhantverk och verkstad",
-      "subcategory": "Läder"
+      "subcategory": "leather"
     },
     {
       "id": "museo-opificio-delle-pietre-dure",
@@ -1759,7 +1759,7 @@
       },
       "specialties": null,
       "focus": "Stenintarsia, material och teknik",
-      "subcategory": "Mosaik & stenintarsia"
+      "subcategory": "mosaics"
     },
     {
       "id": "officina-profumo-farmaceutica-smn",
@@ -1828,7 +1828,7 @@
       },
       "specialties": null,
       "focus": "Historiskt apotek och parfymhantverk",
-      "subcategory": "Dofter & parfym"
+      "subcategory": "perfume"
     },
     {
       "id": "porta-san-niccolo",
@@ -1903,7 +1903,7 @@
       },
       "specialties": null,
       "focus": "Gammal stadsport och början på utsiktspromenaden",
-      "subcategory": "Torg & stadsmiljö"
+      "subcategory": "city"
     },
     {
       "id": "piazzale-michelangelo",
@@ -1969,7 +1969,7 @@
       },
       "specialties": null,
       "focus": "Panoramautsikt över Florens",
-      "subcategory": "Utsikter"
+      "subcategory": "views"
     },
     {
       "id": "san-miniato-al-monte",
@@ -2066,7 +2066,7 @@
       },
       "specialties": null,
       "focus": "Kyrka, mosaiker och utsikt",
-      "subcategory": "Kyrkor & kapell"
+      "subcategory": "churches"
     },
     {
       "id": "le-volpi-e-luva",
@@ -2168,7 +2168,7 @@
         ]
       },
       "focus": "Vin och smårätter",
-      "subcategory": "Vinbarer"
+      "subcategory": "wine-bars"
     },
     {
       "id": "il-santino",
@@ -2228,7 +2228,7 @@
       },
       "specialties": null,
       "focus": "Vinbar och små tilltugg",
-      "subcategory": "Vinbarer"
+      "subcategory": "wine-bars"
     },
     {
       "id": "enoteca-pitti-gola-e-cantina",
@@ -2312,7 +2312,7 @@
         ]
       },
       "focus": "Toskanska viner och små rätter",
-      "subcategory": "Vinbarer"
+      "subcategory": "wine-bars"
     },
     {
       "id": "enoteca-spontanea",
@@ -2372,7 +2372,7 @@
       },
       "specialties": null,
       "focus": "Vin och små rätter",
-      "subcategory": "Vinbarer"
+      "subcategory": "wine-bars"
     },
     {
       "id": "fuori-porta",
@@ -2489,7 +2489,7 @@
         ]
       },
       "focus": "Crostoni och italienska viner",
-      "subcategory": "Vinbarer"
+      "subcategory": "wine-bars"
     },
     {
       "id": "loggia-roof-bar",
@@ -2592,7 +2592,7 @@
         ]
       },
       "focus": "Takbar och aperitivo",
-      "subcategory": "Aperitivo & barer"
+      "subcategory": "bars"
     },
     {
       "id": "il-santo-bevitore",
@@ -2652,7 +2652,7 @@
       },
       "specialties": null,
       "focus": "Mat och vin i Oltrarno",
-      "subcategory": "Restauranger"
+      "subcategory": "restaurants"
     },
     {
       "id": "mercato-centrale",
@@ -2712,7 +2712,7 @@
       },
       "specialties": null,
       "focus": "Matmarknad och saluhall",
-      "subcategory": "Matmarknader"
+      "subcategory": "food-markets"
     },
     {
       "id": "pitti-mosaici",
@@ -2787,7 +2787,7 @@
         ]
       },
       "focus": "Florentinsk stenmosaik",
-      "subcategory": "Mosaik & stenintarsia"
+      "subcategory": "mosaics"
     },
     {
       "id": "castorina-1895",
@@ -2883,7 +2883,7 @@
         ]
       },
       "focus": "Träsnideri, ramar och ornament",
-      "subcategory": "Träsnideri"
+      "subcategory": "woodwork"
     },
     {
       "id": "mio-concept-store",
@@ -2980,7 +2980,7 @@
         ]
       },
       "focus": "Design, presenter och ovanliga föremål",
-      "subcategory": "Design & presenter"
+      "subcategory": "gifts"
     },
     {
       "id": "giulia-materia",
@@ -3040,7 +3040,7 @@
       },
       "specialties": null,
       "focus": "Lokalt hantverk och design",
-      "subcategory": "Design & hantverk"
+      "subcategory": "design"
     },
     {
       "id": "gelateria-della-passera",
@@ -3109,7 +3109,7 @@
         ]
       },
       "focus": "Glass vid ett litet kvarterstorg",
-      "subcategory": "Glass"
+      "subcategory": "ice-cream"
     },
     {
       "id": "gelateria-dei-neri",
@@ -3169,7 +3169,7 @@
       },
       "specialties": null,
       "focus": "Glasspaus",
-      "subcategory": "Glass"
+      "subcategory": "ice-cream"
     },
     {
       "id": "gelateria-la-carraia",
@@ -3244,7 +3244,7 @@
         ]
       },
       "focus": "Glass vid floden",
-      "subcategory": "Glass"
+      "subcategory": "ice-cream"
     },
     {
       "id": "perche-no",
@@ -3313,7 +3313,7 @@
         ]
       },
       "focus": "Klassisk gelateria",
-      "subcategory": "Glass"
+      "subcategory": "ice-cream"
     },
     {
       "id": "vivoli",
@@ -3382,7 +3382,7 @@
         ]
       },
       "focus": "Florentinsk glasstradition",
-      "subcategory": "Glass"
+      "subcategory": "ice-cream"
     },
     {
       "id": "cantina-del-gelato",
@@ -3451,7 +3451,7 @@
         ]
       },
       "focus": "Glass på Oltrarno-sidan",
-      "subcategory": "Glass"
+      "subcategory": "ice-cream"
     },
     {
       "id": "serre-torrigiani-in-piazzetta",
@@ -3567,7 +3567,7 @@
         ]
       },
       "focus": "Ett glas ute på ett litet torg",
-      "subcategory": "Aperitivo & barer"
+      "subcategory": "bars"
     },
     {
       "id": "caffe-concerto-paszkowski",
@@ -3636,7 +3636,7 @@
         ]
       },
       "focus": "Klassiskt café och uteservering",
-      "subcategory": "Caféer"
+      "subcategory": "cafes"
     },
     {
       "id": "bulli-balene",
@@ -3705,7 +3705,7 @@
         ]
       },
       "focus": "Aperitivo och små rätter",
-      "subcategory": "Aperitivo & barer"
+      "subcategory": "bars"
     },
     {
       "id": "beppa-fioraia",
@@ -3803,7 +3803,7 @@
         ]
       },
       "focus": "Lunch och trädgård",
-      "subcategory": "Restauranger"
+      "subcategory": "restaurants"
     },
     {
       "id": "santa-maria-novella",
@@ -3938,7 +3938,7 @@
       },
       "specialties": null,
       "focus": "Kyrkokonst och renässansarkitektur",
-      "subcategory": "Kyrkor & kapell"
+      "subcategory": "churches"
     },
     {
       "id": "basilica-di-san-lorenzo",
@@ -4024,7 +4024,7 @@
       },
       "specialties": null,
       "focus": "Brunelleschis arkitektur och Medici",
-      "subcategory": "Kyrkor & kapell"
+      "subcategory": "churches"
     },
     {
       "id": "cappelle-medicee",
@@ -4110,7 +4110,7 @@
       },
       "specialties": null,
       "focus": "Medicis gravkapell och Michelangelos skulpturer",
-      "subcategory": "Kyrkor & kapell"
+      "subcategory": "churches"
     },
     {
       "id": "galleria-dellaccademia",
@@ -4196,7 +4196,7 @@
       },
       "specialties": null,
       "focus": "Michelangelos David och skulptur",
-      "subcategory": "Museer & palats"
+      "subcategory": "museums"
     },
     {
       "id": "museo-nazionale-del-bargello",
@@ -4282,7 +4282,7 @@
       },
       "specialties": null,
       "focus": "Skulptur och konsthantverk",
-      "subcategory": "Museer & palats"
+      "subcategory": "museums"
     },
     {
       "id": "giardino-di-boboli",
@@ -4369,7 +4369,7 @@
       },
       "specialties": null,
       "focus": "Historisk trädgård och skulpturer",
-      "subcategory": "Trädgårdar"
+      "subcategory": "gardens"
     },
     {
       "id": "palazzo-medici-riccardi",
@@ -4453,7 +4453,7 @@
       },
       "specialties": null,
       "focus": "Medicipalats och renässanskonst",
-      "subcategory": "Museer & palats"
+      "subcategory": "museums"
     },
     {
       "id": "giardino-delle-rose",
@@ -4540,7 +4540,7 @@
       },
       "specialties": null,
       "focus": "Rosor, skulpturer och utsikt",
-      "subcategory": "Trädgårdar"
+      "subcategory": "gardens"
     },
     {
       "id": "antico-setificio-fiorentino",
@@ -4615,7 +4615,7 @@
         ]
       },
       "focus": "Traditionell sidenvävning och vävstolar",
-      "subcategory": "Textil & siden"
+      "subcategory": "textiles"
     },
     {
       "id": "alberto-cozzi-legatoria",
@@ -4727,7 +4727,7 @@
         ]
       },
       "focus": "Bokbinderi och pappershantverk",
-      "subcategory": "Papper & bokbinderi"
+      "subcategory": "paper"
     },
     {
       "id": "riccardo-luci-carta-marmorizzata",
@@ -4796,7 +4796,7 @@
         ]
       },
       "focus": "Handmarmorerat papper",
-      "subcategory": "Papper & bokbinderi"
+      "subcategory": "paper"
     },
     {
       "id": "scarpelli-mosaici",
@@ -4865,7 +4865,7 @@
         ]
       },
       "focus": "Stenintarsia och mosaikverkstad",
-      "subcategory": "Mosaik & stenintarsia"
+      "subcategory": "mosaics"
     },
     {
       "id": "casa-dei-tessuti",
@@ -4934,7 +4934,7 @@
         ]
       },
       "focus": "Italienska tyger och arkivkollektioner",
-      "subcategory": "Textil & siden"
+      "subcategory": "textiles"
     },
     {
       "id": "ermini-agostino",
@@ -5047,7 +5047,7 @@
         ]
       },
       "focus": "Tyger, knappar och sybehör",
-      "subcategory": "Textil & siden"
+      "subcategory": "textiles"
     },
     {
       "id": "valli-tessuti",
@@ -5122,7 +5122,7 @@
         ]
       },
       "focus": "Tyger och textilier",
-      "subcategory": "Textil & siden"
+      "subcategory": "textiles"
     },
     {
       "id": "le-telerie-toscane",
@@ -5191,7 +5191,7 @@
         ]
       },
       "focus": "Måttsydd hemtextil och jacquard",
-      "subcategory": "Textil & siden"
+      "subcategory": "textiles"
     },
     {
       "id": "passamaneria-toscana",
@@ -5260,7 +5260,7 @@
       },
       "specialties": null,
       "focus": "Band, bårder och dekorativa textiltillbehör",
-      "subcategory": "Textil & siden"
+      "subcategory": "textiles"
     },
     {
       "id": "chalet-il-boschetto",
@@ -5320,7 +5320,7 @@
       },
       "specialties": null,
       "focus": "En enkel matpaus vid utsiktspromenaden",
-      "subcategory": "Restauranger"
+      "subcategory": "restaurants"
     },
     {
       "id": "terrazze-michelangelo",
@@ -5389,7 +5389,7 @@
         ]
       },
       "focus": "Matpaus vid Michelangeloområdet",
-      "subcategory": "Restauranger"
+      "subcategory": "restaurants"
     }
   ]
 }

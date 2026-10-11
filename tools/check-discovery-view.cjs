@@ -19,9 +19,9 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
 
  await page.click('#tab-sevardheter');
  const guide=JSON.parse(fs.readFileSync('guide.json')),places=JSON.parse(fs.readFileSync('places.json')).places;
- const ordered=guide.discoveryAreas.flatMap(a=>a.placeIds).filter(id=>id!=='hotel-la-scaletta');const booked=new Set(guide.bookings.map(b=>b.placeId));const byId=new Map(places.map(p=>[p.id,p]));const expected=guide.categories.flatMap(c=>{const ids=ordered.filter(id=>(booked.has(id)?'booked':byId.get(id).category)===c.id);const labels=[...new Set(ids.map(id=>byId.get(id).subcategory))].sort((a,b)=>a.localeCompare(b,'sv'));return labels.flatMap(label=>ids.filter(id=>byId.get(id).subcategory===label).sort((a,b)=>byId.get(a).name.localeCompare(byId.get(b).name,'sv')))});
+ const registry=require('../place-presentation.js').createRegistry(JSON.parse(fs.readFileSync('taxonomy.json'))),ordered=guide.discoveryAreas.flatMap(a=>a.placeIds).filter(id=>id!=='hotel-la-scaletta'),byId=new Map(places.map(p=>[p.id,p])),expected=guide.categories.flatMap(c=>ordered.filter(id=>byId.get(id).category===c.id).sort((a,b)=>registry.compare(byId.get(a),byId.get(b),guide.categories)));
  assert.deepEqual(await page.locator('[data-place-card]').evaluateAll(es=>es.map(e=>e.dataset.placeCard)),expected);
- assert.equal(await page.locator('.discovery-area').count(),5);assert.equal(await page.locator('[data-place-card="hotel-la-scaletta"]').count(),0);assert.equal(await page.locator('.discovery-card[open]').count(),0);
+ assert.equal(await page.locator('.discovery-area').count(),4);assert.equal(await page.locator('[data-place-card="hotel-la-scaletta"]').count(),0);assert.equal(await page.locator('.discovery-card[open]').count(),0);
  const first=page.locator('.discovery-card').first();
  await first.locator('.discovery-heading').tap();assert(await first.evaluate(e=>e.open));
  await first.locator('.discovery-heading').tap();assert(!(await first.evaluate(e=>e.open)));
@@ -32,11 +32,11 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  await page.click('#placeFilters [data-category="craft"]');assert(await craft.evaluate(e=>e.open));
  await craft.locator('[data-show-place]').scrollIntoViewIfNeeded();const beforeMap=await page.locator('#listView').evaluate(e=>e.scrollTop);await craft.locator('[data-show-place]').click();await page.waitForFunction(()=>document.getElementById('sheetTitle').textContent.includes('Giulio Giannini'));
  await page.click('#tab-sevardheter');assert(await craft.evaluate(e=>e.open));assert.equal(await page.locator('#listView').evaluate(e=>e.scrollTop),beforeMap);
- assert.equal(await page.locator('[data-place-card="cuculia"]').getAttribute('data-category'),'booked');
+ assert.equal(await page.locator('[data-place-card="cuculia"]').getAttribute('data-category'),'food-drink');
  assert.equal(await page.locator('#placeList .place-story').count(),0);
  for(const colorScheme of ['light','dark']){
   await page.emulateMedia({colorScheme});await page.waitForTimeout(250);
-  const colors=await page.evaluate(()=>{const luminance=c=>{const v=c.match(/[\d.]+/g).slice(0,3).map(Number).map(x=>{x/=255;return x<=.04045?x/12.92:((x+.055)/1.055)**2.4});return .2126*v[0]+.7152*v[1]+.0722*v[2]};return [...document.querySelectorAll('#placeFilters button')].map((b,i)=>{const s=getComputedStyle(b),legend=getComputedStyle(document.querySelectorAll('.leaflet-control-layers-overlays label')[i].querySelector('span'));const a=luminance(s.color),bg=luminance(s.backgroundColor);return {key:b.dataset.category,button:s.color,legend:legend.color,dot:getComputedStyle(b.querySelector('.place-symbol')).color,contrast:(Math.max(a,bg)+.05)/(Math.min(a,bg)+.05)}})});
+  const colors=await page.evaluate(()=>{const luminance=c=>{const v=c.match(/[\d.]+/g).slice(0,3).map(Number).map(x=>{x/=255;return x<=.04045?x/12.92:((x+.055)/1.055)**2.4});return .2126*v[0]+.7152*v[1]+.0722*v[2]};return [...document.querySelectorAll('#placeFilters button')].map((b,i)=>{const s=getComputedStyle(b),legend=getComputedStyle(document.querySelectorAll('.leaflet-control-layers-overlays label')[i].querySelector('.category-legend'));const a=luminance(s.color),bg=luminance(s.backgroundColor);return {key:b.dataset.category,button:s.color,legend:legend.color,dot:getComputedStyle(b.querySelector('.place-symbol')).color,contrast:(Math.max(a,bg)+.05)/(Math.min(a,bg)+.05)}})});
   for(const c of colors){assert.equal(c.button,c.legend,JSON.stringify(colors));assert.equal(c.dot,c.legend);assert(c.contrast>=4.5,JSON.stringify(c));}
   for(const size of [{width:320,height:568},{width:390,height:844},{width:844,height:390},{width:768,height:1024}]){
    await page.setViewportSize(size);
@@ -47,11 +47,11 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
   await page.setViewportSize({width:390,height:844});await page.evaluate(()=>{document.querySelectorAll('.discovery-card').forEach(d=>d.open=false);document.getElementById('listView').scrollTop=0});await page.waitForTimeout(250);await page.screenshot({path:'/tmp/discovery-'+colorScheme+'.png'});
  }
  const allText=await page.locator('#placeList').textContent();for(const p of places.filter(p=>p.category!=='hotel')){assert(allText.includes(p.name));assert.equal(await page.locator('[data-place-card="'+p.id+'"] .discovery-teaser').textContent(),p.focus);}
- const icons=await page.evaluate(async()=>{const g=await guideReady;return [...document.querySelectorAll('[data-place-card]')].every(card=>{const config=g.markersById.get(card.dataset.placeCard).options.icon.options,icon=card.querySelector('.discovery-heading>.place-symbol');return config.icon?icon.classList.contains((config.prefix||'glyphicon')+'-'+config.icon):icon.classList.contains('fa-shopping-bag')});});assert(icons);
+ const icons=await page.evaluate(async()=>{const g=await guideReady;return [...document.querySelectorAll('[data-place-card]')].every(card=>card.querySelector('.discovery-heading>.place-symbol').dataset.icon===g.presentationRegistry.iconId(g.placesById.get(card.dataset.placeCard)));});assert(icons);
  assert.deepEqual(await page.locator('.places-view-mode button').allTextContents(),['Kategori','Område','Läsvy']);
  await page.click('.places-view-mode [data-places-mode="area"]');
  assert.equal(await page.locator('[data-discovery-area]').count(),8);
- const rank=new Map(guide.categories.map((c,i)=>[c.id,i]));const areaExpected=guide.discoveryAreas.flatMap(a=>a.placeIds.filter(id=>id!=='hotel-la-scaletta').sort((a,b)=>rank.get(booked.has(a)?'booked':byId.get(a).category)-rank.get(booked.has(b)?'booked':byId.get(b).category)||byId.get(a).subcategory.localeCompare(byId.get(b).subcategory,'sv')||byId.get(a).name.localeCompare(byId.get(b).name,'sv')));assert.deepEqual(await page.locator('[data-place-card]').evaluateAll(es=>es.map(e=>e.dataset.placeCard)),areaExpected);
+ const areaExpected=guide.discoveryAreas.flatMap(a=>a.placeIds.filter(id=>id!=='hotel-la-scaletta').sort((a,b)=>registry.compare(byId.get(a),byId.get(b),guide.categories)));assert.deepEqual(await page.locator('[data-place-card]').evaluateAll(es=>es.map(e=>e.dataset.placeCard)),areaExpected);
  const areaCard=page.locator('[data-place-card="palazzo-pitti"]');await areaCard.locator('.discovery-heading').tap();assert(await areaCard.evaluate(e=>e.open));
  await page.click('.places-view-mode [data-places-mode="overview"]');assert(await areaCard.evaluate(e=>e.open));
  await page.click('.places-view-mode [data-places-mode="area"]');assert(await areaCard.evaluate(e=>e.open));
