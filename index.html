@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="application-version" content="1.11.0">
+<meta name="application-version" content="1.12.0">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
@@ -113,7 +113,7 @@ body[data-view]:not([data-view=karta]) #guide,body[data-view]:not([data-view=kar
 #placeCount{font-size:13px;color:#64748b;margin-bottom:12px}.optional-stops{display:flex;gap:7px;flex-wrap:wrap}.optional-stops button{margin:0}.list-empty{padding:24px;background:white;border-radius:14px;color:#64748b}
 </style>
 <link rel="stylesheet" href="place-sheet.css?v=1.4.4">
-<link rel="stylesheet" href="ui-theme.css?v=1.11.0">
+<link rel="stylesheet" href="ui-theme.css?v=1.12.0">
 </head>
 <body data-view="karta"><nav id="viewTabs" role="tablist" aria-label="Guidevyer"><button role="tab" id="tab-karta" data-view="karta" aria-selected="true" aria-controls="map_1391adca8bfb43099964d4b8f21913ee"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2zM9 3v16M15 5v16"/></svg>Karta</button><button role="tab" id="tab-schema" data-view="schema" aria-selected="false" aria-controls="schemaPanel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4M17 3v4M3 10h18M7 14h3M14 14h3M7 17h3"/></svg>Schema</button><button role="tab" id="tab-sevardheter" data-view="sevardheter" aria-selected="false" aria-controls="placesPanel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Sevärdheter</button><button role="tab" id="tab-historia" data-view="historia" aria-selected="false" aria-controls="historyPanel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5c-3-2-6-2-9-1v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-3-1-6-1-9 1Zm0 0v15"/></svg>Historia</button></nav>
 <main id="listView" hidden><section class="list-panel" id="schemaPanel" role="tabpanel" aria-labelledby="tab-schema" hidden></section><section class="list-panel" id="placesPanel" role="tabpanel" aria-labelledby="tab-sevardheter" hidden><h1>Sevärdheter</h1><p class="list-intro">Välj kategori och upptäck platserna. Öppna ett kort eller välj läsvyn för att läsa allt.</p><div id="placeFilters" aria-label="Kategorier"></div><div class="places-view-mode" role="group" aria-label="Visning av platser"><button type="button" data-places-mode="overview" aria-pressed="true">Kategori</button><button type="button" data-places-mode="area" aria-pressed="false">Område</button><button type="button" data-places-mode="reading" aria-pressed="false">Läsvy</button></div><p id="placeCount" aria-live="polite"></p><div id="placeList"></div></section><section class="list-panel" id="historyPanel" role="tabpanel" aria-labelledby="tab-historia" hidden></section></main>
@@ -522,14 +522,17 @@ function renderPlaceList(){
   const focus=place.focus||guide.categories.find(c=>c.id===place.category)?.label||'Upptäck platsen';
   return '<details class="list-card discovery-card" data-place-card="'+esc(place.id)+'" data-category="'+esc(categoryKey)+'"'+(placesMode==='reading'||expandedPlaces.has(place.id)?' open':'')+'><summary class="discovery-heading"'+(placesMode==='reading'?' aria-disabled="true" tabindex="-1"':'')+'>'+placeIcon(place)+'<h3><span class="discovery-title">'+esc(place.name)+'</span></h3><svg class="discovery-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg><p class="discovery-teaser">'+esc(focus)+'</p></summary><div class="discovery-body"><p>'+esc(description).replace(/\n/g,'<br>')+'</p>'+placeFacts(place)+(place.address?'<p class="address">'+esc(place.address)+'</p>':'')+(place.verification.status==='unresolved'?'<span class="list-badge uncertain">Uppgifter behöver bekräftas</span>':'')+storyMarkup(place.id,true)+listActions(place)+'</div></details>';
  };
+ const categoryRank=new Map(guide.categories.map((c,i)=>[c.id,i]));
+ const sortPlaces=(a,b)=>(categoryRank.get(bookedIds.includes(a.id)?'booked':a.category)??99)-(categoryRank.get(bookedIds.includes(b.id)?'booked':b.category)??99)||(a.subcategory||'Övrigt').localeCompare(b.subcategory||'Övrigt','sv')||a.name.localeCompare(b.name,'sv')||a.id.localeCompare(b.id);
+ const sortIds=ids=>ids.map(requirePlace).sort(sortPlaces).map(p=>p.id);
  const ordered=(guide.discoveryAreas||[{placeIds:eligible.map(p=>p.id)}]).flatMap(area=>area.placeIds).filter(id=>visibleIds.has(id));
  const byArea=placesMode==='area'||placesMode==='reading'&&placesGrouping==='area';
  const sectionMarkup=byArea?(guide.discoveryAreas||[{id:'all',title:'Upptäck platserna',intro:'',placeIds:ordered}]).map(area=>{
-  const ids=area.placeIds.filter(id=>visibleIds.has(id));if(!ids.length)return '';
+  const ids=sortIds(area.placeIds.filter(id=>visibleIds.has(id)));if(!ids.length)return '';
   return '<section class="discovery-area" data-discovery-area="'+esc(area.id)+'"><h2><span>'+esc(area.title)+'</span><span class="category-count">'+ids.length+'</span></h2>'+(area.intro?'<p class="discovery-intro">'+esc(area.intro)+'</p>':'')+ids.map(id=>cardMarkup(requirePlace(id))).join('')+'</section>';
  }).join(''):guide.categories.map(category=>{
   const ids=ordered.filter(id=>(bookedIds.includes(id)?'booked':requirePlace(id).category)===category.id);if(!ids.length)return '';
-  return '<section class="discovery-area" data-discovery-category="'+esc(category.id)+'" data-category="'+esc(category.id)+'"><h2>'+categoryIcon(category.id)+'<span>'+esc(category.label)+'</span><span class="category-count">'+ids.length+'</span></h2>'+ids.map(id=>cardMarkup(requirePlace(id))).join('')+'</section>';
+  return '<section class="discovery-area" data-discovery-category="'+esc(category.id)+'" data-category="'+esc(category.id)+'"><h2>'+categoryIcon(category.id)+'<span>'+esc(category.label)+'</span><span class="category-count">'+ids.length+'</span></h2>'+sortIds(ids).map(id=>cardMarkup(requirePlace(id))).join('')+'</section>';
  }).join('');
  document.getElementById('placeList').innerHTML=visible.length?sectionMarkup:'<p class="list-empty">Inga platser i de valda kategorierna.</p>';
 

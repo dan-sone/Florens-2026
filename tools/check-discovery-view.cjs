@@ -19,7 +19,7 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
 
  await page.click('#tab-sevardheter');
  const guide=JSON.parse(fs.readFileSync('guide.json')),places=JSON.parse(fs.readFileSync('places.json')).places;
- const ordered=guide.discoveryAreas.flatMap(a=>a.placeIds).filter(id=>id!=='hotel-la-scaletta');const booked=new Set(guide.bookings.map(b=>b.placeId));const byId=new Map(places.map(p=>[p.id,p]));const expected=guide.categories.flatMap(c=>ordered.filter(id=>(booked.has(id)?'booked':byId.get(id).category)===c.id));
+ const ordered=guide.discoveryAreas.flatMap(a=>a.placeIds).filter(id=>id!=='hotel-la-scaletta');const booked=new Set(guide.bookings.map(b=>b.placeId));const byId=new Map(places.map(p=>[p.id,p]));const expected=guide.categories.flatMap(c=>{const ids=ordered.filter(id=>(booked.has(id)?'booked':byId.get(id).category)===c.id);const labels=[...new Set(ids.map(id=>byId.get(id).subcategory))].sort((a,b)=>a.localeCompare(b,'sv'));return labels.flatMap(label=>ids.filter(id=>byId.get(id).subcategory===label).sort((a,b)=>byId.get(a).name.localeCompare(byId.get(b).name,'sv')))});
  assert.deepEqual(await page.locator('[data-place-card]').evaluateAll(es=>es.map(e=>e.dataset.placeCard)),expected);
  assert.equal(await page.locator('.discovery-area').count(),5);assert.equal(await page.locator('[data-place-card="hotel-la-scaletta"]').count(),0);assert.equal(await page.locator('.discovery-card[open]').count(),0);
  const first=page.locator('.discovery-card').first();
@@ -51,7 +51,7 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  assert.deepEqual(await page.locator('.places-view-mode button').allTextContents(),['Kategori','Område','Läsvy']);
  await page.click('.places-view-mode [data-places-mode="area"]');
  assert.equal(await page.locator('[data-discovery-area]').count(),8);
- assert.deepEqual(await page.locator('[data-place-card]').evaluateAll(es=>es.map(e=>e.dataset.placeCard)),ordered);
+ const rank=new Map(guide.categories.map((c,i)=>[c.id,i]));const areaExpected=guide.discoveryAreas.flatMap(a=>a.placeIds.filter(id=>id!=='hotel-la-scaletta').sort((a,b)=>rank.get(booked.has(a)?'booked':byId.get(a).category)-rank.get(booked.has(b)?'booked':byId.get(b).category)||byId.get(a).subcategory.localeCompare(byId.get(b).subcategory,'sv')||byId.get(a).name.localeCompare(byId.get(b).name,'sv')));assert.deepEqual(await page.locator('[data-place-card]').evaluateAll(es=>es.map(e=>e.dataset.placeCard)),areaExpected);
  const areaCard=page.locator('[data-place-card="palazzo-pitti"]');await areaCard.locator('.discovery-heading').tap();assert(await areaCard.evaluate(e=>e.open));
  await page.click('.places-view-mode [data-places-mode="overview"]');assert(await areaCard.evaluate(e=>e.open));
  await page.click('.places-view-mode [data-places-mode="area"]');assert(await areaCard.evaluate(e=>e.open));

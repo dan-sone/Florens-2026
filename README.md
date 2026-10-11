@@ -1,3 +1,7 @@
+## Endast ändrad sortering – UI 1.12.0
+
+Kategori, Område och Läsvy och deras utseende är kvar. Sorteringsnyckeln är kategori, underkategori (till exempel Glass och Utsikter), därefter platsnamn i svensk bokstavsordning. Områdesvyn använder nyckeln inom varje område; läsvyn följer vald gruppering. Inga extra rubriker eller navigationsval läggs till. Underkategori sparas som ett valfritt fält i registret: places schema 4, innehåll 9. Äldre innehåll använder Övrigt som reserv. Övriga platsuppgifter, positioner och länkar är oförändrade.
+
 ## Tre sätt att utforska – UI 1.11.0
 
 Kategori, Område och Läsvy delar samma platskort och kategorifilter. Område återställer de åtta redaktionella grupperna utan hotellkortet. Läsvy öppnar alla synliga kort och behåller den senast valda grupperingen. Visningsval, gruppering och individuellt öppnade kort bevaras när man växlar vy. Filtren har mjuka kapslar, diskret skugga och samma ikoner och färgvariabler som tidigare; avstängda filter är neutrala och saknar skugga. Alla innehålls- och schemaversioner är oförändrade.
@@ -82,7 +86,7 @@ En statisk reseguide med återanvändbart kartgränssnitt. `index.html` innehål
 
 | Innehåll | Schema | Ansvar |
 | --- | --- | --- |
-| `places.json` | `places.schema.v3.json` | Platser, positioner, länkar och verifieringsstatus |
+| `places.json` | `places.schema.v4.json` | Platser, positioner, länkar och verifieringsstatus |
 | `routes.json` | `routes.schema.v1.json` | Delsträckor, färdsätt och ordnade plats-id |
 | `guide.json` | `guide.schema.v4.json` | Titel, destination, tidszon, kartutsnitt, resdagar, program, bokningar, flyg och presentation |
 | `stories.json` | `stories.schema.v1.json` | Korta platsberättelser, konkreta saker att titta efter och källor |
@@ -110,12 +114,12 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 
 | Fil | Schemaversion | Innehåll/programversion |
 | --- | ---: | ---: |
-| places.json | 3 | 8 |
+| places.json | 4 | 9 |
 | routes.json | 1 | 6 |
 | guide.json | 4 | 11 |
 | stories.json | 1 | 4 |
 | history.json | 2 | 2 |
-| index.html och ui-theme.css | – | 1.11.0 |
+| index.html och ui-theme.css | – | 1.12.0 |
 | place-sheet.css | – | 1.4.4 |
 | valideringskod | – | 1.7.0 |
 | verification-report.v2.md | – | Rapportversion 2 |
