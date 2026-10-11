@@ -1,3 +1,7 @@
+## Justerade färger och markörstorlekar – UI 1.13.1
+
+Bokat och hotell använder grönt, Mat & dryck orange och Shopping gult. Daglägets nyanser är mörkare för läsbar text; nattläget använder ljusare färger i samma färgfamilj. Färgerna ligger fortsatt enbart i taxonomy.json (schema 1, innehåll 2). Shoppingnålarna har samma mått och förankring som övriga nålar: 35×45 px, spets vid 17×42 px. Platskoordinaterna är oförändrade. Guide har schema 5, innehåll 13; övriga innehållsfiler är oförändrade.
+
 ## Gemensamma kategorier och oberoende filter – UI 1.13.0
 
 `taxonomy.json` är appens gemensamma register för kategorinamn, färger i dag/natt och SVG-ikoner. Underkategorier har stabila id:n och egna ikoner; de ärver huvudkategorins färg. `place-presentation.js` används av kartnålar, kartfilter, platskort, popup, schema och historievyn. Bokat är en separat status, inte en färg som ersätter platsens kategori.
@@ -125,11 +129,12 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | --- | ---: | ---: |
 | places.json | 5 | 10 |
 | routes.json | 1 | 6 |
-| guide.json | 5 | 12 |
+| guide.json | 5 | 13 |
 | stories.json | 1 | 4 |
 | history.json | 2 | 2 |
-| taxonomy.json | 1 | 1 |
-| index.html, ui-theme.css och place-presentation.js | – | 1.13.0 |
+| taxonomy.json | 1 | 2 |
+| index.html | – | 1.13.1 |
+| ui-theme.css och place-presentation.js | – | 1.13.0 |
 | place-sheet.css | – | 1.4.4 |
 | valideringskod | – | 1.7.0 |
 | verification-report.v2.md | – | Rapportversion 2 |

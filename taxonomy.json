@@ -1,8 +1,8 @@
 {
   "$schema": "./taxonomy.schema.v1.json",
   "schemaVersion": 1,
-  "contentVersion": 1,
-  "updatedAt": "2026-10-11T09:34:16Z",
+  "contentVersion": 2,
+  "updatedAt": "2026-10-11T09:56:43Z",
   "categories": [
     {
       "id": "booked",
@@ -10,8 +10,8 @@
       "kind": "status",
       "iconId": "calendar",
       "colors": {
-        "light": "#c53030",
-        "dark": "#ff817a"
+        "light": "#238636",
+        "dark": "#30d158"
       }
     },
     {
@@ -40,8 +40,8 @@
       "kind": "place",
       "iconId": "restaurant",
       "colors": {
-        "light": "#985313",
-        "dark": "#ffbc75"
+        "light": "#b95000",
+        "dark": "#ff9f0a"
       }
     },
     {
@@ -50,8 +50,8 @@
       "kind": "place",
       "iconId": "bag",
       "colors": {
-        "light": "#886200",
-        "dark": "#ffda58"
+        "light": "#8d7100",
+        "dark": "#ffd60a"
       }
     },
     {
@@ -60,8 +60,8 @@
       "kind": "place",
       "iconId": "home",
       "colors": {
-        "light": "#c53030",
-        "dark": "#ff817a"
+        "light": "#238636",
+        "dark": "#30d158"
       }
     }
   ],
