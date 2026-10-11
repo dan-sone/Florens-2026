@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="application-version" content="1.14.2">
+<meta name="application-version" content="1.15.0">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
@@ -103,8 +103,8 @@ body[data-view]:not([data-view=karta]) #guide,body[data-view]:not([data-view=kar
 #placeFilters{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0}#placeFilters button{font-size:13px;border:1px solid #cbd5e1;border-radius:20px;background:white;padding:8px 12px;color:#475569}#placeFilters button[aria-pressed=true]{background:#075eab;color:white;border-color:#075eab}
 #placeCount{font-size:13px;color:#64748b;margin-bottom:12px}.optional-stops{display:flex;gap:7px;flex-wrap:wrap}.optional-stops button{margin:0}.list-empty{padding:24px;background:white;border-radius:14px;color:#64748b}
 </style>
-<link rel="stylesheet" href="place-sheet.css?v=1.4.4">
-<link rel="stylesheet" href="ui-theme.css?v=1.14.2">
+<link rel="stylesheet" href="place-sheet.css?v=1.15.0">
+<link rel="stylesheet" href="ui-theme.css?v=1.15.0">
 </head>
 <body data-view="karta"><nav id="viewTabs" role="tablist" aria-label="Guidevyer"><button role="tab" id="tab-karta" data-view="karta" aria-selected="true" aria-controls="map_1391adca8bfb43099964d4b8f21913ee"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2zM9 3v16M15 5v16"/></svg>Karta</button><button role="tab" id="tab-schema" data-view="schema" aria-selected="false" aria-controls="schemaPanel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4M17 3v4M3 10h18M7 14h3M14 14h3M7 17h3"/></svg>Dagar</button><button role="tab" id="tab-sevardheter" data-view="sevardheter" aria-selected="false" aria-controls="placesPanel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Sevärdheter</button><button role="tab" id="tab-historia" data-view="historia" aria-selected="false" aria-controls="historyPanel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5c-3-2-6-2-9-1v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-3-1-6-1-9 1Zm0 0v15"/></svg>Historia</button></nav>
 <main id="listView" hidden><section class="list-panel" id="schemaPanel" role="tabpanel" aria-labelledby="tab-schema" hidden></section><section class="list-panel" id="placesPanel" role="tabpanel" aria-labelledby="tab-sevardheter" hidden><h1>Sevärdheter</h1><p class="list-intro">Välj kategori och upptäck platserna. Öppna ett kort eller välj läsvyn för att läsa allt.</p><div id="placeFilters" aria-label="Kategorier"></div><div class="places-view-mode" role="group" aria-label="Visning av platser"><button type="button" data-places-mode="overview" aria-pressed="true">Kategori</button><button type="button" data-places-mode="area" aria-pressed="false">Område</button><button type="button" data-places-mode="reading" aria-pressed="false">Läsvy</button></div><p id="placeCount" aria-live="polite"></p><div id="placeList"></div></section><section class="list-panel" id="historyPanel" role="tabpanel" aria-labelledby="tab-historia" hidden></section></main>
@@ -404,9 +404,17 @@ function setSheetLevel(level,reveal=false){
 function updateSheetFade(){const copy=sheetBody.querySelector('.sheet-copy');const depth=copy?Math.max(0,Math.min(48,sheetBody.getBoundingClientRect().bottom-copy.getBoundingClientRect().top)):48;sheetBody.style.setProperty('--fade-depth',depth+'px');placeSheet.classList.toggle('has-overflow',sheetBody.scrollHeight>sheetBody.clientHeight+1);}
 placeSheet.addEventListener('transitionend',()=>{updateSheetFade();});
 sheetBody.addEventListener('focusin',()=>{if(sheetLevel==='compact'&&placeSheet.classList.contains('has-overflow'))setSheetLevel('expanded');});
+// Content always scrolls natively; an upward reading gesture opens the full card.
+let sheetReadStart=null;
+sheetBody.addEventListener('touchstart',event=>{sheetReadStart=event.touches.length===1?event.touches[0].clientY:null;},{passive:true});
+sheetBody.addEventListener('touchmove',event=>{if(sheetReadStart!==null&&event.touches.length===1&&sheetReadStart-event.touches[0].clientY>12&&sheetLevel==='compact'){setSheetLevel('expanded');sheetReadStart=null;}},{passive:true});
+sheetBody.addEventListener('touchend',()=>{sheetReadStart=null;},{passive:true});
+sheetBody.addEventListener('touchcancel',()=>{sheetReadStart=null;},{passive:true});
+sheetBody.addEventListener('wheel',event=>{if(event.deltaY>0&&sheetLevel==='compact')setSheetLevel('expanded');},{passive:true});
+sheetBody.addEventListener('scroll',()=>{if(sheetLevel==='compact'&&sheetBody.scrollTop>0)setSheetLevel('expanded');updateSheetFade();},{passive:true});
 function startSheetDrag(event){
  if(event.button!==0||placeSheet.hidden||sheetGrab.hidden||event.target.closest('button:not(#sheetGrab)'))return;
- sheetDrag={id:event.pointerId,y:event.clientY,height:placeSheet.getBoundingClientRect().height,start:event.timeStamp,moved:false};
+ sheetDrag={id:event.pointerId,y:event.clientY,height:placeSheet.getBoundingClientRect().height,level:sheetLevel,moved:false};
  placeSheet.classList.add('dragging');sheetGrab.setPointerCapture(event.pointerId);event.preventDefault();
 }
 sheetGrab.addEventListener('pointerdown',startSheetDrag);
@@ -422,15 +430,16 @@ function finishSheetDrag(event,cancelled=false){
  if(sheetGrab.hasPointerCapture(event.pointerId))sheetGrab.releasePointerCapture(event.pointerId);
  if(drag.moved){
   suppressGrabClickUntil=performance.now()+400;
-  const delta=drag.y-event.clientY,sizes=sheetSizes();
-  if(!cancelled&&delta< -28){closePlaceSheet();return;}
-  const next=cancelled?sheetLevel:Math.abs(delta)>28?(delta>0?'expanded':'compact'):placeSheet.getBoundingClientRect().height>(sizes.max+sizes.compact)/2?'expanded':'compact';
+  const delta=drag.y-event.clientY;
+  if(!cancelled&&delta< -64){closePlaceSheet();return;}
+  const next=cancelled?drag.level:delta>28?'expanded':drag.level;
   setSheetLevel(next,!cancelled);
  }else if(cancelled)setSheetLevel(sheetLevel);
  else{suppressGrabClickUntil=performance.now()+400;setSheetLevel(sheetLevel==='compact'?'expanded':'compact',true);}
 }
 sheetGrab.addEventListener('pointerup',event=>finishSheetDrag(event));
 sheetGrab.addEventListener('pointercancel',event=>finishSheetDrag(event,true));
+sheetGrab.addEventListener('lostpointercapture',event=>finishSheetDrag(event,true));
 sheetGrab.addEventListener('click',event=>{if(event.detail===0||performance.now()>suppressGrabClickUntil)setSheetLevel(sheetLevel==='compact'?'expanded':'compact',true);});
 const expandedStories=new Set();
 function storyMarkup(id,inline=false){

@@ -1,3 +1,11 @@
+## Lagertext och kartkortens gester – UI 1.15.0
+
+Leaflet 1.9.3 har en mer specifik öppet-läge-regel som sätter lagermenyn till position:relative. Den skrev över vår tidigare placering. Menyn har nu en uttrycklig absolut placering även i öppet läge. Leaflets verkliga, nästlade etiketter läggs som flexrader med separat checkbox, ikon och radbrytande text. Testet återger bibliotekets konfliktregel och etikettstruktur samt kontrollerar normala och dubblerade textstorlekar.
+
+Kartkortets dragknapp har fortsatt 44 px träffyta men ligger över rubrikområdet i stället för att ta en tom rad. Överkantens avstånd är cirka 20 px. Rubrik och draglist flyttar kortet; texten scrollas nativt i båda lägena. Ett svep uppåt, scroll eller mushjul i den korta textvyn öppnar hela kortet och bevarar läspositionen. Scroll nedåt i texten stänger inte kortet. Dra nedåt på rubrik/draglist stänger efter 64 px; mindre rörelser återgår till samma läge. Avbrutna drag återställer läget. Tryck och tangentbord växlar kort/helt läge.
+
+`check-map-navigation.cjs` testar verklig pekarfångst, musdrag och emulerat touchsvep med nativ scroll, förutom tidigare storlekar/dag/natt. Innehåll, kategorier, positioner och länkar är oförändrade. UI och place-sheet.css har version 1.15.0.
+
 ## Skala vid nederkanten – UI 1.14.2
 
 Den gamla mobilregeln som lyfte nederkontrollerna 142 px är borttagen. Skalan ligger nu längst ned till vänster, på samma baslinje som Uppdatera och med iPhones safe-area-insets. När ett plats- eller ruttkort öppnas döljs skalan; den återkommer när kortet stängs. Skalan fångar inte kartgester. Innehåll och positioner är oförändrade.
@@ -149,9 +157,9 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | stories.json | 1 | 4 |
 | history.json | 2 | 2 |
 | taxonomy.json | 1 | 2 |
-| index.html och ui-theme.css | – | 1.14.2 |
+| index.html, ui-theme.css och place-sheet.css | – | 1.15.0 |
 | place-presentation.js | – | 1.13.0 |
-| place-sheet.css | – | 1.4.4 |
+
 | valideringskod | – | 1.7.0 |
 | verification-report.v2.md | – | Rapportversion 2 |
 

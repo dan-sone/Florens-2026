@@ -24,3 +24,11 @@ body.place-open #guide{visibility:hidden;pointer-events:none}
 .list-card{overflow-wrap:anywhere;min-width:0}.list-card .place-story{margin-top:14px}.list-card .story-copy p{font-size:.95rem}
 .leaflet-marker-icon.is-selected{filter:drop-shadow(0 0 2px #fff) drop-shadow(0 0 7px #007aff)!important}.selected-place-halo{pointer-events:none}
 @media(max-height:480px){#placeSheet{border-radius:18px}.sheet-header{padding-top:2px}.sheet-header h2{font-size:1.08rem}}
+
+/* Overlay the 44 px drag target over the header instead of reserving a row. */
+#placeSheet{padding-top:20px}
+.sheet-grab{position:absolute;top:0;left:0;height:44px;min-height:44px;align-items:flex-start;padding-top:8px;z-index:1}
+.sheet-header{position:relative;z-index:2;padding:4px 16px 8px}
+.sheet-header h2{margin:4px 0 0}
+.sheet-body{touch-action:pan-y;scrollbar-width:thin}
+#placeSheet[data-level=compact].has-overflow .sheet-body{overflow-y:auto}

@@ -138,7 +138,7 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  const body=await page.locator('#sheetBody').boundingBox();await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:body.x+body.width/2,y:body.y+body.height-30}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:body.x+body.width/2,y:body.y+30}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});assert.equal(await sheet.getAttribute('data-level'),'expanded');
  await touchDrag(150);assert(await sheet.isHidden());
  await page.evaluate(async()=>{(await guideReady).openPlaceSheet('orsanmichele');});await page.waitForTimeout(300);
- assert((await grab.boundingBox()).height>=48);
+ assert((await grab.boundingBox()).height>=44);
  await touchDrag(-150,page.locator('#sheetTitle'));assert.equal(await sheet.getAttribute('data-level'),'expanded');
  await touchDrag(150,page.locator('#sheetTitle'));assert(await sheet.isHidden());
  await page.evaluate(async()=>{(await guideReady).openPlaceSheet('orsanmichele');});await page.waitForTimeout(300);
