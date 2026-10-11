@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="application-version" content="1.6.0">
+<meta name="application-version" content="1.6.1">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
@@ -113,7 +113,7 @@ body[data-view]:not([data-view=karta]) #guide,body[data-view]:not([data-view=kar
 #placeCount{font-size:13px;color:#64748b;margin-bottom:12px}.optional-stops{display:flex;gap:7px;flex-wrap:wrap}.optional-stops button{margin:0}.list-empty{padding:24px;background:white;border-radius:14px;color:#64748b}
 </style>
 <link rel="stylesheet" href="place-sheet.css?v=1.4.4">
-<link rel="stylesheet" href="ui-theme.css?v=1.6.0">
+<link rel="stylesheet" href="ui-theme.css?v=1.6.1">
 </head>
 <body data-view="karta"><nav id="viewTabs" role="tablist" aria-label="Guidevyer"><button role="tab" id="tab-karta" data-view="karta" aria-selected="true" aria-controls="map_1391adca8bfb43099964d4b8f21913ee"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2zM9 3v16M15 5v16"/></svg>Karta</button><button role="tab" id="tab-schema" data-view="schema" aria-selected="false" aria-controls="schemaPanel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4M17 3v4M3 10h18M7 14h3M14 14h3M7 17h3"/></svg>Schema</button><button role="tab" id="tab-sevardheter" data-view="sevardheter" aria-selected="false" aria-controls="placesPanel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Sevärdheter</button></nav>
 <main id="listView" hidden><section class="list-panel" id="schemaPanel" role="tabpanel" aria-labelledby="tab-schema" hidden></section><section class="list-panel" id="placesPanel" role="tabpanel" aria-labelledby="tab-sevardheter" hidden><h1>Sevärdheter</h1><p class="list-intro">Sevärdheter, hantverk, mat och shopping. Filtren följer kartan.</p><div id="placeFilters" aria-label="Kategorier"></div><p id="placeCount" aria-live="polite"></p><div id="placeList"></div></section></main>
@@ -223,6 +223,12 @@ function shoppingIcon(){return L.divIcon({className:'shopping-pin-wrap',html:'<d
   const icon=config?(config.className?L.divIcon(config):L.AwesomeMarkers.icon(config)):
    place.category==='shopping'?shoppingIcon():eIcon(place.category==='hotel'?'🏠':place.category==='craft'?'✂️':place.category==='food-drink'?'🍴':'🏛️',place.category==='hotel'?'#d33b32':place.category==='craft'?'#7b4aa3':place.category==='food-drink'?'#d9822b':'#315f9b');
   const marker=L.marker(coordinates(place),{icon});
+  marker.on('add',()=>{
+   const pin=marker.getElement();if(pin.querySelector(':scope > .pin-face'))return;
+   const face=document.createElement('div');face.className='pin-face '+[...pin.classList].filter(c=>c.startsWith('awesome-marker')||c==='shopping-pin-wrap').join(' ');
+   face.innerHTML=pin.innerHTML;pin.replaceChildren(face);pin.classList.add('pin-root');
+   const anchor=icon.options.iconAnchor;if(anchor)face.style.transformOrigin=anchor[0]+'px '+anchor[1]+'px';
+  });
   marker.on('click',()=>openPlaceSheet(place.id));
   // Keep existing program/list callers compatible with the new place sheet.
   marker.openPopup=()=>{openPlaceSheet(place.id);return marker;};
@@ -381,10 +387,10 @@ function setSheetLevel(level,reveal=false){
  const sizes=sheetSizes();placeSheet.style.height=(level==='expanded'?sizes.max:sizes.compact)+'px';
  sheetGrab.setAttribute('aria-expanded',String(level==='expanded'));sheetGrab.setAttribute('aria-label',level==='expanded'?'Visa mindre av kortet':'Visa hela kortet');
  if(reveal&&level==='compact')sheetBody.scrollTop=0;
- requestAnimationFrame(()=>{updateSheetFade();keepMarkerVisible();});
+ requestAnimationFrame(()=>{updateSheetFade();});
 }
 function updateSheetFade(){const copy=sheetBody.querySelector('.sheet-copy');const depth=copy?Math.max(0,Math.min(48,sheetBody.getBoundingClientRect().bottom-copy.getBoundingClientRect().top)):48;sheetBody.style.setProperty('--fade-depth',depth+'px');placeSheet.classList.toggle('has-overflow',sheetBody.scrollHeight>sheetBody.clientHeight+1);}
-placeSheet.addEventListener('transitionend',()=>{updateSheetFade();keepMarkerVisible();});
+placeSheet.addEventListener('transitionend',()=>{updateSheetFade();});
 sheetBody.addEventListener('focusin',()=>{if(sheetLevel==='compact'&&placeSheet.classList.contains('has-overflow'))setSheetLevel('expanded');});
 function startSheetDrag(event){
  if(event.button!==0||placeSheet.hidden||sheetGrab.hidden||event.target.closest('button:not(#sheetGrab)'))return;
@@ -420,14 +426,6 @@ function storyMarkup(id,inline=false){
  const copy='<div class="story-copy"><h3>'+esc(story.title)+'</h3>'+story.paragraphs.map(p=>'<p>'+esc(p)+'</p>').join('')+'<div class="story-look"><strong>Titta efter</strong><p>'+esc(story.lookFor)+'</p></div><details class="story-sources"><summary>Läs vidare</summary>'+story.sources.map(s=>'<a href="'+esc(s.url)+'" target="_blank" rel="noopener">'+esc(s.label)+' ↗</a>').join('')+'</details></div>';
  return inline?copy:'<details class="place-story" data-story="'+esc(id)+'"'+(expandedStories.has(id)?' open':'')+'><summary>Historien bakom platsen</summary>'+copy+'</details>';
 }
-function keepMarkerVisible(){
- if(!sheetPlaceId||placeSheet.hidden)return;
- const marker=markersById.get(sheetPlaceId);if(!marker)return;
- const point=m.latLngToContainerPoint(marker.getLatLng());
- const top=document.getElementById('viewTabs').getBoundingClientRect().bottom+46;
- const bottom=placeSheet.getBoundingClientRect().top-24;
- if(bottom>top&&(point.x<32||point.x>m.getSize().x-32||point.y>bottom||point.y<top))m.panBy([point.x-m.getSize().x/2,point.y-(top+bottom)/2],{animate:false});
-}
 function closePlaceSheet(restoreFocus=true){
  if(placeSheet.hidden)return;
  if(sheetDrag){if(sheetGrab.hasPointerCapture(sheetDrag.id))sheetGrab.releasePointerCapture(sheetDrag.id);sheetDrag=null;placeSheet.classList.remove('dragging');}
@@ -435,7 +433,7 @@ function closePlaceSheet(restoreFocus=true){
  placeSheet.hidden=true;document.body.classList.remove('place-open');sheetPlaceId=null;
  if(restoreFocus&&sheetTrigger?.isConnected)sheetTrigger.focus({preventScroll:true});
 }
-function clearPlaceSelection(){const marker=markersById.get(sheetPlaceId);marker?.getElement()?.classList.remove('is-selected');marker?.setZIndexOffset(0);m.getContainer().classList.remove('has-selection');}
+function clearPlaceSelection(){const marker=markersById.get(sheetPlaceId);marker?.getElement()?.classList.remove('is-selected');marker?.setZIndexOffset(0);}
 function openRouteSheet(){
  closePlaceSheet(false);sheetTrigger=document.activeElement;
  document.getElementById('sheetTitle').textContent='Om rutten';
@@ -451,9 +449,9 @@ function openPlaceSheet(id){
  sheetBody.innerHTML=(place.address?'<p class="sheet-address">'+esc(place.address)+'</p>':'')+sheetActions(place)+uncertainty+'<div class="sheet-copy">'+placeDescription(place)+storyMarkup(id,true)+'</div>';
  sheetGrab.hidden=false;sheetHeader.classList.add('draggable');
  sheetBody.scrollTop=0;placeSheet.hidden=false;document.body.classList.add('place-open');marker?.getElement()?.classList.add('is-selected');
- if(marker){marker.setZIndexOffset(1000);m.getContainer().classList.add('has-selection');}
+ marker?.setZIndexOffset(1000);
  setSheetLevel('compact');
- document.getElementById('sheetTitle').focus({preventScroll:true});requestAnimationFrame(keepMarkerVisible);
+ document.getElementById('sheetTitle').focus({preventScroll:true});
 }
 function syncStoryExpansion(event){const details=event.target;if(details.matches?.('[data-story]')){if(details.open)expandedStories.add(details.dataset.story);else expandedStories.delete(details.dataset.story);}if(sheetBody.contains(details))updateSheetFade();}
 document.addEventListener('toggle',syncStoryExpansion,true);
@@ -462,7 +460,7 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!placeSheet
 placeSheet.addEventListener('click',event=>{const button=event.target.closest('[data-ask-place]');if(button)askAboutPlace(requirePlace(button.dataset.askPlace));});
 m.on('click',()=>closePlaceSheet(false));
 m.on('layerremove',()=>{if(sheetPlaceId&&!m.hasLayer(markersById.get(sheetPlaceId)))closePlaceSheet(false);});
-function updateSheetViewport(){document.documentElement.style.setProperty('--app-height',(window.visualViewport?.height||window.innerHeight)+'px');if(!placeSheet.hidden&&!sheetDrag)setSheetLevel(sheetLevel);requestAnimationFrame(keepMarkerVisible);}
+function updateSheetViewport(){document.documentElement.style.setProperty('--app-height',(window.visualViewport?.height||window.innerHeight)+'px');if(!placeSheet.hidden&&!sheetDrag)setSheetLevel(sheetLevel);}
 window.addEventListener('resize',updateSheetViewport);window.visualViewport?.addEventListener('resize',updateSheetViewport);updateSheetViewport();
 function listActions(place){
  return (!place.position?'<p class="address">Kartposition saknas ännu.</p>':'')+sheetActions(place,true);

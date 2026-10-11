@@ -67,6 +67,18 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
   });
  }
  await page.setViewportSize({width:390,height:844});
+
+ await page.setViewportSize({width:390,height:844});
+ await page.evaluate(async()=>{const g=await guideReady;g.setView('karta');g.closePlaceSheet(false);g.map.setView([g.guide.map.center.latitude,g.guide.map.center.longitude],14,{animate:false});});
+ for(const id of ['orsanmichele','beppa-fioraia','mio-concept-store']){
+   const before=await page.evaluate(async id=>{const g=await guideReady;g.closePlaceSheet(false);const marker=g.markersById.get(id);if(!g.map.hasLayer(marker))marker.addTo(g.map);const other=[...g.markersById.values()].filter(m=>m!==marker&&m.getElement()?.isConnected);const style=m=>{const e=m.getElement(),s=getComputedStyle(e);return {opacity:s.opacity,filter:s.filter,scale:s.scale,transform:s.transform};};window.pinOthers=other;window.pinBefore=other.map(style);window.pinStyle=style;const e=marker.getElement().querySelector('.pin-face'),r=e.getBoundingClientRect(),a=marker.options.icon.options.iconAnchor;return {center:g.map.getCenter(),point:g.map.latLngToContainerPoint(marker.getLatLng()),tip:{x:r.x+a[0],y:r.y+a[1]},anchor:a};},id);
+   await page.evaluate(async id=>(await guideReady).openPlaceSheet(id),id);await page.waitForTimeout(300);
+   const after=await page.evaluate(async id=>{const g=await guideReady,m=g.markersById.get(id),e=m.getElement().querySelector('.pin-face'),r=e.getBoundingClientRect(),a=m.options.icon.options.iconAnchor;return {center:g.map.getCenter(),point:g.map.latLngToContainerPoint(m.getLatLng()),tip:{x:r.x+a[0]*1.25,y:r.y+a[1]*1.25},origin:getComputedStyle(e).transformOrigin,othersSame:JSON.stringify(window.pinBefore)===JSON.stringify(window.pinOthers.map(window.pinStyle))};},id);
+   assert.deepEqual(after.center,before.center);assert.deepEqual(after.point,before.point);assert(Math.abs(after.tip.x-before.tip.x)<1&&Math.abs(after.tip.y-before.tip.y)<1);assert.equal(after.origin,before.anchor[0]+'px '+before.anchor[1]+'px');assert(after.othersSame);
+   await page.locator('#sheetGrab').focus();await page.keyboard.press('Enter');await page.waitForTimeout(300);assert.deepEqual(await page.evaluate(async()=>(await guideReady).map.getCenter()),before.center);
+   await page.evaluate(async()=>(await guideReady).closePlaceSheet(false));await page.waitForTimeout(300);assert.deepEqual(await page.evaluate(async()=>(await guideReady).map.getCenter()),before.center);
+ }
+ console.log('PASS: selected pin tip and map center unchanged on selection/expansion/close; other pin styles unchanged; standard and shopping anchors');
  // Real pointer capture, touch swipes and keyboard alternative on the grab handle.
  await page.evaluate(async()=>{const g=await guideReady;g.setView('karta');g.openPlaceSheet('orsanmichele');});
  await page.waitForTimeout(300);
@@ -75,10 +87,8 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  const compact=(await sheet.boundingBox()).height;
  async function mouseDrag(delta){const r=await grab.boundingBox(),x=r.x+r.width/2,y=r.y+r.height/2;await page.mouse.move(x,y);await page.mouse.down();await page.mouse.move(x,y+delta,{steps:8});await page.mouse.up();await page.waitForTimeout(450);}
  assert(await sheet.evaluate(e=>e.classList.contains('has-overflow')));assert.notEqual(await page.locator('#sheetBody').evaluate(e=>getComputedStyle(e).maskImage),'none');
- assert(await page.evaluate(async()=>{const g=await guideReady,p=g.map.latLngToContainerPoint(g.markersById.get('orsanmichele').getLatLng());return p.x>=32&&p.x<=g.map.getSize().x-32&&p.y<=document.getElementById('placeSheet').getBoundingClientRect().top-24;}));
  await page.screenshot({path:'/tmp/place-sheet-fade.png'});
  await mouseDrag(-150);assert.equal(await sheet.getAttribute('data-level'),'expanded');assert((await sheet.boundingBox()).height>compact+50);assert.equal(await page.locator('#sheetBody').evaluate(e=>getComputedStyle(e).maskImage),'none');
- assert(await page.evaluate(async()=>{const g=await guideReady,marker=g.markersById.get('orsanmichele'),point=g.map.latLngToContainerPoint(marker.getLatLng()),p=g.placesById.get('orsanmichele');return point.y<=document.getElementById('placeSheet').getBoundingClientRect().top-24&&point.y>=document.getElementById('viewTabs').getBoundingClientRect().bottom+46&&marker.getLatLng().lat===p.position.latitude&&marker.getLatLng().lng===p.position.longitude;}));
  await mouseDrag(150);assert(await sheet.isHidden());assert.equal(await page.locator('.selected-place-halo').count(),0);
  await page.evaluate(async()=>{(await guideReady).openPlaceSheet('orsanmichele');});await page.waitForTimeout(300);
  let cdp=await page.context().newCDPSession(page);await cdp.send('Emulation.setTouchEmulationEnabled',{enabled:true});
@@ -135,11 +145,11 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  await dayHandle.tap();await page.waitForTimeout(300);assert.equal(await daySheet.getAttribute('data-level'),'expanded');
  await touchDrag(180,dayHandle);await page.selectOption('#routeSelect','thu');assert.equal(await daySheet.getAttribute('data-level'),'compact');
  await page.screenshot({path:'/tmp/day-guide-compact.png'});await dayHandle.tap();await page.waitForTimeout(300);await page.screenshot({path:'/tmp/day-guide-expanded.png'});
- await page.evaluate(async()=>{const g=await guideReady;g.showPlaceOnMap('beppa-fioraia');await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));const selected=g.markersById.get('beppa-fioraia').getElement();const other=[...document.querySelectorAll('.leaflet-marker-icon')].find(e=>e!==selected);if(!g.map.getContainer().classList.contains('has-selection'))throw new Error('Missing selected state');if(!document.getElementById('sheetBody').textContent.includes('peposo')||!document.getElementById('sheetBody').textContent.includes('12:30–14:30'))throw new Error('Missing hours/specialty');});
- await page.waitForTimeout(300);assert.equal(await page.locator('.awesome-marker.is-selected').evaluate(e=>getComputedStyle(e).scale),'1.13');assert(await page.locator('.awesome-marker:not(.is-selected)').first().evaluate(e=>Number(getComputedStyle(e).opacity)<1));
- await page.evaluate(async()=>{const g=await guideReady;g.closePlaceSheet(false);if(g.map.getContainer().classList.contains('has-selection')||document.querySelector('.is-selected'))throw new Error('Pin state not cleared');g.setView('sevardheter');});
+ await page.evaluate(async()=>{const g=await guideReady;g.showPlaceOnMap('beppa-fioraia');await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));const selected=g.markersById.get('beppa-fioraia').getElement();const other=[...document.querySelectorAll('.leaflet-marker-icon')].find(e=>e!==selected);if(!document.getElementById('sheetBody').textContent.includes('peposo')||!document.getElementById('sheetBody').textContent.includes('12:30–14:30'))throw new Error('Missing hours/specialty');});
+ await page.waitForTimeout(300);assert.equal(await page.locator('.is-selected > .pin-face').evaluate(e=>getComputedStyle(e).transform),'matrix(1.25, 0, 0, 1.25, 0, 0)');assert(await page.locator('.awesome-marker:not(.is-selected)').first().evaluate(e=>Number(getComputedStyle(e).opacity)===1));
+ await page.evaluate(async()=>{const g=await guideReady;g.closePlaceSheet(false);if(document.querySelector('.is-selected'))throw new Error('Pin state not cleared');g.setView('sevardheter');});
  assert((await page.locator('[data-place-card="beppa-fioraia"]').textContent()).includes('peposo'));
- console.log('PASS: day-guide touch up/down, tap and keyboard, native day selection, persistent state, compact height and screen bounds; structured hours/specialties in map and list; selected pin scaling/dimming/reset');
+ console.log('PASS: day-guide touch up/down, tap and keyboard, native day selection, persistent state, compact height and screen bounds; structured hours/specialties in map and list; selected pin scaling/reset; other pins unchanged');
  // Appearance follows OS changes live; every surface shares the same theme.
  const positions=await page.evaluate(async()=>[...(await guideReady).markersById].map(([id,m])=>[id,m.getLatLng().lat,m.getLatLng().lng]));
  for(const colorScheme of ['dark','light']){

@@ -33,7 +33,7 @@ html,body{background:var(--page);color:var(--text);font-family:-apple-system,Bli
 .list-badge{border-radius:8px;background:var(--badge);color:var(--badge-text)}.list-badge.optional{background:var(--optional);color:var(--optional-text)}.list-badge.uncertain{background:var(--warning);color:var(--warning-text)}.list-empty{background:var(--surface);color:var(--muted);border-radius:24px}
 #placeSheet{background:var(--surface);color:var(--text);border-color:var(--line);box-shadow:var(--shadow)}.sheet-handle{background:var(--muted);opacity:.5}.sheet-close{background:var(--control);color:var(--muted)}.sheet-body .sheet-address{color:var(--muted)}
 .sheet-action{background:var(--soft);color:var(--accent);transition:transform .18s}.sheet-action[data-action="walking"]{background:var(--primary);color:var(--on-primary)}.sheet-copy .story-copy{color:var(--text)}.place-story,.sheet-more{border-color:var(--line)}.place-story>summary::after,.sheet-more>summary::after{border-color:var(--muted)}.story-look{background:var(--soft)}.story-look strong{color:var(--accent)}.story-sources,.story-sources a{color:var(--muted)}
-:is(.awesome-marker,.leaflet-marker-icon){transition:opacity .2s,scale .2s;transform-origin:50% 100%}.folium-map.has-selection :is(.awesome-marker,.leaflet-marker-icon):not(.is-selected){opacity:.55!important}:is(.awesome-marker,.leaflet-marker-icon).is-selected{scale:1.13;filter:drop-shadow(0 3px 4px rgba(0,0,0,.3))!important}
+.leaflet-marker-pane .pin-root{background-image:none!important}.pin-face{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;transition:transform .2s;transform:scale(1)}.is-selected > .pin-face{transform:scale(1.25)}
 #viewTabs button:focus-visible,.list-action:focus-visible,#placeFilters button:focus-visible,#routeSelect:focus-visible,.leaflet-bar a:focus-visible,.leaflet-bar button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .leaflet-bar a:focus-visible,.leaflet-bar button:focus-visible{outline-offset:-4px}
 @media(max-width:360px){#viewTabs .tab-icon{display:none}#viewTabs button{font-size:13px}.list-card{padding:15px}}
@@ -57,6 +57,6 @@ html,body{background:var(--page);color:var(--text);font-family:-apple-system,Bli
 #guide #daycard{max-height:none!important;overflow:visible!important}
 .place-facts{margin:14px 0}.place-facts strong{font-weight:600}.place-facts .fact-source{font-size:.78rem;color:var(--muted);line-height:1.5}.fact-source a{color:var(--muted);text-decoration:underline;text-underline-offset:2px}
 #dayGuideGrab:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:12px}
-@media(prefers-reduced-motion:reduce){#guide,:is(.awesome-marker,.leaflet-marker-icon){transition:none}}
+@media(prefers-reduced-motion:reduce){#guide,.pin-face{transition:none}}
 
 #guide.dragging #dayGuideContent{visibility:visible}

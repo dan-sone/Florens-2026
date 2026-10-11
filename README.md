@@ -2,7 +2,7 @@
 
 ## Dagsguide och platsinnehåll – 1.6.0
 
-Dagsguiden är kompakt från start. Tryck på raden eller dra uppåt för programmet; dra nedåt för att fälla ihop. Den följer fingret och behåller sitt läge vid dagsbyte. Den separata dagväljaren använder systemets vanliga select. Vald kartnål blir något större med mjuk skugga; andra nålar dämpas medan platskortet visas. Ingen extra cirkel ritas.
+Dagsguiden är kompakt från start. Tryck på raden eller dra uppåt för programmet; dra nedåt för att fälla ihop. Den följer fingret och behåller sitt läge vid dagsbyte. Den separata dagväljaren använder systemets vanliga select. Version 1.6.1 förstorar enbart vald kartnål med 25 procent, förankrad i dess iconAnchor. Övriga nålar behåller färg, opacitet, storlek och skugga. Kartan panoreras inte när platskortet öppnas eller ändrar höjd. Ingen extra cirkel ritas.
 
 Platsregister schema v2 har separata fält för `openingHours` och `specialties`. Tider har tidszon, veckodagar, intervall (även över midnatt), valfri giltighetsperiod, daterade undantag/notiser och källor med kontrolldatum. Status skiljer publicerade tider från obekräftade tider, bokade besök och utomhusplatser. Köks-, butiks- och verkstadstider skiljs i etiketterna. Okända eller motstridiga tider visas med kontrollänk; ingen realtidsstatus för öppet/stängt beräknas. Säsongstider visas när giltigheten överlappar resan.
 
@@ -67,7 +67,7 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | routes.json | 1 | 3 |
 | guide.json | 3 | 7 |
 | stories.json | 1 | 3 |
-| index.html och ui-theme.css | – | 1.6.0 |
+| index.html och ui-theme.css | – | 1.6.1 |
 | place-sheet.css | – | 1.4.4 |
 | valideringskod | – | 1.6.0 |
 | verification-report.v2.md | – | Rapportversion 2 |
