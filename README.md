@@ -1,3 +1,9 @@
+## Fast meny och markering utan popup – UI 1.17.1
+
+Flikmenyn ligger fast uppe till vänster med samma läge och bredd mellan vyerna. Visa centrerar och förstorar den valda kartnålen utan att öppna ett platskort; på större skärmar behålls läspanelen, på telefon visas kartvyn. Ett annat val flyttar markeringen och karttryck tar bort den. Tryck på själva kartnålen öppnar fortfarande dess platskort. Gå har samma knappstil som övriga alternativ i alla vyer. Positioner och innehåll är oförändrade.
+
+Navigationstestet kontrollerar menyns oförändrade geometri mellan vyerna, Visa utan popup, en vald nål åt gången, byte och borttagning av markering samt likvärdig stil för Gå och Kartor, i dag/natt och på större och mindre skärmar.
+
 ## Läsning bredvid kartan – UI 1.17.0
 
 Dagar, Sevärdheter och Historia visas i en vänsterpanel när skärmen är minst 900 px bred och 500 px hög. Kartans verkliga behållare får återstående bredd; den täcks inte av läspanelen. Flikarna ligger ovanför panelens innehåll. Karta återgår till hela kartbredden. Mindre och låga skärmar behåller helskärmsvyerna.
@@ -185,9 +191,9 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | stories.json | 1 | 4 |
 | history.json | 2 | 2 |
 | taxonomy.json | 1 | 2 |
-| index.html | – | 1.17.0 |
-| ui-theme.css | – | 1.17.0 |
-| place-sheet.css | – | 1.15.0 |
+| index.html | – | 1.17.1 |
+| ui-theme.css | – | 1.17.1 |
+| place-sheet.css | – | 1.17.1 |
 | place-presentation.js | – | 1.16.1 |
 
 | valideringskod | – | 1.7.0 |

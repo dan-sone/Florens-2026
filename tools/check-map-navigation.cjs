@@ -48,10 +48,12 @@ window.L={map:id=>new MapView(id),CRS:{EPSG3857:{}},control,layerGroup:()=>new G
   for(const viewport of [{width:1024,height:768},{width:1366,height:1024},{width:834,height:1194},{width:390,height:844},{width:956,height:440}]){
    await page.setViewportSize(viewport);
    const wide=viewport.width>=900&&viewport.height>=500;
+   await page.click('#tab-karta');const navigation=await page.locator('#viewTabs').boundingBox();
    for(const view of ['schema','sevardheter','historia']){
     await page.click('#tab-'+view);await page.waitForTimeout(80);
     const geometry=await page.evaluate(()=>{const panel=document.getElementById('listView'),map=document.querySelector('.folium-map'),tabs=document.getElementById('viewTabs');const rect=e=>{const r=e.getBoundingClientRect();return {x:r.x,right:r.right,width:r.width,bottom:r.bottom}};return {panel:rect(panel),map:rect(map),tabs:rect(tabs),visible:getComputedStyle(map).visibility,overflow:panel.scrollWidth>panel.clientWidth+1}});
-    assert(!geometry.overflow,JSON.stringify({viewport,view,geometry}));
+    assert(!geometry.overflow,JSON.stringify({viewport,view,geometry}));assert.equal(geometry.tabs.x,navigation.x);assert.equal(geometry.tabs.width,navigation.width);
+    await page.mouse.move(0,0);assert(await page.locator('#listView .sheet-actions').evaluateAll(groups=>groups.every(group=>{const walking=group.querySelector('[data-action=walking]'),maps=group.querySelector('[data-action=maps]');if(!walking||!maps)return true;const a=getComputedStyle(walking),b=getComputedStyle(maps);return a.backgroundColor===b.backgroundColor&&a.color===b.color})), 'Gå uses the same style as other actions');
     if(wide)assert.equal(await page.locator('#viewTabs button').evaluateAll(es=>es.some(e=>e.scrollWidth>e.clientWidth+1)),false,'panel tab labels fit '+JSON.stringify(viewport));
     if(wide){assert.equal(geometry.visible,'visible');assert(geometry.map.x>=geometry.panel.right-1);assert(geometry.map.width>=500);assert(geometry.tabs.right<=geometry.panel.right+1);assert(geometry.map.right<=viewport.width+1)}else{assert.equal(geometry.visible,'hidden');assert.equal(geometry.panel.width,viewport.width)}
    }
@@ -62,11 +64,12 @@ window.L={map:id=>new MapView(id),CRS:{EPSG3857:{}},control,layerGroup:()=>new G
   await page.evaluate(()=>document.getElementById('listView').scrollTop=180);const scroll=await page.locator('#listView').evaluate(e=>e.scrollTop);
   await page.click('#tab-historia');await page.click('#tab-schema');assert(await page.locator('[data-day=tue]').evaluate(e=>e.open));assert.equal(await page.locator('#listView').evaluate(e=>e.scrollTop),scroll);
   await page.locator('[data-day=tue] [data-show-place="hotel-la-scaletta"]').click();await page.waitForTimeout(150);
-  assert.equal(await page.locator('body').getAttribute('data-view'),'schema');assert(await page.locator('#placeSheet').isVisible());
-  const panel=await page.locator('#listView').boundingBox(),popup=await page.locator('#placeSheet').boundingBox();assert(popup.x>=panel.x+panel.width);assert(popup.x+popup.width<=1025);
-  await page.screenshot({path:'/tmp/reading-panel-'+colorScheme+'.png'});await page.locator('#sheetClose').click();
+  assert.equal(await page.locator('body').getAttribute('data-view'),'schema');assert(await page.locator('#placeSheet').isHidden());
+  assert.equal(await page.locator('.is-selected').count(),1);assert(await page.evaluate(async()=>{const g=await guideReady;return g.markersById.get('hotel-la-scaletta').getElement().classList.contains('is-selected')}));
+  await page.evaluate(async()=>{const g=await guideReady;g.showPlaceOnMap('orsanmichele')});await page.waitForTimeout(100);assert.equal(await page.locator('.is-selected').count(),1);assert(await page.locator('#placeSheet').isHidden());assert(await page.evaluate(async()=>{const g=await guideReady;return !g.markersById.get('hotel-la-scaletta').getElement().classList.contains('is-selected')}));
+  await page.screenshot({path:'/tmp/reading-panel-'+colorScheme+'.png'});await page.evaluate(async()=>{(await guideReady).map.fire('click')});assert.equal(await page.locator('.is-selected').count(),0);
   await page.setViewportSize({width:390,height:844});assert.equal(await page.locator('.folium-map').evaluate(e=>getComputedStyle(e).visibility),'hidden');assert(await page.locator('[data-day=tue]').evaluate(e=>e.open));
-  await page.locator('[data-day=tue] [data-show-place="hotel-la-scaletta"]').click();await page.waitForTimeout(100);assert.equal(await page.locator('body').getAttribute('data-view'),'karta');await page.locator('#sheetClose').click();
+  await page.locator('[data-day=tue] [data-show-place="hotel-la-scaletta"]').click();await page.waitForTimeout(100);assert.equal(await page.locator('body').getAttribute('data-view'),'karta');assert(await page.locator('#placeSheet').isHidden());assert.equal(await page.locator('.is-selected').count(),1);await page.evaluate(async()=>{(await guideReady).map.fire('click')});
   await page.click('#tab-schema');await page.locator('[data-day=tue]>.schedule-heading').click();await page.click('#tab-karta');
  }
  // Real pointer capture and native content scrolling exercise the production sheet.
