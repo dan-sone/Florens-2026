@@ -16,9 +16,28 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  });
  await page.goto('http://127.0.0.1:8765/',{waitUntil:'load',timeout:60000});
  await page.evaluate(()=>guideReady);
- assert.deepEqual(await page.locator('#viewTabs button').allTextContents(),['Karta','Schema','Sevärdheter']);
+ assert.deepEqual(await page.locator('#viewTabs button').allTextContents(),['Karta','Schema','Sevärdheter','Historia']);
  assert.equal(await page.locator('.leaflet-control-zoom').count(),0);assert.equal(await page.locator('.leaflet-top.leaflet-left .leaflet-control').count(),0);assert.equal(await page.locator('.leaflet-top.leaflet-right .leaflet-control').count(),4);assert.equal(await page.locator('[data-place-card="pasticceria-cosi-chiantigiana"]').count(),0);assert(!(await page.locator('#schemaPanel').textContent()).includes('Cosi'));
 
+
+ await page.click('#tab-historia');assert(await page.locator('#historyPanel').isVisible());
+ const historyData=JSON.parse(fs.readFileSync('history.json'));
+ assert.equal(await page.locator('[data-history-chapter]').count(),historyData.chapters.length);
+ for(const size of [{width:320,height:568},{width:390,height:844},{width:844,height:390},{width:768,height:1024}])for(const colorScheme of ['light','dark']){
+  await page.setViewportSize(size);await page.emulateMedia({colorScheme});
+  await page.evaluate(()=>{document.querySelectorAll('#historyPanel details').forEach(d=>d.open=true)});
+  assert.equal(await page.locator('#historyPanel').evaluate(e=>e.scrollWidth>e.clientWidth+1),false);
+  assert.equal(await page.locator('#viewTabs').evaluate(e=>e.scrollWidth>e.clientWidth+1),false);
+  assert(await page.locator('#viewTabs button').evaluateAll(es=>es.every(e=>e.getBoundingClientRect().height>=44&&e.getBoundingClientRect().left>=0&&e.getBoundingClientRect().right<=innerWidth)));
+ }
+ for(const chapter of historyData.chapters){const card=page.locator('[data-history-chapter="'+chapter.id+'"]');for(const p of chapter.paragraphs)assert((await card.textContent()).includes(p));for(const id of chapter.placeIds)assert.equal(await card.locator('[data-show-place="'+id+'"]').count(),2);}
+ await page.setViewportSize({width:390,height:844});await page.emulateMedia({colorScheme:'light'});
+ await page.locator('#historyPanel h1').scrollIntoViewIfNeeded();await page.screenshot({path:'/tmp/history-light.png'});
+ await page.locator('[data-history-chapter="changing-city"] .history-map-links [data-show-place="giardino-delle-rose"]').click();
+ assert.equal(await page.locator('body').getAttribute('data-view'),'karta');assert((await page.locator('#sheetTitle').textContent()).includes('Rosenträdgården'));
+ await page.click('#tab-historia');assert(await page.locator('[data-history-chapter="changing-city"] .history-reading').evaluate(e=>e.open));
+ await page.reload({waitUntil:'load'});await page.evaluate(()=>guideReady);assert.equal(await page.locator('body').getAttribute('data-view'),'historia');
+ await page.emulateMedia({colorScheme:'dark'});await page.waitForTimeout(250);await page.screenshot({path:'/tmp/history-dark.png'});await page.emulateMedia({colorScheme:'light'});
  await page.click('#tab-schema');assert(await page.locator('#schemaPanel').isVisible());
  assert.equal(await page.locator('.day-section').count(),5);assert.equal(await page.locator('[data-booking]').count(),5);
  assert((await page.locator('#schemaPanel').textContent()).includes('19:45'));assert((await page.locator('#schemaPanel').textContent()).includes('15.30'));

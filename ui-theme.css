@@ -60,3 +60,24 @@ html,body{background:var(--page);color:var(--text);font-family:-apple-system,Bli
 @media(prefers-reduced-motion:reduce){#guide,.pin-face{transition:none}}
 
 #guide.dragging #dayGuideContent{visibility:visible}
+
+/* Four compact views; chapter text uses the same day/night tokens. */
+#viewTabs{width:min(480px,calc(100% - 20px))}
+#viewTabs button{flex:1 1 0;white-space:nowrap}
+@media(max-width:480px){#viewTabs .tab-icon{display:none}#viewTabs button{font-size:13px;padding-inline:3px}}
+.history-card{overflow-wrap:anywhere}
+.history-card .history-period{font-size:12px;color:var(--muted);letter-spacing:.02em;margin:0 0 8px}
+.history-card h2{display:flex;align-items:center;gap:10px;font-size:21px;line-height:1.25}
+.history-number{display:inline-flex;flex:0 0 30px;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:var(--control);color:var(--accent);font-size:14px}
+.history-card .history-teaser{font-size:15px;line-height:1.6;margin:10px 0}
+.history-reading>summary{display:flex;justify-content:space-between;align-items:center;min-height:44px;padding:10px 0;color:var(--accent);font-size:14px;font-weight:600;cursor:pointer;list-style:none}
+.history-reading>summary::-webkit-details-marker{display:none}
+.history-reading[open]>summary>span{transform:rotate(180deg)}
+.history-copy p{font-size:16px;line-height:1.65;margin:12px 0}
+.history-reading summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:8px}
+.history-related{margin-top:16px;border-top:1px solid var(--line)}
+.history-place{padding:16px 0;border-bottom:1px solid var(--line)}
+.history-place h3{font-size:16px;font-weight:650;margin:0 0 8px}
+.history-place .list-action{margin-top:8px}
+.history-map-links{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.history-map-links .list-action{min-width:0;max-width:100%;white-space:normal;text-align:left;overflow-wrap:anywhere}

@@ -1,8 +1,14 @@
 # Reseguiden
 
+## Florens berättar – UI 1.7.0
+
+Ny Historievy med fem kapitel, fördjupning, befintliga platsberättelser och Visa på kartan. Historiken ligger i `history.json` (innehåll 1) med eget `history.schema.v1.json` (schema 1). Platsreferenser och berättelser valideras tillsammans med resans övriga innehåll. Fyra navigationsval ryms på mobil; dag/natt följer operativsystemet. Befintliga platser, positioner, rutter, bokningar och flyg är oförändrade.
+
 ## Torsdagens rutt – innehållsuppdatering
 
 Beppa Fioraia är borttaget som stopp i torsdagens rutt och program, men finns kvar som plats på kartan och i platslistan. Taxi efter Lisio går nu till Piazzale Michelangelo, med lunch i området före kyrkobesöket efter 15.30. Återvägen går nu via Rosenträdgården och San Niccolò till hotellet. Rosenträdgårdens befintliga sevärdhet och berättelse har kompletterats med trädgårdsinformation, säsong och öppettider; inga kartpositioner har ändrats.
+
+`BROWSER_EXECUTABLE_PATH=/path/to/chromium node tools/check-history-view.cjs` kontrollerar historievyn vid dubblerad textstorlek, dag/natt-kontrast, tangentbordsnavigering och bevarad läsposition.
 
 ## Kartkontroller och borttaget stopp – 1.6.2
 
@@ -48,6 +54,7 @@ En statisk reseguide med återanvändbart kartgränssnitt. `index.html` innehål
 | `routes.json` | `routes.schema.v1.json` | Delsträckor, färdsätt och ordnade plats-id |
 | `guide.json` | `guide.schema.v3.json` | Titel, destination, tidszon, kartutsnitt, resdagar, program, bokningar, flyg och presentation |
 | `stories.json` | `stories.schema.v1.json` | Korta platsberättelser, konkreta saker att titta efter och källor |
+| `history.json` | `history.schema.v1.json` | Stadens historiekapitel, perioder, platsreferenser och källor |
 
 Varje innehållsfil har `schemaVersion`, `contentVersion` och `updatedAt`. SchemaVersion ändras när datakontraktet ändras. ContentVersion ändras när innehållet i just den filen ändras. Versionerna är oberoende mellan filerna.
 
@@ -61,7 +68,7 @@ Kartan visar samma delsträckor som tidigare. Linjerna mellan platserna är inte
 
 Kör `npm ci` och `npm run check`. Kontroll sker också vid laddning i webbläsaren och automatiskt i GitHub. Samtliga scheman, unika id:n, länkar mellan filerna, nödvändiga positioner, bokningsdatum och kategorier kontrolleras. Geografisk riktighet och företagsidentitet kräver separat källverifiering; strukturellt godkända data blir inte automatiskt verifierade.
 
-Valideringskoden ligger i `tools/validator-entry.js`. Efter ändringar där: kör `npm run build` och spara den genererade `places-validator.js`. Trots filnamnet validerar den alla tre innehållsfilerna med deras egna scheman.
+Valideringskoden ligger i `tools/validator-entry.js`. Efter ändringar där: kör `npm run build` och spara den genererade `places-validator.js`. Trots filnamnet validerar den alla fem innehållsfilerna med deras egna scheman.
 
 ## Nästa resa
 
@@ -75,9 +82,10 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | routes.json | 1 | 6 |
 | guide.json | 3 | 10 |
 | stories.json | 1 | 4 |
-| index.html och ui-theme.css | – | 1.6.2 |
+| history.json | 1 | 1 |
+| index.html och ui-theme.css | – | 1.7.0 |
 | place-sheet.css | – | 1.4.4 |
-| valideringskod | – | 1.6.0 |
+| valideringskod | – | 1.7.0 |
 | verification-report.v2.md | – | Rapportversion 2 |
 
 [Verifieringsrapport version 2](verification-report.v2.md) listar samtliga 69 platser, koordinatändringar, källor, öppettider, kontrollerade delsträckor och kvarstående osäkerheter. 66 poster uppfyller de fyra registerkontrollerna. Giannini, Cosi – Chiantigiana och Passamaneria Toscana är markerade `unresolved`. Exakt entrépunkt är inte separat verifierad för alla platser.

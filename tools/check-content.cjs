@@ -1,10 +1,19 @@
 const fs=require('fs'),vm=require('vm'),assert=require('assert/strict');
 vm.runInThisContext(fs.readFileSync('places-validator.js','utf8'));
 const schemas={},documents={};
-for(const name of ['places','routes','guide','stories']){documents[name]=JSON.parse(fs.readFileSync(name+'.json'));assert.equal(documents[name].$schema,'./'+name+'.schema.v'+documents[name].schemaVersion+'.json');schemas[name]=JSON.parse(fs.readFileSync(documents[name].$schema));}
+for(const name of ['places','routes','guide','stories','history']){documents[name]=JSON.parse(fs.readFileSync(name+'.json'));assert.equal(documents[name].$schema,'./'+name+'.schema.v'+documents[name].schemaVersion+'.json');schemas[name]=JSON.parse(fs.readFileSync(documents[name].$schema));}
 const validate=d=>PlacesValidator.validateTrip(schemas,d);
 validate(documents);
 const cases=[
+ d=>d.history.chapters.push(d.history.chapters[0]),
+ d=>d.history.chapters[0].placeIds[0]='unknown-place',
+ d=>d.history.chapters[0].placeIds.push(d.history.chapters[0].placeIds[0]),
+ d=>d.history.chapters[0].sources=[],
+ d=>d.history.chapters[0].sources[0].url='javascript:alert(1)',
+ d=>d.history.schemaVersion=2,
+ d=>d.history.contentVersion=0,
+ d=>d.stories.stories=d.stories.stories.filter(s=>s.placeId!==d.history.chapters[0].placeIds[0]),
+
  d=>d.places.schemaVersion=1,
  d=>d.places.places.find(p=>p.openingHours.status==='published').openingHours.sources=[],
  d=>d.places.places.find(p=>p.openingHours.status==='published').openingHours.weekly[0].intervals[0].opens='25:00',
@@ -63,7 +72,7 @@ const independent=structuredClone(documents);independent.guide.contentVersion=7;
 // A different trip uses the same schemas and renderer contract.
 const next=structuredClone(documents);next.guide.id='next-trip';next.guide.title='Nästa resa';next.guide.destination={name:'Annan stad',searchSuffix:'Annan stad'};next.guide.map.center={latitude:59.3,longitude:18.1};next.guide.days.forEach((day,i)=>{day.id='day-'+(i+1);day.date='2027-01-'+(13+i)});next.guide.bookings.forEach(b=>b.startsAt=b.startsAt.replace('2026-10','2027-01'));next.guide.flights=[];validate(next);
 assert(!/Florens|Firenze|2026-10|hotel-la-scaletta|routeDefinitions/.test(fs.readFileSync('index.html','utf8')));
-console.log(`PASS: four schemas; ${documents.places.places.length} places, ${documents.routes.routes.length} routes, ${documents.guide.days.length} days, ${documents.guide.bookings.length} bookings, ${documents.stories.stories.length} stories; ${cases.length} invalid-input cases; independent versions and reusable trip content`);
+console.log(`PASS: five schemas; ${documents.places.places.length} places, ${documents.routes.routes.length} routes, ${documents.guide.days.length} days, ${documents.guide.bookings.length} bookings, ${documents.stories.stories.length} stories; ${documents.history.chapters.length} history chapters; ${cases.length} invalid-input cases; independent versions and reusable trip content`);
 
 for(const place of documents.places.places){
  const url=new URL(PlacesValidator.applePlaceLink(place));assert.equal(url.hostname,'maps.apple.com');assert.equal(url.pathname,'/place');

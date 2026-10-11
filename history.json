@@ -1,0 +1,129 @@
+{
+  "$schema": "./history.schema.v1.json",
+  "schemaVersion": 1,
+  "contentVersion": 1,
+  "updatedAt": "2026-10-11T06:45:06.458994Z",
+  "title": "Florens berättar",
+  "intro": "Fem berättelser om staden ni promenerar genom. Från romarnas gatunät till levande vävstolar och trädgårdar med utsikt. Öppna ett kapitel och hitta historien på kartan.",
+  "chapters": [
+    {
+      "id": "roman-city",
+      "period": "Antiken",
+      "title": "Romarnas Florens",
+      "teaser": "Under kaféborden och dagens gatsten finns en äldre stad. Börja vid ett torg som har varit centrum i ungefär två tusen år.",
+      "paragraphs": [
+        "Florens grundades av romarna under namnet Florentia. Det exakta året är osäkert, men spåren finns kvar i gatunätet: två huvudgator korsades vid forum, där Piazza della Repubblica ligger i dag. När ni passerar torget går ni alltså genom stadens gamla mittpunkt.",
+        "Romarnas stad ligger ofta gömd under den ni ser. Under Duomo finns både romerska lämningar och den äldre kyrkan Santa Reparata. Florens är byggt i lager – en promenad mellan torget och katedralen förbinder antiken med medeltiden."
+      ],
+      "placeIds": [
+        "piazza-della-repubblica",
+        "duomo-santa-reparata"
+      ],
+      "sources": [
+        {
+          "label": "FeelFlorence · Romarnas Florens",
+          "url": "https://www.feelflorence.it/en/experiences-itineraries/roman-florence",
+          "checkedAt": "2026-10-11"
+        }
+      ]
+    },
+    {
+      "id": "guild-city",
+      "period": "Medeltid och tidig renässans",
+      "title": "Handlarnas stad",
+      "teaser": "Titta på konsten som ett skyltfönster för yrkesstolthet. Florens skrån lät sitt kunnande och sin prestige ta plats mitt i staden.",
+      "paragraphs": [
+        "Orsanmichele började som en plats för spannmålshandel och förvaring innan byggnaden åter blev kyrka. Florens yrkesskrån, Arti, beställde sedan skulpturer till fasadens nischer. Köpmän och hantverkare blev beställare av konst som fortfarande får människor att stanna.",
+        "Ovanför nischerna sitter skrånas vapen, bland annat sidenhantverkarnas. Se fasaden som en gemensam presentation av stadens yrken: tro, ekonomi och konst i samma byggnad. Figurerna utomhus är kopior; originalen har flyttats in för att skyddas."
+      ],
+      "placeIds": [
+        "orsanmichele"
+      ],
+      "sources": [
+        {
+          "label": "Visit Tuscany · Orsanmichele och skråna",
+          "url": "https://www.visittuscany.com/en/attractions/orsanmichele-museum/",
+          "checkedAt": "2026-10-11"
+        }
+      ]
+    },
+    {
+      "id": "medici-city",
+      "period": "Renässansen · 1500-talet",
+      "title": "Medici och renässansen",
+      "teaser": "Uffizierna var först kontor. Bakom museets prakt finns en berättelse om hur Medici samlade förvaltning, hantverk och konst omkring sig.",
+      "paragraphs": [
+        "År 1560 började byggandet av Uffizierna på uppdrag av Cosimo I de’ Medici. Giorgio Vasari ritade huset för stadens administrativa och rättsliga verksamheter – namnet betyder just kontor. Det som i dag är ett museum var också ett sätt att samla makten på en plats.",
+        "Här fanns dessutom verkstäder för dyrbara föremål. Under Francesco I fick övervåningen en galleria för familjens samlingar. Tänk på det när ni ser målningarna: samlandet hörde ihop med ett större sammanhang av politik, kunskap och omsorg om det skickligt tillverkade."
+      ],
+      "placeIds": [
+        "uffizierna",
+        "palazzo-pitti"
+      ],
+      "sources": [
+        {
+          "label": "Gallerie degli Uffizi · Museets historia",
+          "url": "https://www.uffizi.it/gli-uffizi/storia",
+          "checkedAt": "2026-10-11"
+        }
+      ]
+    },
+    {
+      "id": "living-craft",
+      "period": "1900-talet till i dag",
+      "title": "Hantverket lever vidare",
+      "teaser": "Historia kan låta och röra sig. I en vävstol möter gamla mönster händer som arbetar här och nu.",
+      "paragraphs": [
+        "Giuseppe Lisio startade sin verksamhet i Florens 1906, inspirerad av renässansens praktfulla siden. Han studerade konst och historiska textilier för att kunna skapa nya tyger med äldre tekniker och mönster som utgångspunkt.",
+        "Dottern Fidalma bildade stiftelsen 1971 för att föra kunnandet vidare genom tillverkning, utbildning och kultur. Ert besök handlar därför om mer än att se gamla redskap. Följ hur trådarna blir ett mönster och hur handlag, konstruktion och material tillsammans skapar något som fortfarande används."
+      ],
+      "placeIds": [
+        "fondazione-arte-della-seta-lisio",
+        "antico-setificio-fiorentino"
+      ],
+      "sources": [
+        {
+          "label": "Fondazione Lisio · Giuseppe och Fidalma Lisio",
+          "url": "https://www.fondazionelisio.org/en/who-we-are/history",
+          "checkedAt": "2026-10-11"
+        }
+      ]
+    },
+    {
+      "id": "changing-city",
+      "period": "1800-talet och framåt",
+      "title": "Florens förändras",
+      "teaser": "Den tidlösa utsikten är också resultatet av en modern stadsplan. Florens ville se ut som en huvudstad – och fick ett nytt sätt att se sig själv.",
+      "paragraphs": [
+        "Florens var Italiens huvudstad 1865–1871, mellan Turin och Rom. Staden förändrades kraftigt. Piazza della Repubblica fick sin nuvarande form genom rivningen av den äldre stadskärnan under senare delen av 1800-talet. På samma torg möts alltså romerskt centrum och modern ombyggnad.",
+        "På kullen gav Giuseppe Poggis stadsplanering plats åt panoramavyer och promenader. Från Piazzale Michelangelo blir den gamla staden en sammanhängande bild. I Rosenträdgården tillkommer ett nyare lager: Folons skulpturer och en japansk trädgård från vänorten Kyoto. Florens fortsätter att förändras, även där utsikten känns evig."
+      ],
+      "placeIds": [
+        "piazzale-michelangelo",
+        "giardino-delle-rose"
+      ],
+      "sources": [
+        {
+          "label": "FeelFlorence · Florens som huvudstad",
+          "url": "https://www.feelflorence.it/it/dalla-redazione/firenze-capitale-palazzo-vecchio",
+          "checkedAt": "2026-10-11"
+        },
+        {
+          "label": "FeelFlorence · Piazza della Repubblica",
+          "url": "https://www.feelflorence.it/it/punti-di-interesse/piazza-della-repubblica",
+          "checkedAt": "2026-10-11"
+        },
+        {
+          "label": "FeelFlorence · San Niccolò och Poggis panoramavyer",
+          "url": "https://www.feelflorence.it/it/esperienze-itinerari/il-quartiere-di-san-niccolo",
+          "checkedAt": "2026-10-11"
+        },
+        {
+          "label": "FeelFlorence · Rosenträdgården",
+          "url": "https://www.feelflorence.it/en/points-interest/rose-garden",
+          "checkedAt": "2026-10-11"
+        }
+      ]
+    }
+  ]
+}
