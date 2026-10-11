@@ -34,23 +34,42 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  await page.setViewportSize({width:390,height:844});await page.emulateMedia({colorScheme:'light'});
  await page.locator('#historyPanel h1').scrollIntoViewIfNeeded();await page.screenshot({path:'/tmp/history-light.png'});
  await page.locator('[data-history-chapter="changing-city"] .history-map-links [data-show-place="giardino-delle-rose"]').click();
- assert.equal(await page.locator('body').getAttribute('data-view'),'karta');assert((await page.locator('#sheetTitle').textContent()).includes('Rosenträdgården'));
+ assert.equal(await page.locator('body').getAttribute('data-view'),'karta');await page.waitForFunction(()=>document.getElementById('sheetTitle').textContent.includes('Rosenträdgården'));assert((await page.locator('#sheetTitle').textContent()).includes('Rosenträdgården'));
  await page.click('#tab-historia');assert(await page.locator('[data-history-chapter="changing-city"]').evaluate(e=>e.open));
  await page.reload({waitUntil:'load'});await page.evaluate(()=>guideReady);assert.equal(await page.locator('body').getAttribute('data-view'),'historia');
  await page.emulateMedia({colorScheme:'dark'});await page.waitForTimeout(250);await page.screenshot({path:'/tmp/history-dark.png'});await page.emulateMedia({colorScheme:'light'});
  await page.click('#tab-schema');assert(await page.locator('#schemaPanel').isVisible());
+ assert.equal(await page.locator('.day-section[open]').count(),0);assert.equal(await page.locator('.schedule-chevron').first().evaluate(e=>getComputedStyle(e).transform),'none');
+ const firstDay=page.locator('.day-section').first();
+ await firstDay.locator('.schedule-heading').tap();assert(await firstDay.evaluate(e=>e.open));
+ await firstDay.locator('.schedule-heading').tap();assert(!(await firstDay.evaluate(e=>e.open)));
+ await firstDay.locator('.schedule-heading').focus();await page.keyboard.press('Enter');assert(await firstDay.evaluate(e=>e.open));
+ await page.keyboard.press('Enter');assert(!(await firstDay.evaluate(e=>e.open)));
+ for(const colorScheme of ['light','dark']){
+  await page.emulateMedia({colorScheme});await page.waitForTimeout(250);
+  for(const size of [{width:320,height:568},{width:390,height:844},{width:844,height:390}]){
+   await page.setViewportSize(size);
+   await page.evaluate(()=>document.querySelectorAll('.schedule-heading h2,.schedule-teaser').forEach(e=>{e.style.fontSize=parseFloat(getComputedStyle(e).fontSize)*2+'px'}));
+   assert.equal(await page.locator('#schemaPanel').evaluate(e=>e.scrollWidth>e.clientWidth+1),false);
+   await page.evaluate(()=>document.querySelectorAll('.schedule-heading h2,.schedule-teaser').forEach(e=>e.style.fontSize=''));
+  }
+  await page.setViewportSize({width:390,height:844});await page.locator('.schedule-heading').first().scrollIntoViewIfNeeded();
+  await page.screenshot({path:'/tmp/schedule-collapsed-'+colorScheme+'.png'});
+ }
+ await page.emulateMedia({colorScheme:'light'});
+ await page.evaluate(()=>document.querySelectorAll('.day-section').forEach(d=>d.open=true));
  assert.equal(await page.locator('.day-section').count(),5);assert.equal(await page.locator('[data-booking]').count(),5);
  assert((await page.locator('#schemaPanel').textContent()).includes('19:45'));assert((await page.locator('#schemaPanel').textContent()).includes('15.30'));
  const bookings=JSON.parse(fs.readFileSync('guide.json')).bookings;for(const b of bookings)assert.equal(await page.locator('[data-booking="'+b.id+'"]').count(),1);
  const guide=JSON.parse(fs.readFileSync('guide.json'));
  assert.equal(await page.locator('[data-flight]').count(),guide.flights.length);
- for(const flight of guide.flights){const card=page.locator('[data-flight="'+flight.id+'"]');assert.equal(await card.count(),1);assert.equal(await card.locator('xpath=..').getAttribute('data-day'),flight.dayId);const text=await card.textContent();for(const value of [flight.flightNumber,flight.operator,flight.departure.airportCode,flight.arrival.airportCode,flight.departure.at.slice(11,16),flight.arrival.at.slice(11,16)])assert(text.includes(value));}
+ for(const flight of guide.flights){const card=page.locator('[data-flight="'+flight.id+'"]');assert.equal(await card.count(),1);assert.equal(await card.evaluate(e=>e.closest('[data-day]').dataset.day),flight.dayId);const text=await card.textContent();for(const value of [flight.flightNumber,flight.operator,flight.departure.airportCode,flight.arrival.airportCode,flight.departure.at.slice(11,16),flight.arrival.at.slice(11,16)])assert(text.includes(value));}
  assert((await page.locator('[data-flight="outbound-stockholm-vienna"]').textContent()).includes('30 min'));
  for(const flight of guide.flights){const text=await page.locator('[data-flight="'+flight.id+'"]').textContent();if(flight.departure.terminal)assert(text.includes(flight.operator+' · Terminal '+flight.departure.terminal));else assert(!text.includes('Terminal'));}
  assert(await page.locator('[data-day="sat"]').evaluate(e=>Boolean(e.querySelector('.list-program').compareDocumentPosition(e.querySelector('[data-flight]'))&Node.DOCUMENT_POSITION_FOLLOWING)));
  assert((await page.locator('[data-day="tue"] .list-program').textContent()).includes('upptäck Florens'));
  assert.equal(await page.locator('[data-day="tue"] .list-program [data-place="serre-torrigiani-in-piazzetta"]').count(),1);
- await page.locator('[data-day="tue"] .list-program [data-place="serre-torrigiani-in-piazzetta"]').click();assert.equal(await page.locator('body').getAttribute('data-view'),'karta');await page.waitForSelector('#placeSheet');assert((await page.locator('#sheetTitle').textContent()).includes('Serre Torrigiani'));await page.click('#tab-schema');assert(await page.locator('#placeSheet').isHidden());
+ await page.locator('[data-day="tue"] .list-program [data-place="serre-torrigiani-in-piazzetta"]').click();assert.equal(await page.locator('body').getAttribute('data-view'),'karta');await page.waitForSelector('#placeSheet');await page.waitForFunction(()=>document.getElementById('sheetTitle').textContent.includes('Serre Torrigiani'));assert((await page.locator('#sheetTitle').textContent()).includes('Serre Torrigiani'));await page.click('#tab-schema');assert(await page.locator('#placeSheet').isHidden());assert(await page.locator('[data-day="tue"]').evaluate(e=>e.open));
  await page.locator('[data-flight="return-florence-stockholm"]').scrollIntoViewIfNeeded();await page.screenshot({path:'/tmp/return-flight-check.png'});
  await page.locator('#schemaPanel h1').scrollIntoViewIfNeeded();
  assert.equal(await page.locator('#schemaPanel').evaluate(e=>e.scrollWidth>e.clientWidth),false);

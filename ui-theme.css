@@ -65,21 +65,21 @@ html,body{background:var(--page);color:var(--text);font-family:-apple-system,Bli
 #viewTabs{width:min(480px,calc(100% - 20px))}
 #viewTabs button{flex:1 1 0;white-space:nowrap}
 @media(max-width:480px){#viewTabs .tab-icon{display:none}#viewTabs button{font-size:13px;padding-inline:3px}}
-.history-card{overflow-wrap:anywhere;padding:0}
-.history-heading{display:block;list-style:none;cursor:pointer;padding:18px;border-radius:24px;-webkit-tap-highlight-color:transparent}
-.history-heading::-webkit-details-marker{display:none}
-.history-heading:active{background:var(--control)}
+.history-card,.schedule-card{overflow-wrap:anywhere;padding:0}
+.history-heading,.schedule-heading{display:block;list-style:none;cursor:pointer;padding:18px;border-radius:24px;-webkit-tap-highlight-color:transparent}
+.history-heading::-webkit-details-marker,.schedule-heading::-webkit-details-marker{display:none}
+.history-heading:active,.schedule-heading:active{background:var(--control)}
 .history-card .history-period{display:block;font-size:12px;color:var(--muted);letter-spacing:.02em;margin:0 0 8px}
-.history-card h2{display:flex;align-items:center;gap:10px;font-size:21px;line-height:1.25;margin:0}
-.history-title{flex:1;min-width:0}
+.history-card h2,.schedule-card>summary h2{display:flex;align-items:center;gap:10px;font-size:21px;line-height:1.25;margin:0}
+.history-title,.schedule-title{flex:1;min-width:0}
 .history-number{display:inline-flex;flex:0 0 30px;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:var(--control);color:var(--accent);font-size:14px}
-.history-chevron{width:18px;height:18px;flex:0 0 18px;fill:none;stroke:var(--muted);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .18s}
-.history-card[open] .history-chevron{transform:rotate(90deg)}
-.history-card .history-teaser{font-size:15px;line-height:1.6;margin:12px 0 0;color:var(--muted)}
-.history-card[open] .history-teaser{display:none}
-.history-body{padding:0 18px 18px}
+.history-chevron,.schedule-chevron{width:18px;height:18px;flex:0 0 18px;fill:none;stroke:var(--muted);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .18s}
+.history-card[open] .history-chevron,.schedule-card[open] .schedule-chevron{transform:rotate(90deg)}
+.history-card .history-teaser,.schedule-card .schedule-teaser{font-size:15px;line-height:1.6;margin:12px 0 0;color:var(--muted)}
+.history-card[open] .history-teaser,.schedule-card[open] .schedule-teaser{display:none}
+.history-body,.schedule-body{padding:0 18px 18px}
 .history-copy p{font-size:16px;line-height:1.65;margin:0 0 14px}
-.history-heading:focus-visible{outline:2px solid var(--accent);outline-offset:-3px}
+.history-heading:focus-visible,.schedule-heading:focus-visible{outline:2px solid var(--accent);outline-offset:-3px}
 .history-map-links{display:flex;flex-direction:column;gap:6px;margin-top:18px}
 .history-place-link{display:flex;align-items:center;gap:12px;width:100%;min-height:60px;max-width:100%;white-space:normal;text-align:left;overflow-wrap:anywhere;padding:12px;background:var(--control)}
 .history-place-link>svg{width:22px;height:22px;flex:0 0 22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
@@ -87,10 +87,13 @@ html,body{background:var(--page);color:var(--text);font-family:-apple-system,Bli
 .history-place-name{display:block;font-size:15px;line-height:1.4;font-weight:600}
 .history-place-hint{display:block;font-size:12px;line-height:1.4;color:var(--muted);font-weight:400;margin-top:2px}
 .history-link-arrow{flex:0 0 auto;color:var(--muted)}
-@media(prefers-reduced-motion:reduce){.history-chevron{transition:none}}
+@media(prefers-reduced-motion:reduce){.history-chevron,.schedule-chevron{transition:none}}
 
 .history-image{margin:20px 0 24px;min-width:0}
 .history-image img{display:block;width:100%;height:auto;max-height:360px;object-fit:contain;border-radius:14px;background:var(--control)}
 .history-image figcaption{margin-top:10px;font-size:13px;line-height:1.55;color:var(--muted);overflow-wrap:anywhere}
 .history-image-credit{display:block;margin-top:6px;font-size:12px;line-height:1.55}
 .history-image-credit a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+
+.schedule-body>.list-card{box-shadow:none;border:1px solid var(--control)}
+.schedule-body>:first-child{margin-top:0}

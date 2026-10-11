@@ -1,3 +1,7 @@
+## Öppningsbart schema – UI 1.8.1
+
+Dagarna visas som kort med datum, kort sammanfattning och samma öppna/stäng-navigation som historiekapitlen. Hela rubrikytan går att trycka på; pilen visar om dagen är öppen. Öppnade dagar och läsposition bevaras när man besöker kartan och återvänder. Innehåll, bokningar, flygordning, rutter och positioner är oförändrade. Gemensamma stilar håller dag/natt och tryckytor enhetliga.
+
 ## Historiska bilder – UI 1.8.0
 
 Tre bilder från Wikimedia Commons visas i historietexten med datering, bildtext, upphov och länk till original och public domain-licens. Catena-bilden är uttryckligen en kopia från 1887 av en vy från sent 1400-tal. Hela bilderna bevaras utan beskärning och laddas vid behov från lokala WebP-filer i `assets/history/`.
@@ -93,7 +97,7 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | guide.json | 3 | 10 |
 | stories.json | 1 | 4 |
 | history.json | 2 | 2 |
-| index.html och ui-theme.css | – | 1.8.0 |
+| index.html och ui-theme.css | – | 1.8.1 |
 | place-sheet.css | – | 1.4.4 |
 | valideringskod | – | 1.7.0 |
 | verification-report.v2.md | – | Rapportversion 2 |
