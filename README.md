@@ -1,3 +1,7 @@
+## Mer transparens och enklare kartkontroller – UI 1.14.1
+
+Kartans glasytor är mer transparenta: 55 % opacitet i dagläge och 62 % i nattläge. Lagerväljaren har en fast 44 px knapp även i Leaflets öppna läge; menyn begränsas av skärmens bredd, höjd och safe-area-insets och scrollas vid behov. Fullskärmknappen och dess plugin är borttagna. Uppdatera ligger i nedre högra hörnet. Skalan visar endast meter/kilometer, inte fot/miles. Innehåll och positioner är oförändrade.
+
 ## Kartnavigation – UI 1.14.0
 
 Schema heter nu Dagar i navigation och rubrik. Befintliga ankarlänkar med #schema fungerar fortfarande. Kartans kontroller ligger till höger i ordningen Lager, Dagar och rutter, Helskärm, Min position, Uppdatera. Lager öppnas bredvid sin fasta knapp och behåller övriga kontrollers position. Dagar och rutter är en knapp som öppnar dagval och befintligt program i ett begränsat kort till vänster om knappen. Kortet stängs med samma knapp, Escape, tryck på kartan eller dragning nedåt. Lager, dagskort och platskort öppnas var för sig.
@@ -141,7 +145,7 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | stories.json | 1 | 4 |
 | history.json | 2 | 2 |
 | taxonomy.json | 1 | 2 |
-| index.html och ui-theme.css | – | 1.14.0 |
+| index.html och ui-theme.css | – | 1.14.1 |
 | place-presentation.js | – | 1.13.0 |
 | place-sheet.css | – | 1.4.4 |
 | valideringskod | – | 1.7.0 |

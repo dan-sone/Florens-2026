@@ -17,7 +17,7 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  await page.goto('http://127.0.0.1:8765/',{waitUntil:'load',timeout:60000});
  await page.evaluate(()=>guideReady);
  assert.deepEqual(await page.locator('#viewTabs button').allTextContents(),['Karta','Dagar','Sevärdheter','Historia']);
- assert.equal(await page.locator('.leaflet-control-zoom').count(),0);assert.equal(await page.locator('.leaflet-top.leaflet-left .leaflet-control').count(),0);assert.equal(await page.locator('.leaflet-top.leaflet-right .leaflet-control').count(),5);assert.equal(await page.locator('[data-place-card="pasticceria-cosi-chiantigiana"]').count(),0);assert(!(await page.locator('#schemaPanel').textContent()).includes('Cosi'));
+ assert.equal(await page.locator('.leaflet-control-zoom').count(),0);assert.equal(await page.locator('.leaflet-control-fullscreen').count(),0);assert.equal(await page.locator('.leaflet-bottom.leaflet-right .leaflet-control-refresh').count(),1);assert.equal(await page.locator('.leaflet-top.leaflet-left .leaflet-control').count(),0);assert.equal(await page.locator('.leaflet-top.leaflet-right .leaflet-control').count(),3);assert.equal(await page.locator('[data-place-card="pasticceria-cosi-chiantigiana"]').count(),0);assert(!(await page.locator('#schemaPanel').textContent()).includes('Cosi'));
 
 
  await page.click('#tab-historia');assert(await page.locator('#historyPanel').isVisible());
