@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="application-version" content="1.13.1">
+<meta name="application-version" content="1.14.0">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
@@ -106,12 +106,12 @@ body[data-view]:not([data-view=karta]) #guide,body[data-view]:not([data-view=kar
 #placeCount{font-size:13px;color:#64748b;margin-bottom:12px}.optional-stops{display:flex;gap:7px;flex-wrap:wrap}.optional-stops button{margin:0}.list-empty{padding:24px;background:white;border-radius:14px;color:#64748b}
 </style>
 <link rel="stylesheet" href="place-sheet.css?v=1.4.4">
-<link rel="stylesheet" href="ui-theme.css?v=1.13.1">
+<link rel="stylesheet" href="ui-theme.css?v=1.14.0">
 </head>
-<body data-view="karta"><nav id="viewTabs" role="tablist" aria-label="Guidevyer"><button role="tab" id="tab-karta" data-view="karta" aria-selected="true" aria-controls="map_1391adca8bfb43099964d4b8f21913ee"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2zM9 3v16M15 5v16"/></svg>Karta</button><button role="tab" id="tab-schema" data-view="schema" aria-selected="false" aria-controls="schemaPanel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4M17 3v4M3 10h18M7 14h3M14 14h3M7 17h3"/></svg>Schema</button><button role="tab" id="tab-sevardheter" data-view="sevardheter" aria-selected="false" aria-controls="placesPanel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Sevärdheter</button><button role="tab" id="tab-historia" data-view="historia" aria-selected="false" aria-controls="historyPanel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5c-3-2-6-2-9-1v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-3-1-6-1-9 1Zm0 0v15"/></svg>Historia</button></nav>
+<body data-view="karta"><nav id="viewTabs" role="tablist" aria-label="Guidevyer"><button role="tab" id="tab-karta" data-view="karta" aria-selected="true" aria-controls="map_1391adca8bfb43099964d4b8f21913ee"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2zM9 3v16M15 5v16"/></svg>Karta</button><button role="tab" id="tab-schema" data-view="schema" aria-selected="false" aria-controls="schemaPanel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4M17 3v4M3 10h18M7 14h3M14 14h3M7 17h3"/></svg>Dagar</button><button role="tab" id="tab-sevardheter" data-view="sevardheter" aria-selected="false" aria-controls="placesPanel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Sevärdheter</button><button role="tab" id="tab-historia" data-view="historia" aria-selected="false" aria-controls="historyPanel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5c-3-2-6-2-9-1v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-3-1-6-1-9 1Zm0 0v15"/></svg>Historia</button></nav>
 <main id="listView" hidden><section class="list-panel" id="schemaPanel" role="tabpanel" aria-labelledby="tab-schema" hidden></section><section class="list-panel" id="placesPanel" role="tabpanel" aria-labelledby="tab-sevardheter" hidden><h1>Sevärdheter</h1><p class="list-intro">Välj kategori och upptäck platserna. Öppna ett kort eller välj läsvyn för att läsa allt.</p><div id="placeFilters" aria-label="Kategorier"></div><div class="places-view-mode" role="group" aria-label="Visning av platser"><button type="button" data-places-mode="overview" aria-pressed="true">Kategori</button><button type="button" data-places-mode="area" aria-pressed="false">Område</button><button type="button" data-places-mode="reading" aria-pressed="false">Läsvy</button></div><p id="placeCount" aria-live="polite"></p><div id="placeList"></div></section><section class="list-panel" id="historyPanel" role="tabpanel" aria-labelledby="tab-historia" hidden></section></main>
 <section id="placeSheet" role="region" aria-labelledby="sheetTitle" hidden><button type="button" id="sheetGrab" class="sheet-grab" aria-label="Visa mer om platsen" aria-expanded="false" title="Dra uppåt eller nedåt"><span class="sheet-handle" aria-hidden="true"></span></button><header class="sheet-header"><h2 id="sheetTitle" tabindex="-1"></h2><button type="button" class="sheet-close" id="sheetClose" aria-label="Stäng platskort">×</button></header><div class="sheet-body" id="sheetBody"></div></section>
-<div id="guide" data-level="compact"><div class="day-guide-bar"><button id="dayGuideGrab" aria-expanded="false" aria-controls="dayGuideContent" aria-label="Visa dagens program"><span class="day-guide-handle" aria-hidden="true"></span><span id="dayGuideTitle">Dagsguide</span><span class="day-guide-chevron" aria-hidden="true">⌃</span></button><label for="routeSelect" class="sr-only">Välj dagsrutt</label><select id="routeSelect" aria-label="Välj dagsrutt"></select></div><div id="dayGuideContent" inert><div id="daycard"><p>Välj dag för att visa dagsrutt och program.</p></div><div id="routeLegs"></div></div></div>
+<div id="guide" data-level="compact" role="region" aria-label="Dagar och rutter" hidden><div class="day-guide-bar"><button id="dayGuideGrab" aria-expanded="false" aria-controls="dayGuideContent" aria-label="Visa dagens program"><span class="day-guide-handle" aria-hidden="true"></span><span id="dayGuideTitle">Dagsguide</span><span class="day-guide-chevron" aria-hidden="true">⌃</span></button><label for="routeSelect" class="sr-only">Välj dagsrutt</label><select id="routeSelect" aria-label="Välj dagsrutt"></select></div><div id="dayGuideContent" inert><div id="daycard"><p>Välj dag för att visa dagsrutt och program.</p></div><div id="routeLegs"></div></div></div>
     
     
     
@@ -221,10 +221,26 @@ var map_1391adca8bfb43099964d4b8f21913ee = L.map(
   const group=guide.persistentPlaceIds.includes(place.id)?m:bookedIds.includes(place.id)?bookedGroup:groups[place.category];
   marker.addTo(group);
  });
- L.control.fullscreen({position:'topright',title:'Full Screen',titleCancel:'Exit Full Screen',forceSeparateButton:false}).addTo(m);
- L.control.locate({position:'topright'}).addTo(m);
  var layerControl=L.control.layers(null,Object.fromEntries(categories.map(c=>['<span class="category-legend" data-category="'+c.id+'">'+categoryIcon(c.id)+esc(c.label)+'</span>',groups[c.id]])),{position:'topright',collapsed:true}).addTo(m);
  categories.forEach(c=>groups[c.id].addTo(m));
+ // Map controls are added in their visible order: layers, days/routes, then tools.
+ layerControl.getContainer().querySelector('.leaflet-control-layers-toggle').setAttribute('aria-label','Lager');
+ layerControl.getContainer().querySelector('.leaflet-control-layers-toggle').title='Lager';
+ const routeControl=L.control({position:'topright'});
+ let routeButton;
+ routeControl.onAdd=function(){
+  const box=L.DomUtil.create('div','leaflet-bar leaflet-control-route');
+  routeButton=L.DomUtil.create('button','map-control-button',box);
+  routeButton.type='button';routeButton.id='routeToggle';routeButton.title='Dagar och rutter';
+  routeButton.setAttribute('aria-label','Dagar och rutter');routeButton.setAttribute('aria-controls','guide');routeButton.setAttribute('aria-expanded','false');
+  routeButton.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM7 8v3a3 3 0 0 0 3 3h4a3 3 0 0 1 3 3"/></svg>';
+  L.DomEvent.disableClickPropagation(box);L.DomEvent.disableScrollPropagation(box);
+  routeButton.addEventListener('click',()=>{if(!dayGuideOpen){closePlaceSheet(false);layerControl.collapse();}setDayGuide(!dayGuideOpen);});
+  return box;
+ };
+ routeControl.addTo(m);
+ L.control.fullscreen({position:'topright',title:'Helskärm',titleCancel:'Lämna helskärm',forceSeparateButton:false}).addTo(m);
+ L.control.locate({position:'topright'}).addTo(m);
 const dayRoutes={};
 function buildRoutes(){
  guide.days.forEach(day=>{
@@ -289,8 +305,18 @@ function chooseDay(day){
 document.getElementById('routeSelect').addEventListener('change',e=>chooseDay(e.target.value));
 const dayGuide=document.getElementById('guide'),dayGrab=document.getElementById('dayGuideGrab'),dayContent=document.getElementById('dayGuideContent');
 let dayGuideOpen=false,dayDrag=null,dayIgnoreClick=0;
-function dayGuideHeight(open){const base=dayGuide.querySelector('.day-guide-bar').offsetHeight+20;return open?Math.max(base,Math.min(innerHeight*.44,innerHeight-document.getElementById('viewTabs').getBoundingClientRect().bottom-52)):base;}
-function setDayGuide(open){dayGuideOpen=open;dayGuide.dataset.level=open?'expanded':'compact';dayGuide.style.height=dayGuideHeight(open)+'px';dayContent.inert=!open;dayGrab.setAttribute('aria-expanded',String(open));dayGrab.setAttribute('aria-label',open?'Fäll ihop dagens program':'Visa dagens program');}
+function dayGuideHeight(open){const base=dayGuide.querySelector('.day-guide-bar').offsetHeight+20;return open?Math.max(base,Math.min(innerHeight*.58,innerHeight-routeButton.getBoundingClientRect().top-20)):base;}
+function setDayGuide(open){
+ dayGuideOpen=open;dayGuide.hidden=!open;dayGuide.dataset.level=open?'expanded':'compact';
+ dayGuide.style.setProperty('--day-guide-top',routeButton.getBoundingClientRect().top+'px');
+ dayGuide.style.height=dayGuideHeight(open)+'px';dayContent.inert=!open;
+ routeButton.setAttribute('aria-expanded',String(open));dayGrab.setAttribute('aria-expanded',String(open));
+ dayGrab.setAttribute('aria-label',open?'Stäng dagens program':'Visa dagens program');
+}
+layerControl.getContainer().addEventListener('pointerenter',()=>setDayGuide(false));
+layerControl.getContainer().addEventListener('focusin',()=>setDayGuide(false));
+layerControl.getContainer().addEventListener('click',()=>setDayGuide(false));
+L.DomEvent.disableClickPropagation(dayGuide);L.DomEvent.disableScrollPropagation(dayGuide);
 dayGrab.addEventListener('pointerdown',e=>{if(e.button!==0)return;dayDrag={id:e.pointerId,y:e.clientY,height:dayGuide.getBoundingClientRect().height,open:dayGuideOpen};dayGuide.classList.add('dragging');dayGrab.setPointerCapture(e.pointerId);});
 dayGrab.addEventListener('pointermove',e=>{if(!dayDrag||e.pointerId!==dayDrag.id)return;e.preventDefault();const delta=dayDrag.y-e.clientY;if(Math.abs(delta)>4)dayContent.inert=false;dayGuide.style.height=Math.max(dayGuideHeight(false),Math.min(dayGuideHeight(true),dayDrag.height+delta))+'px';});
 function endDayDrag(e,cancel=false){if(!dayDrag||e.pointerId!==dayDrag.id)return;const d=dayDrag,delta=d.y-e.clientY;dayDrag=null;dayGuide.classList.remove('dragging');dayIgnoreClick=Date.now()+400;setDayGuide(cancel?d.open:Math.abs(delta)<10?!d.open:delta>28?true:delta<-28?false:d.open);}
@@ -318,7 +344,7 @@ const listView=document.getElementById('listView');
 const viewScroll=new Map();
 function setView(view){
  if(!['karta','schema','sevardheter','historia'].includes(view))view='karta';
- if(view!=='karta')closePlaceSheet(false);
+ if(view!=='karta'){setDayGuide(false);closePlaceSheet(false);}
  if(currentView!=='karta')viewScroll.set(currentView,listView.scrollTop);
  const changed=currentView!==view;
  currentView=view;document.body.dataset.view=view;listView.hidden=view==='karta';
@@ -424,13 +450,13 @@ function closePlaceSheet(restoreFocus=true){
 }
 function clearPlaceSelection(){const marker=markersById.get(sheetPlaceId);marker?.getElement()?.classList.remove('is-selected');marker?.setZIndexOffset(0);}
 function openRouteSheet(){
- closePlaceSheet(false);sheetTrigger=document.activeElement;
+ setDayGuide(false);layerControl.collapse();closePlaceSheet(false);sheetTrigger=document.activeElement;
  document.getElementById('sheetTitle').textContent='Om rutten';
  sheetBody.innerHTML='<p>Schematisk förbindelse mellan stopp. Använd platsens navigeringsknappar för aktuell väg.</p>';
  sheetGrab.hidden=false;sheetHeader.classList.add('draggable');sheetBody.scrollTop=0;placeSheet.hidden=false;document.body.classList.add('place-open');setSheetLevel('compact');document.getElementById('sheetTitle').focus({preventScroll:true});
 }
 function openPlaceSheet(id){
- const place=requirePlace(id),marker=markersById.get(id);
+ setDayGuide(false);layerControl.collapse();const place=requirePlace(id),marker=markersById.get(id);
  clearPlaceSelection();if(revealedMarker&&revealedMarker.marker!==marker)clearRevealedMarker();
  sheetTrigger=marker?.getElement()||document.activeElement;sheetPlaceId=id;
  document.getElementById('sheetTitle').dataset.category=place.category;document.getElementById('sheetTitle').innerHTML=placeIcon(place)+'<span>'+esc(place.name)+'</span>';
@@ -445,9 +471,9 @@ function openPlaceSheet(id){
 function syncStoryExpansion(event){const details=event.target;if(details.matches?.('[data-story]')){if(details.open)expandedStories.add(details.dataset.story);else expandedStories.delete(details.dataset.story);}if(sheetBody.contains(details))updateSheetFade();}
 document.addEventListener('toggle',syncStoryExpansion,true);
 document.getElementById('sheetClose').addEventListener('click',()=>closePlaceSheet());
-document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!placeSheet.hidden){event.preventDefault();closePlaceSheet();}});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&dayGuideOpen){setDayGuide(false);routeButton.focus();}if(event.key==='Escape'&&!placeSheet.hidden){event.preventDefault();closePlaceSheet();}});
 placeSheet.addEventListener('click',event=>{const button=event.target.closest('[data-ask-place]');if(button)askAboutPlace(requirePlace(button.dataset.askPlace));});
-m.on('click',()=>closePlaceSheet(false));
+m.on('click',()=>{setDayGuide(false);layerControl.collapse();closePlaceSheet(false)});
 m.on('layerremove',()=>{if(sheetPlaceId&&!m.hasLayer(markersById.get(sheetPlaceId)))closePlaceSheet(false);});
 function updateSheetViewport(){document.documentElement.style.setProperty('--app-height',(window.visualViewport?.height||window.innerHeight)+'px');if(!placeSheet.hidden&&!sheetDrag)setSheetLevel(sheetLevel);}
 window.addEventListener('resize',updateSheetViewport);window.visualViewport?.addEventListener('resize',updateSheetViewport);updateSheetViewport();
@@ -481,7 +507,7 @@ function renderScheduleList(){
   const flightsAfterProgram=day.id===guide.days[guide.days.length-1].id;
   return '<details class="list-card day-section schedule-card" data-day="'+esc(day.id)+'"><summary class="schedule-heading"><h2><span class="schedule-title">'+esc(title[0].toUpperCase()+title.slice(1))+'</span><svg class="schedule-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></h2>'+(day.summary?'<p class="schedule-teaser">'+esc(day.summary)+'</p>':'')+'</summary><div class="schedule-body">'+(flightsAfterProgram?'':renderFlightCards(day))+(bookings.length?'<h3>Bokningar</h3>'+bookings.map(b=>{const place=requirePlace(b.placeId);return '<article class="list-card" data-booking="'+esc(b.id)+'" data-category="'+esc(place.category)+'"><span class="list-badge">Bokat</span><h4>'+placeIcon(place)+esc(timeFormatter.format(new Date(b.startsAt)))+' · '+esc(place.name)+'</h4>'+placeDescription(place)+(place.address?'<p class="address">'+esc(place.address)+'</p>':'')+listActions(place)+'</article>'}).join(''):'')+'<h3>Planerat program</h3><article class="list-card list-program">'+renderProgram(day.program)+'</article>'+(stops.length?'<h3>Valbara stopp längs rutten</h3><div class="optional-stops">'+stops.map(id=>'<button class="list-action" data-show-place="'+esc(id)+'">'+esc(requirePlace(id).name)+'</button>').join('')+'</div>':'')+(flightsAfterProgram?renderFlightCards(day):'')+'</div></details>';
  }).join('');
- document.getElementById('schemaPanel').innerHTML='<h1>Schema</h1><p class="list-intro">Flyg, bokningar, dagens plan och valbara stopp. '+esc(guide.destination.name)+'.</p>'+guide.persistentPlaceIds.map(id=>{const place=requirePlace(id);return '<article class="list-card" data-stay="'+esc(id)+'" data-category="'+esc(place.category)+'"><span class="list-badge">Boende</span><h2>'+placeIcon(place)+esc(place.name)+'</h2>'+placeDescription(place)+(place.address?'<p class="address">'+esc(place.address)+'</p>':'')+listActions(place)+'</article>'}).join('')+sections;
+ document.getElementById('schemaPanel').innerHTML='<h1>Dagar</h1><p class="list-intro">Flyg, bokningar, dagens plan och valbara stopp. '+esc(guide.destination.name)+'.</p>'+guide.persistentPlaceIds.map(id=>{const place=requirePlace(id);return '<article class="list-card" data-stay="'+esc(id)+'" data-category="'+esc(place.category)+'"><span class="list-badge">Boende</span><h2>'+placeIcon(place)+esc(place.name)+'</h2>'+placeDescription(place)+(place.address?'<p class="address">'+esc(place.address)+'</p>':'')+listActions(place)+'</article>'}).join('')+sections;
 }
 const filterBox=document.getElementById('placeFilters');
 const expandedPlaces=new Set();
@@ -535,7 +561,7 @@ function renderHistory(){
 renderScheduleList();renderHistory();setView(location.hash.slice(1));
 window.addEventListener('hashchange',()=>setView(location.hash.slice(1)));
 
- return {map:m,content,guide,routeContent,storyContent,historyContent,taxonomy,presentationRegistry,listCategorySelection,placesById,markersById,dayRoutes,chooseDay,setView,showPlaceOnMap,openPlaceSheet,closePlaceSheet};
+ return {map:m,content,guide,routeContent,storyContent,historyContent,taxonomy,presentationRegistry,listCategorySelection,placesById,markersById,dayRoutes,chooseDay,setDayGuide,setView,showPlaceOnMap,openPlaceSheet,closePlaceSheet};
 })();
 guideReady.catch(error=>{
  console.error(error);

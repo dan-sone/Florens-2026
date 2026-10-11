@@ -152,3 +152,36 @@ html,body{background:var(--page);color:var(--text);font-family:-apple-system,Bli
 .place-booked-status .place-symbol{width:14px;height:14px;flex:0 0 14px}
 #sheetTitle>.place-symbol{margin-right:7px}
 #schemaPanel h2>.place-symbol,#schemaPanel h4>.place-symbol{margin-right:7px}
+
+/* Map navigation: one glass material and one action color. */
+:root{--map-glass:rgba(255,255,255,.74)}
+@media(prefers-color-scheme:dark){:root{--map-glass:rgba(28,28,30,.80)}}
+body[data-view=karta]{--glass:var(--map-glass)}
+body[data-view=karta] #viewTabs,body[data-view=karta] #guide,#placeSheet,.leaflet-popup-content-wrapper,.leaflet-tooltip{background:var(--glass)!important;border:1px solid var(--glass-edge)!important;box-shadow:var(--shadow),inset 0 1px 0 var(--glass-edge)!important;-webkit-backdrop-filter:blur(28px) saturate(145%);backdrop-filter:blur(28px) saturate(145%)}
+.leaflet-popup-tip{background:var(--glass)!important}
+.leaflet-tooltip{color:var(--text)}
+.leaflet-bar a,.leaflet-bar button,.leaflet-control-layers-toggle,.leaflet-control-locate.active a{color:var(--accent)!important}
+.map-control-button{display:flex!important;align-items:center;justify-content:center;padding:0;cursor:pointer}
+.map-control-button svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.map-control-button[aria-expanded=true]{background:var(--selected)!important}
+.leaflet-top.leaflet-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px;right:calc(env(safe-area-inset-right,0px) + 10px);max-width:calc(100% - 20px)}
+.leaflet-top.leaflet-right .leaflet-control{float:none;margin:0!important;flex-shrink:0}
+.leaflet-top.leaflet-right .leaflet-control-layers{max-width:calc(100vw - 24px);max-height:calc(var(--app-height,100dvh) - 92px);overflow:auto;box-sizing:border-box}
+#guide{left:auto!important;right:calc(env(safe-area-inset-right,0px) + 68px)!important;top:var(--day-guide-top,124px)!important;bottom:auto!important;transform:none!important;width:min(420px,calc(100% - 84px))!important;min-width:0!important;max-width:none!important;border-radius:24px!important;min-height:0;max-height:calc(var(--app-height,100dvh) - var(--day-guide-top,124px) - 20px)!important}
+#guide[hidden]{display:none!important}
+#guide .day-guide-bar{min-width:0}
+#guide #dayGuideGrab{color:var(--accent)}
+#guide #routeSelect{color:var(--accent)}
+#placeSheet .sheet-action,#placeSheet .sheet-action[data-action=walking]{background:var(--control);color:var(--accent)}
+#placeSheet .sheet-action:hover,#placeSheet .sheet-close:hover{background:var(--selected)}
+#placeSheet .sheet-close{color:var(--accent)}
+.leaflet-control-scale-line{background:var(--glass)!important;color:var(--text);border-color:var(--muted);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+@media(max-width:400px){#guide .day-guide-bar{flex-wrap:wrap;gap:4px}#guide #dayGuideGrab{flex-basis:100%}#guide #routeSelect{width:100%!important}}
+@media(max-height:360px){.leaflet-top.leaflet-right{gap:4px}}
+@media(prefers-reduced-transparency:reduce),(prefers-contrast:more){body[data-view=karta]{--glass:var(--surface)}#placeSheet,.leaflet-popup-content-wrapper,.leaflet-tooltip,.leaflet-control-scale-line{-webkit-backdrop-filter:none;backdrop-filter:none}}
+/* Expand layers beside its fixed button, preserving the control stack. */
+.leaflet-top.leaflet-right .leaflet-control-layers{position:relative;width:44px;min-height:44px;max-height:none;overflow:visible}
+.leaflet-control-layers-expanded{padding:0!important}
+.leaflet-control-layers-expanded .leaflet-control-layers-toggle{display:block!important}
+.leaflet-control-layers-list{position:absolute;top:0;right:56px;width:min(320px,calc(100vw - 84px));max-height:calc(var(--app-height,100dvh) - env(safe-area-inset-top,0px) - 92px);overflow:auto;padding:12px 14px;box-sizing:border-box;border-radius:24px;background:var(--glass);color:var(--text);border:1px solid var(--glass-edge);box-shadow:var(--shadow),inset 0 1px 0 var(--glass-edge);-webkit-backdrop-filter:blur(28px) saturate(145%);backdrop-filter:blur(28px) saturate(145%)}
+@media(prefers-reduced-transparency:reduce),(prefers-contrast:more){.leaflet-control-layers-list{-webkit-backdrop-filter:none;backdrop-filter:none}}

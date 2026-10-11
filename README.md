@@ -1,3 +1,11 @@
+## Kartnavigation – UI 1.14.0
+
+Schema heter nu Dagar i navigation och rubrik. Befintliga ankarlänkar med #schema fungerar fortfarande. Kartans kontroller ligger till höger i ordningen Lager, Dagar och rutter, Helskärm, Min position, Uppdatera. Lager öppnas bredvid sin fasta knapp och behåller övriga kontrollers position. Dagar och rutter är en knapp som öppnar dagval och befintligt program i ett begränsat kort till vänster om knappen. Kortet stängs med samma knapp, Escape, tryck på kartan eller dragning nedåt. Lager, dagskort och platskort öppnas var för sig.
+
+Kartnavigation, platskort, ruttinformation, tooltip och popup delar halvtransparent glas, bakgrundsoskärpa och dag/natt. Kartknappar och platskortets åtgärder använder samma blå åtgärdsfärg; Gå har samma bakgrund som övriga åtgärder. Kategorifärger och ikoner är oförändrade. Minskad transparens och ökad kontrast använder fasta ytor. Alla innehålls- och schemaversioner är oförändrade, liksom positioner, rutter och reseprogram.
+
+`tools/check-map-navigation.cjs` kör produktionsappens navigation lokalt i Chromium med en Leaflet-adapter. Kontrollerar ordning, dagval, dragning, tangentbord, stängning, glas/färger, 44 px touchytor och skärmkanter i fem storlekar i dag/natt. Externa kartplugin och fysisk iPhone/Safari ingår inte i det lokala testet. `tools/check-list-views.cjs` har också uppdaterade regressioner för navigationen.
+
 ## Justerade färger och markörstorlekar – UI 1.13.1
 
 Bokat och hotell använder grönt, Mat & dryck orange och Shopping gult. Daglägets nyanser är mörkare för läsbar text; nattläget använder ljusare färger i samma färgfamilj. Färgerna ligger fortsatt enbart i taxonomy.json (schema 1, innehåll 2). Shoppingnålarna har samma mått och förankring som övriga nålar: 35×45 px, spets vid 17×42 px. Platskoordinaterna är oförändrade. Guide har schema 5, innehåll 13; övriga innehållsfiler är oförändrade.
@@ -133,8 +141,8 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | stories.json | 1 | 4 |
 | history.json | 2 | 2 |
 | taxonomy.json | 1 | 2 |
-| index.html | – | 1.13.1 |
-| ui-theme.css och place-presentation.js | – | 1.13.0 |
+| index.html och ui-theme.css | – | 1.14.0 |
+| place-presentation.js | – | 1.13.0 |
 | place-sheet.css | – | 1.4.4 |
 | valideringskod | – | 1.7.0 |
 | verification-report.v2.md | – | Rapportversion 2 |

@@ -16,8 +16,8 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  });
  await page.goto('http://127.0.0.1:8765/',{waitUntil:'load',timeout:60000});
  await page.evaluate(()=>guideReady);
- assert.deepEqual(await page.locator('#viewTabs button').allTextContents(),['Karta','Schema','Sevärdheter','Historia']);
- assert.equal(await page.locator('.leaflet-control-zoom').count(),0);assert.equal(await page.locator('.leaflet-top.leaflet-left .leaflet-control').count(),0);assert.equal(await page.locator('.leaflet-top.leaflet-right .leaflet-control').count(),4);assert.equal(await page.locator('[data-place-card="pasticceria-cosi-chiantigiana"]').count(),0);assert(!(await page.locator('#schemaPanel').textContent()).includes('Cosi'));
+ assert.deepEqual(await page.locator('#viewTabs button').allTextContents(),['Karta','Dagar','Sevärdheter','Historia']);
+ assert.equal(await page.locator('.leaflet-control-zoom').count(),0);assert.equal(await page.locator('.leaflet-top.leaflet-left .leaflet-control').count(),0);assert.equal(await page.locator('.leaflet-top.leaflet-right .leaflet-control').count(),5);assert.equal(await page.locator('[data-place-card="pasticceria-cosi-chiantigiana"]').count(),0);assert(!(await page.locator('#schemaPanel').textContent()).includes('Cosi'));
 
 
  await page.click('#tab-historia');assert(await page.locator('#historyPanel').isVisible());
@@ -170,21 +170,17 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  assert.equal(await page.locator('.leaflet-popup').count(),0);
  await page.keyboard.press('Escape');assert(await page.locator('#placeSheet').isHidden());
 
- // The day sheet has two stable states, follows touch, and retains state on day change.
+ // Days/routes are opened from the second map button; dragging down closes.
  cdp=await page.context().newCDPSession(page);await cdp.send('Emulation.setTouchEmulationEnabled',{enabled:true});
  await page.evaluate(async()=>{const g=await guideReady;g.closePlaceSheet(false);g.setView('karta');g.chooseDay('thu');});
  const daySheet=page.locator('#guide'),dayHandle=page.locator('#dayGuideGrab');
- assert.equal(await daySheet.getAttribute('data-level'),'compact');assert((await daySheet.boundingBox()).height<=90);
- assert.equal(await dayHandle.textContent(),'Siden & utsikter⌃');
- await touchDrag(-180,dayHandle);assert.equal(await daySheet.getAttribute('data-level'),'expanded');assert.equal(await page.locator('#dayGuideContent').evaluate(e=>e.inert),false);
- await page.selectOption('#routeSelect','wed');assert.equal(await daySheet.getAttribute('data-level'),'expanded');assert.equal(await dayHandle.getAttribute('aria-expanded'),'true');
- await touchDrag(180,dayHandle);assert.equal(await daySheet.getAttribute('data-level'),'compact');
- await dayHandle.focus();await page.keyboard.press('Enter');await page.waitForTimeout(300);assert.equal(await daySheet.getAttribute('data-level'),'expanded');
+ assert(await daySheet.isHidden());await page.locator('#routeToggle').tap();await page.waitForTimeout(300);
+ assert.equal(await daySheet.getAttribute('data-level'),'expanded');assert.equal(await page.locator('#dayGuideContent').evaluate(e=>e.inert),false);
+ await page.selectOption('#routeSelect','wed');assert.equal(await daySheet.getAttribute('data-level'),'expanded');
+ await touchDrag(130,dayHandle);assert(await daySheet.isHidden());await page.locator('#routeToggle').tap();await page.waitForTimeout(300);
  for(const size of sizes){await page.setViewportSize(size);await page.waitForTimeout(250);const r=await daySheet.boundingBox();assert(r.x>=0&&r.x+r.width<=size.width+1&&r.y>=0&&r.y+r.height<=size.height+1);assert((await dayHandle.boundingBox()).height>=44);}
- await page.setViewportSize({width:390,height:844});await dayHandle.focus();await page.keyboard.press('Enter');await page.waitForTimeout(300);
- await dayHandle.tap();await page.waitForTimeout(300);assert.equal(await daySheet.getAttribute('data-level'),'expanded');
- await touchDrag(180,dayHandle);await page.selectOption('#routeSelect','thu');assert.equal(await daySheet.getAttribute('data-level'),'compact');
- await page.screenshot({path:'/tmp/day-guide-compact.png'});await dayHandle.tap();await page.waitForTimeout(300);await page.screenshot({path:'/tmp/day-guide-expanded.png'});
+ await page.setViewportSize({width:390,height:844});await dayHandle.focus();await page.keyboard.press('Enter');assert(await daySheet.isHidden());
+ await page.locator('#routeToggle').tap();await page.selectOption('#routeSelect','thu');await page.waitForTimeout(300);await page.screenshot({path:'/tmp/day-guide-expanded.png'});
  await page.evaluate(async()=>{const g=await guideReady;g.showPlaceOnMap('beppa-fioraia');await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));const selected=g.markersById.get('beppa-fioraia').getElement();const other=[...document.querySelectorAll('.leaflet-marker-icon')].find(e=>e!==selected);if(!document.getElementById('sheetBody').textContent.includes('peposo')||!document.getElementById('sheetBody').textContent.includes('12:30–14:30'))throw new Error('Missing hours/specialty');});
  await page.waitForTimeout(300);assert.equal(await page.locator('.is-selected > .pin-face').evaluate(e=>getComputedStyle(e).transform),'matrix(1.25, 0, 0, 1.25, 0, 0)');assert(await page.locator('.registry-pin:not(.is-selected)').first().evaluate(e=>Number(getComputedStyle(e).opacity)===1));
  await page.evaluate(async()=>{const g=await guideReady;g.closePlaceSheet(false);if(document.querySelector('.is-selected'))throw new Error('Pin state not cleared');g.setView('sevardheter');});
