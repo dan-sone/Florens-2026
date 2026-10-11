@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="application-version" content="1.15.1">
+<meta name="application-version" content="1.16.0">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
@@ -104,12 +104,12 @@ body[data-view]:not([data-view=karta]) #guide,body[data-view]:not([data-view=kar
 #placeCount{font-size:13px;color:#64748b;margin-bottom:12px}.optional-stops{display:flex;gap:7px;flex-wrap:wrap}.optional-stops button{margin:0}.list-empty{padding:24px;background:white;border-radius:14px;color:#64748b}
 </style>
 <link rel="stylesheet" href="place-sheet.css?v=1.15.0">
-<link rel="stylesheet" href="ui-theme.css?v=1.15.1">
+<link rel="stylesheet" href="ui-theme.css?v=1.16.0">
 </head>
 <body data-view="karta"><nav id="viewTabs" role="tablist" aria-label="Guidevyer"><button role="tab" id="tab-karta" data-view="karta" aria-selected="true" aria-controls="map_1391adca8bfb43099964d4b8f21913ee"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2zM9 3v16M15 5v16"/></svg>Karta</button><button role="tab" id="tab-schema" data-view="schema" aria-selected="false" aria-controls="schemaPanel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4M17 3v4M3 10h18M7 14h3M14 14h3M7 17h3"/></svg>Dagar</button><button role="tab" id="tab-sevardheter" data-view="sevardheter" aria-selected="false" aria-controls="placesPanel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Sevärdheter</button><button role="tab" id="tab-historia" data-view="historia" aria-selected="false" aria-controls="historyPanel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5c-3-2-6-2-9-1v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-3-1-6-1-9 1Zm0 0v15"/></svg>Historia</button></nav>
 <main id="listView" hidden><section class="list-panel" id="schemaPanel" role="tabpanel" aria-labelledby="tab-schema" hidden></section><section class="list-panel" id="placesPanel" role="tabpanel" aria-labelledby="tab-sevardheter" hidden><h1>Sevärdheter</h1><p class="list-intro">Välj kategori och upptäck platserna. Öppna ett kort eller välj läsvyn för att läsa allt.</p><div id="placeFilters" aria-label="Kategorier"></div><div class="places-view-mode" role="group" aria-label="Visning av platser"><button type="button" data-places-mode="overview" aria-pressed="true">Kategori</button><button type="button" data-places-mode="area" aria-pressed="false">Område</button><button type="button" data-places-mode="reading" aria-pressed="false">Läsvy</button></div><p id="placeCount" aria-live="polite"></p><div id="placeList"></div></section><section class="list-panel" id="historyPanel" role="tabpanel" aria-labelledby="tab-historia" hidden></section></main>
 <section id="placeSheet" role="region" aria-labelledby="sheetTitle" hidden><button type="button" id="sheetGrab" class="sheet-grab" aria-label="Visa mer om platsen" aria-expanded="false" title="Dra uppåt eller nedåt"><span class="sheet-handle" aria-hidden="true"></span></button><header class="sheet-header"><h2 id="sheetTitle" tabindex="-1"></h2><button type="button" class="sheet-close" id="sheetClose" aria-label="Stäng platskort">×</button></header><div class="sheet-body" id="sheetBody"></div></section>
-<div id="guide" data-level="compact" role="region" aria-label="Dagar och rutter" hidden><div class="day-guide-bar"><button id="dayGuideGrab" aria-expanded="false" aria-controls="dayGuideContent" aria-label="Visa dagens program"><span class="day-guide-handle" aria-hidden="true"></span><span id="dayGuideTitle">Dagsguide</span><span class="day-guide-chevron" aria-hidden="true">⌃</span></button><label for="routeSelect" class="sr-only">Välj dagsrutt</label><select id="routeSelect" aria-label="Välj dagsrutt"></select></div><div id="dayGuideContent" inert><div id="daycard"><p>Välj dag för att visa dagsrutt och program.</p></div><div id="routeLegs"></div></div></div>
+<div id="guide" data-level="compact" role="region" aria-label="Dagar och rutter" hidden><div class="day-guide-bar"><button id="dayGuideGrab" aria-expanded="false" aria-controls="dayGuideContent" aria-label="Visa dagens program"><span class="day-guide-handle" aria-hidden="true"></span><span id="dayGuideTitle">Dagsguide</span><span class="day-guide-chevron" aria-hidden="true">⌃</span></button></div><div id="dayGuideContent" inert><div id="routeDays" role="group" aria-label="Välj dag och rutt"></div><div id="daycard"><p>Välj dag för att visa dagsrutt och program.</p></div><div id="routeLegs"></div></div></div>
     
     
     
@@ -222,8 +222,16 @@ var map_1391adca8bfb43099964d4b8f21913ee = L.map(
  var layerControl=L.control.layers(null,Object.fromEntries(categories.map(c=>['<span class="category-legend" data-category="'+c.id+'">'+categoryIcon(c.id)+esc(c.label)+'</span>',groups[c.id]])),{position:'topright',collapsed:true}).addTo(m);
  categories.forEach(c=>groups[c.id].addTo(m));
  // Map controls are added in their visible order: layers, days/routes, then tools.
- layerControl.getContainer().querySelector('.leaflet-control-layers-toggle').setAttribute('aria-label','Lager');
- layerControl.getContainer().querySelector('.leaflet-control-layers-toggle').title='Lager';
+ const layerHost=layerControl.getContainer(),oldLayerToggle=layerHost.querySelector('.leaflet-control-layers-toggle');
+ const layerToggle=document.createElement('button');layerToggle.type='button';layerToggle.className=oldLayerToggle.className;
+ layerToggle.title='Lager';layerToggle.setAttribute('aria-label','Lager');layerToggle.setAttribute('aria-expanded','false');layerToggle.setAttribute('aria-controls','layerMenu');
+ oldLayerToggle.replaceWith(layerToggle);layerHost.querySelector('.leaflet-control-layers-list').id='layerMenu';
+ // Replace automatic hover/open behavior with the same explicit toggle as routes.
+ L.DomEvent.off(layerHost,'mouseenter mouseleave');
+ const expandLayers=layerControl.expand.bind(layerControl),collapseLayers=layerControl.collapse.bind(layerControl);
+ layerControl.expand=function(){expandLayers();layerToggle.setAttribute('aria-expanded','true');return this;};
+ layerControl.collapse=function(){collapseLayers();layerToggle.setAttribute('aria-expanded','false');return this;};
+ layerToggle.addEventListener('click',()=>{if(layerHost.classList.contains('leaflet-control-layers-expanded'))layerControl.collapse();else{setDayGuide(false);closePlaceSheet(false);layerControl.expand();}});
  const routeControl=L.control({position:'topright'});
  let routeButton;
  routeControl.onAdd=function(){
@@ -290,20 +298,22 @@ function renderProgram(program){
 }
 const selections=[guide.defaultSelection,...guide.days];
 const schedule=Object.fromEntries(selections.map(day=>[day.id,renderProgram(day.program)]));
-const select=document.getElementById('routeSelect');
-select.replaceChildren(...selections.map(day=>{const option=document.createElement('option');option.value=day.id;option.textContent=day.label;return option;}));
+const dayChoices=document.getElementById('routeDays');
+let selectedDay=guide.defaultSelection.id;
+dayChoices.innerHTML=selections.map(day=>'<button type="button" data-route-day="'+esc(day.id)+'" aria-pressed="false" aria-controls="daycard">'+esc(day.label)+'</button>').join('');
 function chooseDay(day){
  renderRouteLinks(day);
- document.getElementById('routeSelect').value=day;
+ selectedDay=day;dayChoices.querySelectorAll('[data-route-day]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.routeDay===day)));
+ document.getElementById('dayGuideContent').scrollTop=0;
  document.getElementById('daycard').innerHTML=schedule[day];
  const entry=selections.find(d=>d.id===day);
  document.getElementById('dayGuideTitle').textContent=entry?.summary||'Dagsguide';
  if(dayGuideOpen)setDayGuide(true);
 }
-document.getElementById('routeSelect').addEventListener('change',e=>chooseDay(e.target.value));
+dayChoices.addEventListener('click',event=>{const button=event.target.closest('[data-route-day]');if(button)chooseDay(button.dataset.routeDay);});
 const dayGuide=document.getElementById('guide'),dayGrab=document.getElementById('dayGuideGrab'),dayContent=document.getElementById('dayGuideContent');
 let dayGuideOpen=false,dayDrag=null,dayIgnoreClick=0;
-function dayGuideHeight(open){const base=dayGuide.querySelector('.day-guide-bar').offsetHeight+20,limit=Math.max(base,Math.min(innerHeight*.58,innerHeight-routeButton.getBoundingClientRect().top-20));if(!open)return base;return select.value===guide.defaultSelection.id?Math.min(limit,base+document.getElementById('daycard').scrollHeight+12):limit;}
+function dayGuideHeight(open){const base=dayGuide.querySelector('.day-guide-bar').offsetHeight+20,limit=Math.max(base,Math.min(innerHeight*.58,innerHeight-routeButton.getBoundingClientRect().top-20));if(!open)return base;return selectedDay===guide.defaultSelection.id?Math.min(limit,base+dayChoices.offsetHeight+document.getElementById('daycard').scrollHeight+24):limit;}
 function setDayGuide(open){
  dayGuideOpen=open;dayGuide.hidden=!open;dayGuide.dataset.level=open?'expanded':'compact';
  dayGuide.style.setProperty('--day-guide-top',routeButton.getBoundingClientRect().top+'px');
@@ -311,9 +321,6 @@ function setDayGuide(open){
  routeButton.setAttribute('aria-expanded',String(open));dayGrab.setAttribute('aria-expanded',String(open));
  dayGrab.setAttribute('aria-label',open?'Stäng dagens program':'Visa dagens program');
 }
-layerControl.getContainer().addEventListener('pointerenter',()=>setDayGuide(false));
-layerControl.getContainer().addEventListener('focusin',()=>setDayGuide(false));
-layerControl.getContainer().addEventListener('click',()=>setDayGuide(false));
 L.DomEvent.disableClickPropagation(dayGuide);L.DomEvent.disableScrollPropagation(dayGuide);
 dayGrab.addEventListener('pointerdown',e=>{if(e.button!==0)return;dayDrag={id:e.pointerId,y:e.clientY,height:dayGuide.getBoundingClientRect().height,open:dayGuideOpen};dayGuide.classList.add('dragging');dayGrab.setPointerCapture(e.pointerId);});
 dayGrab.addEventListener('pointermove',e=>{if(!dayDrag||e.pointerId!==dayDrag.id)return;e.preventDefault();const delta=dayDrag.y-e.clientY;if(Math.abs(delta)>4)dayContent.inert=false;dayGuide.style.height=Math.max(dayGuideHeight(false),Math.min(dayGuideHeight(true),dayDrag.height+delta))+'px';});
@@ -342,7 +349,7 @@ const listView=document.getElementById('listView');
 const viewScroll=new Map();
 function setView(view){
  if(!['karta','schema','sevardheter','historia'].includes(view))view='karta';
- if(view!=='karta'){setDayGuide(false);closePlaceSheet(false);}
+ if(view!=='karta'){setDayGuide(false);layerControl.collapse();closePlaceSheet(false);}
  if(currentView!=='karta')viewScroll.set(currentView,listView.scrollTop);
  const changed=currentView!==view;
  currentView=view;document.body.dataset.view=view;listView.hidden=view==='karta';
@@ -478,7 +485,7 @@ function openPlaceSheet(id){
 function syncStoryExpansion(event){const details=event.target;if(details.matches?.('[data-story]')){if(details.open)expandedStories.add(details.dataset.story);else expandedStories.delete(details.dataset.story);}if(sheetBody.contains(details))updateSheetFade();}
 document.addEventListener('toggle',syncStoryExpansion,true);
 document.getElementById('sheetClose').addEventListener('click',()=>closePlaceSheet());
-document.addEventListener('keydown',event=>{if(event.key==='Escape'&&dayGuideOpen){setDayGuide(false);routeButton.focus();}if(event.key==='Escape'&&!placeSheet.hidden){event.preventDefault();closePlaceSheet();}});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&layerHost.classList.contains('leaflet-control-layers-expanded')){layerControl.collapse();layerToggle.focus();}if(event.key==='Escape'&&dayGuideOpen){setDayGuide(false);routeButton.focus();}if(event.key==='Escape'&&!placeSheet.hidden){event.preventDefault();closePlaceSheet();}});
 placeSheet.addEventListener('click',event=>{const button=event.target.closest('[data-ask-place]');if(button)askAboutPlace(requirePlace(button.dataset.askPlace));});
 m.on('click',()=>{setDayGuide(false);layerControl.collapse();closePlaceSheet(false)});
 m.on('layerremove',()=>{if(sheetPlaceId&&!m.hasLayer(markersById.get(sheetPlaceId)))closePlaceSheet(false);});

@@ -1,3 +1,11 @@
+## Integrerade dagval och växlande lagerknapp – UI 1.16.0
+
+Lager-knappen öppnar och stänger samma meny. Leaflets automatiska hover-öppning och ursprungliga länklyssnare ersätts av en vanlig knapp med aria-expanded. Enter/blanksteg växlar menyn; Escape stänger och återför fokus. Karttryck, öppning av rutter eller platskort uppdaterar också knappens tillstånd.
+
+Ruttkortet har sex integrerade dagknappar i stället för en smal native select: Ingen rutt och resans fem dagar. Alla etiketter visas helt, och valt alternativ markeras. Layouten anpassas med två kolumner på små telefoner och tre på större skärmar. Valet uppdaterar befintlig rutt, rubrik och program utan en extra systempopup. Dagvalen och programmet scrollas inom kortet när skärmen är låg. Ingen rutt behåller Välj dag och funktionsförklaringen. Alla innehålls- och schemaversioner är oförändrade; positioner, rutter och reseprogram är oförändrade.
+
+Navigationstestet omfattar 1024×768 och 768×1024 för surfplatta samt fyra telefonstorlekar, dag/natt, fullständiga knappetiketter och minst 44 px träffytor, dubbeltryck för att stänga lager samt Enter, blanksteg och Escape. Leaflets hover-lyssnare återges i testadaptern för att kontrollera att de kopplas bort.
+
 ## Kompakt lagermeny och Välj dag – UI 1.15.1
 
 Lagermenyn och övriga kartkort delar samma glasfärg, kant, skugga och blur. Lagerkontrollens yttre behållare är transparent och saknar blur, så menyn inte får en extra glasnivå. Menyn använder innehållsbredd med skärmgräns; kryssrutorna ligger på högersidan, närmast knappen, med 44 px rader. Läget Ingen rutt visar Välj dag och förklarar hur dagvalet visar plan och rutt, och hur Ingen rutt döljer ruttlinjerna. Det kortet får bara den höjd förklaringen behöver. Guide har schema 5, innehåll 14; övrigt innehåll, platser, positioner och rutter är oförändrade.
@@ -161,7 +169,7 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | stories.json | 1 | 4 |
 | history.json | 2 | 2 |
 | taxonomy.json | 1 | 2 |
-| index.html och ui-theme.css | – | 1.15.1 |
+| index.html och ui-theme.css | – | 1.16.0 |
 | place-sheet.css | – | 1.15.0 |
 | place-presentation.js | – | 1.13.0 |
 
