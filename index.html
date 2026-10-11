@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="application-version" content="1.18.1">
+<meta name="application-version" content="1.18.2">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
@@ -371,13 +371,17 @@ function showPlaceOnMap(id){
  setDayGuide(false);layerControl.collapse();closePlaceSheet(false);
  const group=guide.persistentPlaceIds.includes(id)?m:bookedIds.includes(id)?bookedGroup:groups[requirePlace(id).category];
  clearRevealedMarker();if(group!==m&&!m.hasLayer(group)){marker.addTo(m);revealedMarker={marker,group};}
- if(!isWideLayout())setView('karta');requestAnimationFrame(()=>{m.invalidateSize({pan:false});m.setView(marker.getLatLng(),16,{animate:false});selectPlace(id);
+ if(!isWideLayout())setView('karta');requestAnimationFrame(()=>{
+  m.invalidateSize({pan:false});selectPlace(id);
+  const zoom=16;let center=marker.getLatLng();
   if(usesPhoneLayout()){
    marker.openPopup();
    const mapBounds=document.querySelector('.folium-map').getBoundingClientRect(),cardTop=(window.visualViewport?.height||innerHeight)-parseFloat(getComputedStyle(placeSheet).bottom)-sheetSizes().compact;
    const visibleCenter=mapBounds.top+Math.max(0,Math.min(mapBounds.bottom,cardTop)-mapBounds.top)/2;
-   m.panBy([0,Math.max(0,mapBounds.top+mapBounds.height/2-visibleCenter)],{animate:false});
+   const offset=Math.max(0,mapBounds.top+mapBounds.height/2-visibleCenter);
+   center=m.unproject(m.project(center,zoom).add([0,offset]),zoom);
   }
+  m.flyTo(center,zoom,{animate:!window.matchMedia('(prefers-reduced-motion: reduce)').matches,duration:1.4});
  });
 }
 function askAboutPlace(place){

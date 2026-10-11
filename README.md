@@ -1,3 +1,9 @@
+## Lugnare kartförflyttning – UI 1.18.2
+
+Visa använder en sammanhängande, animerad förflyttning och zoom på 1,4 sekunder i stället för omedelbar centrering följd av ett omedelbart hopp på telefon. Telefonens slutliga kartcentrum beräknas i förväg så platsen hamnar ovanför popupen i samma rörelse. Markering och popupbeteende är oförändrade. Systeminställningen för minskad rörelse respekteras. Innehåll och koordinater är oförändrade.
+
+Navigationstestet kontrollerar animationsval och varaktighet på telefon och iPad samt minskad rörelse, utöver tidigare popup-, markör- och layoutkontroller. Rörelsens visuella känsla behöver bedömas på enheten med verklig karta; testadaptern verifierar de anropade inställningarna.
+
 ## Visa med popup på telefon – UI 1.18.1
 
 Visa öppnar platskortet på telefon och markerar nålen. På iPad och större skärmar markeras nålen utan popup, även på stående iPad som visar läsvyerna i helskärm. Popupbeteendet använder därför en separat gräns (768×500 px) från läspanelens gräns (900×500 px). Den valda nålen förstoras till 145 procent, jämfört med tidigare 125 procent, runt samma geografiska ankare. På telefon panoreras kartan så den valda platsen visas i ytan ovanför kortet. Innehåll, positioner och övriga nålars utseende är oförändrade.
@@ -213,7 +219,7 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | stories.json | 1 | 4 |
 | history.json | 2 | 2 |
 | taxonomy.json | 1 | 2 |
-| index.html | – | 1.18.1 |
+| index.html | – | 1.18.2 |
 | ui-theme.css | – | 1.18.1 |
 | place-sheet.css | – | 1.17.1 |
 | place-presentation.js | – | 1.16.1 |
