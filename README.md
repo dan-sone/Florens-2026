@@ -1,3 +1,7 @@
+## Gemensam Visa-knapp i Historia – UI 1.17.2
+
+Platserna i varje historiekapitel visar platsens kategoriikon och namn, följt av samma Visa-knapp som i Dagar och Sevärdheter. Knappen återanvänder den gemensamma action-renderaren med kartnålsikon, texten Visa och samma färger. Den tidigare stora länkraden med Visa på kartan och pil är ersatt. Funktionen markerar nålen utan popup. Innehåll och positioner är oförändrade.
+
 ## Fast meny och markering utan popup – UI 1.17.1
 
 Flikmenyn ligger fast uppe till vänster med samma läge och bredd mellan vyerna. Visa centrerar och förstorar den valda kartnålen utan att öppna ett platskort; på större skärmar behålls läspanelen, på telefon visas kartvyn. Ett annat val flyttar markeringen och karttryck tar bort den. Tryck på själva kartnålen öppnar fortfarande dess platskort. Gå har samma knappstil som övriga alternativ i alla vyer. Positioner och innehåll är oförändrade.
@@ -191,8 +195,8 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | stories.json | 1 | 4 |
 | history.json | 2 | 2 |
 | taxonomy.json | 1 | 2 |
-| index.html | – | 1.17.1 |
-| ui-theme.css | – | 1.17.1 |
+| index.html | – | 1.17.2 |
+| ui-theme.css | – | 1.17.2 |
 | place-sheet.css | – | 1.17.1 |
 | place-presentation.js | – | 1.16.1 |
 

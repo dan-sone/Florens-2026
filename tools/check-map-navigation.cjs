@@ -58,7 +58,14 @@ window.L={map:id=>new MapView(id),CRS:{EPSG3857:{}},control,layerGroup:()=>new G
     if(wide){assert.equal(geometry.visible,'visible');assert(geometry.map.x>=geometry.panel.right-1);assert(geometry.map.width>=500);assert(geometry.tabs.right<=geometry.panel.right+1);assert(geometry.map.right<=viewport.width+1)}else{assert.equal(geometry.visible,'hidden');assert.equal(geometry.panel.width,viewport.width)}
    }
   }
-  await page.setViewportSize({width:1024,height:768});await page.click('#tab-schema');
+  await page.setViewportSize({width:1024,height:768});await page.click('#tab-historia');
+  await page.locator('[data-history-chapter]').first().evaluate(e=>e.open=true);
+  const historyShow=page.locator('#historyPanel [data-action=show]').first();assert.equal(await historyShow.textContent(),'Visa');
+  assert.equal(await historyShow.locator('svg').count(),1);assert.equal(await page.locator('#historyPanel .history-place-hint,#historyPanel .history-link-arrow').count(),0);
+  await historyShow.click();await page.waitForTimeout(100);assert.equal(await page.locator('body').getAttribute('data-view'),'historia');assert(await page.locator('#placeSheet').isHidden());assert.equal(await page.locator('.is-selected').count(),1);
+  await page.screenshot({path:'/tmp/history-visa-'+colorScheme+'.png'});await page.click('#tab-schema');
+  const sharedAppearance=await page.evaluate(()=>{const read=e=>{const s=getComputedStyle(e);return [s.color,s.backgroundColor,s.fontSize,s.borderRadius]},h=document.querySelector('#historyPanel [data-action=show]'),d=document.querySelector('#schemaPanel [data-action=show]');return {history:read(h),days:read(d)}});assert.deepEqual(sharedAppearance.history,sharedAppearance.days);
+
   await page.locator('[data-day=tue]>.schedule-heading').click();
   assert.equal(await page.locator('[data-day=tue] [data-stay]').count(),1);
   await page.evaluate(()=>document.getElementById('listView').scrollTop=180);const scroll=await page.locator('#listView').evaluate(e=>e.scrollTop);

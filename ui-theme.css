@@ -242,3 +242,9 @@ body.place-open .leaflet-control-scale{visibility:hidden}
 /* Stable navigation position in every view. */
 #viewTabs{left:calc(env(safe-area-inset-left,0px) + 12px);transform:none;width:min(480px,calc(100% - 24px));box-sizing:border-box}
 @media(min-width:900px) and (min-height:500px){#viewTabs{width:calc(var(--reading-width) - 24px)}}
+
+/* History uses the shared Visa action beside each place name. */
+.history-place-link .sheet-actions{margin:0;flex:0 0 56px;display:flex}
+.history-place-link .sheet-action{width:56px;flex:0 0 56px}
+
+.history-place-link{border-radius:16px}
