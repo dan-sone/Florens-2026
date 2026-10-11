@@ -1,5 +1,9 @@
 # Reseguiden
 
+## Kartkontroller och borttaget stopp – 1.6.2
+
+Cosi – Chiantigiana är borttaget ur platsregistret, torsdagens program och dess alternativa taxirutt. Övriga platsuppgifter och positioner är oförändrade. Kartans knappar för fullskärm, position, lager och uppdatering ligger till höger. Zoomknapparna +/− är borttagna; nypzoom fungerar som tidigare.
+
 ## Dagsguide och platsinnehåll – 1.6.0
 
 Dagsguiden är kompakt från start. Tryck på raden eller dra uppåt för programmet; dra nedåt för att fälla ihop. Den följer fingret och behåller sitt läge vid dagsbyte. Den separata dagväljaren använder systemets vanliga select. Version 1.6.1 förstorar enbart vald kartnål med 25 procent, förankrad i dess iconAnchor. Övriga nålar behåller färg, opacitet, storlek och skugga. Kartan panoreras inte när platskortet öppnas eller ändrar höjd. Ingen extra cirkel ritas.
@@ -63,11 +67,11 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 
 | Fil | Schemaversion | Innehåll/programversion |
 | --- | ---: | ---: |
-| places.json | 2 | 5 |
-| routes.json | 1 | 3 |
-| guide.json | 3 | 7 |
+| places.json | 2 | 6 |
+| routes.json | 1 | 4 |
+| guide.json | 3 | 8 |
 | stories.json | 1 | 3 |
-| index.html och ui-theme.css | – | 1.6.1 |
+| index.html och ui-theme.css | – | 1.6.2 |
 | place-sheet.css | – | 1.4.4 |
 | valideringskod | – | 1.6.0 |
 | verification-report.v2.md | – | Rapportversion 2 |

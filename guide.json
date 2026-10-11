@@ -1,8 +1,8 @@
 {
   "$schema": "./guide.schema.v3.json",
   "schemaVersion": 3,
-  "contentVersion": 7,
-  "updatedAt": "2026-10-10T23:08:09.975616Z",
+  "contentVersion": 8,
+  "updatedAt": "2026-10-11T06:11:13.526493Z",
   "id": "florens-2026",
   "title": "Florens 2026",
   "destination": {
@@ -175,24 +175,7 @@
           "nodes": [
             {
               "type": "text",
-              "text": "Efteråt: lunch på "
-            },
-            {
-              "type": "place",
-              "placeId": "pasticceria-cosi-chiantigiana",
-              "text": "Cosi – Chiantigiana i Bagno a Ripoli"
-            },
-            {
-              "type": "text",
-              "text": " (taxi, kontrollera öppet med filialen) "
-            },
-            {
-              "type": "emphasis",
-              "text": "eller"
-            },
-            {
-              "type": "text",
-              "text": " taxi till "
+              "text": "Efteråt: taxi till "
             },
             {
               "type": "place",
@@ -992,18 +975,6 @@
         "tooltip": false,
         "directionsUsesAddress": true,
         "mapLabel": "Öppna i Apple Kartor ↗"
-      },
-      "pasticceria-cosi-chiantigiana": {
-        "icon": {
-          "markerColor": "orange",
-          "iconColor": "white",
-          "icon": "cutlery",
-          "prefix": "fa"
-        },
-        "style": "",
-        "tooltip": false,
-        "directionsUsesAddress": true,
-        "mapLabel": "Visa kartpunkt i Apple Kartor ↗"
       },
       "beppa-fioraia": {
         "icon": {

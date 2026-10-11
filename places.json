@@ -1,8 +1,8 @@
 {
   "$schema": "./places.schema.v2.json",
   "schemaVersion": 2,
-  "contentVersion": 5,
-  "updatedAt": "2026-10-10T23:10:59.604089Z",
+  "contentVersion": 6,
+  "updatedAt": "2026-10-11T06:11:13.526493Z",
   "places": [
     {
       "id": "hotel-la-scaletta",
@@ -3606,81 +3606,6 @@
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://www.leggimenu.it/menu/bulliebalenespritzecicchetti/",
-            "checkedAt": "2026-10-10"
-          }
-        ]
-      }
-    },
-    {
-      "id": "pasticceria-cosi-chiantigiana",
-      "name": "Pasticceria Cosi – Chiantigiana",
-      "category": "food-drink",
-      "description": "Via Chiantigiana 52/54R, lättare lunch eller bakverk efter Lisio. Markören använder koordinaten på företagets egen kontaktsida.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.\nFilialen ligger i Bagno a Ripoli, inte vid Piazza Gavinana. Apple-kort för nuvarande Cosi-verksamhet saknas ännu; telefon +39 055 6147820.",
-      "address": "Via Chiantigiana 52/54R, Bagno a Ripoli",
-      "position": {
-        "latitude": 43.73424696474809,
-        "longitude": 11.29679675465294
-      },
-      "appleMaps": {
-        "placeId": null,
-        "placeUrl": null
-      },
-      "entrance": null,
-      "website": "https://www.cosifirenze.com/contatti/",
-      "verification": {
-        "status": "unresolved",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
-        "sources": [
-          {
-            "url": "https://www.cosifirenze.com/contatti/",
-            "title": "Cosi – filialadress och koordinatlänk",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
-            "supports": [
-              "identity",
-              "address",
-              "position"
-            ]
-          },
-          {
-            "url": "https://www.quiantella.it/dal-cappuccino-allaperitivo-la-pasticceria-che-scandisce-la-giornata-fotogallery/",
-            "title": "Qui Antella – öppningen i gamla Bar Anna & Roberto",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
-            "supports": [
-              "identity",
-              "address"
-            ]
-          },
-          {
-            "url": "https://maps.apple.com/directions?source=43.7667357%2C11.2515213&destination=43.73424696474809%2C11.29679675465294&mode=walking",
-            "title": "Apple MapKit JS – beräknad gångväg till platsens koordinat",
-            "checkedAt": "2026-10-10T10:29:52.947985Z",
-            "supports": [
-              "navigation"
-            ]
-          }
-        ],
-        "checks": {
-          "identity": true,
-          "position": true,
-          "placeLink": false,
-          "navigation": true
-        },
-        "notes": "Rätt filial: Via Chiantigiana 52/54R, Bagno a Ripoli. Position från företagets egen koordinatlänk. Apple har fortfarande gamla Bar Anna & Roberto på platsen; dess id har inte tillskrivits Cosi. Namngiven koordinatmarkering används, inte ett verifierat företagskort. Aktuella öppettider bör kontrolleras med filialen på +39 055 6147820."
-      },
-      "openingHours": {
-        "status": "unconfirmed",
-        "timeZone": "Europe/Rome",
-        "weekly": [],
-        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
-        "sources": [],
-        "exceptions": []
-      },
-      "specialties": {
-        "text": "Hantverksbakade brioche och bakverk till italiensk frukost.",
-        "sources": [
-          {
-            "label": "Öppna uppgifterna hos källan",
-            "url": "https://www.cosifirenze.com/colazione-allitaliana/",
             "checkedAt": "2026-10-10"
           }
         ]

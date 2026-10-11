@@ -38,7 +38,7 @@ html,body{background:var(--page);color:var(--text);font-family:-apple-system,Bli
 .leaflet-bar a:focus-visible,.leaflet-bar button:focus-visible{outline-offset:-4px}
 @media(max-width:360px){#viewTabs .tab-icon{display:none}#viewTabs button{font-size:13px}.list-card{padding:15px}}
 @media(max-height:480px){#guide{max-height:44dvh!important;border-radius:22px!important}#daycard{max-height:24dvh!important}}
-@media(min-width:640px) and (max-height:480px){.leaflet-top.leaflet-left{display:flex;align-items:flex-start;gap:6px;left:10px}.leaflet-top.leaflet-left .leaflet-control{margin-left:0;margin-top:10px}.leaflet-control-zoom{display:flex}.leaflet-control-zoom a:not(:last-child){border-bottom:0!important;border-right:1px solid var(--line)!important}.leaflet-control-zoom{border-radius:24px!important}}
+@media(min-width:640px) and (max-height:480px){.leaflet-top.leaflet-right{display:flex;align-items:flex-start;gap:6px;right:10px}.leaflet-top.leaflet-right .leaflet-control{margin-right:0;margin-top:10px}}
 @media(prefers-reduced-motion:reduce){#viewTabs button,.sheet-action,.list-action{transition:none}}
 @media(prefers-reduced-transparency:reduce),(prefers-contrast:more){:root{--glass:var(--surface);--glass-edge:var(--line)}#viewTabs,#guide,.leaflet-bar,.leaflet-control-layers{-webkit-backdrop-filter:none;backdrop-filter:none}}
 

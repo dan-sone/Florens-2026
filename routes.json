@@ -1,8 +1,8 @@
 {
   "$schema": "./routes.schema.v1.json",
   "schemaVersion": 1,
-  "contentVersion": 3,
-  "updatedAt": "2026-10-10T16:10:00Z",
+  "contentVersion": 4,
+  "updatedAt": "2026-10-11T06:11:13.526493Z",
   "routes": [
     {
       "id": "tue",
@@ -73,15 +73,6 @@
           "placeIds": [
             "hotel-la-scaletta",
             "fondazione-arte-della-seta-lisio"
-          ]
-        },
-        {
-          "id": "thu-2",
-          "mode": "taxi",
-          "placeIds": [
-            "fondazione-arte-della-seta-lisio",
-            "pasticceria-cosi-chiantigiana",
-            "piazzale-michelangelo"
           ]
         },
         {

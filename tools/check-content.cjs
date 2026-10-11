@@ -72,6 +72,6 @@ for(const place of documents.places.places){
 }
 assert.throws(()=>PlacesValidator.appleDirectionsLink(documents.places.places[0],'flying'));
 const entrance=structuredClone(documents.places.places[0]);entrance.entrance={position:{latitude:43.7,longitude:11.2}};const toEntrance=new URL(PlacesValidator.appleDirectionsLink(entrance,'walking'));assert.equal(toEntrance.searchParams.get('destination'),'43.7,11.2');assert(!toEntrance.searchParams.has('destination-place-id'));
-console.log('PASS: all 69 place links and 207 navigation links, coordinate fallbacks, entrance preference, place-id/source/position consistency');
+console.log(`PASS: all ${documents.places.places.length} place links and ${documents.places.places.length*3} navigation links, coordinate fallbacks, entrance preference, place-id/source/position consistency`);
 
 const legacy=structuredClone(documents);legacy.guide.schemaVersion=1;legacy.guide.$schema='./guide.schema.v1.json';delete legacy.guide.flights;delete legacy.guide.defaultSelection.summary;legacy.guide.days.forEach(d=>delete d.summary);PlacesValidator.validateTrip({...schemas,guide:JSON.parse(fs.readFileSync('guide.schema.v1.json'))},legacy);console.log('PASS: flight validation and legacy guide schema v1 compatibility');

@@ -17,6 +17,8 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  await page.goto('http://127.0.0.1:8765/',{waitUntil:'load',timeout:60000});
  await page.evaluate(()=>guideReady);
  assert.deepEqual(await page.locator('#viewTabs button').allTextContents(),['Karta','Schema','Sevärdheter']);
+ assert.equal(await page.locator('.leaflet-control-zoom').count(),0);assert.equal(await page.locator('.leaflet-top.leaflet-left .leaflet-control').count(),0);assert.equal(await page.locator('.leaflet-top.leaflet-right .leaflet-control').count(),4);assert.equal(await page.locator('[data-place-card="pasticceria-cosi-chiantigiana"]').count(),0);assert(!(await page.locator('#schemaPanel').textContent()).includes('Cosi'));
+
  await page.click('#tab-schema');assert(await page.locator('#schemaPanel').isVisible());
  assert.equal(await page.locator('.day-section').count(),5);assert.equal(await page.locator('[data-booking]').count(),5);
  assert((await page.locator('#schemaPanel').textContent()).includes('19:45'));assert((await page.locator('#schemaPanel').textContent()).includes('15.30'));
@@ -34,13 +36,13 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  await page.locator('#schemaPanel h1').scrollIntoViewIfNeeded();
  assert.equal(await page.locator('#schemaPanel').evaluate(e=>e.scrollWidth>e.clientWidth),false);
  await page.screenshot({path:'/tmp/schema-list-check.png'});
- await page.click('#tab-sevardheter');assert.equal(await page.locator('[data-place-card]').count(),69);
+ await page.click('#tab-sevardheter');assert.equal(await page.locator('[data-place-card]').count(),JSON.parse(fs.readFileSync('places.json')).places.length);
  assert.equal(await page.locator('[data-place-card="beppa-fioraia"] .list-actions a').nth(0).getAttribute('href'),PlacesLink());
  function PlacesLink(){const u=new URL('https://maps.apple.com/directions');u.searchParams.set('destination','43.76279,11.26097');u.searchParams.set('mode','walking');u.searchParams.set('destination-place-id','IE09241B81B7B5B19');return u.href;}
  await page.locator('[data-category="craft"]').click();assert.equal(await page.locator('[data-place-card="scuola-del-cuoio"]').count(),0);
  await page.click('#tab-karta');assert.equal(await page.locator('.leaflet-control-layers-overlays input').nth(2).isChecked(),false);
  await page.locator('.leaflet-control-layers').hover();await page.locator('.leaflet-control-layers-overlays input').nth(2).check();
- await page.click('#tab-sevardheter');assert.equal(await page.locator('[data-place-card]').count(),69);
+ await page.click('#tab-sevardheter');assert.equal(await page.locator('[data-place-card]').count(),JSON.parse(fs.readFileSync('places.json')).places.length);
  await page.screenshot({path:'/tmp/places-list-check.png'});
  assert.equal(await page.locator('#placesPanel').evaluate(e=>e.scrollWidth>e.clientWidth),false);
  // Each list navigation target must equal the map's canonical URL generator.
@@ -177,6 +179,6 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  assert.deepEqual(await page.evaluate(async()=>[...(await guideReady).markersById].map(([id,m])=>[id,m.getLatLng().lat,m.getLatLng().lng])),positions);
  await page.emulateMedia({colorScheme:'dark',reducedMotion:'reduce',contrast:'more'});assert.equal(await page.locator('#viewTabs').evaluate(e=>getComputedStyle(e).backdropFilter),'none');assert.equal(await page.locator('#tab-karta').evaluate(e=>getComputedStyle(e).transitionDuration),'0s');
  await page.emulateMedia({colorScheme:'light',reducedMotion:'no-preference',contrast:'no-preference'});
- assert.deepEqual(errors,[]);console.log('PASS: existing map/list/flight flows, 69 marked place sheets and all shared stories at five mobile/tablet sizes, 200% text, drag up to expand/down to close, touch tap and keyboard toggle, route sheet dismissal, fading overflow, bounds/vertical scroll, marker click and keyboard close, unchanged canonical navigation');console.log('PASS: live OS light/dark switching for map, cards, lists and controls at five screen sizes; text contrast >=4.5; 44px navigation targets; reduced motion/high contrast; marker coordinates unchanged');
+ assert.deepEqual(errors,[]);console.log('PASS: existing map/list/flight flows, all marked place sheets and all shared stories at five mobile/tablet sizes, 200% text, drag up to expand/down to close, touch tap and keyboard toggle, route sheet dismissal, fading overflow, bounds/vertical scroll, marker click and keyboard close, unchanged canonical navigation');console.log('PASS: live OS light/dark switching for map, cards, lists and controls at five screen sizes; text contrast >=4.5; 44px navigation targets; reduced motion/high contrast; marker coordinates unchanged');
  }finally{await browser.close();server.close()}
 })().catch(e=>{console.error(e.stack);process.exitCode=1});
