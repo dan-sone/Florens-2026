@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="application-version" content="1.16.1">
+<meta name="application-version" content="1.16.2">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
@@ -512,6 +512,7 @@ function renderFlightCards(day){
  }).join('');
 }
 function renderScheduleList(){
+ const stayCards=guide.persistentPlaceIds.map(id=>{const place=requirePlace(id);return '<article class="list-card" data-stay="'+esc(id)+'" data-category="'+esc(place.category)+'"><span class="list-badge">Boende</span><h4>'+placeIcon(place)+esc(place.name)+'</h4>'+placeDescription(place)+(place.address?'<p class="address">'+esc(place.address)+'</p>':'')+listActions(place)+'</article>'}).join('');
  const sections=guide.days.map(day=>{
   const bookings=guide.bookings.filter(b=>localBookingDate(b)===day.date).sort((a,b)=>new Date(a.startsAt)-new Date(b.startsAt));
   const bookedPlaces=new Set(bookings.map(b=>b.placeId));
@@ -519,9 +520,9 @@ function renderScheduleList(){
   const stops=[...new Set(day.routeIds.flatMap(id=>routesById.get(id).segments.flatMap(s=>s.placeIds)))].filter(id=>!allBookedPlaces.has(id)&&!guide.persistentPlaceIds.includes(id));
   const title=dateFormatter.format(new Date(day.date+'T12:00:00Z'));
   const flightsAfterProgram=day.id===guide.days[guide.days.length-1].id;
-  return '<details class="list-card day-section schedule-card" data-day="'+esc(day.id)+'"><summary class="schedule-heading"><h2><span class="schedule-title">'+esc(title[0].toUpperCase()+title.slice(1))+'</span><svg class="schedule-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></h2>'+(day.summary?'<p class="schedule-teaser">'+esc(day.summary)+'</p>':'')+'</summary><div class="schedule-body">'+(flightsAfterProgram?'':renderFlightCards(day))+(bookings.length?'<h3>Bokningar</h3>'+bookings.map(b=>{const place=requirePlace(b.placeId);return '<article class="list-card" data-booking="'+esc(b.id)+'" data-category="'+esc(place.category)+'"><span class="list-badge">Bokat</span><h4>'+placeIcon(place)+esc(timeFormatter.format(new Date(b.startsAt)))+' · '+esc(place.name)+'</h4>'+placeDescription(place)+(place.address?'<p class="address">'+esc(place.address)+'</p>':'')+listActions(place)+'</article>'}).join(''):'')+'<h3>Planerat program</h3><article class="list-card list-program">'+renderProgram(day.program)+'</article>'+(stops.length?'<h3>Valbara stopp längs rutten</h3><div class="optional-stops">'+stops.map(id=>'<button class="list-action" data-show-place="'+esc(id)+'">'+esc(requirePlace(id).name)+'</button>').join('')+'</div>':'')+(flightsAfterProgram?renderFlightCards(day):'')+'</div></details>';
+  return '<details class="list-card day-section schedule-card" data-day="'+esc(day.id)+'"><summary class="schedule-heading"><h2><span class="schedule-title">'+esc(title[0].toUpperCase()+title.slice(1))+'</span><svg class="schedule-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></h2>'+(day.summary?'<p class="schedule-teaser">'+esc(day.summary)+'</p>':'')+'</summary><div class="schedule-body">'+(flightsAfterProgram?'':renderFlightCards(day))+(day.id===guide.days[0].id?stayCards:'')+(bookings.length?'<h3>Bokningar</h3>'+bookings.map(b=>{const place=requirePlace(b.placeId);return '<article class="list-card" data-booking="'+esc(b.id)+'" data-category="'+esc(place.category)+'"><span class="list-badge">Bokat</span><h4>'+placeIcon(place)+esc(timeFormatter.format(new Date(b.startsAt)))+' · '+esc(place.name)+'</h4>'+placeDescription(place)+(place.address?'<p class="address">'+esc(place.address)+'</p>':'')+listActions(place)+'</article>'}).join(''):'')+'<h3>Planerat program</h3><article class="list-card list-program">'+renderProgram(day.program)+'</article>'+(stops.length?'<h3>Valbara stopp längs rutten</h3><div class="optional-stops">'+stops.map(id=>'<button class="list-action" data-show-place="'+esc(id)+'">'+esc(requirePlace(id).name)+'</button>').join('')+'</div>':'')+(flightsAfterProgram?renderFlightCards(day):'')+'</div></details>';
  }).join('');
- document.getElementById('schemaPanel').innerHTML='<h1>Dagar</h1><p class="list-intro">Flyg, bokningar, dagens plan och valbara stopp. '+esc(guide.destination.name)+'.</p>'+guide.persistentPlaceIds.map(id=>{const place=requirePlace(id);return '<article class="list-card" data-stay="'+esc(id)+'" data-category="'+esc(place.category)+'"><span class="list-badge">Boende</span><h2>'+placeIcon(place)+esc(place.name)+'</h2>'+placeDescription(place)+(place.address?'<p class="address">'+esc(place.address)+'</p>':'')+listActions(place)+'</article>'}).join('')+sections;
+ document.getElementById('schemaPanel').innerHTML='<h1>Dagar</h1><p class="list-intro">Flyg, bokningar, dagens plan och valbara stopp. '+esc(guide.destination.name)+'.</p>'+sections;
 }
 const filterBox=document.getElementById('placeFilters');
 const expandedPlaces=new Set();
