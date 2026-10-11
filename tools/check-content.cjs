@@ -5,6 +5,11 @@ for(const name of ['places','routes','guide','stories','history']){documents[nam
 const validate=d=>PlacesValidator.validateTrip(schemas,d);
 validate(documents);
 const cases=[
+ d=>d.guide.discoveryAreas.push(d.guide.discoveryAreas[0]),
+ d=>d.guide.discoveryAreas[0].placeIds[0]='unknown-place',
+ d=>d.guide.discoveryAreas[1].placeIds.push(d.guide.discoveryAreas[0].placeIds[0]),
+ d=>d.guide.discoveryAreas[0].placeIds.shift(),
+
  d=>delete d.history.chapters[1].images[0].credit,
  d=>delete d.history.chapters[1].images[0].licenseUrl,
  d=>d.history.chapters[1].images[0].src='../unsafe.webp',
@@ -90,7 +95,9 @@ assert.throws(()=>PlacesValidator.appleDirectionsLink(documents.places.places[0]
 const entrance=structuredClone(documents.places.places[0]);entrance.entrance={position:{latitude:43.7,longitude:11.2}};const toEntrance=new URL(PlacesValidator.appleDirectionsLink(entrance,'walking'));assert.equal(toEntrance.searchParams.get('destination'),'43.7,11.2');assert(!toEntrance.searchParams.has('destination-place-id'));
 console.log(`PASS: all ${documents.places.places.length} place links and ${documents.places.places.length*3} navigation links, coordinate fallbacks, entrance preference, place-id/source/position consistency`);
 
-const legacy=structuredClone(documents);legacy.guide.schemaVersion=1;legacy.guide.$schema='./guide.schema.v1.json';delete legacy.guide.flights;delete legacy.guide.defaultSelection.summary;legacy.guide.days.forEach(d=>delete d.summary);PlacesValidator.validateTrip({...schemas,guide:JSON.parse(fs.readFileSync('guide.schema.v1.json'))},legacy);console.log('PASS: flight validation and legacy guide schema v1 compatibility');
+const legacy=structuredClone(documents);legacy.guide.schemaVersion=1;legacy.guide.$schema='./guide.schema.v1.json';delete legacy.guide.discoveryAreas;delete legacy.guide.flights;delete legacy.guide.defaultSelection.summary;legacy.guide.days.forEach(d=>delete d.summary);PlacesValidator.validateTrip({...schemas,guide:JSON.parse(fs.readFileSync('guide.schema.v1.json'))},legacy);console.log('PASS: flight validation and legacy guide schema v1 compatibility');
 
 const legacyHistory=structuredClone(documents);legacyHistory.history.schemaVersion=1;legacyHistory.history.$schema='./history.schema.v1.json';legacyHistory.history.chapters.forEach(c=>delete c.images);PlacesValidator.validateTrip({...schemas,history:JSON.parse(fs.readFileSync('history.schema.v1.json'))},legacyHistory);console.log('PASS: legacy history schema v1 compatibility');
 for(const chapter of documents.history.chapters)for(const image of chapter.images||[])assert(fs.statSync(image.src).size>0,'Missing history image: '+image.src);
+
+const previousGuide=structuredClone(documents);previousGuide.guide.schemaVersion=3;previousGuide.guide.$schema='./guide.schema.v3.json';delete previousGuide.guide.discoveryAreas;PlacesValidator.validateTrip({...schemas,guide:JSON.parse(fs.readFileSync('guide.schema.v3.json'))},previousGuide);console.log('PASS: discovery areas cover every place exactly once and guide schema v3 compatibility');

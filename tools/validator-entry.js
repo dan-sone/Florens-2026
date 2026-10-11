@@ -49,6 +49,11 @@ export function validateTrip(schemas,documents) {
   unique(guide.bookings,'bokning');const categories=unique(guide.categories,'kategori');
   if(dayIds.has(guide.defaultSelection.id))throw new Error('Standardvalet delar id med en dag');
   const requirePlace=(id,position=false)=>{const p=placeMap.get(id);if(!p)throw new Error('Okänt plats-id: '+id);if(position&&!p.position)throw new Error('Platsen saknar position: '+id);return p;};
+  if(guide.discoveryAreas){
+    unique(guide.discoveryAreas,'upptäcktsområde');const assigned=new Set();
+    for(const area of guide.discoveryAreas)for(const id of area.placeIds){requirePlace(id);if(assigned.has(id))throw new Error('Platsen finns i flera upptäcktsområden: '+id);assigned.add(id);}
+    if(assigned.size!==places.places.length)throw new Error('Plats saknar upptäcktsområde');
+  }
   if(documents.stories){
     createValidator(schemas.stories)(documents.stories);
     unique(documents.stories.stories,'berättelse','placeId');

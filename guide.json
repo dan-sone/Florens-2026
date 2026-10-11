@@ -1,8 +1,8 @@
 {
-  "$schema": "./guide.schema.v3.json",
-  "schemaVersion": 3,
-  "contentVersion": 10,
-  "updatedAt": "2026-10-11T06:35:56.231636Z",
+  "$schema": "./guide.schema.v4.json",
+  "schemaVersion": 4,
+  "contentVersion": 11,
+  "updatedAt": "2026-10-11T07:50:07Z",
   "id": "florens-2026",
   "title": "Florens 2026",
   "destination": {
@@ -1308,6 +1308,132 @@
         "at": "2026-10-17T20:10:00+02:00",
         "timeZone": "Europe/Stockholm"
       }
+    }
+  ],
+  "discoveryAreas": [
+    {
+      "id": "pitti-santo-spirito",
+      "title": "Kring hotellet · Pitti & Santo Spirito",
+      "intro": "Små torg, trädgårdar, pappershantverk och en paus med vin.",
+      "placeIds": [
+        "hotel-la-scaletta",
+        "palazzo-pitti",
+        "giardino-di-boboli",
+        "basilica-di-santo-spirito",
+        "piazza-santo-spirito",
+        "piazza-della-passera",
+        "giulio-giannini-e-figlio",
+        "pitti-mosaici",
+        "giulia-materia",
+        "le-telerie-toscane",
+        "le-volpi-e-luva",
+        "enoteca-pitti-gola-e-cantina",
+        "enoteca-spontanea",
+        "gelateria-della-passera",
+        "bulli-balene",
+        "loggia-roof-bar"
+      ]
+    },
+    {
+      "id": "san-frediano",
+      "title": "San Frediano & sidenverkstaden",
+      "intro": "Fortsätt västerut bland verkstäder, små restauranger och kvarterstorg.",
+      "placeIds": [
+        "antico-setificio-fiorentino",
+        "piazza-del-carmine",
+        "castorina-1895",
+        "cuculia",
+        "il-santino",
+        "il-santo-bevitore",
+        "gelateria-la-carraia"
+      ]
+    },
+    {
+      "id": "signoria-centro",
+      "title": "Ponte Vecchio & stadens hjärta",
+      "intro": "Konst, skulpturer och stadens stora mötesplatser.",
+      "placeIds": [
+        "ponte-vecchio",
+        "uffizierna",
+        "piazza-della-signoria",
+        "loggia-dei-lanzi",
+        "orsanmichele",
+        "piazza-della-repubblica",
+        "serre-torrigiani-in-piazzetta",
+        "caffe-concerto-paszkowski",
+        "perche-no"
+      ]
+    },
+    {
+      "id": "duomo-san-lorenzo",
+      "title": "Duomo & San Lorenzo",
+      "intro": "Kupolen, Medici, mosaikverkstäder och tyger.",
+      "placeIds": [
+        "duomo-santa-reparata",
+        "basilica-di-san-lorenzo",
+        "cappelle-medicee",
+        "palazzo-medici-riccardi",
+        "galleria-dellaccademia",
+        "museo-opificio-delle-pietre-dure",
+        "scarpelli-mosaici",
+        "mercato-centrale",
+        "casa-dei-tessuti",
+        "ermini-agostino",
+        "passamaneria-toscana"
+      ]
+    },
+    {
+      "id": "santa-maria-novella",
+      "title": "Santa Maria Novella & Santa Trinita",
+      "intro": "Dofter, marmorerat papper och butiker längs vägen mot floden.",
+      "placeIds": [
+        "santa-maria-novella",
+        "officina-profumo-farmaceutica-smn",
+        "piazza-santa-trinita",
+        "ponte-santa-trinita",
+        "alberto-cozzi-legatoria",
+        "riccardo-luci-carta-marmorizzata",
+        "valli-tessuti",
+        "mio-concept-store"
+      ]
+    },
+    {
+      "id": "santa-croce-ambrogio",
+      "title": "Santa Croce & Sant’Ambrogio",
+      "intro": "Läderhantverk, marknadsliv, konst och glasspauser.",
+      "placeIds": [
+        "basilica-di-santa-croce",
+        "scuola-del-cuoio",
+        "museo-nazionale-del-bargello",
+        "mercato-di-santambrogio",
+        "nugolo",
+        "vivoli",
+        "gelateria-dei-neri"
+      ]
+    },
+    {
+      "id": "san-niccolo",
+      "title": "San Niccolò · utsikter & trädgårdar",
+      "intro": "Rosenträdgården, kyrkan på höjden och enkla stopp längs promenaden.",
+      "placeIds": [
+        "porta-san-niccolo",
+        "giardino-delle-rose",
+        "piazzale-michelangelo",
+        "san-miniato-al-monte",
+        "fuori-porta",
+        "beppa-fioraia",
+        "chalet-il-boschetto",
+        "terrazze-michelangelo",
+        "cantina-del-gelato"
+      ]
+    },
+    {
+      "id": "lisio",
+      "title": "Längre bort · Lisio",
+      "intro": "Den bokade textilupplevelsen utanför de centrala kvarteren.",
+      "placeIds": [
+        "fondazione-arte-della-seta-lisio"
+      ]
     }
   ]
 }

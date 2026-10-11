@@ -1,3 +1,9 @@
+## Upptäcktsvänliga sevärdheter – UI 1.9.0
+
+Platserna visas i åtta redaktionellt ordnade områden, med kvarteren kring hotellet först. Kompakta platskort öppnas på samma sätt som Historia och Schema. Berättelser och praktisk information ligger tillsammans i kortet; öppningsläget och läspositionen bevaras vid återkomst från kartan. Filter och kategorimarkeringar följer kartans kategorifärger, med rött för bokat och ofylld färgpunkt för avstängda filter. Dag/natt använder samma färgvariabler som kartans lagerlista.
+
+`guide.schema.v4.json` (schema 4) lägger till valfria `discoveryAreas` med id, rubrik, introduktion och ordnade platsreferenser. `guide.json` har innehåll 11. Om områden anges måste alla platser finnas exakt en gång; äldre schema stöds med platsordningen i registret som reserv. Positions- och platsregistret, rutter, bokningar och flyg har inte ändrats.
+
 ## Öppningsbart schema – UI 1.8.1
 
 Dagarna visas som kort med datum, kort sammanfattning och samma öppna/stäng-navigation som historiekapitlen. Hela rubrikytan går att trycka på; pilen visar om dagen är öppen. Öppnade dagar och läsposition bevaras när man besöker kartan och återvänder. Innehåll, bokningar, flygordning, rutter och positioner är oförändrade. Gemensamma stilar håller dag/natt och tryckytor enhetliga.
@@ -21,6 +27,8 @@ Ny Historievy med fem kapitel, fördjupning, befintliga platsberättelser och Vi
 ## Torsdagens rutt – innehållsuppdatering
 
 Beppa Fioraia är borttaget som stopp i torsdagens rutt och program, men finns kvar som plats på kartan och i platslistan. Taxi efter Lisio går nu till Piazzale Michelangelo, med lunch i området före kyrkobesöket efter 15.30. Återvägen går nu via Rosenträdgården och San Niccolò till hotellet. Rosenträdgårdens befintliga sevärdhet och berättelse har kompletterats med trädgårdsinformation, säsong och öppettider; inga kartpositioner har ändrats.
+
+`BROWSER_EXECUTABLE_PATH=/path/to/chromium node tools/check-discovery-view.cjs` verifierar områdeordning, fullständighet, filterfärger, kontrast, öppningsläge och läsposition samt stora texter i dag/natt.
 
 `BROWSER_EXECUTABLE_PATH=/path/to/chromium node tools/check-history-view.cjs` kontrollerar historievyn vid dubblerad textstorlek, dag/natt-kontrast, tangentbordsnavigering och bevarad läsposition.
 
@@ -66,7 +74,7 @@ En statisk reseguide med återanvändbart kartgränssnitt. `index.html` innehål
 | --- | --- | --- |
 | `places.json` | `places.schema.v2.json` | Platser, positioner, länkar och verifieringsstatus |
 | `routes.json` | `routes.schema.v1.json` | Delsträckor, färdsätt och ordnade plats-id |
-| `guide.json` | `guide.schema.v3.json` | Titel, destination, tidszon, kartutsnitt, resdagar, program, bokningar, flyg och presentation |
+| `guide.json` | `guide.schema.v4.json` | Titel, destination, tidszon, kartutsnitt, resdagar, program, bokningar, flyg och presentation |
 | `stories.json` | `stories.schema.v1.json` | Korta platsberättelser, konkreta saker att titta efter och källor |
 | `history.json` | `history.schema.v2.json` | Stadens historiekapitel, perioder, platsreferenser och källor |
 
@@ -94,10 +102,10 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | --- | ---: | ---: |
 | places.json | 2 | 7 |
 | routes.json | 1 | 6 |
-| guide.json | 3 | 10 |
+| guide.json | 4 | 11 |
 | stories.json | 1 | 4 |
 | history.json | 2 | 2 |
-| index.html och ui-theme.css | – | 1.8.1 |
+| index.html och ui-theme.css | – | 1.9.0 |
 | place-sheet.css | – | 1.4.4 |
 | valideringskod | – | 1.7.0 |
 | verification-report.v2.md | – | Rapportversion 2 |
