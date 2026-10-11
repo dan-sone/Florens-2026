@@ -188,3 +188,8 @@ body[data-view=karta] #viewTabs,body[data-view=karta] #guide,#placeSheet,.leafle
 .leaflet-control-layers-list label{max-width:100%;white-space:normal;overflow-wrap:anywhere}
 .leaflet-control-layers-list .category-legend{max-width:calc(100% - 30px)}
 .leaflet-control-refresh{position:fixed!important;right:calc(env(safe-area-inset-right,0px) + 10px)!important;bottom:calc(env(safe-area-inset-bottom,0px) + 20px)!important;margin:0!important}
+
+/* The scale shares the bottom baseline with refresh, without reserving space
+   for the former bottom day guide. Let map gestures pass through it. */
+.leaflet-control-scale{position:fixed!important;left:calc(env(safe-area-inset-left,0px) + 12px)!important;bottom:calc(env(safe-area-inset-bottom,0px) + 20px)!important;margin:0!important;max-width:calc(100vw - env(safe-area-inset-left,0px) - env(safe-area-inset-right,0px) - 88px);pointer-events:none!important}
+body.place-open .leaflet-control-scale{visibility:hidden}

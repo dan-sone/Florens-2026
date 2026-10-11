@@ -1,3 +1,7 @@
+## Skala vid nederkanten – UI 1.14.2
+
+Den gamla mobilregeln som lyfte nederkontrollerna 142 px är borttagen. Skalan ligger nu längst ned till vänster, på samma baslinje som Uppdatera och med iPhones safe-area-insets. När ett plats- eller ruttkort öppnas döljs skalan; den återkommer när kortet stängs. Skalan fångar inte kartgester. Innehåll och positioner är oförändrade.
+
 ## Mer transparens och enklare kartkontroller – UI 1.14.1
 
 Kartans glasytor är mer transparenta: 55 % opacitet i dagläge och 62 % i nattläge. Lagerväljaren har en fast 44 px knapp även i Leaflets öppna läge; menyn begränsas av skärmens bredd, höjd och safe-area-insets och scrollas vid behov. Fullskärmknappen och dess plugin är borttagna. Uppdatera ligger i nedre högra hörnet. Skalan visar endast meter/kilometer, inte fot/miles. Innehåll och positioner är oförändrade.
@@ -145,7 +149,7 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | stories.json | 1 | 4 |
 | history.json | 2 | 2 |
 | taxonomy.json | 1 | 2 |
-| index.html och ui-theme.css | – | 1.14.1 |
+| index.html och ui-theme.css | – | 1.14.2 |
 | place-presentation.js | – | 1.13.0 |
 | place-sheet.css | – | 1.4.4 |
 | valideringskod | – | 1.7.0 |
