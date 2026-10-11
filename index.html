@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="application-version" content="1.18.4">
+<meta name="application-version" content="1.18.5">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
@@ -402,7 +402,10 @@ function showPlaceOnMap(id){
    const offset=Math.max(0,mapBounds.top+mapBounds.height/2-visibleCenter);
    center=m.unproject(m.project(center,zoom).add([0,offset]),zoom);
   }
-  m.flyTo(center,zoom,{animate:!window.matchMedia('(prefers-reduced-motion: reduce)').matches,duration:1.4});
+  const animate=!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Pan directly at the current zoom to avoid the fly animation's zoom dip.
+  if(animate&&m.getZoom()===zoom)m.panTo(center,{animate:true,duration:1.1,easeLinearity:0.4});
+  else m.flyTo(center,zoom,{animate,duration:1.1});
  });
 }
 function askAboutPlace(place){
