@@ -1,8 +1,8 @@
 {
   "$schema": "./places.schema.v5.json",
   "schemaVersion": 5,
-  "contentVersion": 10,
-  "updatedAt": "2026-10-11T09:34:16Z",
+  "contentVersion": 11,
+  "updatedAt": "2026-10-11T22:03:17.642Z",
   "places": [
     {
       "id": "hotel-la-scaletta",
@@ -5390,6 +5390,102 @@
       },
       "focus": "Matpaus vid Michelangeloområdet",
       "subcategory": "restaurants"
+    },
+    {
+      "id": "forte-di-belvedere",
+      "name": "Forte di Belvedere",
+      "category": "see-do",
+      "subcategory": "views",
+      "focus": "Panoramautsikt från Medicis fästning",
+      "description": "Valbar utsiktsplats över Florens tak, Duomo och kullarna. Bastioner och terrasser kring Medicis fästning från slutet av 1500-talet, ritad av Bernardo Buontalenti.\nRäkna med 45–60 minuter på plats. Promenera upp via Costa San Giorgio från hotellet; ganska brant backe. Entré €8 per person.\nUnder resan: öppet 13–16 oktober kl. 10–18. Säsongen slutar fredag 16 oktober; planera inte besöket till lördag 17 oktober.",
+      "address": "Via San Leonardo 1, Firenze",
+      "position": {
+        "latitude": 43.7634,
+        "longitude": 11.2534
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": "https://cultura.comune.fi.it/pagina/musei-civici-fiorentini-forte-di-belvedere/orari-biglietti-accessi-opening-tickets-access",
+      "verification": {
+        "status": "pending",
+        "checkedAt": "2026-10-11T22:03:17.642Z",
+        "sources": [
+          {
+            "url": "https://cultura.comune.fi.it/pagina/musei-civici-fiorentini/forte-di-belvedere",
+            "title": "Florens kommun · Forte di Belvedere",
+            "checkedAt": "2026-10-11T22:03:17.642Z",
+            "supports": [
+              "identity",
+              "address"
+            ]
+          },
+          {
+            "url": "https://brunelleschi.imss.fi.it/itinerari/luogo/ForteBelvedere.html",
+            "title": "Museo Galileo · geografiska koordinater",
+            "checkedAt": "2026-10-11T22:03:17.642Z",
+            "supports": [
+              "identity",
+              "position"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": true,
+          "position": true,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Koordinaten avser fortet enligt Museo Galileo. Exakt entré och Apple-platskort är ännu inte separat verifierade."
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "label": "28 september–16 oktober 2026 · tis–sön",
+            "intervals": [
+              {
+                "opens": "10:00",
+                "closes": "18:00"
+              }
+            ],
+            "validFrom": "2026-09-28",
+            "validUntil": "2026-10-16"
+          }
+        ],
+        "note": "Måndag stängt. Säsongen slutar 16 oktober. Entré €8 per person.",
+        "sources": [
+          {
+            "label": "Florens kommun · öppettider och biljetter",
+            "url": "https://cultura.comune.fi.it/pagina/musei-civici-fiorentini-forte-di-belvedere/orari-biglietti-accessi-opening-tickets-access",
+            "checkedAt": "2026-10-12"
+          }
+        ],
+        "exceptions": [
+          {
+            "date": "2026-10-17",
+            "status": "closed",
+            "note": "Utanför den annonserade öppningssäsongen, som slutar 16 oktober.",
+            "source": {
+              "label": "Florens kommun · öppettider och biljetter",
+              "url": "https://cultura.comune.fi.it/pagina/musei-civici-fiorentini-forte-di-belvedere/orari-biglietti-accessi-opening-tickets-access",
+              "checkedAt": "2026-10-12"
+            }
+          }
+        ]
+      },
+      "specialties": null
     }
   ]
 }
