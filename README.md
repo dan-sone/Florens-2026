@@ -1,3 +1,7 @@
+## Visa till vänster i Historia – UI 1.17.3
+
+Visa-knappen ligger nu till vänster om kategoriikonen och platsnamnet i varje historiekapitel. Knappstil och funktion är oförändrade.
+
 ## Gemensam Visa-knapp i Historia – UI 1.17.2
 
 Platserna i varje historiekapitel visar platsens kategoriikon och namn, följt av samma Visa-knapp som i Dagar och Sevärdheter. Knappen återanvänder den gemensamma action-renderaren med kartnålsikon, texten Visa och samma färger. Den tidigare stora länkraden med Visa på kartan och pil är ersatt. Funktionen markerar nålen utan popup. Innehåll och positioner är oförändrade.
@@ -195,7 +199,7 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | stories.json | 1 | 4 |
 | history.json | 2 | 2 |
 | taxonomy.json | 1 | 2 |
-| index.html | – | 1.17.2 |
+| index.html | – | 1.17.3 |
 | ui-theme.css | – | 1.17.2 |
 | place-sheet.css | – | 1.17.1 |
 | place-presentation.js | – | 1.16.1 |
