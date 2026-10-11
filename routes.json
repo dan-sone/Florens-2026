@@ -1,8 +1,8 @@
 {
   "$schema": "./routes.schema.v1.json",
   "schemaVersion": 1,
-  "contentVersion": 5,
-  "updatedAt": "2026-10-11T06:28:29.968433Z",
+  "contentVersion": 6,
+  "updatedAt": "2026-10-11T06:35:56.231486Z",
   "routes": [
     {
       "id": "tue",
@@ -89,14 +89,14 @@
           "placeIds": [
             "piazzale-michelangelo",
             "san-miniato-al-monte",
-            "porta-san-niccolo"
+            "giardino-delle-rose"
           ]
         },
         {
           "id": "thu-5",
           "mode": "walk",
           "placeIds": [
-            "porta-san-niccolo",
+            "giardino-delle-rose",
             "hotel-la-scaletta"
           ]
         }

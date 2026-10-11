@@ -1,8 +1,8 @@
 {
   "$schema": "./guide.schema.v3.json",
   "schemaVersion": 3,
-  "contentVersion": 9,
-  "updatedAt": "2026-10-11T06:28:29.968433Z",
+  "contentVersion": 10,
+  "updatedAt": "2026-10-11T06:35:56.231636Z",
   "id": "florens-2026",
   "title": "Florens 2026",
   "destination": {
@@ -194,6 +194,32 @@
             {
               "type": "text",
               "text": " efter 15.30; kyrkan är stängd 13.00–15.30. Välj lunchalternativ på plats."
+            }
+          ]
+        },
+        {
+          "nodes": [
+            {
+              "type": "text",
+              "text": "Hemvägen: gå tillbaka mot Piazzale Michelangelo och in i "
+            },
+            {
+              "type": "place",
+              "placeId": "giardino-delle-rose",
+              "text": "Rosenträdgården"
+            },
+            {
+              "type": "text",
+              "text": " för en paus bland rosor, Folons skulpturer och utsikten över Florens. Öppet 09–18 i oktober; kom före stängning och ge trädgården 30–45 minuter. Fortsätt ned via Monte alle Croci till Porta San Miniato, sedan genom Via di San Niccolò och Via de’ Bardi tillbaka till "
+            },
+            {
+              "type": "place",
+              "placeId": "hotel-la-scaletta",
+              "text": "hotellet"
+            },
+            {
+              "type": "text",
+              "text": ". Promenaden har trappor och sluttningar. Den stora rosblomningen är i maj–juni, men grönskan, konsten och utsikten gör besöket fint även i oktober."
             }
           ]
         }

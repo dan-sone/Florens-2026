@@ -2,7 +2,7 @@
 
 ## Torsdagens rutt – innehållsuppdatering
 
-Beppa Fioraia är borttaget som stopp i torsdagens rutt och program, men finns kvar som plats på kartan och i platslistan. Taxi efter Lisio går nu till Piazzale Michelangelo, med lunch i området före kyrkobesöket efter 15.30. Återvägen via Porta San Niccolò är oförändrad.
+Beppa Fioraia är borttaget som stopp i torsdagens rutt och program, men finns kvar som plats på kartan och i platslistan. Taxi efter Lisio går nu till Piazzale Michelangelo, med lunch i området före kyrkobesöket efter 15.30. Återvägen går nu via Rosenträdgården och San Niccolò till hotellet. Rosenträdgårdens befintliga sevärdhet och berättelse har kompletterats med trädgårdsinformation, säsong och öppettider; inga kartpositioner har ändrats.
 
 ## Kartkontroller och borttaget stopp – 1.6.2
 
@@ -71,10 +71,10 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 
 | Fil | Schemaversion | Innehåll/programversion |
 | --- | ---: | ---: |
-| places.json | 2 | 6 |
-| routes.json | 1 | 5 |
-| guide.json | 3 | 9 |
-| stories.json | 1 | 3 |
+| places.json | 2 | 7 |
+| routes.json | 1 | 6 |
+| guide.json | 3 | 10 |
+| stories.json | 1 | 4 |
 | index.html och ui-theme.css | – | 1.6.2 |
 | place-sheet.css | – | 1.4.4 |
 | valideringskod | – | 1.6.0 |

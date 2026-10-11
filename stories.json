@@ -1,8 +1,8 @@
 {
   "$schema": "./stories.schema.v1.json",
   "schemaVersion": 1,
-  "contentVersion": 3,
-  "updatedAt": "2026-10-10T23:07:27.128782Z",
+  "contentVersion": 4,
+  "updatedAt": "2026-10-11T06:35:56.232484Z",
   "stories": [
     {
       "placeId": "orsanmichele",
@@ -408,13 +408,24 @@
       "placeId": "giardino-delle-rose",
       "title": "En utsikt att kliva in i",
       "paragraphs": [
-        "Rosenträdgården är mer än ett grönt stopp under Piazzale Michelangelo. Jean-Michel Folons skulpturer gör den till en plats där man kan leka med utsikten: en stor öppen resväska ramar in Florens som en bild. Här finns också en japansk trädgård, skänkt av vänorten Kyoto. Gamla Florens får sällskap av modern konst och ett stilla möte mellan två städer."
+        "Rosenträdgården är mer än ett grönt stopp under Piazzale Michelangelo. Jean-Michel Folons skulpturer gör den till en plats där man kan leka med utsikten: en stor öppen resväska ramar in Florens som en bild. Här finns också en japansk trädgård, skänkt av vänorten Kyoto. Gamla Florens får sällskap av modern konst och ett stilla möte mellan två städer.",
+        "Här samsas många olika rosor med gräsmattor och terrasser. Rosornas stora blomning infaller i maj–juni. Under oktoberbesöket är det framför allt trädgårdens rum, grönskan och utsikten som gör platsen till en fin paus. Ge er gärna 30–45 minuter här på vägen ned från San Miniato."
       ],
       "lookFor": "Sök Folons resväska Partir och betrakta Duomo och Palazzo Vecchio genom den. Leta också efter katten och bänken med en sittande man. Konsten och utsikten fungerar även när rosorna inte blommar.",
       "sources": [
         {
           "label": "FeelFlorence · Rosenträdgården",
           "url": "https://www.feelflorence.it/en/points-interest/rose-garden",
+          "checkedAt": "2026-10-11"
+        },
+        {
+          "label": "FeelFlorence · Trädgårdarnas kulle",
+          "url": "https://www.feelflorence.it/it/esperienze-itinerari/la-collina-dei-giardini",
+          "checkedAt": "2026-10-11"
+        },
+        {
+          "label": "Visit Tuscany · Florens trädgårdar och blomning",
+          "url": "https://www.visittuscany.com/en/ideas/spring-gardens-in-florence/",
           "checkedAt": "2026-10-11"
         }
       ]

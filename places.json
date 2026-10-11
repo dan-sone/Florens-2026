@@ -1,8 +1,8 @@
 {
   "$schema": "./places.schema.v2.json",
   "schemaVersion": 2,
-  "contentVersion": 6,
-  "updatedAt": "2026-10-11T06:11:13.526493Z",
+  "contentVersion": 7,
+  "updatedAt": "2026-10-11T06:35:56.227409Z",
   "places": [
     {
       "id": "hotel-la-scaletta",
@@ -4345,9 +4345,9 @@
     },
     {
       "id": "giardino-delle-rose",
-      "name": "Giardino delle Rose",
+      "name": "Rosenträdgården · Giardino delle Rose",
       "category": "see-do",
-      "description": "Viale Giuseppe Poggi 2\nRosenträdgård med utsikt nedanför Piazzale Michelangelo.",
+      "description": "En grön terrass nedanför Piazzale Michelangelo, med rosor, utsikt över Florens, Folons skulpturer och en liten japansk trädgård. Ett fint stopp på torsdagens hemväg.",
       "address": "Viale Giuseppe Poggi 2",
       "position": {
         "latitude": 43.7628947,
@@ -4358,7 +4358,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=IE2CBE11189240006"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.feelflorence.it/en/points-interest/rose-garden",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-10T10:29:52.947985Z",
@@ -4421,7 +4421,7 @@
           {
             "label": "Officiella besöksuppgifter",
             "url": "https://www.feelflorence.it/en/points-interest/rose-garden",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-11"
           }
         ],
         "exceptions": []
