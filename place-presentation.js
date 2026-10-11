@@ -13,7 +13,7 @@
   const markerOptions=(place,geometry={},booked=false)=>{
    const iconSize=geometry.iconSize||[35,45],iconAnchor=geometry.iconAnchor||[17,42],popupAnchor=geometry.popupAnchor||[1,-34],w=iconSize[0],h=iconSize[1],x=iconAnchor[0],y=iconAnchor[1],r=Math.min(x,w-x)-1,cy=r+1,id=iconId(place);
    const shape='M '+x+' '+y+' C '+(x-5)+' '+(y-9)+' 1 '+(cy+8)+' 1 '+cy+' A '+r+' '+r+' 0 1 1 '+(w-1)+' '+cy+' C '+(w-1)+' '+(cy+8)+' '+(x+5)+' '+(y-9)+' '+x+' '+y+' Z';
-   const badge=booked?'<g class="pin-booked"><circle cx="'+(w-6)+'" cy="6" r="5"/><path d="M '+(w-9)+' 6 l 2 2 4 -4"/></g>':'';
+   const badge=booked?'<g class="pin-booked"><circle cx="'+(w-7.5)+'" cy="7.5" r="6.5"/><path d="M '+(w-11.4)+' 7.5 l 2.6 2.6 5.2 -5.2"/></g>':'';
    const html='<svg class="registry-pin-svg" data-icon="'+id+'" viewBox="0 0 '+w+' '+h+'" aria-hidden="true"><path class="pin-shape" d="'+shape+'"/><svg class="pin-glyph" x="'+(x-8)+'" y="'+(cy-8)+'" width="16" height="16" viewBox="0 0 24 24">'+paths(id)+'</svg>'+badge+'</svg>';
    return {className:'registry-pin',html,iconSize,iconAnchor,popupAnchor};
   };

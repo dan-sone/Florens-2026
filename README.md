@@ -1,3 +1,7 @@
+## Tydligare bokat-markering – UI 1.16.1
+
+Den gröna bokat-markeringen på kartnålarna har ökats från 10 till 13 px i diameter, med proportionerligt större bock. Nålarnas storlek, ankare och positioner är oförändrade. Presentationsfilen har en versionsparameter för uppdatering av cache. Innehåll och scheman är oförändrade.
+
 ## Integrerade dagval och växlande lagerknapp – UI 1.16.0
 
 Lager-knappen öppnar och stänger samma meny. Leaflets automatiska hover-öppning och ursprungliga länklyssnare ersätts av en vanlig knapp med aria-expanded. Enter/blanksteg växlar menyn; Escape stänger och återför fokus. Karttryck, öppning av rutter eller platskort uppdaterar också knappens tillstånd.
@@ -169,9 +173,10 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | stories.json | 1 | 4 |
 | history.json | 2 | 2 |
 | taxonomy.json | 1 | 2 |
-| index.html och ui-theme.css | – | 1.16.0 |
+| index.html | – | 1.16.1 |
+| ui-theme.css | – | 1.16.0 |
 | place-sheet.css | – | 1.15.0 |
-| place-presentation.js | – | 1.13.0 |
+| place-presentation.js | – | 1.16.1 |
 
 | valideringskod | – | 1.7.0 |
 | verification-report.v2.md | – | Rapportversion 2 |
