@@ -40,7 +40,7 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
   for(const c of colors){assert.equal(c.button,c.legend,JSON.stringify(colors));assert.equal(c.dot,c.legend);assert(c.contrast>=4.5,JSON.stringify(c));}
   for(const size of [{width:320,height:568},{width:390,height:844},{width:844,height:390},{width:768,height:1024}]){
    await page.setViewportSize(size);
-   await page.evaluate(()=>{document.querySelectorAll('.discovery-card').forEach(d=>d.open=true);document.querySelectorAll('#placesPanel h1,#placesPanel h2,#placesPanel h3,#placesPanel p,#placesPanel .discovery-category,#placesPanel .list-action,#placeFilters button').forEach(e=>{e.dataset.fontBefore=getComputedStyle(e).fontSize;e.style.fontSize=parseFloat(e.dataset.fontBefore)*2+'px'});});
+   await page.evaluate(()=>{document.querySelectorAll('.discovery-card').forEach(d=>d.open=true);document.querySelectorAll('#placesPanel h1,#placesPanel h2,#placesPanel h3,#placesPanel p,#placesPanel .discovery-category,#placesPanel .list-action,#placeFilters button,.places-view-mode button').forEach(e=>{e.dataset.fontBefore=getComputedStyle(e).fontSize;e.style.fontSize=parseFloat(e.dataset.fontBefore)*2+'px'});});
    assert.equal(await page.locator('#placesPanel').evaluate(e=>e.scrollWidth>e.clientWidth+1),false,JSON.stringify({size,colorScheme,bounds:await page.evaluate(()=>[document.getElementById('placesPanel'),...document.querySelectorAll('#placesPanel *')].filter(e=>e.scrollWidth>e.clientWidth+1).slice(0,12).map(e=>({tag:e.tagName,cls:e.className,text:e.textContent.slice(0,70),width:e.getBoundingClientRect().width,right:e.getBoundingClientRect().right,scroll:e.scrollWidth,client:e.clientWidth})))}));
    await page.evaluate(()=>document.querySelectorAll('#placesPanel [data-font-before]').forEach(e=>e.style.fontSize=''));
   }
@@ -48,14 +48,30 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
  }
  const allText=await page.locator('#placeList').textContent();for(const p of places.filter(p=>p.category!=='hotel')){assert(allText.includes(p.name));assert.equal(await page.locator('[data-place-card="'+p.id+'"] .discovery-teaser').textContent(),p.focus);}
  const icons=await page.evaluate(async()=>{const g=await guideReady;return [...document.querySelectorAll('[data-place-card]')].every(card=>{const config=g.markersById.get(card.dataset.placeCard).options.icon.options,icon=card.querySelector('.discovery-heading>.place-symbol');return config.icon?icon.classList.contains((config.prefix||'glyphicon')+'-'+config.icon):icon.classList.contains('fa-shopping-bag')});});assert(icons);
- await page.click('[data-places-mode="reading"]');assert.equal(await page.locator('.discovery-card[open]').count(),67);
+ assert.deepEqual(await page.locator('.places-view-mode button').allTextContents(),['Kategori','Område','Läsvy']);
+ await page.click('.places-view-mode [data-places-mode="area"]');
+ assert.equal(await page.locator('[data-discovery-area]').count(),8);
+ assert.deepEqual(await page.locator('[data-place-card]').evaluateAll(es=>es.map(e=>e.dataset.placeCard)),ordered);
+ const areaCard=page.locator('[data-place-card="palazzo-pitti"]');await areaCard.locator('.discovery-heading').tap();assert(await areaCard.evaluate(e=>e.open));
+ await page.click('.places-view-mode [data-places-mode="overview"]');assert(await areaCard.evaluate(e=>e.open));
+ await page.click('.places-view-mode [data-places-mode="area"]');assert(await areaCard.evaluate(e=>e.open));
+ await page.reload({waitUntil:'load'});await page.evaluate(()=>guideReady);assert.equal(await page.locator('[data-discovery-area]').count(),8);
+ for(const colorScheme of ['light','dark']){
+  await page.emulateMedia({colorScheme});await page.waitForTimeout(250);await page.setViewportSize({width:320,height:568});
+  await page.evaluate(()=>document.querySelectorAll('#placesPanel h1,#placesPanel h2,#placesPanel p,.places-view-mode button,#placeFilters button').forEach(e=>{e.dataset.originalSize=getComputedStyle(e).fontSize;e.style.fontSize=parseFloat(e.dataset.originalSize)*2+'px'}));
+  assert.equal(await page.locator('#placesPanel').evaluate(e=>e.scrollWidth>e.clientWidth+1),false);
+  await page.evaluate(()=>document.querySelectorAll('[data-original-size]').forEach(e=>e.style.fontSize=''));
+  await page.setViewportSize({width:390,height:844});await page.evaluate(()=>document.getElementById('listView').scrollTop=0);
+  await page.screenshot({path:'/tmp/place-areas-'+colorScheme+'.png'});
+ }
+ await page.click('.places-view-mode [data-places-mode="reading"]');assert.equal(await page.locator('.discovery-card[open]').count(),67);
  await page.locator('.discovery-heading').first().tap();assert.equal(await page.locator('.discovery-card[open]').count(),67);
  await page.click('#placeFilters [data-category="craft"]');assert.equal(await page.locator('.discovery-card:not([open])').count(),0);
  await page.click('#placeFilters [data-category="craft"]');assert.equal(await page.locator('.discovery-card[open]').count(),67);
  await page.locator('[data-place-card="giulio-giannini-e-figlio"] [data-show-place]').click();await page.waitForFunction(()=>document.getElementById('sheetTitle').textContent.includes('Giulio Giannini'));await page.click('#tab-sevardheter');assert.equal(await page.locator('.discovery-card[open]').count(),67);
- await page.reload({waitUntil:'load'});await page.evaluate(()=>guideReady);assert.equal(await page.locator('.discovery-card[open]').count(),67);
- await page.click('[data-places-mode="overview"]');assert.equal(await page.locator('.discovery-card[open]').count(),0);
+ await page.reload({waitUntil:'load'});await page.evaluate(()=>guideReady);assert.equal(await page.locator('.discovery-card[open]').count(),67);assert.equal(await page.locator('[data-discovery-area]').count(),8);
+ await page.click('.places-view-mode [data-places-mode="overview"]');assert.equal(await page.locator('.discovery-card[open]').count(),0);
  await page.locator('.discovery-heading').first().scrollIntoViewIfNeeded();await page.screenshot({path:'/tmp/compact-place-cards.png'});
- assert.deepEqual(errors,[]);console.log('PASS: category order and all 67 visitor places, hotel exclusion, focus text, map icons, compact/reading modes; touch/keyboard disclosure; filter/map state; canonical category colors and contrast; 200% text at four screen sizes in light/dark');
+ assert.deepEqual(errors,[]);console.log('PASS: category order and all 67 visitor places, hotel exclusion, focus text, map icons, category/area/reading modes and remembered grouping; touch/keyboard disclosure; filter/map state; canonical category colors and contrast; 200% text at four screen sizes in light/dark');
  }finally{await browser.close();server.close()}
 })().catch(e=>{console.error(e.stack);process.exitCode=1});

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="application-version" content="1.10.0">
+<meta name="application-version" content="1.11.0">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
@@ -113,10 +113,10 @@ body[data-view]:not([data-view=karta]) #guide,body[data-view]:not([data-view=kar
 #placeCount{font-size:13px;color:#64748b;margin-bottom:12px}.optional-stops{display:flex;gap:7px;flex-wrap:wrap}.optional-stops button{margin:0}.list-empty{padding:24px;background:white;border-radius:14px;color:#64748b}
 </style>
 <link rel="stylesheet" href="place-sheet.css?v=1.4.4">
-<link rel="stylesheet" href="ui-theme.css?v=1.10.0">
+<link rel="stylesheet" href="ui-theme.css?v=1.11.0">
 </head>
 <body data-view="karta"><nav id="viewTabs" role="tablist" aria-label="Guidevyer"><button role="tab" id="tab-karta" data-view="karta" aria-selected="true" aria-controls="map_1391adca8bfb43099964d4b8f21913ee"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2zM9 3v16M15 5v16"/></svg>Karta</button><button role="tab" id="tab-schema" data-view="schema" aria-selected="false" aria-controls="schemaPanel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4M17 3v4M3 10h18M7 14h3M14 14h3M7 17h3"/></svg>Schema</button><button role="tab" id="tab-sevardheter" data-view="sevardheter" aria-selected="false" aria-controls="placesPanel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Sevärdheter</button><button role="tab" id="tab-historia" data-view="historia" aria-selected="false" aria-controls="historyPanel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5c-3-2-6-2-9-1v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-3-1-6-1-9 1Zm0 0v15"/></svg>Historia</button></nav>
-<main id="listView" hidden><section class="list-panel" id="schemaPanel" role="tabpanel" aria-labelledby="tab-schema" hidden></section><section class="list-panel" id="placesPanel" role="tabpanel" aria-labelledby="tab-sevardheter" hidden><h1>Sevärdheter</h1><p class="list-intro">Välj kategori och upptäck platserna. Öppna ett kort eller välj läsvyn för att läsa allt.</p><div id="placeFilters" aria-label="Kategorier"></div><div class="places-view-mode" role="group" aria-label="Visning av platser"><button type="button" data-places-mode="overview" aria-pressed="true">Översikt</button><button type="button" data-places-mode="reading" aria-pressed="false">Läsvy</button></div><p id="placeCount" aria-live="polite"></p><div id="placeList"></div></section><section class="list-panel" id="historyPanel" role="tabpanel" aria-labelledby="tab-historia" hidden></section></main>
+<main id="listView" hidden><section class="list-panel" id="schemaPanel" role="tabpanel" aria-labelledby="tab-schema" hidden></section><section class="list-panel" id="placesPanel" role="tabpanel" aria-labelledby="tab-sevardheter" hidden><h1>Sevärdheter</h1><p class="list-intro">Välj kategori och upptäck platserna. Öppna ett kort eller välj läsvyn för att läsa allt.</p><div id="placeFilters" aria-label="Kategorier"></div><div class="places-view-mode" role="group" aria-label="Visning av platser"><button type="button" data-places-mode="overview" aria-pressed="true">Kategori</button><button type="button" data-places-mode="area" aria-pressed="false">Område</button><button type="button" data-places-mode="reading" aria-pressed="false">Läsvy</button></div><p id="placeCount" aria-live="polite"></p><div id="placeList"></div></section><section class="list-panel" id="historyPanel" role="tabpanel" aria-labelledby="tab-historia" hidden></section></main>
 <section id="placeSheet" role="region" aria-labelledby="sheetTitle" hidden><button type="button" id="sheetGrab" class="sheet-grab" aria-label="Visa mer om platsen" aria-expanded="false" title="Dra uppåt eller nedåt"><span class="sheet-handle" aria-hidden="true"></span></button><header class="sheet-header"><h2 id="sheetTitle" tabindex="-1"></h2><button type="button" class="sheet-close" id="sheetClose" aria-label="Stäng platskort">×</button></header><div class="sheet-body" id="sheetBody"></div></section>
 <div id="guide" data-level="compact"><div class="day-guide-bar"><button id="dayGuideGrab" aria-expanded="false" aria-controls="dayGuideContent" aria-label="Visa dagens program"><span class="day-guide-handle" aria-hidden="true"></span><span id="dayGuideTitle">Dagsguide</span><span class="day-guide-chevron" aria-hidden="true">⌃</span></button><label for="routeSelect" class="sr-only">Välj dagsrutt</label><select id="routeSelect" aria-label="Välj dagsrutt"></select></div><div id="dayGuideContent" inert><div id="daycard"><p>Välj dag för att visa dagsrutt och program.</p></div><div id="routeLegs"></div></div></div>
     
@@ -500,8 +500,8 @@ function renderScheduleList(){
 }
 const filterBox=document.getElementById('placeFilters');
 const expandedPlaces=new Set();
-let placesMode='overview',renderedPlacesMode='overview';
-try{if(localStorage.getItem(guide.id+':places-view')==='reading')placesMode='reading';}catch{}
+let placesMode='overview',renderedPlacesMode='overview',placesGrouping='overview';
+try{const saved=localStorage.getItem(guide.id+':places-view');if(['overview','area','reading'].includes(saved))placesMode=saved;if(localStorage.getItem(guide.id+':places-grouping')==='area')placesGrouping='area';if(placesMode!=='reading')placesGrouping=placesMode;}catch{}
 const categoryIcons={'booked':['glyphicon','calendar'],'see-do':['glyphicon','tower'],'craft':['fa','scissors'],'food-drink':['fa','cutlery'],'shopping':['fa','shopping-bag']};
 const iconMarkup=(prefix,icon)=>'<i class="place-symbol '+esc(prefix)+' '+esc(prefix)+'-'+esc(icon)+'" aria-hidden="true"></i>';
 const categoryIcon=id=>iconMarkup(...(categoryIcons[id]||['glyphicon','map-marker']));
@@ -509,9 +509,9 @@ function placeIcon(place){const config=markersById.get(place.id)?.options.icon.o
 filterBox.innerHTML=guide.categories.map(c=>'<button aria-pressed="true" data-category="'+esc(c.id)+'">'+categoryIcon(c.id)+esc(c.label)+'</button>').join('');
 function placeVisible(place){return place.category!=='hotel'&&(guide.persistentPlaceIds.includes(place.id)||m.hasLayer(groups[bookedIds.includes(place.id)?'booked':place.category]))}
 function renderPlaceList(){
- if(renderedPlacesMode==='overview')document.querySelectorAll('[data-place-card]').forEach(card=>{if(card.open)expandedPlaces.add(card.dataset.placeCard);else expandedPlaces.delete(card.dataset.placeCard);});
+ if(renderedPlacesMode!=='reading')document.querySelectorAll('[data-place-card]').forEach(card=>{if(card.open)expandedPlaces.add(card.dataset.placeCard);else expandedPlaces.delete(card.dataset.placeCard);});
  renderedPlacesMode=placesMode;document.getElementById('placesPanel').dataset.placesMode=placesMode;
- document.querySelectorAll('[data-places-mode]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.placesMode===placesMode)));
+ document.querySelectorAll('.places-view-mode [data-places-mode]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.placesMode===placesMode)));
  filterBox.querySelectorAll('[data-category]').forEach(button=>button.setAttribute('aria-pressed',String(m.hasLayer(groups[button.dataset.category]))));
  const eligible=content.places.filter(p=>p.category!=='hotel'),visible=eligible.filter(placeVisible),visibleIds=new Set(visible.map(p=>p.id));
  document.getElementById('placeCount').textContent=visible.length+' av '+eligible.length+' platser';
@@ -523,14 +523,20 @@ function renderPlaceList(){
   return '<details class="list-card discovery-card" data-place-card="'+esc(place.id)+'" data-category="'+esc(categoryKey)+'"'+(placesMode==='reading'||expandedPlaces.has(place.id)?' open':'')+'><summary class="discovery-heading"'+(placesMode==='reading'?' aria-disabled="true" tabindex="-1"':'')+'>'+placeIcon(place)+'<h3><span class="discovery-title">'+esc(place.name)+'</span></h3><svg class="discovery-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg><p class="discovery-teaser">'+esc(focus)+'</p></summary><div class="discovery-body"><p>'+esc(description).replace(/\n/g,'<br>')+'</p>'+placeFacts(place)+(place.address?'<p class="address">'+esc(place.address)+'</p>':'')+(place.verification.status==='unresolved'?'<span class="list-badge uncertain">Uppgifter behöver bekräftas</span>':'')+storyMarkup(place.id,true)+listActions(place)+'</div></details>';
  };
  const ordered=(guide.discoveryAreas||[{placeIds:eligible.map(p=>p.id)}]).flatMap(area=>area.placeIds).filter(id=>visibleIds.has(id));
- document.getElementById('placeList').innerHTML=visible.length?guide.categories.map(category=>{
+ const byArea=placesMode==='area'||placesMode==='reading'&&placesGrouping==='area';
+ const sectionMarkup=byArea?(guide.discoveryAreas||[{id:'all',title:'Upptäck platserna',intro:'',placeIds:ordered}]).map(area=>{
+  const ids=area.placeIds.filter(id=>visibleIds.has(id));if(!ids.length)return '';
+  return '<section class="discovery-area" data-discovery-area="'+esc(area.id)+'"><h2><span>'+esc(area.title)+'</span><span class="category-count">'+ids.length+'</span></h2>'+(area.intro?'<p class="discovery-intro">'+esc(area.intro)+'</p>':'')+ids.map(id=>cardMarkup(requirePlace(id))).join('')+'</section>';
+ }).join(''):guide.categories.map(category=>{
   const ids=ordered.filter(id=>(bookedIds.includes(id)?'booked':requirePlace(id).category)===category.id);if(!ids.length)return '';
   return '<section class="discovery-area" data-discovery-category="'+esc(category.id)+'" data-category="'+esc(category.id)+'"><h2>'+categoryIcon(category.id)+'<span>'+esc(category.label)+'</span><span class="category-count">'+ids.length+'</span></h2>'+ids.map(id=>cardMarkup(requirePlace(id))).join('')+'</section>';
- }).join(''):'<p class="list-empty">Inga platser i de valda kategorierna.</p>';
+ }).join('');
+ document.getElementById('placeList').innerHTML=visible.length?sectionMarkup:'<p class="list-empty">Inga platser i de valda kategorierna.</p>';
+
 }
-document.getElementById('placeList').addEventListener('toggle',event=>{const card=event.target;if(placesMode!=='overview'||!card.isConnected||!card.matches('[data-place-card]'))return;if(card.open)expandedPlaces.add(card.dataset.placeCard);else expandedPlaces.delete(card.dataset.placeCard);},true);
+document.getElementById('placeList').addEventListener('toggle',event=>{const card=event.target;if(placesMode==='reading'||!card.isConnected||!card.matches('[data-place-card]'))return;if(card.open)expandedPlaces.add(card.dataset.placeCard);else expandedPlaces.delete(card.dataset.placeCard);},true);
 document.getElementById('placeList').addEventListener('click',event=>{if(placesMode==='reading'&&event.target.closest('.discovery-heading'))event.preventDefault();});
-document.querySelector('.places-view-mode').addEventListener('click',event=>{const button=event.target.closest('[data-places-mode]');if(!button||placesMode===button.dataset.placesMode)return;placesMode=button.dataset.placesMode;try{localStorage.setItem(guide.id+':places-view',placesMode);}catch{}renderPlaceList();});
+document.querySelector('.places-view-mode').addEventListener('click',event=>{const button=event.target.closest('[data-places-mode]');if(!button||placesMode===button.dataset.placesMode)return;placesMode=button.dataset.placesMode;if(placesMode!=='reading')placesGrouping=placesMode;try{localStorage.setItem(guide.id+':places-view',placesMode);localStorage.setItem(guide.id+':places-grouping',placesGrouping);}catch{}renderPlaceList();});
 filterBox.addEventListener('click',event=>{const button=event.target.closest('[data-category]');if(!button)return;const group=groups[button.dataset.category];if(m.hasLayer(group))m.removeLayer(group);else group.addTo(m);renderPlaceList()});
 m.on('overlayadd overlayremove',()=>{if(currentView==='sevardheter')renderPlaceList()});
 listView.addEventListener('click',event=>{const ask=event.target.closest('[data-ask-place]');if(ask){askAboutPlace(requirePlace(ask.dataset.askPlace));return;}const button=event.target.closest('[data-show-place],[data-place]');if(button)showPlaceOnMap(button.dataset.showPlace||button.dataset.place)});

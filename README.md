@@ -1,3 +1,7 @@
+## Tre sätt att utforska – UI 1.11.0
+
+Kategori, Område och Läsvy delar samma platskort och kategorifilter. Område återställer de åtta redaktionella grupperna utan hotellkortet. Läsvy öppnar alla synliga kort och behåller den senast valda grupperingen. Visningsval, gruppering och individuellt öppnade kort bevaras när man växlar vy. Filtren har mjuka kapslar, diskret skugga och samma ikoner och färgvariabler som tidigare; avstängda filter är neutrala och saknar skugga. Alla innehålls- och schemaversioner är oförändrade.
+
 ## Kategorier och läsvy – UI 1.10.0
 
 Sevärdheterna grupperas först efter kartans kategorier och därefter i den redaktionella områdesordningen. Hotellet finns kvar i karta och schema men visas inte bland sevärdheterna. Korten använder samma ikonkonfiguration som respektive kartnål; filter och kategorirubriker kombinerar symbol och kategorifärg.
@@ -111,7 +115,7 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | guide.json | 4 | 11 |
 | stories.json | 1 | 4 |
 | history.json | 2 | 2 |
-| index.html och ui-theme.css | – | 1.10.0 |
+| index.html och ui-theme.css | – | 1.11.0 |
 | place-sheet.css | – | 1.4.4 |
 | valideringskod | – | 1.7.0 |
 | verification-report.v2.md | – | Rapportversion 2 |
