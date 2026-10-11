@@ -269,3 +269,9 @@ body.place-open .leaflet-top.leaflet-right{visibility:hidden;pointer-events:none
  #placeSheet{bottom:calc(env(safe-area-inset-bottom,0px) + 84px);max-height:min(76dvh,calc(var(--app-height,100dvh) - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px) - 104px))}
 }
 @media(max-height:360px){.leaflet-top.leaflet-right{gap:4px}.leaflet-control-layers .leaflet-control-layers-list{max-height:calc(var(--app-height,100dvh) - var(--map-controls-bottom) - 156px)}}
+
+/* Read/map transitions follow the same unhurried pace as focusing a place. */
+@media(min-width:900px) and (min-height:500px) and (prefers-reduced-motion:no-preference){
+ body.view-ready .folium-map{transition:left 1.4s cubic-bezier(.22,.61,.36,1),width 1.4s cubic-bezier(.22,.61,.36,1)}
+ body.view-ready .leaflet-control-scale{transition:left 1.4s cubic-bezier(.22,.61,.36,1)}
+}

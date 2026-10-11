@@ -1,3 +1,9 @@
+## Mjuka växlingar mellan karta och läsvyer – UI 1.18.3
+
+När läspanelen öppnas eller stängs glider kartans vänsterkant och bredd till det nya läget över 1,4 sekunder, med samma lugna takt som Visa. Panelen glider och tonas in/ut samtidigt. Leaflet räknar om den synliga ytan under rörelsen för att kartan ska följa layouten. Navigationen ligger kvar på samma plats. Byten mellan läsvyer behåller en pågående öppning, och snabba byten tillbaka vänder rörelsen från dess aktuella läge. En stängande panel är inert och gömd för hjälpmedel tills animationen är klar. Minskad rörelse och första laddningen använder omedelbar layout. Mindre skärmar behåller sina helskärmsvyer.
+
+Testet mäter verkliga mellanlägen och slutlägen i webbläsaren, öppning/stängning, snabb växling till en annan läsvy och tillbaka, inert stängande panel, minskad rörelse, tidigare scroll-/kortminne och oförändrade navigationsgränser. Kartans geografiska innehåll, positioner, platser, rutter och scheman är oförändrade. Fysisk Safari är inte verifierad.
+
 ## Lugnare kartförflyttning – UI 1.18.2
 
 Visa använder en sammanhängande, animerad förflyttning och zoom på 1,4 sekunder i stället för omedelbar centrering följd av ett omedelbart hopp på telefon. Telefonens slutliga kartcentrum beräknas i förväg så platsen hamnar ovanför popupen i samma rörelse. Markering och popupbeteende är oförändrade. Systeminställningen för minskad rörelse respekteras. Innehåll och koordinater är oförändrade.
@@ -219,8 +225,8 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | stories.json | 1 | 4 |
 | history.json | 2 | 2 |
 | taxonomy.json | 1 | 2 |
-| index.html | – | 1.18.2 |
-| ui-theme.css | – | 1.18.1 |
+| index.html | – | 1.18.3 |
+| ui-theme.css | – | 1.18.3 |
 | place-sheet.css | – | 1.17.1 |
 | place-presentation.js | – | 1.16.1 |
 
