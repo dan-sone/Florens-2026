@@ -248,3 +248,24 @@ body.place-open .leaflet-control-scale{visibility:hidden}
 .history-place-link .sheet-action{width:56px;flex:0 0 56px}
 
 .history-place-link{border-radius:16px}
+
+/* Thumb navigation: left reading controls, right map controls. */
+:root{--map-controls-bottom:calc(env(safe-area-inset-bottom,0px) + 88px)}
+#viewTabs{top:auto;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);left:calc(env(safe-area-inset-left,0px) + 12px);transform:none;width:calc(100% - env(safe-area-inset-left,0px) - env(safe-area-inset-right,0px) - 24px);box-sizing:border-box}
+#viewTabs button{flex-direction:column;gap:3px;min-height:48px;font-size:11px;padding:7px 1px;line-height:1.2}
+#viewTabs .tab-icon{display:block;width:16px;height:16px}
+#listView{padding-top:calc(env(safe-area-inset-top,0px) + 24px);padding-bottom:calc(env(safe-area-inset-bottom,0px) + 104px)}
+.leaflet-top.leaflet-right{position:fixed;top:auto!important;bottom:var(--map-controls-bottom);gap:8px;max-height:calc(var(--app-height,100dvh) - var(--map-controls-bottom) - env(safe-area-inset-top,0px) - 12px)}
+.leaflet-control-refresh{position:relative!important;right:auto!important;bottom:auto!important}
+.leaflet-control-layers .leaflet-control-layers-list{top:auto!important;bottom:0;max-height:calc(var(--app-height,100dvh) - var(--map-controls-bottom) - env(safe-area-inset-top,0px) - 168px)}
+#guide{top:auto!important;bottom:var(--day-guide-bottom,192px)!important;max-height:var(--day-guide-space,calc(var(--app-height,100dvh) - 212px))!important}
+#placeSheet{bottom:calc(env(safe-area-inset-bottom,0px) + 84px);max-height:min(76dvh,calc(var(--app-height,100dvh) - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px) - 104px))}
+body.place-open .leaflet-top.leaflet-right{visibility:hidden;pointer-events:none}
+.leaflet-control-scale{bottom:calc(env(safe-area-inset-bottom,0px) + 88px)!important}
+@media(min-width:900px) and (min-height:500px){
+ :root{--map-controls-bottom:calc(env(safe-area-inset-bottom,0px) + 20px)}
+ #viewTabs{width:calc(var(--reading-width) - 24px)}
+ #viewTabs button{font-size:12px}
+ #placeSheet{bottom:calc(env(safe-area-inset-bottom,0px) + 84px);max-height:min(76dvh,calc(var(--app-height,100dvh) - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px) - 104px))}
+}
+@media(max-height:360px){.leaflet-top.leaflet-right{gap:4px}.leaflet-control-layers .leaflet-control-layers-list{max-height:calc(var(--app-height,100dvh) - var(--map-controls-bottom) - 156px)}}

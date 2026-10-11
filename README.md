@@ -1,3 +1,11 @@
+## Navigation för tummarna – UI 1.18.0
+
+Vyvalen ligger fast längs nederkanten: till vänster vid bred panelvisning på iPad/dator och över skärmens bredd i mindre helskärmsvyer. Alla fyra vyer har ikon och namn, minst 48 px tryckyta och samma placering mellan vybyten. Listorna börjar högre upp och har extra nedre marginal så slutet kan läsas ovanför menyn.
+
+Lager, Dagar och rutter, Min position och Uppdatera ligger i en gemensam knappkolumn nere till höger, ovanför telefonens vyval och vid nederkanten på större skärmar. Lager öppnas till vänster med nederkanten intill knappen. Ruttkortet förankras vid ruttknappens nederkant och dess höjd beräknas utifrån utrymmet ovanför. Platskort ligger ovanför vyvalen och kartknapparna döljs medan kortet är öppet. Skalan ligger ovanför den nedre navigationen.
+
+Tester omfattar sex telefon/surfplatteformat och fem format för läspaneler i dag/natt, 200 procent text i lager och program, knapparnas ordning och nedre placering, fasta vyval, etiketter, popupgränser, drag och scroll samt gemensamma ikonankare och oberoende filter. Bildkontroll är genomförd för telefon och iPad. Tester använder lokal Leaflet-adapter, inte fysisk Safari. Alla platser, koordinater, rutter, reseprogram och innehålls-/schemaversioner är oförändrade.
+
 ## Visa till vänster i Historia – UI 1.17.3
 
 Visa-knappen ligger nu till vänster om kategoriikonen och platsnamnet i varje historiekapitel. Knappstil och funktion är oförändrade.
@@ -199,8 +207,8 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | stories.json | 1 | 4 |
 | history.json | 2 | 2 |
 | taxonomy.json | 1 | 2 |
-| index.html | – | 1.17.3 |
-| ui-theme.css | – | 1.17.2 |
+| index.html | – | 1.18.0 |
+| ui-theme.css | – | 1.18.0 |
 | place-sheet.css | – | 1.17.1 |
 | place-presentation.js | – | 1.16.1 |
 
