@@ -1,3 +1,9 @@
+## Visa med popup på telefon – UI 1.18.1
+
+Visa öppnar platskortet på telefon och markerar nålen. På iPad och större skärmar markeras nålen utan popup, även på stående iPad som visar läsvyerna i helskärm. Popupbeteendet använder därför en separat gräns (768×500 px) från läspanelens gräns (900×500 px). Den valda nålen förstoras till 145 procent, jämfört med tidigare 125 procent, runt samma geografiska ankare. På telefon panoreras kartan så den valda platsen visas i ytan ovanför kortet. Innehåll, positioner och övriga nålars utseende är oförändrade.
+
+Tester omfattar telefon samt stående och liggande iPad, popupbeteende, en vald nål, 1,45 skalning och oförändrat ankare, utöver tidigare navigationskontroller.
+
 ## Navigation för tummarna – UI 1.18.0
 
 Vyvalen ligger fast längs nederkanten: till vänster vid bred panelvisning på iPad/dator och över skärmens bredd i mindre helskärmsvyer. Alla fyra vyer har ikon och namn, minst 48 px tryckyta och samma placering mellan vybyten. Listorna börjar högre upp och har extra nedre marginal så slutet kan läsas ovanför menyn.
@@ -207,8 +213,8 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 | stories.json | 1 | 4 |
 | history.json | 2 | 2 |
 | taxonomy.json | 1 | 2 |
-| index.html | – | 1.18.0 |
-| ui-theme.css | – | 1.18.0 |
+| index.html | – | 1.18.1 |
+| ui-theme.css | – | 1.18.1 |
 | place-sheet.css | – | 1.17.1 |
 | place-presentation.js | – | 1.16.1 |
 

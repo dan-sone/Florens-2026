@@ -44,7 +44,8 @@ const fs=require('fs'),http=require('http'),assert=require('assert/strict'),{chr
   await page.locator('[data-history-chapter="'+chapter.id+'"] [data-show-place="'+id+'"]').click();
   assert.equal(await page.locator('body').getAttribute('data-view'),'karta');
   await page.waitForFunction(async id=>(await guideReady).markersById.get(id).getElement().classList.contains('is-selected'),id);
-  assert(await page.locator('#placeSheet').isHidden());
+  assert(await page.locator('#placeSheet').isVisible());
+  assert.equal(await page.locator('#sheetTitle').textContent(),await page.evaluate(async id=>(await guideReady).placesById.get(id).name,id));
   assert.equal(await page.locator('.is-selected').count(),1);
   await page.click('#tab-historia');assert(await page.locator('[data-history-chapter="'+chapter.id+'"]').evaluate(e=>e.open));
  }
