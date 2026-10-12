@@ -283,3 +283,6 @@ body.place-open .leaflet-top.leaflet-right{visibility:hidden;pointer-events:none
  #viewTabs{width:calc(var(--reading-width) - env(safe-area-inset-left,0px) - 24px)}
  #viewTabs button{font-size:11px}
 }
+
+/* Keep bottom navigation above resized map and reading compositing layers. */
+#viewTabs{z-index:2500;pointer-events:auto;isolation:isolate}
