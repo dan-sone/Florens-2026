@@ -1,8 +1,8 @@
 {
   "$schema": "./places.schema.v5.json",
   "schemaVersion": 5,
-  "contentVersion": 11,
-  "updatedAt": "2026-10-11T22:03:17.642Z",
+  "contentVersion": 12,
+  "updatedAt": "2026-10-12T12:39:32.309011Z",
   "places": [
     {
       "id": "hotel-la-scaletta",
@@ -22,12 +22,12 @@
       "website": "https://www.hotellascaletta.it/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=IEB80EB2465963C1A",
             "title": "Apple Kartor: Hotel La Scaletta",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -59,7 +59,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "unconfirmed",
@@ -88,15 +88,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I16F9E2AD1A5C907A"
       },
       "entrance": null,
-      "website": "https://tickets.duomo.firenze.it/it/support/faq",
+      "website": "https://duomo.firenze.it/it/scopri/chiesa-di-santa-reparata",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I16F9E2AD1A5C907A",
             "title": "Apple Kartor: Santa Maria del Fiore",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -137,14 +137,50 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Santa Reparata: Porta del Campanile på katedralens södra sida. Ghiberti Pass kräver start vid bokat klockslag. Exakt entrékoordinat är ännu inte verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Santa Reparata: Porta del Campanile på katedralens södra sida. Ghiberti Pass kräver start vid bokat klockslag. Exakt entrékoordinat är ännu inte verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
-        "status": "unconfirmed",
+        "status": "published",
         "timeZone": "Europe/Rome",
-        "weekly": [],
-        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
-        "sources": [],
+        "weekly": [
+          {
+            "days": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "label": "Santa Reparata · mån–lör",
+            "intervals": [
+              {
+                "opens": "10:15",
+                "closes": "16:00"
+              }
+            ]
+          },
+          {
+            "days": [
+              7
+            ],
+            "label": "Santa Reparata · sön och religiös helgdag",
+            "intervals": [
+              {
+                "opens": "13:30",
+                "closes": "16:00"
+              }
+            ]
+          }
+        ],
+        "note": "Ghiberti Pass kräver tillträde vid bokad starttid: onsdag 14 oktober kl. 11.30. Entré Porta del Campanile på södra sidan. Dessa tider avser Santa Reparata; övriga monument har egna tider.",
+        "sources": [
+          {
+            "label": "Opera del Duomo · officiella tider och tillträdesregler",
+            "url": "https://tickets.duomo.firenze.it/it/support/faq",
+            "checkedAt": "2026-10-12"
+          }
+        ],
         "exceptions": []
       },
       "specialties": null,
@@ -169,12 +205,12 @@
       "website": "https://www.cuculia.it/contatti/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=IBF647608F7345D55",
             "title": "Apple Kartor: Cuculia Ristorante",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -206,7 +242,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "published",
@@ -250,7 +286,7 @@
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://www.cuculia.it/contatti/",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -272,7 +308,7 @@
       "id": "fondazione-arte-della-seta-lisio",
       "name": "Fondazione Arte della Seta Lisio",
       "category": "craft",
-      "description": "Tors 15/10 · 10.15 · bokad guidad visning med Cecilia Cerchiarini. Taxi från hotellet cirka 09.35. Räkna med upp till två timmar eller mer.",
+      "description": "Tors 15/10 · 10.15 · bokad guidad visning med Cecilia Cerchiarini. Taxi från hotellet cirka 09.35. Räkna med upp till två timmar eller mer.\nEntré från Via Benedetto Fortini 143: ring på ”Fondazione Lisio-Uffici”. Fortsätt cirka 50 meter uppför; stiftelsen ligger till vänster om kyrkan. Operatörens kartpunkt och Apple-markören skiljer cirka 105 meter, så ange adressen till taxin och följ grindinstruktionen.",
       "address": "Via Benedetto Fortini 143, Firenze",
       "position": {
         "latitude": 43.7454328,
@@ -285,13 +321,13 @@
       "entrance": null,
       "website": "https://www.fondazionelisio.org/it/contattaci",
       "verification": {
-        "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "status": "unresolved",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I8F50D9FB5E198FB8",
             "title": "Apple Kartor: Fondazione Lisio",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -302,7 +338,7 @@
           {
             "url": "https://www.fondazionelisio.org/it/contattaci",
             "title": "Fondazione Lisio – kontakt",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address"
@@ -319,11 +355,11 @@
         ],
         "checks": {
           "identity": true,
-          "position": true,
+          "position": false,
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Taxi är färdsättet för den bokade resan. Separat gångväg till tomtens punkt kunde inte beräknas."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Taxi är färdsättet för den bokade resan. Separat gångväg till tomtens punkt kunde inte beräknas. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt. Operatörens egen Google-kartlänk anger 43.746056, 11.286585, cirka 105 meter från Apples punkt. Platsidentitet och adress stämmer, men exakt byggnads-/grindpunkt är inte oberoende avgjord. Position markeras därför olöst; befintlig punkt behålls. Följ operatörens grindinstruktion på Via Benedetto Fortini 143."
       },
       "openingHours": {
         "status": "appointment",
@@ -355,12 +391,12 @@
       "website": "https://www.uffizi.it/gli-uffizi",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I619339FB1AE74F28",
             "title": "Apple Kartor: Uffizi Galleries",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -400,7 +436,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Äldre uppgifter om Porta 3 är motstridiga; följ bokningsbekräftelsen och den aktuella officiella besökskartan. Exakt portkoordinat är inte verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Äldre uppgifter om Porta 3 är motstridiga; följ bokningsbekräftelsen och den aktuella officiella besökskartan. Exakt portkoordinat är inte verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "published",
@@ -429,7 +465,7 @@
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://www.uffizi.it/en/the-uffizi",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": [
@@ -440,7 +476,7 @@
             "source": {
               "label": "Öppna uppgifterna hos källan",
               "url": "https://www.uffizi.it/en/the-uffizi",
-              "checkedAt": "2026-10-10"
+              "checkedAt": "2026-10-12"
             }
           }
         ]
@@ -467,12 +503,12 @@
       "website": "https://ilnugolo.com/contatti/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I5D428C07D60AF373",
             "title": "Apple Kartor: Nugolo",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -504,7 +540,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "published",
@@ -533,7 +569,7 @@
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://ilnugolo.com/contatti/",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -566,15 +602,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I2EB04AE4C0A0D285"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.italia.it/en/tuscany/florence/ponte-vecchio",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I2EB04AE4C0A0D285",
             "title": "Apple Kartor: Ponte Vecchio",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -589,6 +625,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://www.italia.it/en/tuscany/florence/ponte-vecchio",
+            "title": "Ponte Vecchio - Italia.it",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -597,7 +641,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "public-space",
@@ -608,7 +652,7 @@
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://www.feelflorence.it/",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -632,15 +676,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=IF0CB9D3977769C6F"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.uffizi.it/en/pitti-palace",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=IF0CB9D3977769C6F",
             "title": "Apple Kartor: Pitti Palace",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -655,6 +699,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://www.uffizi.it/en/pitti-palace",
+            "title": "Pitti Palace | Uffizi Galleries",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -663,7 +715,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "published",
@@ -692,7 +744,7 @@
           {
             "label": "Officiella besöksuppgifter",
             "url": "https://www.uffizi.it/en/pitti-palace",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": [
@@ -703,7 +755,7 @@
             "source": {
               "label": "Officiella besöksuppgifter",
               "url": "https://www.uffizi.it/en/pitti-palace",
-              "checkedAt": "2026-10-10"
+              "checkedAt": "2026-10-12"
             }
           }
         ]
@@ -730,12 +782,12 @@
       "website": null,
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=IA96D45BC2D2A4FDA",
             "title": "Apple Kartor: Piazza Della Passera",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -758,7 +810,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Apple-kortet heter Piazza della Passera och ligger på torget, men webbplats/telefon verkar avse en restaurang. Dessa uppgifter har inte importerats. Exakt entré är inte tillämplig för ett torg."
+        "notes": "Apple-kortet heter Piazza della Passera och ligger på torget, men webbplats/telefon verkar avse en restaurang. Dessa uppgifter har inte importerats. Exakt entré är inte tillämplig för ett torg. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "public-space",
@@ -769,7 +821,7 @@
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://www.feelflorence.it/",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -796,12 +848,12 @@
       "website": null,
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=ID3C51F77EAD52E3A",
             "title": "Apple Kartor: Piazza Santo Spirito",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -824,7 +876,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "public-space",
@@ -835,7 +887,7 @@
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://www.feelflorence.it/",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -859,15 +911,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I64A1A759DB0DD4D6"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.basilicasantospirito.it/visitare-la-basilica-di-santo-spirito/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I64A1A759DB0DD4D6",
             "title": "Apple Kartor: Basilica di Santo Spirito",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -882,6 +934,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://www.basilicasantospirito.it/visitare-la-basilica-di-santo-spirito/",
+            "title": "Visitare la Basilica di Santo Spirito - Basilica di Santo Spirito",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -890,15 +950,69 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
-        "status": "unconfirmed",
+        "status": "published",
         "timeZone": "Europe/Rome",
-        "weekly": [],
-        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
-        "sources": [],
-        "exceptions": []
+        "weekly": [
+          {
+            "days": [
+              1,
+              2,
+              4,
+              5,
+              6
+            ],
+            "label": "Mån–tis, tor–lör",
+            "intervals": [
+              {
+                "opens": "10:00",
+                "closes": "13:00"
+              },
+              {
+                "opens": "15:00",
+                "closes": "18:00"
+              }
+            ]
+          },
+          {
+            "days": [
+              7
+            ],
+            "label": "Sön och helgdag",
+            "intervals": [
+              {
+                "opens": "11:30",
+                "closes": "13:30"
+              },
+              {
+                "opens": "15:00",
+                "closes": "18:00"
+              }
+            ]
+          }
+        ],
+        "note": "Onsdag stängt för besök. Gudstjänster har företräde. Basilikan och det museala besöksspåret har olika tillträdesregler; se webbplatsen. Fotografering är inte tillåten.",
+        "sources": [
+          {
+            "label": "Basilikans officiella besöksinformation",
+            "url": "https://www.basilicasantospirito.it/visitare-la-basilica-di-santo-spirito/",
+            "checkedAt": "2026-10-12"
+          }
+        ],
+        "exceptions": [
+          {
+            "date": "2026-10-14",
+            "status": "closed",
+            "note": "Onsdag stängt för besök.",
+            "source": {
+              "label": "Basilikans officiella besöksinformation",
+              "url": "https://www.basilicasantospirito.it/visitare-la-basilica-di-santo-spirito/",
+              "checkedAt": "2026-10-12"
+            }
+          }
+        ]
       },
       "specialties": null,
       "focus": "Brunelleschis arkitektur och renässanskonst",
@@ -922,12 +1036,12 @@
       "website": null,
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I6344C4E427A2CACF",
             "title": "Apple Kartor: Piazza del Carmine",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -950,7 +1064,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "public-space",
@@ -961,7 +1075,7 @@
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://www.feelflorence.it/",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -988,12 +1102,12 @@
       "website": null,
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I628E70AEE3B57EA1",
             "title": "Apple Kartor: Piazza della Signoria",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -1016,7 +1130,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "public-space",
@@ -1027,7 +1141,7 @@
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://www.feelflorence.it/",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -1051,15 +1165,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I501E352752A61A82"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.uffizi.it/video/la-loggia-de-lanzi",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I501E352752A61A82",
             "title": "Apple Kartor: Loggia dei Lanzi",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -1074,6 +1188,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://www.uffizi.it/video/la-loggia-de-lanzi",
+            "title": "La Loggia de’ Lanzi | Gallerie degli Uffizi",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -1082,7 +1204,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "unconfirmed",
@@ -1111,15 +1233,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I783C563516143B7D"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://bargellomusei.it/musei/orsanmichele/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I783C563516143B7D",
             "title": "Apple Kartor: Orsanmichele",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -1134,6 +1256,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://bargellomusei.it/musei/orsanmichele/",
+            "title": "Orsanmichele | Musei del Bargello",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -1142,7 +1272,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "unconfirmed",
@@ -1174,12 +1304,12 @@
       "website": null,
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I7D5335D00155FDF5",
             "title": "Apple Kartor: Piazza della Repubblica",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -1202,7 +1332,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "public-space",
@@ -1213,7 +1343,7 @@
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://www.feelflorence.it/",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -1240,12 +1370,12 @@
       "website": null,
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I7FA4711B05C7B750",
             "title": "Apple Kartor: Piazza Santa Trinita",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -1268,7 +1398,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "public-space",
@@ -1279,7 +1409,7 @@
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://www.feelflorence.it/",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -1306,12 +1436,12 @@
       "website": null,
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=IC1D7C6EFEBDD3AF4",
             "title": "Apple Kartor: Ponte Santa Trìnita",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -1334,7 +1464,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "public-space",
@@ -1345,7 +1475,7 @@
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://www.feelflorence.it/",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -1369,15 +1499,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=IBF8F16153E9F31D9"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.santacroceopera.it/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=IBF8F16153E9F31D9",
             "title": "Apple Kartor: Basilica di Santa Croce",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -1392,6 +1522,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://www.santacroceopera.it/",
+            "title": "Santa Croce, Firenze - Santa Croce",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -1400,7 +1538,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "unconfirmed",
@@ -1429,15 +1567,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I5DA11D17F5DDBD44"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://mercatosantambrogio.it/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I5DA11D17F5DDBD44",
             "title": "Apple Kartor: Mercato di Sant’Ambrogio",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -1452,6 +1590,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://mercatosantambrogio.it/",
+            "title": "Il Mercato più antico di Firenze – Mercato sant'ambrogio",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -1460,14 +1606,38 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
-        "status": "unconfirmed",
+        "status": "published",
         "timeZone": "Europe/Rome",
-        "weekly": [],
-        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
-        "sources": [],
+        "weekly": [
+          {
+            "days": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "label": "Mån–lör",
+            "intervals": [
+              {
+                "opens": "07:00",
+                "closes": "14:00"
+              }
+            ]
+          }
+        ],
+        "note": "Söndag stängt. Tiderna gäller marknaden; enskilda verksamheter kan ha egna tider.",
+        "sources": [
+          {
+            "label": "Marknadens officiella webbplats",
+            "url": "https://mercatosantambrogio.it/",
+            "checkedAt": "2026-10-12"
+          }
+        ],
         "exceptions": []
       },
       "specialties": null,
@@ -1538,7 +1708,7 @@
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://www.firenzecreativa.it/iscritto/giulio-giannini-e-figlio/",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -1574,12 +1744,12 @@
       "website": "https://scuoladelcuoio.it/it/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I8990F937D705A52C",
             "title": "Apple Kartor: Scuola del Cuoio",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -1611,7 +1781,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "published",
@@ -1660,7 +1830,7 @@
           {
             "label": "Scuola del Cuoio · tider för butik och hantverkare",
             "url": "https://scuoladelcuoio.it/it/contattaci",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ]
       },
@@ -1686,12 +1856,12 @@
       "website": "https://opificiodellepietredure.cultura.gov.it/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=IBB109722B232AA6E",
             "title": "Apple Kartor: Opificio delle Pietre Dure",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -1723,7 +1893,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "published",
@@ -1747,15 +1917,32 @@
             ]
           }
         ],
-        "note": "Biljettkassan stänger 13.30. Stängt söndagar, helgdagar och 24 juni. Kontrollera museets särskilda höstöppningar.",
+        "note": "Ordinarie biljettkassa stänger 13.30. Stängt söndagar, helgdagar och 24 juni. Torsdag 15 oktober är museet dessutom öppet 14–18 enligt höstprogrammet.",
         "sources": [
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://opificiodellepietredure.cultura.gov.it/en/museum/",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
-        "exceptions": []
+        "exceptions": [
+          {
+            "date": "2026-10-15",
+            "status": "changed",
+            "note": "Extra eftermiddagsöppet 14.00–18.00 utöver ordinarie morgonöppning. Museets höstprogram anger öppningen; särskild sista insläppstid anges inte.",
+            "intervals": [
+              {
+                "opens": "08:15",
+                "closes": "18:00"
+              }
+            ],
+            "source": {
+              "label": "OPD · höstens extra öppningar 2026",
+              "url": "https://opificiodellepietredure.cultura.gov.it/avvisi/autunno-al-museo-dellopificio-delle-pietre-dure-aperture-straordinarie-visite-guidate-musica-e-percorsi-tattili/",
+              "checkedAt": "2026-10-12"
+            }
+          }
+        ]
       },
       "specialties": null,
       "focus": "Stenintarsia, material och teknik",
@@ -1779,12 +1966,12 @@
       "website": "https://storelocator-eu.smnovella.com/it/italia/toscana/citta-metropolitana-di-firenze/firenze/officina-profumo-farmaceutica-di-santa-maria-novella-florence-7",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=IEB3952EB90D3B7AD",
             "title": "Apple Kartor: Officina Profumo - Farmaceutica di Santa Maria Novella",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -1816,14 +2003,39 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
-        "status": "unconfirmed",
+        "status": "published",
         "timeZone": "Europe/Rome",
-        "weekly": [],
-        "note": "Kontrollera öppettider före besöket. Bekräftade aktuella tider saknas.",
-        "sources": [],
+        "weekly": [
+          {
+            "days": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "label": "Alla dagar",
+            "intervals": [
+              {
+                "opens": "09:30",
+                "closes": "20:00"
+              }
+            ]
+          }
+        ],
+        "note": "Avser den historiska butiken och museet på Via della Scala 16.",
+        "sources": [
+          {
+            "label": "Officiell butikssida · Via della Scala",
+            "url": "https://storelocator-eu.smnovella.com/it/italia/toscana/citta-metropolitana-di-firenze/firenze/officina-profumo-farmaceutica-di-santa-maria-novella-florence-7",
+            "checkedAt": "2026-10-12"
+          }
+        ],
         "exceptions": []
       },
       "specialties": null,
@@ -1848,12 +2060,12 @@
       "website": "https://www.feelflorence.it/it/punti-di-interesse/torre-san-niccolo",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=IEB22FB2BA67CBEDA",
             "title": "Apple Kartor: Tower of San Niccolò",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -1885,7 +2097,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "public-space",
@@ -1896,7 +2108,7 @@
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://www.feelflorence.it/it/punti-di-interesse/torre-san-niccolo",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -1923,12 +2135,12 @@
       "website": null,
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I944CCC9074D473AA",
             "title": "Apple Kartor: Piazzale Michelangelo",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -1951,7 +2163,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "public-space",
@@ -1962,7 +2174,7 @@
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://www.feelflorence.it/",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -1989,12 +2201,12 @@
       "website": "https://sanminiatoalmonte.it/contatti/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I25D3A27A02F6E11E",
             "title": "Apple Kartor: Basilica of San Miniato al Monte",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -2026,7 +2238,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "published",
@@ -2052,14 +2264,30 @@
                 "closes": "19:00"
               }
             ]
+          },
+          {
+            "days": [
+              7
+            ],
+            "label": "Sön",
+            "intervals": [
+              {
+                "opens": "08:15",
+                "closes": "13:00"
+              },
+              {
+                "opens": "15:30",
+                "closes": "19:00"
+              }
+            ]
           }
         ],
-        "note": "Respektera gudstjänster. Kontrollera söndagsbesök separat; torsdagens besök bör ske efter 15.30.",
+        "note": "Besök är inte tillåtna under gudstjänst. Inträde gratis, ingen bokning. Torsdagens besök bör ske efter 15.30.",
         "sources": [
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://sanminiatoalmonte.it/contatti/",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -2086,12 +2314,12 @@
       "website": "https://www.levolpieluva.com/home-italiano",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I8F4E230C7AD73242",
             "title": "Apple Kartor: Le volpi e l'uva",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -2123,7 +2351,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "published",
@@ -2147,12 +2375,12 @@
             ]
           }
         ],
-        "note": "Webbsidans uppgifter om söndagsöppet skiljer sig åt; bekräfta söndagen direkt.",
+        "note": "Kontaktsidan anger både 11 och 12 som öppningstid; planera från kl. 12. Uppgifter om söndagsöppet skiljer sig också åt; bekräfta söndagen direkt.",
         "sources": [
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://www.levolpieluva.com/visit-us-english",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -2185,15 +2413,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=IC85D23C306182E4A"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.ilsantobevitore.com/#intro-santino",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=IC85D23C306182E4A",
             "title": "Apple Kartor: Il Santino",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -2208,6 +2436,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://www.ilsantobevitore.com/#intro-santino",
+            "title": "Santo",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -2216,7 +2452,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "unconfirmed",
@@ -2248,12 +2484,12 @@
       "website": "https://www.pittigolaecantina.com/it/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I3B3BB09378DE88A2",
             "title": "Apple Kartor: Enoteca Pitti Gola e Cantina",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -2285,7 +2521,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "unconfirmed",
@@ -2296,7 +2532,7 @@
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://www.pittigolaecantina.com/hours-location-reservations/",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -2332,12 +2568,12 @@
       "website": null,
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I5487D38673801BA8",
             "title": "Apple Kartor: Enoteca Spontanea",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -2360,7 +2596,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "unconfirmed",
@@ -2392,12 +2628,12 @@
       "website": "https://www.fuoriporta.it/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=IFC1B6C1599418DA8",
             "title": "Apple Kartor: Enoteca Fuori Porta Firenze",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -2429,7 +2665,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "published",
@@ -2473,7 +2709,7 @@
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://www.fuoriporta.it/",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -2509,12 +2745,12 @@
       "website": "https://www.palazzoguadagni.com/it/loggia-roof-bar-terrazza-firenze/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I3EA1AAE0FCAA2F62",
             "title": "Apple Kartor: Loggia Roof Bar",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -2546,7 +2782,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "published",
@@ -2576,7 +2812,7 @@
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://www.palazzoguadagni.com/it/loggia-roof-bar-terrazza-firenze/",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -2609,15 +2845,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=ID7BB8E32A0470CD3"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.ilsantobevitore.com/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=ID7BB8E32A0470CD3",
             "title": "Apple Kartor: Il Santo Bevitore",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -2632,6 +2868,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://www.ilsantobevitore.com/",
+            "title": "Santo",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -2640,7 +2884,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "unconfirmed",
@@ -2669,15 +2913,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I99202BA0273E73AC"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.mercatocentrale.it/firenze/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I99202BA0273E73AC",
             "title": "Apple Kartor: Mercato Centrale",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -2692,6 +2936,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://www.mercatocentrale.it/firenze/",
+            "title": "Dove mangiare a Firenze | Mercato Centrale Firenze",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -2700,7 +2952,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "unconfirmed",
@@ -2729,15 +2981,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=IEA9B8145956CE110"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.pittimosaici.com/contact",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=IEA9B8145956CE110",
             "title": "Apple Kartor: Pitti Mosaici",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -2752,6 +3004,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://www.pittimosaici.com/contact",
+            "title": "Contact — Pitti Mosaici",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -2760,7 +3020,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "unconfirmed",
@@ -2771,7 +3031,7 @@
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://www.pittimosaici.com/contact",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -2804,15 +3064,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=IB4722DA40EF10653"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.castorina1895.com/contatti/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=IB4722DA40EF10653",
             "title": "Apple Kartor: Castorina 1895",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -2827,6 +3087,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://www.castorina1895.com/contatti/",
+            "title": "Contatti - Castorina 1895",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -2835,7 +3103,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "published",
@@ -2867,7 +3135,7 @@
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://www.castorina1895.com/contatti/",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -2900,15 +3168,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I510076BDC06E3AB0"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.mio-concept.com/about-us",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I510076BDC06E3AB0",
             "title": "Apple Kartor: Mio Concept Store Firenze",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -2923,6 +3191,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://www.mio-concept.com/about-us",
+            "title": "About us | MIO Store Florence",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -2931,7 +3207,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "published",
@@ -2964,7 +3240,7 @@
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://www.mio-concept.com/about-us",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -2997,15 +3273,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=IDF3A45D87DF7114F"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.giuliamateria.com/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=IDF3A45D87DF7114F",
             "title": "Apple Kartor: Giulia Materia Atelier",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -3020,6 +3296,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://www.giuliamateria.com/",
+            "title": "Giulia Materia",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -3028,7 +3312,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "unconfirmed",
@@ -3057,15 +3341,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=IF3B922F5269D6E7A"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://gelateriadellapassera.it/gusti-ed-altro/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=IF3B922F5269D6E7A",
             "title": "Apple Kartor: Gelateria della Passera",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -3080,6 +3364,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://gelateriadellapassera.it/gusti-ed-altro/",
+            "title": "Gelateria della Passera - Gelato artigianale a Firenze - Il nostro gelato",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -3088,7 +3380,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "unconfirmed",
@@ -3116,7 +3408,7 @@
       "name": "Gelateria dei Neri",
       "category": "food-drink",
       "description": "Välkänd gelateria nära Uffizi/Santa Croce.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
-      "address": "Via dei Neri 9R, Firenze",
+      "address": "Via dei Neri 9/11R, Firenze",
       "position": {
         "latitude": 43.7677701,
         "longitude": 11.2590927
@@ -3129,12 +3421,12 @@
       "website": null,
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I8C46A6EFC4EA360F",
             "title": "Apple Kartor: Gelateria dei Neri",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -3157,7 +3449,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt. Gatuadressen preciserad till 9/11R enligt det återavlästa Apple-kortet."
       },
       "openingHours": {
         "status": "unconfirmed",
@@ -3186,15 +3478,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I3D0877E956344DD1"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.gelaterialacarraia.it/en/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I3D0877E956344DD1",
             "title": "Apple Kartor: Gelateria La Carraia",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -3209,6 +3501,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://www.gelaterialacarraia.it/en/",
+            "title": "Gelateria La Carraia Firenze – Gelateria Storica – Ponte Alla Carraia",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -3217,7 +3517,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "unconfirmed",
@@ -3228,7 +3528,7 @@
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://www.gelaterialacarraia.it/en/",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -3261,15 +3561,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I9AC912A348306FBE"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.feelflorence.it/en/points-interest/perche-no",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I9AC912A348306FBE",
             "title": "Apple Kartor: Gelateria Perchè No",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -3284,6 +3584,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://www.feelflorence.it/en/points-interest/perche-no",
+            "title": "Perché no!... | FeelFlorence",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -3292,7 +3600,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "unconfirmed",
@@ -3330,15 +3638,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I521AB0BA9811B712"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://vivoli.it/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I521AB0BA9811B712",
             "title": "Apple Kartor: Vivoli",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -3353,6 +3661,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://vivoli.it/",
+            "title": "Gelateria artigianale Vivoli - Dal 1930 il vero gelato artigianale",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -3361,7 +3677,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "unconfirmed",
@@ -3399,15 +3715,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=IB1F0CB1D9D81E335"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.italia.it/it/toscana/firenze/dove-mangiare/cantina-del-gelato",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=IB1F0CB1D9D81E335",
             "title": "Apple Kartor: Cantina del Gelato",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -3422,6 +3738,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://www.italia.it/it/toscana/firenze/dove-mangiare/cantina-del-gelato",
+            "title": "Cantina del Gelato, Firenze - Italia.it",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -3430,7 +3754,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "unconfirmed",
@@ -3444,9 +3768,9 @@
         "text": "Gelato och açaí na tigela, en brasiliansk açaískål.",
         "sources": [
           {
-            "label": "Öppna uppgifterna hos källan",
-            "url": "https://cantinadelgelato.it/?lang=en&page_id=1376",
-            "checkedAt": "2026-10-10"
+            "label": "Italia.it · Cantina del Gelato, Via dei Bardi 31",
+            "url": "https://www.italia.it/it/toscana/firenze/dove-mangiare/cantina-del-gelato",
+            "checkedAt": "2026-10-12"
           }
         ]
       },
@@ -3468,15 +3792,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=IA4423F3D4CB4F4C1"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://serretorrigiani.it/serre-torrigiani-in-piazzetta/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=IA4423F3D4CB4F4C1",
             "title": "Apple Kartor: Serre Torrigiani in Piazzetta",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -3491,6 +3815,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://serretorrigiani.it/serre-torrigiani-in-piazzetta/",
+            "title": "Serre Torrigiani in Piazzetta | Serre Torrigiani",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -3499,7 +3831,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "published",
@@ -3551,7 +3883,7 @@
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://serretorrigiani.it/serre-torrigiani-in-piazzetta/",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -3584,15 +3916,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=IB018DBD3F014B97B"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.caffepaszkowski.com/en",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=IB018DBD3F014B97B",
             "title": "Apple Kartor: Paszkowski",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -3607,6 +3939,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://www.caffepaszkowski.com/en",
+            "title": "Caffè Paszkowski",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -3615,7 +3955,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "unconfirmed",
@@ -3656,12 +3996,12 @@
       "website": null,
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I43D9EF87076BECE0",
             "title": "Apple Kartor: Bulli & Balene",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -3684,7 +4024,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "unconfirmed",
@@ -3722,15 +4062,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=IE09241B81B7B5B19"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.beppafioraia.it/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=IE09241B81B7B5B19",
             "title": "Apple Kartor: La Beppa Fioraia",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -3745,6 +4085,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://www.beppafioraia.it/",
+            "title": "Osteria con giardino a Firenze - Beppa Fioraia",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -3753,7 +4101,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Tidigare användarbekräftad markörposition behålls. Apple-kortets punkt ligger cirka 17 m därifrån inom samma verksamhet; länken avser nu La Beppa Fioraias eget plats-id. Exakt entré är inte separat inmätt."
+        "notes": "Tidigare användarbekräftad markörposition behålls. Apple-kortets punkt ligger cirka 17 m därifrån inom samma verksamhet; länken avser nu La Beppa Fioraias eget plats-id. Exakt entré är inte separat inmätt. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "published",
@@ -3787,7 +4135,7 @@
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://www.beppafioraia.it/",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -3820,15 +4168,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I6A98E16006F9DCB"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.smn.it/en/visit/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I6A98E16006F9DCB",
             "title": "Apple Kartor: Basilica of Santa Maria Novella",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -3843,6 +4191,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://www.smn.it/en/visit/",
+            "title": "How can I visit Santa Maria Novella? | Santa Maria Novella",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -3851,7 +4207,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "published",
@@ -3914,7 +4270,7 @@
           {
             "label": "Santa Maria Novella · besök och aktuella avvikelser",
             "url": "https://www.smn.it/en/visit/",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": [
@@ -3931,7 +4287,7 @@
             "source": {
               "label": "Santa Maria Novella · besök och aktuella avvikelser",
               "url": "https://www.smn.it/en/visit/",
-              "checkedAt": "2026-10-10"
+              "checkedAt": "2026-10-12"
             }
           }
         ]
@@ -3955,15 +4311,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=IDF0CD4D347521232"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.feelflorence.it/it/punti-di-interesse/basilica-di-san-lorenzo",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=IDF0CD4D347521232",
             "title": "Apple Kartor: Basilica of San Lorenzo",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -3978,6 +4334,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://www.feelflorence.it/it/punti-di-interesse/basilica-di-san-lorenzo",
+            "title": "Basilica di San Lorenzo | FeelFlorence",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -3986,7 +4350,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "published",
@@ -4017,7 +4381,7 @@
           {
             "label": "Officiella besöksuppgifter",
             "url": "https://www.feelflorence.it/it/punti-di-interesse/basilica-di-san-lorenzo",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -4041,15 +4405,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I9E82C0EF471352A0"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.feelflorence.it/it/punti-di-interesse/museo-delle-cappelle-medicee",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I9E82C0EF471352A0",
             "title": "Apple Kartor: Medici Chapels",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -4064,6 +4428,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://www.feelflorence.it/it/punti-di-interesse/museo-delle-cappelle-medicee",
+            "title": "Museo delle Cappelle Medicee | FeelFlorence",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -4072,7 +4444,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "published",
@@ -4103,7 +4475,7 @@
           {
             "label": "FeelFlorence · besöksuppgifter",
             "url": "https://www.feelflorence.it/it/punti-di-interesse/museo-delle-cappelle-medicee",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -4127,15 +4499,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I241C35AA75E4289B"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.feelflorence.it/en/points-interest/galleria-dellaccademia-di-firenze-academy-gallery",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I241C35AA75E4289B",
             "title": "Apple Kartor: Galleria dell'Accademia di Firenze",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -4150,6 +4522,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://www.feelflorence.it/en/points-interest/galleria-dellaccademia-di-firenze-academy-gallery",
+            "title": "Galleria dell'Accademia di Firenze - Academy gallery | FeelFlorence",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -4158,7 +4538,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "published",
@@ -4189,7 +4569,7 @@
           {
             "label": "FeelFlorence · besöksuppgifter",
             "url": "https://www.feelflorence.it/en/points-interest/galleria-dellaccademia-di-firenze-academy-gallery",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -4213,15 +4593,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I9D1D42F28C179399"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.feelflorence.it/it/punti-di-interesse/museo-del-bargello",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I9D1D42F28C179399",
             "title": "Apple Kartor: Museo del Bargello",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -4236,6 +4616,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://www.feelflorence.it/it/punti-di-interesse/museo-del-bargello",
+            "title": "Museo del Bargello | FeelFlorence",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -4244,7 +4632,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "published",
@@ -4275,7 +4663,7 @@
           {
             "label": "FeelFlorence · besöksuppgifter",
             "url": "https://www.feelflorence.it/it/punti-di-interesse/museo-del-bargello",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -4299,15 +4687,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I3359EDF6CB2DFCEF"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.uffizi.it/en/boboli-garden",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I3359EDF6CB2DFCEF",
             "title": "Apple Kartor: Boboli Gardens",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -4322,6 +4710,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://www.uffizi.it/en/boboli-garden",
+            "title": "Boboli Gardens | Uffizi Galleries",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -4330,7 +4726,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "published",
@@ -4362,7 +4758,7 @@
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://www.uffizi.it/en/boboli-garden",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -4386,15 +4782,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I1C26C762F1355553"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.palazzomediciriccardi.it/en/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I1C26C762F1355553",
             "title": "Apple Kartor: Palazzo Medici Riccardi",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -4409,6 +4805,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://www.palazzomediciriccardi.it/en/",
+            "title": "Palazzo Medici Riccardi",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -4417,7 +4821,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "published",
@@ -4446,7 +4850,7 @@
           {
             "label": "Officiella besöksuppgifter",
             "url": "https://www.palazzomediciriccardi.it/en/",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -4473,12 +4877,12 @@
       "website": "https://www.feelflorence.it/en/points-interest/rose-garden",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=IE2CBE11189240006",
             "title": "Apple Kartor: The Rose Garden",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -4501,7 +4905,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "published",
@@ -4533,7 +4937,7 @@
           {
             "label": "Officiella besöksuppgifter",
             "url": "https://www.feelflorence.it/en/points-interest/rose-garden",
-            "checkedAt": "2026-10-11"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -4557,15 +4961,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=ICF08CBBA3A57EFCB"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://anticosetificiofiorentino.com/en",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=ICF08CBBA3A57EFCB",
             "title": "Apple Kartor: Antico Setificio Fiorentino",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -4580,6 +4984,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://anticosetificiofiorentino.com/en",
+            "title": "Antico Setificio Fiorentino - Made in Italy handmade silk fabrics",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -4588,7 +5000,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "appointment",
@@ -4599,7 +5011,7 @@
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://anticosetificiofiorentino.com/en/experience",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -4632,15 +5044,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I15A8A512A9783E54"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.legatoriacozzifirenze.it/contact-us/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I15A8A512A9783E54",
             "title": "Apple Kartor: Albertocozzi",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -4655,6 +5067,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://www.legatoriacozzifirenze.it/contact-us/",
+            "title": "Contact us - Legatoria Cozzi Firenze",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -4663,7 +5083,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "published",
@@ -4711,7 +5131,7 @@
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://www.legatoriacozzifirenze.it/contact-us/",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -4744,15 +5164,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I17FB6072F5D18326"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.riccardoluci.com/en/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I17FB6072F5D18326",
             "title": "Apple Kartor: Riccardo Luci Marbled Paper",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -4767,6 +5187,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://www.riccardoluci.com/en/",
+            "title": "Marbled Paper Florence | Florentine Craftsmanship – Riccardo Luci",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -4775,7 +5203,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "unconfirmed",
@@ -4813,15 +5241,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I3FA7C2F58E13ECB6"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://scarpellimosaici.it/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I3FA7C2F58E13ECB6",
             "title": "Apple Kartor: Scarpelli Mosaici",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -4836,6 +5264,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://scarpellimosaici.it/",
+            "title": "Home",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -4844,7 +5280,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "unconfirmed",
@@ -4872,7 +5308,7 @@
       "name": "Casa dei Tessuti",
       "category": "craft",
       "description": "Via dei Pecori 20/R\nKlassisk tygaffär med italienska mode- och skrädderityger, bland annat siden och ull.\nMarkören är ungefärlig; använd Apple Kartor för entrén.",
-      "address": "Via dei Pecori 20/R",
+      "address": "Via dei Pecori 20–24R, Firenze",
       "position": {
         "latitude": 43.7728486,
         "longitude": 11.2537444
@@ -4882,15 +5318,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I35B88C14C56E6F6F"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.casadeitessuti.com/fabrics/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I35B88C14C56E6F6F",
             "title": "Apple Kartor: Casa Del Tessvti",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -4905,6 +5341,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://www.casadeitessuti.com/fabrics/",
+            "title": "Casa dei Tessuti - I Tessuti",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -4913,7 +5357,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt. Adressen preciserad till 20–24R enligt butikens officiella webbplats och Apple-kort."
       },
       "openingHours": {
         "status": "unconfirmed",
@@ -4954,12 +5398,12 @@
       "website": "https://www.erminiagostino.it/contatti",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I3E4A3225D773ABA6",
             "title": "Apple Kartor: Ermini Agostino Tessuti e Stoffe",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -4991,7 +5435,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "published",
@@ -5031,7 +5475,7 @@
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://www.erminiagostino.it/contatti",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -5064,15 +5508,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I549A497A0F25D038"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.vallitessuti.com/negozio-firenze/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I549A497A0F25D038",
             "title": "Apple Kartor: Valli Tessuti Alta Moda",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -5087,6 +5531,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://www.vallitessuti.com/negozio-firenze/",
+            "title": "VALLI TESSUTI ALTA MODA Negozio Firenze - VALLI TESSUTI ALTA MODA",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -5095,7 +5547,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "unconfirmed",
@@ -5106,7 +5558,7 @@
           {
             "label": "Öppna uppgifterna hos källan",
             "url": "https://www.vallitessuti.com/negozio-firenze/",
-            "checkedAt": "2026-10-10"
+            "checkedAt": "2026-10-12"
           }
         ],
         "exceptions": []
@@ -5139,15 +5591,15 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I3AC3CCB4319ADD2E"
       },
       "entrance": null,
-      "website": null,
+      "website": "https://www.letelerietoscane.com/italiano/le_telerie_toscane_biancheria_tovaglie_lenzuola_su_misura_firenze.php",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I3AC3CCB4319ADD2E",
             "title": "Apple Kartor: Le Telerie Toscane",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -5162,6 +5614,14 @@
             "supports": [
               "navigation"
             ]
+          },
+          {
+            "url": "https://www.letelerietoscane.com/italiano/le_telerie_toscane_biancheria_tovaglie_lenzuola_su_misura_firenze.php",
+            "title": "Le Telerie Toscane, Firenze. Biancheria per la casa su misura: tovaglie, lenzuola, asciugamani, tessuti toscani jacquard, tinti in filo e stampati. Le Telerie Toscane - Biancheria per la casa dalla Toscana",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
+            "supports": [
+              "identity"
+            ]
           }
         ],
         "checks": {
@@ -5170,7 +5630,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "unconfirmed",
@@ -5211,12 +5671,12 @@
       "website": null,
       "verification": {
         "status": "unresolved",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=IC79B1AD2FBD07EB0",
             "title": "Apple Kartor: Passamaneria Toscana",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -5225,9 +5685,9 @@
             ]
           },
           {
-            "url": "https://www.localshop24.com/it/firenze-fi-it/attivita/negozio-tessuti-biancheria-casa/passamaneria-toscana/",
-            "title": "LocalShop24 – annan adress",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "url": "https://firmania.it/firenze/passamaneria-toscana-5368649",
+            "title": "Firmania · alternativ adress Via del Canto dei Nelli 10",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address"
@@ -5248,7 +5708,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Adresskonflikt: Apple anger Piazza San Lorenzo 12/R; flera andra register anger Via del Canto dei Nelli 10. Befintlig markör behålls som osäker. Platskortet är kontrollerat men exakt aktuell butikspunkt/entré behöver bekräftas."
+        "notes": "Adresskonflikt: Apple anger Piazza San Lorenzo 12/R; flera andra register anger Via del Canto dei Nelli 10. Befintlig markör behålls som osäker. Platskortet är kontrollerat men exakt aktuell butikspunkt/entré behöver bekräftas. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt. Adresskonflikten kvarstår vid kontroll 12 oktober. Den tidigare LocalShop24-länken returnerar 410 och har ersatts med en fungerande alternativ registerkälla. Ingen ny positionsflytt görs utan starkare belägg."
       },
       "openingHours": {
         "status": "unconfirmed",
@@ -5280,12 +5740,12 @@
       "website": null,
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I62896965EA378BAE",
             "title": "Apple Kartor: Chalet il Boschetto",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -5308,7 +5768,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "unconfirmed",
@@ -5340,12 +5800,12 @@
       "website": "https://www.terrazzemichelangelo.it/ristorante-pizzeria-firenze/",
       "verification": {
         "status": "verified",
-        "checkedAt": "2026-10-10T10:29:52.947985Z",
+        "checkedAt": "2026-10-12T12:39:32.309011Z",
         "sources": [
           {
             "url": "https://maps.apple.com/place?place-id=I951FB975D51FF8B9",
             "title": "Apple Kartor: Terrazze Michelangelo",
-            "checkedAt": "2026-10-10T10:27:54.129677Z",
+            "checkedAt": "2026-10-12T12:39:32.309011Z",
             "supports": [
               "identity",
               "address",
@@ -5368,7 +5828,7 @@
           "placeLink": true,
           "navigation": true
         },
-        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad."
+        "notes": "Platskortets namn och position har jämförts med registret. Positionen avser platsen; exakt dörrposition är inte separat verifierad. Kartkortets identitet, publicerade adress och koordinat återavlästa 12 oktober 2026. Tidigare beräknad navigering har inte beräknats på nytt."
       },
       "openingHours": {
         "status": "unconfirmed",

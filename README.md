@@ -219,27 +219,28 @@ Valideringskoden ligger i `tools/validator-entry.js`. Efter ändringar där: kö
 
 Kopiera guiden till en separat katalog eller ett separat repository och ersätt innehållsfilerna. Återanvänd index, scheman, place-sheet.css och valideringskod. Ange den nya resans plats-id, rutter, datum, tidszon och kartutsnitt. Stories kan vara en tom lista. Behåll Florensguidens egna filer separat.
 
-## Version och verifiering, 10 oktober 2026
+## Version och verifiering, 12 oktober 2026
 
 | Fil | Schemaversion | Innehåll/programversion |
 | --- | ---: | ---: |
-| places.json | 5 | 10 |
+| places.json | 5 | 12 |
 | routes.json | 1 | 6 |
-| guide.json | 5 | 14 |
+| guide.json | 5 | 15 |
 | stories.json | 1 | 4 |
 | history.json | 2 | 2 |
 | taxonomy.json | 1 | 2 |
-| index.html | – | 1.18.4 |
+| index.html | – | 1.18.5 |
 | ui-theme.css | – | 1.18.4 |
 | place-sheet.css | – | 1.17.1 |
 | place-presentation.js | – | 1.16.1 |
-
 | valideringskod | – | 1.7.0 |
-| verification-report.v2.md | – | Rapportversion 2 |
+| verification-report.v3.md | – | Rapportversion 3 |
 
-[Verifieringsrapport version 2](verification-report.v2.md) listar samtliga 69 platser, koordinatändringar, källor, öppettider, kontrollerade delsträckor och kvarstående osäkerheter. 66 poster uppfyller de fyra registerkontrollerna. Giannini, Cosi – Chiantigiana och Passamaneria Toscana är markerade `unresolved`. Exakt entrépunkt är inte separat verifierad för alla platser.
+[Verifieringsrapport version 3](verification-report.v3.md) redovisar genomgången av samtliga 69 aktuella platser, återöppnade Apple-kort, fungerande webb- och källänkar, tider och kvarstående osäkerheter. 65 poster uppfyller registerkontrollerna. Giannini, Passamaneria Toscana och Lisio är `unresolved`; Forte di Belvedere är `pending`. Exakt entrépunkt är inte separat verifierad för alla platser. Färdiga gångvägar har inte beräknats på nytt; URL-målen är kontrollerade och alla 69 gånglänkar svarar med HTTP 200.
 
-`tools/map-links.js` skapar platskort och navigeringslänkar från kanoniska data. Verifierat företags-id används där det finns. Annars används en namngiven koordinatpunkt med reservation. Adressflaggor i presentationen påverkar inte längre navigeringsmålet. En senare verifierad `entrance.position` prioriteras för navigering.
+Webbknappar finns för 56 platser. Santo Spirito, Santa Reparata, Sant’Ambrogio och Officina SMN har kompletterade officiella tider; San Miniatos söndag och Opificios extra eftermiddagsöppning 15 oktober är införda. Två felande äldre källänkar har ersatts. Lisios motstridiga kartpunkter markeras som osäkra och grindinstruktionen visas i platskortet.
+
+`tools/map-links.js` skapar platskort och navigeringslänkar från kanoniska data. Verifierat företags-id används där det finns. Annars används en namngiven koordinatpunkt med reservation. En verifierad `entrance.position` prioriteras för navigering.
 
 Vid ändrad position måste motsvarande navigeringskontroll återställas och genomföras på nytt. Valideringen kräver källstöd för markerade kontroller, samma Apple-id i URL och register, samt att navigeringskällans destination stämmer med aktuell punkt. Den kontrollerar inte fysiska verkligheten eller dagsaktuella öppettider automatiskt.
 
@@ -268,3 +269,4 @@ Programversion 1.3.2 visar avgångsterminal efter flygbolaget när bokningen ang
 Hotellet visas även i Schema. Bokningskort visar platsens besöksinformation och adress. Webbplats och Fråga ChatGPT finns i listvyerna, med samma plats-id som kartan. Programknappar öppnar markören och aktiverar dess lager även om det dolts. Giannini anges som spontant obokat stopp i lördagens Oltrarno-program och rutt. Lisio kompletteras med Cecilia Cerchiarini; Cuculia och Nugolo med två personer; Nugolo med det bokade avbokningsvillkoret. Bokade platser listas inte som valbara besök andra dagar bara för att promenaden passerar dem.
 
 Kontroll: innehållsvalidatorn godkänner tre scheman, 69 platser, fem rutter, fem resdagar, fem bokningar, flyg och samtliga kart-/navigeringslänkar. JavaScript och renderat schema kontrollerat med hotellet, detaljerade bokningar, webbplats-/ChatGPT-knappar och flygordning. Visuellt Playwright-test kunde inte köras lokalt eftersom Chromium saknas. Tidigare geografiska osäkerheter i verifieringsrapporten kvarstår; denna ändring ändrar inga positioner eller Apple-id:n.
+
