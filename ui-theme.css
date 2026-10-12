@@ -286,3 +286,5 @@ body.place-open .leaflet-top.leaflet-right{visibility:hidden;pointer-events:none
 
 /* Keep bottom navigation above resized map and reading compositing layers. */
 #viewTabs{z-index:2500;pointer-events:auto;isolation:isolate}
+
+#viewTabs button{touch-action:manipulation}
