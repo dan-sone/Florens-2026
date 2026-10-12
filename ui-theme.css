@@ -187,11 +187,11 @@ body[data-view=karta] #viewTabs,body[data-view=karta] #guide,#placeSheet,.leafle
 
 .leaflet-control-layers-list label{max-width:100%;white-space:normal;overflow-wrap:anywhere}
 .leaflet-control-layers-list .category-legend{max-width:calc(100% - 30px)}
-.leaflet-control-refresh{position:fixed!important;right:calc(env(safe-area-inset-right,0px) + 10px)!important;bottom:calc(env(safe-area-inset-bottom,0px) + 20px)!important;margin:0!important}
+.leaflet-control-refresh{position:absolute!important;right:calc(env(safe-area-inset-right,0px) + 10px)!important;bottom:calc(env(safe-area-inset-bottom,0px) + 20px)!important;margin:0!important}
 
 /* The scale shares the bottom baseline with refresh, without reserving space
    for the former bottom day guide. Let map gestures pass through it. */
-.leaflet-control-scale{position:fixed!important;left:calc(env(safe-area-inset-left,0px) + 12px)!important;bottom:calc(env(safe-area-inset-bottom,0px) + 20px)!important;margin:0!important;max-width:calc(100vw - env(safe-area-inset-left,0px) - env(safe-area-inset-right,0px) - 88px);pointer-events:none!important}
+.leaflet-control-scale{position:absolute!important;left:calc(env(safe-area-inset-left,0px) + 12px)!important;bottom:calc(env(safe-area-inset-bottom,0px) + 20px)!important;margin:0!important;max-width:calc(100vw - env(safe-area-inset-left,0px) - env(safe-area-inset-right,0px) - 88px);pointer-events:none!important}
 body.place-open .leaflet-control-scale{visibility:hidden}
 
 /* Keep Leaflet's nested label spans inside the menu at large text sizes. */
@@ -233,7 +233,7 @@ body.place-open .leaflet-control-scale{visibility:hidden}
  #viewTabs .tab-icon{width:16px;height:16px}
  #listView{right:auto;width:var(--reading-width);height:var(--app-height,100dvh);box-sizing:border-box;padding-left:18px;padding-right:18px;background:var(--reading-glass);border-right:1px solid var(--glass-edge);box-shadow:8px 0 32px rgba(0,0,0,.08);-webkit-backdrop-filter:blur(28px) saturate(145%);backdrop-filter:blur(28px) saturate(145%);overscroll-behavior:contain}
  body[data-view]:not([data-view=karta]) #placeSheet{left:calc(50% + var(--reading-width) / 2);width:min(560px,calc(100vw - var(--reading-width) - 24px))}
- body[data-view]:not([data-view=karta]) .leaflet-control-scale{left:calc(var(--reading-width) + env(safe-area-inset-left,0px) + 12px)!important}
+ body[data-view]:not([data-view=karta]) .leaflet-control-scale{left:calc(env(safe-area-inset-left,0px) + 12px)!important}
  body[data-view]:not([data-view=karta]) .leaflet-control-layers-list{max-width:calc(100vw - var(--reading-width) - 84px)}
 }
 @media(min-width:900px) and (min-height:500px) and (prefers-color-scheme:dark),(min-width:560px) and (max-height:499px) and (orientation:landscape) and (prefers-color-scheme:dark){body{--reading-glass:rgba(28,28,30,.92)}}
@@ -255,7 +255,7 @@ body.place-open .leaflet-control-scale{visibility:hidden}
 #viewTabs button{flex-direction:column;gap:3px;min-height:48px;font-size:11px;padding:7px 1px;line-height:1.2}
 #viewTabs .tab-icon{display:block;width:16px;height:16px}
 #listView{padding-top:calc(env(safe-area-inset-top,0px) + 24px);padding-bottom:calc(env(safe-area-inset-bottom,0px) + 104px)}
-.leaflet-top.leaflet-right{position:fixed;top:auto!important;bottom:var(--map-controls-bottom);gap:8px;max-height:calc(var(--app-height,100dvh) - var(--map-controls-bottom) - env(safe-area-inset-top,0px) - 12px)}
+.leaflet-top.leaflet-right{position:absolute;top:auto!important;bottom:var(--map-controls-bottom);gap:8px;max-height:calc(var(--app-height,100dvh) - var(--map-controls-bottom) - env(safe-area-inset-top,0px) - 12px)}
 .leaflet-control-refresh{position:relative!important;right:auto!important;bottom:auto!important}
 .leaflet-control-layers .leaflet-control-layers-list{top:auto!important;bottom:0;max-height:calc(var(--app-height,100dvh) - var(--map-controls-bottom) - env(safe-area-inset-top,0px) - 168px)}
 #guide{top:auto!important;bottom:var(--day-guide-bottom,192px)!important;max-height:var(--day-guide-space,calc(var(--app-height,100dvh) - 212px))!important}
@@ -288,3 +288,8 @@ body.place-open .leaflet-top.leaflet-right{visibility:hidden;pointer-events:none
 #viewTabs{z-index:2500;pointer-events:auto;isolation:isolate}
 
 #viewTabs button{touch-action:manipulation}
+
+/* A single non-scrolling app canvas avoids viewport-fixed hit-test offsets on rotation. */
+html{height:100%;overflow:hidden;overscroll-behavior:none;scroll-behavior:auto}
+body{position:absolute;inset:0;width:100%;height:var(--app-height,100dvh);margin:0;overflow:hidden;overscroll-behavior:none}
+#viewTabs,#listView,#placeSheet{position:absolute}
