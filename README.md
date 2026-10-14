@@ -1,3 +1,11 @@
+## Garn och sybehör – innehåll 14 oktober 2026
+
+Fem materialbutiker är tillagda under Hantverk → Garn & sybehör: Campolmi Filati – Dettaglio, Mirko Filati – La Buca, Samba Mercerie, Ricamo & Cucito och Merceria Firenze Delcor. Ett gemensamt SVG-garnnystan ligger i taxonomy.json och används av kartnålar, listor och platskort med Hantverks befintliga färger. De fyra första tillhör Duomo & San Lorenzo; Delcor tillhör Santa Maria Novella & Santa Trinita.
+
+Sortiment och adresser kommer från butikernas webbplatser eller dokumenterade butiksbesök/register. Campolmi, Mirko och Ricamo & Cucito har öppettider från egna webbplatser. Samba och Delcor har katalogtider med uttrycklig notering om att de inte är bekräftade direkt av butiken. Butikspunkter finns i dokumenterade kart-/registerkällor; exakta entréer är inte separat verifierade. Alla fem poster har därför unresolved-status tills Apple Kartors företagskort och beräknad navigering har kontrollerats. Inga Apple Place ID är gissade. Appens befintliga koordinat-/namnfallback används. Sambas länkade webbplats gick inte att läsa och publiceras inte som en fungerande webbknapp.
+
+Scheman är oförändrade. Nya innehållsversioner: places.json 14 (schema 5), taxonomy.json 3 (schema 1), guide.json 17 (schema 5). UI 1.18.11 och den låsta navigationen är oförändrade. Alla 70 tidigare platsposter, koordinater, rutter, dagprogram, bokningar och flyg är bevarade. npm run check validerar sex scheman, 75 platser, 79 ogiltiga fall och 225 navigeringslänkar. Gemensam garnikon, kategori-/underkategori-/namnsortering, oförändrade nålankare och områdesreferenser är kontrollerade.
+
 ## Snabbare sidopanel – UI 1.18.4
 
 Sidopanelens öppning/stängning och kartans ändrade läsyta tar nu 0,4 sekunder, tidigare 1,4 sekunder. Visa behåller sin lugna kameraförflyttning på 1,4 sekunder. Övrig funktion och innehåll är oförändrade.
@@ -219,17 +227,17 @@ Valideringskoden ligger i `tools/validator-entry.js`. Efter ändringar där: kö
 
 Kopiera guiden till en separat katalog eller ett separat repository och ersätt innehållsfilerna. Återanvänd index, scheman, place-sheet.css och valideringskod. Ange den nya resans plats-id, rutter, datum, tidszon och kartutsnitt. Stories kan vara en tom lista. Behåll Florensguidens egna filer separat.
 
-## Version och verifiering, 12 oktober 2026
+## Version och verifiering, 14 oktober 2026
 
 | Fil | Schemaversion | Innehåll/programversion |
 | --- | ---: | ---: |
-| places.json | 5 | 12 |
+| places.json | 5 | 14 |
 | routes.json | 1 | 6 |
-| guide.json | 5 | 15 |
+| guide.json | 5 | 17 |
 | stories.json | 1 | 4 |
 | history.json | 2 | 2 |
-| taxonomy.json | 1 | 2 |
-| index.html | – | 1.18.5 |
+| taxonomy.json | 1 | 3 |
+| index.html | – | 1.18.11 |
 | ui-theme.css | – | 1.18.4 |
 | place-sheet.css | – | 1.17.1 |
 | place-presentation.js | – | 1.16.1 |
@@ -269,4 +277,5 @@ Programversion 1.3.2 visar avgångsterminal efter flygbolaget när bokningen ang
 Hotellet visas även i Schema. Bokningskort visar platsens besöksinformation och adress. Webbplats och Fråga ChatGPT finns i listvyerna, med samma plats-id som kartan. Programknappar öppnar markören och aktiverar dess lager även om det dolts. Giannini anges som spontant obokat stopp i lördagens Oltrarno-program och rutt. Lisio kompletteras med Cecilia Cerchiarini; Cuculia och Nugolo med två personer; Nugolo med det bokade avbokningsvillkoret. Bokade platser listas inte som valbara besök andra dagar bara för att promenaden passerar dem.
 
 Kontroll: innehållsvalidatorn godkänner tre scheman, 69 platser, fem rutter, fem resdagar, fem bokningar, flyg och samtliga kart-/navigeringslänkar. JavaScript och renderat schema kontrollerat med hotellet, detaljerade bokningar, webbplats-/ChatGPT-knappar och flygordning. Visuellt Playwright-test kunde inte köras lokalt eftersom Chromium saknas. Tidigare geografiska osäkerheter i verifieringsrapporten kvarstår; denna ändring ändrar inga positioner eller Apple-id:n.
+
 

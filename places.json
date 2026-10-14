@@ -1,8 +1,8 @@
 {
   "$schema": "./places.schema.v5.json",
   "schemaVersion": 5,
-  "contentVersion": 13,
-  "updatedAt": "2026-10-14T09:32:24.260Z",
+  "contentVersion": 14,
+  "updatedAt": "2026-10-14T16:37:59Z",
   "places": [
     {
       "id": "hotel-la-scaletta",
@@ -6030,6 +6030,474 @@
         "exceptions": []
       },
       "specialties": null
+    },
+    {
+      "id": "campolmi-filati",
+      "name": "Campolmi Filati – Dettaglio",
+      "category": "craft",
+      "description": "Historisk garnspecialist bakom Duomo, med egen garnproduktion sedan 1954. Ull, alpacka, cashmere, bomull, lin och silke för eget textilt arbete. Garn säljs som nystan, härvor och på koner, även i mindre mängder. Det här är butiken i centrum; blanda inte ihop den med lagret på Via Pratese.",
+      "address": "Via Folco Portinari 19r, Firenze",
+      "position": {
+        "latitude": 43.7729469,
+        "longitude": 11.2593042
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": "https://www.campolmifilati.it/",
+      "verification": {
+        "status": "unresolved",
+        "checkedAt": "2026-10-14T16:37:59Z",
+        "sources": [
+          {
+            "url": "https://www.campolmifilati.it/chi-siamo.php",
+            "title": "Butikens webbplats",
+            "checkedAt": "2026-10-14T16:37:59Z",
+            "supports": [
+              "identity",
+              "address"
+            ]
+          },
+          {
+            "url": "https://www.lrcrafts.it/lns_reviews/campolmi-filati/",
+            "title": "Publicerad butikspunkt, jämförd med butikens adress",
+            "checkedAt": "2026-10-14T16:37:59Z",
+            "supports": [
+              "identity",
+              "address",
+              "position"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": true,
+          "position": true,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Identitet och adress kontrollerade; kartnålen bygger på källans publicerade butikspunkt. Exakt entré är inte separat verifierad. Apple Kartors företagskort och en beräknad gångväg har inte kunnat kontrolleras. Ingen Apple Place ID är gissad; appens uttryckliga koordinat- och namnfallback används tills ett platskort har verifierats."
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "label": "Måndag–fredag",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "13:00"
+              },
+              {
+                "opens": "14:30",
+                "closes": "18:30"
+              }
+            ]
+          }
+        ],
+        "note": "Stängt lördag och söndag. Tider från butikens egen webbplats.",
+        "sources": [
+          {
+            "label": "Publicerade öppettider",
+            "url": "https://www.campolmifilati.it/chi-siamo.php",
+            "checkedAt": "2026-10-14"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": null,
+      "focus": "Garn för stickning, virkning och vävning",
+      "subcategory": "yarn-haberdashery"
+    },
+    {
+      "id": "mirko-filati",
+      "name": "Mirko Filati – La Buca",
+      "category": "craft",
+      "description": "Familjedriven garnbutik sedan 1968 vid San Lorenzo. Ull, alpacka, cashmere, silke, bomull och broderitråd, tillsammans med stickor och tillbehör. Intressant för att jämföra färger och kvaliteter till egna projekt. Butiken kallas La Buca och ligger under gatunivå.",
+      "address": "Piazza di San Lorenzo 35/36r, Firenze",
+      "position": {
+        "latitude": 43.7746043,
+        "longitude": 11.2547204
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": "https://www.mirkofilati.it/",
+      "verification": {
+        "status": "unresolved",
+        "checkedAt": "2026-10-14T16:37:59Z",
+        "sources": [
+          {
+            "url": "https://www.mirkofilati.it/contatti/",
+            "title": "Butikens webbplats",
+            "checkedAt": "2026-10-14T16:37:59Z",
+            "supports": [
+              "identity",
+              "address"
+            ]
+          },
+          {
+            "url": "https://maps.app.goo.gl/tqzAdgVUV4NQFzAD6",
+            "title": "Publicerad butikspunkt, jämförd med butikens adress",
+            "checkedAt": "2026-10-14T16:37:59Z",
+            "supports": [
+              "identity",
+              "address",
+              "position"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": true,
+          "position": true,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Identitet och adress kontrollerade; kartnålen bygger på källans publicerade butikspunkt. Exakt entré är inte separat verifierad. Apple Kartors företagskort och en beräknad gångväg har inte kunnat kontrolleras. Ingen Apple Place ID är gissad; appens uttryckliga koordinat- och namnfallback används tills ett platskort har verifierats."
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              1
+            ],
+            "label": "Måndag",
+            "intervals": [
+              {
+                "opens": "14:00",
+                "closes": "18:00"
+              }
+            ]
+          },
+          {
+            "days": [
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "label": "Tisdag–lördag",
+            "intervals": [
+              {
+                "opens": "09:00",
+                "closes": "18:00"
+              }
+            ]
+          }
+        ],
+        "note": "Vinteröppettider från mitten av september till juni. Stängt söndag. Sommartider skiljer sig.",
+        "sources": [
+          {
+            "label": "Publicerade öppettider",
+            "url": "https://www.mirkofilati.it/contatti/",
+            "checkedAt": "2026-10-14"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": null,
+      "focus": "Garn, broderitråd och sticktillbehör",
+      "subcategory": "yarn-haberdashery"
+    },
+    {
+      "id": "samba-mercerie",
+      "name": "Samba Mercerie",
+      "category": "craft",
+      "description": "Traditionell liten sybehörsbutik nära Duomo, även registrerad som Haberdashery Samba Di Villani Carmela. Särskilt intressant för knappar i många färger och former, sybehör och dekorativa detaljer till eget textilhantverk. Material till sömnad är fokus för detta stopp.",
+      "address": "Via Santa Elisabetta 10r, Firenze",
+      "position": {
+        "latitude": 43.77196,
+        "longitude": 11.2561
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "unresolved",
+        "checkedAt": "2026-10-14T16:37:59Z",
+        "sources": [
+          {
+            "url": "https://www.tuttiaffari.com/haberdashery-samba-di-villani-carmela-055-215193",
+            "title": "Tuttiaffari – Samba Mercerie",
+            "checkedAt": "2026-10-14T16:37:59Z",
+            "supports": [
+              "identity",
+              "address"
+            ]
+          },
+          {
+            "url": "https://www.tuttiaffari.com/haberdashery-samba-di-villani-carmela-055-215193",
+            "title": "Publicerad butikspunkt, jämförd med butikens adress",
+            "checkedAt": "2026-10-14T16:37:59Z",
+            "supports": [
+              "identity",
+              "address",
+              "position"
+            ]
+          },
+          {
+            "url": "https://blog.cashmerette.com/2024/06/fabric-shopping-in-florence.html",
+            "title": "Cashmerette – besök hos Samba Mercerie",
+            "checkedAt": "2026-10-14T16:37:59Z",
+            "supports": [
+              "identity",
+              "address"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": true,
+          "position": true,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Identitet och adress kontrollerade; kartnålen bygger på källans publicerade butikspunkt. Exakt entré är inte separat verifierad. Apple Kartors företagskort och en beräknad gångväg har inte kunnat kontrolleras. Ingen Apple Place ID är gissad; appens uttryckliga koordinat- och namnfallback används tills ett platskort har verifierats."
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "label": "Måndag–fredag",
+            "intervals": [
+              {
+                "opens": "09:30",
+                "closes": "18:30"
+              }
+            ]
+          }
+        ],
+        "note": "Publicerade katalogtider; inte bekräftade direkt av butiken. Stängt lördag och söndag enligt källan. Kontrollera före besök. Butikens länkade webbplats gick inte att läsa vid kontrollen.",
+        "sources": [
+          {
+            "label": "Publicerade öppettider",
+            "url": "https://www.tuttiaffari.com/haberdashery-samba-di-villani-carmela-055-215193",
+            "checkedAt": "2026-10-14"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": null,
+      "focus": "Knappar, sybehör och dekorativa textildetaljer",
+      "subcategory": "yarn-haberdashery"
+    },
+    {
+      "id": "ricamo-cucito",
+      "name": "Ricamo & Cucito",
+      "category": "craft",
+      "description": "Specialbutik för broderi och sömnad. Sortimentet omfattar broderitråd från bland annat DMC, Anchor och Madeira, aidaväv, linne och annan broderiväv samt mönster och broderisatser. Ett bra stopp för material till egna broderier; fråga efter tråd och väv även om skyltfönstret visar färdiga arbeten.",
+      "address": "Via Guelfa 44r, Firenze",
+      "position": {
+        "latitude": 43.777296,
+        "longitude": 11.2557749
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": "https://www.shop.ricamoecucito.it/",
+      "verification": {
+        "status": "unresolved",
+        "checkedAt": "2026-10-14T16:37:59Z",
+        "sources": [
+          {
+            "url": "https://www.shop.ricamoecucito.it/index.php?controller=stores",
+            "title": "Butikens webbplats",
+            "checkedAt": "2026-10-14T16:37:59Z",
+            "supports": [
+              "identity",
+              "address"
+            ]
+          },
+          {
+            "url": "https://www.lrcrafts.it/lns_reviews/ricamo-cucito/",
+            "title": "Publicerad butikspunkt, jämförd med butikens adress",
+            "checkedAt": "2026-10-14T16:37:59Z",
+            "supports": [
+              "identity",
+              "address",
+              "position"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": true,
+          "position": true,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Identitet och adress kontrollerade; kartnålen bygger på källans publicerade butikspunkt. Exakt entré är inte separat verifierad. Apple Kartors företagskort och en beräknad gångväg har inte kunnat kontrolleras. Ingen Apple Place ID är gissad; appens uttryckliga koordinat- och namnfallback används tills ett platskort har verifierats."
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              1
+            ],
+            "label": "Måndag",
+            "intervals": [
+              {
+                "opens": "15:00",
+                "closes": "19:00"
+              }
+            ]
+          },
+          {
+            "days": [
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "label": "Tisdag–lördag",
+            "intervals": [
+              {
+                "opens": "10:00",
+                "closes": "13:00"
+              },
+              {
+                "opens": "15:00",
+                "closes": "19:00"
+              }
+            ]
+          }
+        ],
+        "note": "Stängt söndag. Tider från butikens egen sida för den fysiska butiken.",
+        "sources": [
+          {
+            "label": "Publicerade öppettider",
+            "url": "https://www.shop.ricamoecucito.it/index.php?controller=stores",
+            "checkedAt": "2026-10-14"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": null,
+      "focus": "Broderitråd, aidaväv, linne och broderimaterial",
+      "subcategory": "yarn-haberdashery"
+    },
+    {
+      "id": "merceria-delcor",
+      "name": "Merceria Firenze Delcor",
+      "category": "craft",
+      "description": "Centralt belägen sybehörsbutik, även kallad Del Cor 1963. Säljer bland annat bomulls- och silkestråd, nålar, knappnålar, knappar, blixtlås, saxar, fingerborgar och måttband. Välj merceria-avdelningen för material och verktyg till eget arbete.",
+      "address": "Via della Spada 14r, Firenze",
+      "position": {
+        "latitude": 43.77166,
+        "longitude": 11.25104
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": "https://www.merceriadelcor1963.com/",
+      "verification": {
+        "status": "unresolved",
+        "checkedAt": "2026-10-14T16:37:59Z",
+        "sources": [
+          {
+            "url": "https://www.merceriadelcor1963.com/contact-me",
+            "title": "Butikens webbplats",
+            "checkedAt": "2026-10-14T16:37:59Z",
+            "supports": [
+              "identity",
+              "address"
+            ]
+          },
+          {
+            "url": "https://www.reteimprese.it/bottoni/firenze/azienda/1805511",
+            "title": "Publicerad butikspunkt, jämförd med butikens adress",
+            "checkedAt": "2026-10-14T16:37:59Z",
+            "supports": [
+              "identity",
+              "address",
+              "position"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": true,
+          "position": true,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Identitet och adress kontrollerade; kartnålen bygger på källans publicerade butikspunkt. Exakt entré är inte separat verifierad. Apple Kartors företagskort och en beräknad gångväg har inte kunnat kontrolleras. Ingen Apple Place ID är gissad; appens uttryckliga koordinat- och namnfallback används tills ett platskort har verifierats."
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              1
+            ],
+            "label": "Måndag",
+            "intervals": [
+              {
+                "opens": "15:30",
+                "closes": "19:30"
+              }
+            ]
+          },
+          {
+            "days": [
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "label": "Tisdag–lördag",
+            "intervals": [
+              {
+                "opens": "10:00",
+                "closes": "19:30"
+              }
+            ]
+          }
+        ],
+        "note": "Publicerade katalogtider; butikens egen webbplats bekräftar adress och sortiment men anger inga tider. Stängt söndag enligt katalogen. Kontrollera före besök.",
+        "sources": [
+          {
+            "label": "Publicerade öppettider",
+            "url": "https://www.tuttiaffari.com/merceria-firenze-delcor-055-212202",
+            "checkedAt": "2026-10-14"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": null,
+      "focus": "Sytråd, nålar, knappar och sömnadsverktyg",
+      "subcategory": "yarn-haberdashery"
     }
   ]
 }

@@ -1,8 +1,8 @@
 {
   "$schema": "./taxonomy.schema.v1.json",
   "schemaVersion": 1,
-  "contentVersion": 2,
-  "updatedAt": "2026-10-11T09:56:43Z",
+  "contentVersion": 3,
+  "updatedAt": "2026-10-14T16:37:59Z",
   "categories": [
     {
       "id": "booked",
@@ -191,6 +191,12 @@
       "categoryId": "see-do",
       "label": "Broar",
       "iconId": "bridge"
+    },
+    {
+      "id": "yarn-haberdashery",
+      "categoryId": "craft",
+      "label": "Garn & sybehör",
+      "iconId": "yarn"
     }
   ],
   "icons": {
@@ -256,6 +262,11 @@
     ],
     "calendar": [
       "M4 5h16v16H4ZM8 3v4M16 3v4M4 10h16M8 15l3 3 5-5"
+    ],
+    "yarn": [
+      "M3 10a7 7 0 1 0 14 0 7 7 0 1 0-14 0",
+      "M4 6c5 0 9 3 12 8M3 10c4 0 8 3 11 6M7 3c0 5 3 10 8 13M11 3c0 5 2 8 6 10",
+      "M13 17c0 3 2 4 4 3s2-2 4-1"
     ]
   }
 }

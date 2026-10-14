@@ -1,8 +1,8 @@
 {
   "$schema": "./guide.schema.v5.json",
   "schemaVersion": 5,
-  "contentVersion": 16,
-  "updatedAt": "2026-10-14T09:32:24.260Z",
+  "contentVersion": 17,
+  "updatedAt": "2026-10-14T16:37:59Z",
   "id": "florens-2026",
   "title": "Florens 2026",
   "destination": {
@@ -1770,6 +1770,106 @@
             -34
           ]
         }
+      },
+      "campolmi-filati": {
+        "style": "min-width:210px;font-family:sans-serif",
+        "tooltip": true,
+        "markerGeometry": {
+          "iconSize": [
+            35,
+            45
+          ],
+          "iconAnchor": [
+            17,
+            42
+          ],
+          "popupAnchor": [
+            1,
+            -34
+          ]
+        },
+        "directionsUsesAddress": false,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "mirko-filati": {
+        "style": "min-width:210px;font-family:sans-serif",
+        "tooltip": true,
+        "markerGeometry": {
+          "iconSize": [
+            35,
+            45
+          ],
+          "iconAnchor": [
+            17,
+            42
+          ],
+          "popupAnchor": [
+            1,
+            -34
+          ]
+        },
+        "directionsUsesAddress": false,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "samba-mercerie": {
+        "style": "min-width:210px;font-family:sans-serif",
+        "tooltip": true,
+        "markerGeometry": {
+          "iconSize": [
+            35,
+            45
+          ],
+          "iconAnchor": [
+            17,
+            42
+          ],
+          "popupAnchor": [
+            1,
+            -34
+          ]
+        },
+        "directionsUsesAddress": false,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "ricamo-cucito": {
+        "style": "min-width:210px;font-family:sans-serif",
+        "tooltip": true,
+        "markerGeometry": {
+          "iconSize": [
+            35,
+            45
+          ],
+          "iconAnchor": [
+            17,
+            42
+          ],
+          "popupAnchor": [
+            1,
+            -34
+          ]
+        },
+        "directionsUsesAddress": false,
+        "mapLabel": "Öppna i Apple Kartor ↗"
+      },
+      "merceria-delcor": {
+        "style": "min-width:210px;font-family:sans-serif",
+        "tooltip": true,
+        "markerGeometry": {
+          "iconSize": [
+            35,
+            45
+          ],
+          "iconAnchor": [
+            17,
+            42
+          ],
+          "popupAnchor": [
+            1,
+            -34
+          ]
+        },
+        "directionsUsesAddress": false,
+        "mapLabel": "Öppna i Apple Kartor ↗"
       }
     }
   },
@@ -1910,7 +2010,11 @@
         "mercato-centrale",
         "casa-dei-tessuti",
         "ermini-agostino",
-        "passamaneria-toscana"
+        "passamaneria-toscana",
+        "campolmi-filati",
+        "mirko-filati",
+        "samba-mercerie",
+        "ricamo-cucito"
       ]
     },
     {
@@ -1925,7 +2029,8 @@
         "alberto-cozzi-legatoria",
         "riccardo-luci-carta-marmorizzata",
         "valli-tessuti",
-        "mio-concept-store"
+        "mio-concept-store",
+        "merceria-delcor"
       ]
     },
     {
