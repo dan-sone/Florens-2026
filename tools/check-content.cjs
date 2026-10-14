@@ -119,3 +119,7 @@ const previousGuide=structuredClone(documents);previousGuide.guide.categories.fo
 const previousPlaces=structuredClone(documents);previousPlaces.places.schemaVersion=2;previousPlaces.places.$schema='./places.schema.v2.json';previousPlaces.places.places.forEach(p=>{delete p.focus;delete p.subcategory;});PlacesValidator.validateTrip({...schemas,places:JSON.parse(fs.readFileSync('places.schema.v2.json'))},previousPlaces);console.log('PASS: places schema v2 compatibility');
 
 const v3Places=structuredClone(documents);v3Places.places.schemaVersion=3;v3Places.places.$schema='./places.schema.v3.json';v3Places.places.places.forEach(p=>delete p.subcategory);PlacesValidator.validateTrip({...schemas,places:JSON.parse(fs.readFileSync('places.schema.v3.json'))},v3Places);console.log('PASS: places schema v3 compatibility');
+
+
+// Florence-specific regression for issue #1, using production filter and marker code.
+require('./check-textile-shops.cjs');

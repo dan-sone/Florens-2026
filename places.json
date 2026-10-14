@@ -1,8 +1,8 @@
 {
   "$schema": "./places.schema.v5.json",
   "schemaVersion": 5,
-  "contentVersion": 14,
-  "updatedAt": "2026-10-14T16:37:59Z",
+  "contentVersion": 15,
+  "updatedAt": "2026-10-14T16:59:21Z",
   "places": [
     {
       "id": "hotel-la-scaletta",
@@ -6034,7 +6034,7 @@
     {
       "id": "campolmi-filati",
       "name": "Campolmi Filati – Dettaglio",
-      "category": "craft",
+      "category": "shopping",
       "description": "Historisk garnspecialist bakom Duomo, med egen garnproduktion sedan 1954. Ull, alpacka, cashmere, bomull, lin och silke för eget textilt arbete. Garn säljs som nystan, härvor och på koner, även i mindre mängder. Det här är butiken i centrum; blanda inte ihop den med lagret på Via Pratese.",
       "address": "Via Folco Portinari 19r, Firenze",
       "position": {
@@ -6121,7 +6121,7 @@
     {
       "id": "mirko-filati",
       "name": "Mirko Filati – La Buca",
-      "category": "craft",
+      "category": "shopping",
       "description": "Familjedriven garnbutik sedan 1968 vid San Lorenzo. Ull, alpacka, cashmere, silke, bomull och broderitråd, tillsammans med stickor och tillbehör. Intressant för att jämföra färger och kvaliteter till egna projekt. Butiken kallas La Buca och ligger under gatunivå.",
       "address": "Piazza di San Lorenzo 35/36r, Firenze",
       "position": {
@@ -6216,7 +6216,7 @@
     {
       "id": "samba-mercerie",
       "name": "Samba Mercerie",
-      "category": "craft",
+      "category": "shopping",
       "description": "Traditionell liten sybehörsbutik nära Duomo, även registrerad som Haberdashery Samba Di Villani Carmela. Särskilt intressant för knappar i många färger och former, sybehör och dekorativa detaljer till eget textilhantverk. Material till sömnad är fokus för detta stopp.",
       "address": "Via Santa Elisabetta 10r, Firenze",
       "position": {
@@ -6308,7 +6308,7 @@
     {
       "id": "ricamo-cucito",
       "name": "Ricamo & Cucito",
-      "category": "craft",
+      "category": "shopping",
       "description": "Specialbutik för broderi och sömnad. Sortimentet omfattar broderitråd från bland annat DMC, Anchor och Madeira, aidaväv, linne och annan broderiväv samt mönster och broderisatser. Ett bra stopp för material till egna broderier; fråga efter tråd och väv även om skyltfönstret visar färdiga arbeten.",
       "address": "Via Guelfa 44r, Firenze",
       "position": {
@@ -6407,7 +6407,7 @@
     {
       "id": "merceria-delcor",
       "name": "Merceria Firenze Delcor",
-      "category": "craft",
+      "category": "shopping",
       "description": "Centralt belägen sybehörsbutik, även kallad Del Cor 1963. Säljer bland annat bomulls- och silkestråd, nålar, knappnålar, knappar, blixtlås, saxar, fingerborgar och måttband. Välj merceria-avdelningen för material och verktyg till eget arbete.",
       "address": "Via della Spada 14r, Firenze",
       "position": {
