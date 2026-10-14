@@ -1,3 +1,11 @@
+## Shopping: garn och sybehör – issue #1
+
+Campolmi Filati, Mirko Filati, Samba Mercerie, Ricamo & Cucito och Merceria Firenze Delcor tillhör nu Shopping → Garn & sybehör. Underkategorin använder det gemensamma garnnystanet och ärver Shopping-kategorins färger i dag/natt. Butikerna visas i Shopping-filtret och kartlagret Shopping. Befintliga materialbeskrivningar, adresser, koordinater, källor, öppettider och markeringar av ej verifierade Apple-platskort är bevarade. Inga dubletter skapas.
+
+Endast innehållsversionerna höjs: places.json 15 (schema 5) och taxonomy.json 4 (schema 1). guide.json ligger kvar på innehåll 17; geografiska områden, dagsrutter och bokningar är oförändrade. Index, UI 1.18.11, mobil-/iPad-layout och scheman är oförändrade.
+
+npm run check omfattar även tools/check-textile-shops.cjs. Testet kör produktionskodens listfilter och renderare i Kategori, Område och Läsvy, kontrollerar att alla fem finns i Shopping och försvinner när Shopping avmarkeras, samt att de inte visas under Hantverk. Produktionskodens markörloop kontrolleras med lokala lagerobjekt: alla fem tillhör Shopping och använder samma garnnystan, färger och nålankare. Det här testet kräver varken nätåtkomst eller webbläsare; fysisk Safari har inte testats på nytt.
+
 ## Garn och sybehör – innehåll 14 oktober 2026
 
 Fem materialbutiker är tillagda under Hantverk → Garn & sybehör: Campolmi Filati – Dettaglio, Mirko Filati – La Buca, Samba Mercerie, Ricamo & Cucito och Merceria Firenze Delcor. Ett gemensamt SVG-garnnystan ligger i taxonomy.json och används av kartnålar, listor och platskort med Hantverks befintliga färger. De fyra första tillhör Duomo & San Lorenzo; Delcor tillhör Santa Maria Novella & Santa Trinita.
@@ -231,12 +239,12 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 
 | Fil | Schemaversion | Innehåll/programversion |
 | --- | ---: | ---: |
-| places.json | 5 | 14 |
+| places.json | 5 | 15 |
 | routes.json | 1 | 6 |
 | guide.json | 5 | 17 |
 | stories.json | 1 | 4 |
 | history.json | 2 | 2 |
-| taxonomy.json | 1 | 3 |
+| taxonomy.json | 1 | 4 |
 | index.html | – | 1.18.11 |
 | ui-theme.css | – | 1.18.4 |
 | place-sheet.css | – | 1.17.1 |
@@ -277,5 +285,6 @@ Programversion 1.3.2 visar avgångsterminal efter flygbolaget när bokningen ang
 Hotellet visas även i Schema. Bokningskort visar platsens besöksinformation och adress. Webbplats och Fråga ChatGPT finns i listvyerna, med samma plats-id som kartan. Programknappar öppnar markören och aktiverar dess lager även om det dolts. Giannini anges som spontant obokat stopp i lördagens Oltrarno-program och rutt. Lisio kompletteras med Cecilia Cerchiarini; Cuculia och Nugolo med två personer; Nugolo med det bokade avbokningsvillkoret. Bokade platser listas inte som valbara besök andra dagar bara för att promenaden passerar dem.
 
 Kontroll: innehållsvalidatorn godkänner tre scheman, 69 platser, fem rutter, fem resdagar, fem bokningar, flyg och samtliga kart-/navigeringslänkar. JavaScript och renderat schema kontrollerat med hotellet, detaljerade bokningar, webbplats-/ChatGPT-knappar och flygordning. Visuellt Playwright-test kunde inte köras lokalt eftersom Chromium saknas. Tidigare geografiska osäkerheter i verifieringsrapporten kvarstår; denna ändring ändrar inga positioner eller Apple-id:n.
+
 
 
