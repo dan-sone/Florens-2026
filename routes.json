@@ -1,8 +1,8 @@
 {
   "$schema": "./routes.schema.v1.json",
   "schemaVersion": 1,
-  "contentVersion": 6,
-  "updatedAt": "2026-10-11T06:35:56.231486Z",
+  "contentVersion": 7,
+  "updatedAt": "2026-10-14T09:32:24.260Z",
   "routes": [
     {
       "id": "tue",
@@ -51,14 +51,14 @@
           "mode": "walk",
           "placeIds": [
             "hotel-la-scaletta",
-            "cuculia"
+            "io-osteria-personale"
           ]
         },
         {
           "id": "wed-4",
           "mode": "walk",
           "placeIds": [
-            "cuculia",
+            "io-osteria-personale",
             "hotel-la-scaletta"
           ]
         }

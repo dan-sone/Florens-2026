@@ -1,8 +1,8 @@
 {
   "$schema": "./places.schema.v5.json",
   "schemaVersion": 5,
-  "contentVersion": 12,
-  "updatedAt": "2026-10-12T12:39:32.309011Z",
+  "contentVersion": 13,
+  "updatedAt": "2026-10-14T09:32:24.260Z",
   "places": [
     {
       "id": "hotel-la-scaletta",
@@ -191,7 +191,7 @@
       "id": "cuculia",
       "name": "Cuculia",
       "category": "food-drink",
-      "description": "Ons 14/10 · 19.45 · födelsedagsmiddag för 2 personer.",
+      "description": "Kreativ säsongsmat i Oltrarno. Inte längre bokad för födelsedagsmiddagen den 14 oktober; middagen är flyttad till IO Osteria Personale.",
       "address": "Via dei Serragli 3R, Firenze",
       "position": {
         "latitude": 43.7682311,
@@ -281,7 +281,7 @@
             ]
           }
         ],
-        "note": "Tiderna gäller köket. Måndag stängt; er onsdagsbokning ligger kvar.",
+        "note": "Tiderna gäller köket. Måndag stängt.",
         "sources": [
           {
             "label": "Öppna uppgifterna hos källan",
@@ -301,7 +301,7 @@
           }
         ]
       },
-      "focus": "Kreativ mat och födelsedagsmiddag",
+      "focus": "Kreativ säsongsmat i Oltrarno",
       "subcategory": "restaurants"
     },
     {
@@ -5944,6 +5944,90 @@
             }
           }
         ]
+      },
+      "specialties": null
+    },
+    {
+      "id": "io-osteria-personale",
+      "name": "IO Osteria Personale",
+      "category": "food-drink",
+      "subcategory": "restaurants",
+      "focus": "Kreativ mat och födelsedagsmiddag",
+      "description": "Ons 14/10 · 20.00 · födelsedagsmiddag för 2 personer. Ersätter Cuculia.\nRestaurangen ber om återbekräftelse via knappen i bokningsmejlet.",
+      "address": "Borgo San Frediano 167R, 50124 Firenze",
+      "position": {
+        "latitude": 43.77038,
+        "longitude": 11.24062
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": "https://www.io-osteriapersonale.it/",
+      "verification": {
+        "status": "pending",
+        "checkedAt": "2026-10-14T09:32:24.260Z",
+        "sources": [
+          {
+            "url": "https://www.io-osteriapersonale.it/",
+            "title": "IO Osteria Personale · officiell adress",
+            "checkedAt": "2026-10-14T09:32:24.260Z",
+            "supports": [
+              "identity",
+              "address"
+            ]
+          },
+          {
+            "url": "https://guide.michelin.com/us/en/toscana/firenze/restaurant/io-osteria-personale",
+            "title": "MICHELIN Guide · restaurangens kartposition",
+            "checkedAt": "2026-10-14T09:32:24.260Z",
+            "supports": [
+              "identity",
+              "address",
+              "position"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": true,
+          "position": true,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Adress stämmer med användarens bokningsmejl. Koordinat från MICHELIN Guides kartlänk. Exakt entré och Apple-platskort är inte separat verifierade; navigering använder restaurangnamn och adress."
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "label": "Middag · mån–lör",
+            "intervals": [
+              {
+                "opens": "19:30",
+                "closes": "22:00"
+              }
+            ]
+          }
+        ],
+        "note": "Söndag stängt. Er bokning onsdag 14 oktober är kl. 20.00.",
+        "sources": [
+          {
+            "label": "MICHELIN Guide · öppettider",
+            "url": "https://guide.michelin.com/us/en/toscana/firenze/restaurant/io-osteria-personale",
+            "checkedAt": "2026-10-14"
+          }
+        ],
+        "exceptions": []
       },
       "specialties": null
     }
