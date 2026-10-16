@@ -1,8 +1,8 @@
 {
   "$schema": "./places.schema.v5.json",
   "schemaVersion": 5,
-  "contentVersion": 17,
-  "updatedAt": "2026-10-16T07:21:13Z",
+  "contentVersion": 18,
+  "updatedAt": "2026-10-16T07:35:21.611Z",
   "places": [
     {
       "id": "hotel-la-scaletta",
@@ -19,7 +19,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=IEB80EB2465963C1A"
       },
       "entrance": null,
-      "website": "https://www.hotellascaletta.it/",
+      "website": "https://www.hotellascaletta.it/?act=home&l=en",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -88,7 +88,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I16F9E2AD1A5C907A"
       },
       "entrance": null,
-      "website": "https://duomo.firenze.it/it/scopri/chiesa-di-santa-reparata",
+      "website": "https://duomo.firenze.it/en/discover/crypt-of-santa-reparata",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -202,7 +202,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=IBF647608F7345D55"
       },
       "entrance": null,
-      "website": "https://www.cuculia.it/contatti/",
+      "website": "https://www.cuculia.it/en/contact-us/",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -319,7 +319,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I8F50D9FB5E198FB8"
       },
       "entrance": null,
-      "website": "https://www.fondazionelisio.org/it/contattaci",
+      "website": "https://www.fondazionelisio.org/en/contact-us",
       "verification": {
         "status": "unresolved",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -388,7 +388,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I619339FB1AE74F28"
       },
       "entrance": null,
-      "website": "https://www.uffizi.it/gli-uffizi",
+      "website": "https://www.uffizi.it/en/the-uffizi",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -500,7 +500,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I5D428C07D60AF373"
       },
       "entrance": null,
-      "website": "https://ilnugolo.com/contatti/",
+      "website": "https://ilnugolo.com/en/contact/",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -911,7 +911,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I64A1A759DB0DD4D6"
       },
       "entrance": null,
-      "website": "https://www.basilicasantospirito.it/visitare-la-basilica-di-santo-spirito/",
+      "website": "https://www.basilicasantospirito.it/en/visitors-itenerary/",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -1165,7 +1165,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I501E352752A61A82"
       },
       "entrance": null,
-      "website": "https://www.uffizi.it/video/la-loggia-de-lanzi",
+      "website": "https://www.uffizi.it/en/video/the-loggia-dei-lanzi",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -1233,7 +1233,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I783C563516143B7D"
       },
       "entrance": null,
-      "website": "https://bargellomusei.it/musei/orsanmichele/",
+      "website": "https://bargellomusei.it/en/museum/orsanmichele/",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -1499,7 +1499,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=IBF8F16153E9F31D9"
       },
       "entrance": null,
-      "website": "https://www.santacroceopera.it/",
+      "website": "https://www.santacroceopera.it/en/",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -1567,7 +1567,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I5DA11D17F5DDBD44"
       },
       "entrance": null,
-      "website": "https://mercatosantambrogio.it/",
+      "website": "https://mercatosantambrogio.it/?lang=en",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -1659,7 +1659,7 @@
         "placeUrl": null
       },
       "entrance": null,
-      "website": "https://www.giuliogiannini.com/it/content/contatti.html",
+      "website": "https://www.giuliogiannini.com/en/content/contatti.html",
       "verification": {
         "status": "unresolved",
         "checkedAt": "2026-10-10T10:29:52.947985Z",
@@ -1741,7 +1741,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I8990F937D705A52C"
       },
       "entrance": null,
-      "website": "https://scuoladelcuoio.it/it/",
+      "website": "https://scuoladelcuoio.it/en/",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -1853,7 +1853,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=IBB109722B232AA6E"
       },
       "entrance": null,
-      "website": "https://opificiodellepietredure.cultura.gov.it/",
+      "website": "https://opificiodellepietredure.cultura.gov.it/en/",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -1963,7 +1963,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=IEB3952EB90D3B7AD"
       },
       "entrance": null,
-      "website": "https://storelocator-eu.smnovella.com/it/italia/toscana/citta-metropolitana-di-firenze/firenze/officina-profumo-farmaceutica-di-santa-maria-novella-florence-7",
+      "website": "https://storelocator-eu.smnovella.com/en/italy/toscana/citta-metropolitana-di-firenze/firenze/officina-profumo-farmaceutica-di-santa-maria-novella-florence-7",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -2057,7 +2057,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=IEB22FB2BA67CBEDA"
       },
       "entrance": null,
-      "website": "https://www.feelflorence.it/it/punti-di-interesse/torre-san-niccolo",
+      "website": "https://www.feelflorence.it/en/points-interest/torre-san-niccolo",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -2311,7 +2311,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I8F4E230C7AD73242"
       },
       "entrance": null,
-      "website": "https://www.levolpieluva.com/home-italiano",
+      "website": "https://www.levolpieluva.com/home-english",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -2481,7 +2481,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I3B3BB09378DE88A2"
       },
       "entrance": null,
-      "website": "https://www.pittigolaecantina.com/it/",
+      "website": "https://www.pittigolaecantina.com/",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -2742,7 +2742,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I3EA1AAE0FCAA2F62"
       },
       "entrance": null,
-      "website": "https://www.palazzoguadagni.com/it/loggia-roof-bar-terrazza-firenze/",
+      "website": "https://www.palazzoguadagni.com/en/loggia-roof-bar-terrace-florence/",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -2913,7 +2913,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I99202BA0273E73AC"
       },
       "entrance": null,
-      "website": "https://www.mercatocentrale.it/firenze/",
+      "website": "https://www.mercatocentrale.com/florence/",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -3064,7 +3064,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=IB4722DA40EF10653"
       },
       "entrance": null,
-      "website": "https://www.castorina1895.com/contatti/",
+      "website": "https://www.castorina1895.com/en/contact/",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -3638,7 +3638,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I521AB0BA9811B712"
       },
       "entrance": null,
-      "website": "https://vivoli.it/",
+      "website": "https://vivoli.it/en/",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -3715,7 +3715,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=IB1F0CB1D9D81E335"
       },
       "entrance": null,
-      "website": "https://www.italia.it/it/toscana/firenze/dove-mangiare/cantina-del-gelato",
+      "website": "https://www.italia.it/en/toscana/firenze/where-to-eat/cantina-del-gelato",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -3792,7 +3792,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=IA4423F3D4CB4F4C1"
       },
       "entrance": null,
-      "website": "https://serretorrigiani.it/serre-torrigiani-in-piazzetta/",
+      "website": "https://serretorrigiani.it/en/serre-torrigiani-in-piazzetta/",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -4062,7 +4062,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=IE09241B81B7B5B19"
       },
       "entrance": null,
-      "website": "https://www.beppafioraia.it/",
+      "website": "https://www.beppafioraia.it/en/",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -4311,7 +4311,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=IDF0CD4D347521232"
       },
       "entrance": null,
-      "website": "https://www.feelflorence.it/it/punti-di-interesse/basilica-di-san-lorenzo",
+      "website": "https://www.feelflorence.it/en/points-interest/basilica-di-san-lorenzo",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -4405,7 +4405,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I9E82C0EF471352A0"
       },
       "entrance": null,
-      "website": "https://www.feelflorence.it/it/punti-di-interesse/museo-delle-cappelle-medicee",
+      "website": "https://www.feelflorence.it/en/points-interest/museum-medici-chapels",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -4593,7 +4593,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I9D1D42F28C179399"
       },
       "entrance": null,
-      "website": "https://www.feelflorence.it/it/punti-di-interesse/museo-del-bargello",
+      "website": "https://www.feelflorence.it/en/points-interest/bargello-national-museum",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -5241,7 +5241,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I3FA7C2F58E13ECB6"
       },
       "entrance": null,
-      "website": "https://scarpellimosaici.it/",
+      "website": "https://scarpellimosaici.it/index_eng.html",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -5318,7 +5318,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I35B88C14C56E6F6F"
       },
       "entrance": null,
-      "website": "https://www.casadeitessuti.com/fabrics/",
+      "website": "https://en.casadeitessuti.com/fabrics/",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -5508,7 +5508,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I549A497A0F25D038"
       },
       "entrance": null,
-      "website": "https://www.vallitessuti.com/negozio-firenze/",
+      "website": "https://www.vallitessuti.com/firenze-store/?lang=en",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -5591,7 +5591,7 @@
         "placeUrl": "https://maps.apple.com/place?place-id=I3AC3CCB4319ADD2E"
       },
       "entrance": null,
-      "website": "https://www.letelerietoscane.com/italiano/le_telerie_toscane_biancheria_tovaglie_lenzuola_su_misura_firenze.php",
+      "website": "https://www.letelerietoscane.com/english/le_telerie_toscane_home_linens_made_to_measure_firenze.php",
       "verification": {
         "status": "verified",
         "checkedAt": "2026-10-12T12:39:32.309011Z",
@@ -6419,7 +6419,7 @@
         "placeUrl": null
       },
       "entrance": null,
-      "website": "https://www.merceriadelcor1963.com/",
+      "website": "https://www.merceriadelcor1963.com/en",
       "verification": {
         "status": "unresolved",
         "checkedAt": "2026-10-14T16:37:59Z",
@@ -6516,7 +6516,7 @@
         "placeUrl": null
       },
       "entrance": null,
-      "website": "https://ilpapirofirenze.it/",
+      "website": "https://ilpapirofirenze.it/en",
       "verification": {
         "status": "unresolved",
         "checkedAt": "2026-10-16T07:21:13Z",
