@@ -1,8 +1,8 @@
 {
   "$schema": "./places.schema.v5.json",
   "schemaVersion": 5,
-  "contentVersion": 16,
-  "updatedAt": "2026-10-16T07:13:23Z",
+  "contentVersion": 17,
+  "updatedAt": "2026-10-16T07:21:13Z",
   "places": [
     {
       "id": "hotel-la-scaletta",
@@ -6498,6 +6498,117 @@
       "specialties": null,
       "focus": "Sytråd, nålar, knappar och sömnadsverktyg",
       "subcategory": "yarn-haberdashery"
+    },
+    {
+      "id": "il-papiro-guicciardini",
+      "name": "Il Papiro – Guicciardini",
+      "category": "shopping",
+      "subcategory": "stationery",
+      "focus": "Marmorerat papper och vackra anteckningsböcker",
+      "description": "Pappersbutiken alldeles intill Hotel La Scaletta på Via Guicciardini. Ett enkelt stopp för att bläddra bland marmorerade papper, anteckningsböcker, brevpapper och små presenter.\nIl Papiro grundades i Florens 1976 och arbetar med handdekorerat papper enligt äldre hantverkstekniker. Titta efter de lösa marmorerade arken om ni vill ta med material till egna projekt.",
+      "address": "Via Guicciardini 47r, 50125 Firenze",
+      "position": {
+        "latitude": 43.766813,
+        "longitude": 11.251513
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": "https://ilpapirofirenze.it/",
+      "verification": {
+        "status": "unresolved",
+        "checkedAt": "2026-10-16T07:21:13Z",
+        "sources": [
+          {
+            "url": "https://ilpapirofirenze.it/pages/contatti",
+            "title": "Il Papiro – officiella butiksadresser",
+            "checkedAt": "2026-10-16T07:21:13Z",
+            "supports": [
+              "identity",
+              "address"
+            ]
+          },
+          {
+            "url": "https://www.hotellascaletta.it/?act=dove",
+            "title": "Hotel La Scaletta – Il Papiro intill hotellets entré",
+            "checkedAt": "2026-10-16T07:21:13Z",
+            "supports": [
+              "identity",
+              "address"
+            ]
+          },
+          {
+            "url": "https://www.cylex-italia.it/firenze/il-papiro-14757523.html",
+            "title": "Cylex – butiken och dess publicerade kartpunkt",
+            "checkedAt": "2026-10-16T07:21:13Z",
+            "supports": [
+              "identity",
+              "address",
+              "position"
+            ]
+          },
+          {
+            "url": "https://www.google.com/maps/dir/?api=1&destination=43.766813%2C11.251513",
+            "title": "Firmania – kartlänk för Il Papiro på Guicciardini 47r",
+            "checkedAt": "2026-10-16T07:21:13Z",
+            "supports": [
+              "position"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": true,
+          "position": true,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Rätt filial bekräftad av butikens egen adresslista och hotellets vägbeskrivning. Koordinaten kommer från Cylex/Firmanias kartlänk och ligger intill hotellet; Unilocals kartpunkt (43.7668115, 11.2514794) ligger cirka 3 meter därifrån. Exakt entré, Apple Kartors företagskort och beräknad gångnavigering är inte verifierade. Befintlig namngiven koordinatlänk används."
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "label": "Alla dagar",
+            "intervals": [
+              {
+                "opens": "10:00",
+                "closes": "19:30"
+              }
+            ]
+          }
+        ],
+        "note": "Cylex anger alla dagar 10–19.30. Tiderna är inte bekräftade direkt av butiken; kontrollera vid besöket.",
+        "sources": [
+          {
+            "url": "https://www.cylex-italia.it/firenze/il-papiro-14757523.html",
+            "label": "Cylex – öppettider för Guicciardini 47r",
+            "checkedAt": "2026-10-16"
+          }
+        ],
+        "exceptions": []
+      },
+      "specialties": {
+        "text": "Handdekorerat och marmorerat papper, lösa pappersark, anteckningsböcker, album och brevpapper.",
+        "sources": [
+          {
+            "url": "https://ilpapirofirenze.it/pages/chi-siamo",
+            "label": "Il Papiro – hantverk och sortiment",
+            "checkedAt": "2026-10-16"
+          }
+        ]
+      }
     }
   ]
 }

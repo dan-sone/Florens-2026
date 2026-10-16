@@ -1,3 +1,9 @@
+## Il Papiro vid hotellet – 16 oktober 2026
+
+Il Papiro på Via Guicciardini 47r är tillagd under Shopping → Papper & skrivmaterial, med den gemensamma bokikonen och Shoppings gula dag-/nattfärger. Butiken finns även i området Kring hotellet och på kartan. Officiell adress och hotellets vägbeskrivning bekräftar filialen; två katalogkartor stödjer positionen. Apple-platskort, exakt entré och beräknad navigering är ännu inte verifierade. Katalogens öppettider är uttryckligen märkta som obekräftade.
+
+Innehållsversioner: places.json 17 (schema 5), taxonomy.json 5 (schema 1), guide.json 19 (schema 5). Befintliga platsposter, positioner, rutter, bokningar, flyg och UI är oförändrade.
+
 ## Ny fredagsmiddag – 16 oktober 2026
 
 Fredagens bokning är ändrad till Enoteca Pitti Gola e Cantina kl. 19.00. Dagens program, bokningskort, kartans bokat-markering och middagsstoppet i fredagsrutten använder den befintliga Enoteca-posten. Nugolos bokning är borttagen och dess gamla boknings-/avbokningstext är ersatt med en allmän restaurangbeskrivning; platsen finns kvar som valbart restaurangtips. Alla tidigare verifierade adresser, koordinater och Apple-platskort är oförändrade.
@@ -291,7 +297,3 @@ Programversion 1.3.2 visar avgångsterminal efter flygbolaget när bokningen ang
 Hotellet visas även i Schema. Bokningskort visar platsens besöksinformation och adress. Webbplats och Fråga ChatGPT finns i listvyerna, med samma plats-id som kartan. Programknappar öppnar markören och aktiverar dess lager även om det dolts. Giannini anges som spontant obokat stopp i lördagens Oltrarno-program och rutt. Lisio kompletteras med Cecilia Cerchiarini; Cuculia och Nugolo med två personer; Nugolo med det bokade avbokningsvillkoret. Bokade platser listas inte som valbara besök andra dagar bara för att promenaden passerar dem.
 
 Kontroll: innehållsvalidatorn godkänner tre scheman, 69 platser, fem rutter, fem resdagar, fem bokningar, flyg och samtliga kart-/navigeringslänkar. JavaScript och renderat schema kontrollerat med hotellet, detaljerade bokningar, webbplats-/ChatGPT-knappar och flygordning. Visuellt Playwright-test kunde inte köras lokalt eftersom Chromium saknas. Tidigare geografiska osäkerheter i verifieringsrapporten kvarstår; denna ändring ändrar inga positioner eller Apple-id:n.
-
-
-
-

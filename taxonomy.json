@@ -1,8 +1,8 @@
 {
   "$schema": "./taxonomy.schema.v1.json",
   "schemaVersion": 1,
-  "contentVersion": 4,
-  "updatedAt": "2026-10-14T16:59:21Z",
+  "contentVersion": 5,
+  "updatedAt": "2026-10-16T07:21:13Z",
   "categories": [
     {
       "id": "booked",
@@ -197,6 +197,12 @@
       "categoryId": "shopping",
       "label": "Garn & sybehör",
       "iconId": "yarn"
+    },
+    {
+      "id": "stationery",
+      "categoryId": "shopping",
+      "label": "Papper & skrivmaterial",
+      "iconId": "book"
     }
   ],
   "icons": {
