@@ -1,8 +1,8 @@
 {
   "$schema": "./places.schema.v5.json",
   "schemaVersion": 5,
-  "contentVersion": 18,
-  "updatedAt": "2026-10-16T07:35:21.611Z",
+  "contentVersion": 19,
+  "updatedAt": "2026-10-16T11:48:19.227Z",
   "places": [
     {
       "id": "hotel-la-scaletta",
@@ -6609,6 +6609,111 @@
           }
         ]
       }
+    },
+    {
+      "id": "palazzo-davanzati",
+      "name": "Palazzo Davanzati",
+      "category": "see-do",
+      "subcategory": "museums",
+      "focus": "Medeltida hem med spetsar, broderier och Guicciardini-täcket",
+      "description": "Ett florentinskt köpmanshem från 1300-talet med målade rum, möbler och hushållsföremål.\nSärskilt intressant för textil: på tredje våningen finns en sal med spetsar, broderier och mönsterteckningar. Museets textilsamling omfattar omkring 2 000 föremål från 1600–1900-talet; samlingens storlek är inte antalet föremål som visas samtidigt.\nMissa inte Coperta Guicciardini, ett sicilianskt täcke från 1300-talets andra hälft, med quiltade broderier som berättar om Tristan och Isolde.\nBesöksinformation: några salar på andra våningen är tillfälligt stängda för arbeten sedan 25 september. Fråga personalen om dagens tillgång till textilsalen.",
+      "address": "Via Porta Rossa 13, Firenze",
+      "position": {
+        "latitude": 43.7701302,
+        "longitude": 11.2528563
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": "https://bargellomusei.it/en/museum/palazzo-davanzati/",
+      "verification": {
+        "status": "pending",
+        "checkedAt": "2026-10-16T11:48:19.227Z",
+        "sources": [
+          {
+            "url": "https://bargellomusei.it/en/museum/palazzo-davanzati/",
+            "title": "Musei del Bargello · Palazzo Davanzati",
+            "checkedAt": "2026-10-16T11:48:19.227Z",
+            "supports": [
+              "identity",
+              "address"
+            ]
+          },
+          {
+            "url": "https://bargellomusei.it/en/directions/?m=palazzo-davanzati",
+            "title": "Museets officiella vägbeskrivning och länkade kartposition",
+            "checkedAt": "2026-10-16T11:48:19.227Z",
+            "supports": [
+              "identity",
+              "address",
+              "position"
+            ]
+          }
+        ],
+        "checks": {
+          "identity": true,
+          "position": true,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Koordinaten kommer från museets länkade Google-kartpunkt. Exakt entré, Apple-platskort och beräknad gångväg är ännu inte separat verifierade."
+      },
+      "openingHours": {
+        "status": "published",
+        "timeZone": "Europe/Rome",
+        "weekly": [
+          {
+            "days": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "label": "Tis–sön",
+            "intervals": [
+              {
+                "opens": "08:15",
+                "closes": "18:50"
+              }
+            ]
+          }
+        ],
+        "note": "Måndag stängt. Webbplatsen anger både 40 och 50 minuter före stängning som sista insläpp; kom med god marginal. Delar av andra våningen är stängda för arbeten sedan 25 september 2026.",
+        "sources": [
+          {
+            "label": "Palazzo Davanzati · officiella besöksuppgifter",
+            "url": "https://bargellomusei.it/en/museum/palazzo-davanzati/",
+            "checkedAt": "2026-10-16"
+          }
+        ],
+        "exceptions": [
+          {
+            "date": "2026-10-16",
+            "status": "notice",
+            "note": "Delvis stängning på andra våningen: Castellana di Vergy, vapensalen och matsalen. Kontrollera dagens tillgänglighet med personalen.",
+            "source": {
+              "label": "Palazzo Davanzati · tillfälliga stängningar",
+              "url": "https://bargellomusei.it/en/museum/palazzo-davanzati/",
+              "checkedAt": "2026-10-16"
+            }
+          },
+          {
+            "date": "2026-10-17",
+            "status": "notice",
+            "note": "Delvis stängning på andra våningen: Castellana di Vergy, vapensalen och matsalen. Kontrollera dagens tillgänglighet med personalen.",
+            "source": {
+              "label": "Palazzo Davanzati · tillfälliga stängningar",
+              "url": "https://bargellomusei.it/en/museum/palazzo-davanzati/",
+              "checkedAt": "2026-10-16"
+            }
+          }
+        ]
+      },
+      "specialties": null
     }
   ]
 }

@@ -1,8 +1,8 @@
 {
   "$schema": "./stories.schema.v1.json",
   "schemaVersion": 1,
-  "contentVersion": 4,
-  "updatedAt": "2026-10-11T06:35:56.232484Z",
+  "contentVersion": 5,
+  "updatedAt": "2026-10-16T11:48:19.227Z",
   "stories": [
     {
       "placeId": "orsanmichele",
@@ -622,6 +622,32 @@
           "label": "Öppna uppgifterna hos källan",
           "url": "https://serretorrigiani.it/serre-torrigiani-in-piazzetta/",
           "checkedAt": "2026-10-10"
+        }
+      ]
+    },
+    {
+      "placeId": "palazzo-davanzati",
+      "title": "Textil som arbete, bildberättelse och inredning",
+      "paragraphs": [
+        "Här möts textilt hantverk och livet i ett välbärgat florentinskt hem. Spetsarna, broderierna och mönsterteckningarna ger en annan ingång än de stora målningarna och skulpturerna: titta på det noggranna arbetet i små ytor, och hur sådant handarbete användes till kläder och hemmets utsmyckning. Den omgjorda textilsalen ligger på tredje våningen, nära det gamla köket.",
+        "Coperta Guicciardini är ett särskilt fint exempel på hur en textil också kan berätta en historia. Vit tråd på vitt tyg formar quiltade scener ur Tristans äventyr. Även palatsets väggmåleri anknyter till textil: flera målade mönster imiterar draperier som förr kunde hängas på väggarna för utsmyckning och skydd mot kyla."
+      ],
+      "lookFor": "Börja med spetsarnas och broderiernas detaljer och jämför sedan med det quiltade täckets relief. Fråga efter textilsalen på tredje våningen och Coperta Guicciardini; delar av andra våningen är tillfälligt avstängda.",
+      "sources": [
+        {
+          "label": "Palazzo Davanzati · English",
+          "url": "https://bargellomusei.it/en/museum/palazzo-davanzati/",
+          "checkedAt": "2026-10-16"
+        },
+        {
+          "label": "Italienska kulturministeriet · textilsamlingen",
+          "url": "https://cultura.gov.it/luogo/musei-del-bargello-museo-di-palazzo-davanzati",
+          "checkedAt": "2026-10-16"
+        },
+        {
+          "label": "Musei del Bargello · textilier och medeltida hem",
+          "url": "https://bargellomusei.it/percorsi-di-visita/firenze-nel-medioevo/",
+          "checkedAt": "2026-10-16"
         }
       ]
     }
