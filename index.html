@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="application-version" content="1.18.11">
+<meta name="application-version" content="1.18.12">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
@@ -408,15 +408,15 @@ function setView(view){
  if(changed&&view!=='karta')listView.scrollTop=viewScroll.get(view)||0;
  const url=new URL(location.href);url.hash=view==='karta'?'':view;history.replaceState(null,'',url);
 }
-function showPlaceOnMap(id){
+function showPlaceOnMap(id,{keepReadingView=false}={}){
  const marker=markersById.get(id);if(!marker){const place=requirePlace(id);if(place.position)window.open(mapLink(place),'_blank','noopener');else if(place.website)window.open(place.website,'_blank','noopener');return;}
  setDayGuide(false);layerControl.collapse();closePlaceSheet(false);
  const group=guide.persistentPlaceIds.includes(id)?m:bookedIds.includes(id)?bookedGroup:groups[requirePlace(id).category];
  clearRevealedMarker();if(group!==m&&!m.hasLayer(group)){marker.addTo(m);revealedMarker={marker,group};}
- if(!isWideLayout())setView('karta');requestAnimationFrame(()=>{
+ if(!keepReadingView&&!isWideLayout())setView('karta');requestAnimationFrame(()=>{
   m.invalidateSize({pan:false});selectPlace(id);
   const zoom=16;let center=marker.getLatLng();
-  if(usesPhoneLayout()){
+  if(!keepReadingView&&usesPhoneLayout()){
    marker.openPopup();
    const mapBounds=document.querySelector('.folium-map').getBoundingClientRect(),cardTop=(window.visualViewport?.height||innerHeight)-parseFloat(getComputedStyle(placeSheet).bottom)-sheetSizes().compact;
    const visibleCenter=mapBounds.top+Math.max(0,Math.min(mapBounds.bottom,cardTop)-mapBounds.top)/2;
@@ -614,7 +614,7 @@ function renderPlaceList(){
   const description=(presentation.descriptionSeparator?place.description.split(presentation.descriptionSeparator)[0]:place.description).split('\n').filter(line=>!line.startsWith('Markören')).join('\n');
   const categoryKey=place.category;
   const focus=place.focus||categories.find(c=>c.id===place.category)?.label||'Upptäck platsen';
-  return '<details class="list-card discovery-card" data-place-card="'+esc(place.id)+'" data-category="'+esc(categoryKey)+'"'+(placesMode==='reading'||expandedPlaces.has(place.id)?' open':'')+'><summary class="discovery-heading"'+(placesMode==='reading'?' aria-disabled="true" tabindex="-1"':'')+'>'+placeIcon(place)+'<h3><span class="discovery-title">'+esc(place.name)+'</span></h3><svg class="discovery-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg><p class="discovery-teaser">'+esc(focus)+'</p></summary><div class="discovery-body">'+(bookedIds.includes(place.id)?'<span class="place-booked-status" data-category="booked">'+categoryIcon('booked')+'Bokat</span>':'')+'<p>'+esc(description).replace(/\n/g,'<br>')+'</p>'+placeFacts(place)+(place.address?'<p class="address">'+esc(place.address)+'</p>':'')+(place.verification.status==='unresolved'?'<span class="list-badge uncertain">Uppgifter behöver bekräftas</span>':'')+storyMarkup(place.id,true)+listActions(place)+'</div></details>';
+  return '<details class="list-card discovery-card" data-place-card="'+esc(place.id)+'" data-category="'+esc(categoryKey)+'"'+(placesMode==='reading'||expandedPlaces.has(place.id)?' open':'')+'><summary class="discovery-heading"'+(placesMode==='reading'?' tabindex="0"':'')+'>'+placeIcon(place)+'<h3><span class="discovery-title">'+esc(place.name)+'</span></h3><svg class="discovery-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg><p class="discovery-teaser">'+esc(focus)+'</p></summary><div class="discovery-body">'+(bookedIds.includes(place.id)?'<span class="place-booked-status" data-category="booked">'+categoryIcon('booked')+'Bokat</span>':'')+'<p>'+esc(description).replace(/\n/g,'<br>')+'</p>'+placeFacts(place)+(place.address?'<p class="address">'+esc(place.address)+'</p>':'')+(place.verification.status==='unresolved'?'<span class="list-badge uncertain">Uppgifter behöver bekräftas</span>':'')+storyMarkup(place.id,true)+listActions(place)+'</div></details>';
  };
  const sortPlaces=(a,b)=>presentationRegistry.compare(a,b,placeCategories);
  const sortIds=ids=>ids.map(requirePlace).sort(sortPlaces).map(p=>p.id);
@@ -631,7 +631,15 @@ function renderPlaceList(){
 
 }
 document.getElementById('placeList').addEventListener('toggle',event=>{const card=event.target;if(placesMode==='reading'||!card.isConnected||!card.matches('[data-place-card]'))return;if(card.open)expandedPlaces.add(card.dataset.placeCard);else expandedPlaces.delete(card.dataset.placeCard);},true);
-document.getElementById('placeList').addEventListener('click',event=>{if(placesMode==='reading'&&event.target.closest('.discovery-heading'))event.preventDefault();});
+document.getElementById('placeList').addEventListener('click',event=>{
+ const heading=event.target.closest('.discovery-heading');
+ if(!heading)return;
+ const card=heading.closest('[data-place-card]');
+ if(!card)return;
+ // Keep native disclosure and reading scroll; only focus the map when selecting/opening a place.
+ if(placesMode==='reading')event.preventDefault();
+ if(placesMode==='reading'||!card.open)showPlaceOnMap(card.dataset.placeCard,{keepReadingView:true});
+});
 document.querySelector('.places-view-mode').addEventListener('click',event=>{const button=event.target.closest('[data-places-mode]');if(!button||placesMode===button.dataset.placesMode)return;placesMode=button.dataset.placesMode;if(placesMode!=='reading')placesGrouping=placesMode;try{localStorage.setItem(guide.id+':places-view',placesMode);localStorage.setItem(guide.id+':places-grouping',placesGrouping);}catch{}renderPlaceList();});
 filterBox.addEventListener('click',event=>{const button=event.target.closest('[data-category]');if(!button)return;const id=button.dataset.category;if(listCategorySelection.has(id))listCategorySelection.delete(id);else listCategorySelection.add(id);renderPlaceList()});
 
