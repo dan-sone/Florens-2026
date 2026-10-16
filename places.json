@@ -1,8 +1,8 @@
 {
   "$schema": "./places.schema.v5.json",
   "schemaVersion": 5,
-  "contentVersion": 15,
-  "updatedAt": "2026-10-14T16:59:21Z",
+  "contentVersion": 16,
+  "updatedAt": "2026-10-16T07:13:23Z",
   "places": [
     {
       "id": "hotel-la-scaletta",
@@ -489,7 +489,7 @@
       "id": "nugolo",
       "name": "Nugolo",
       "category": "food-drink",
-      "description": "Fre 16/10 · 19.30 · bokat för 2 personer. Via della Mattonaia 27R.\nGratis avbokning eller ändring fram till 24 timmar före bokningen (tors 15/10 kl. 19.30). Senare avbokning, ändring eller uteblivet besök kan debiteras €100.",
+      "description": "Kreativt säsongskök med kött, fisk och grönsaker samt örter från den egna odlingen.",
       "address": "Via della Mattonaia 27R, Firenze",
       "position": {
         "latitude": 43.7718531,
@@ -2470,7 +2470,7 @@
       "id": "enoteca-pitti-gola-e-cantina",
       "name": "Enoteca Pitti Gola e Cantina",
       "category": "food-drink",
-      "description": "Piazza de’ Pitti 16\nVinfokus, små producenter och tilltugg mitt emot Pitti.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
+      "description": "Fre 16/10 · 19.00 · bokat.\nPiazza de’ Pitti 16\nVinfokus, små producenter och tilltugg mitt emot Pitti.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
       "address": "Piazza de’ Pitti 16, Firenze",
       "position": {
         "latitude": 43.7661198,

@@ -1,3 +1,9 @@
+## Ny fredagsmiddag – 16 oktober 2026
+
+Fredagens bokning är ändrad till Enoteca Pitti Gola e Cantina kl. 19.00. Dagens program, bokningskort, kartans bokat-markering och middagsstoppet i fredagsrutten använder den befintliga Enoteca-posten. Nugolos bokning är borttagen och dess gamla boknings-/avbokningstext är ersatt med en allmän restaurangbeskrivning; platsen finns kvar som valbart restaurangtips. Alla tidigare verifierade adresser, koordinater och Apple-platskort är oförändrade.
+
+Innehållsversioner: places.json 16 (schema 5), guide.json 18 (schema 5), routes.json 8 (schema 1). Övriga resdagar, bokningar, flyg, geografiska upptäcktsområden, datamodell och låst UI är oförändrade.
+
 ## Shopping: garn och sybehör – issue #1
 
 Campolmi Filati, Mirko Filati, Samba Mercerie, Ricamo & Cucito och Merceria Firenze Delcor tillhör nu Shopping → Garn & sybehör. Underkategorin använder det gemensamma garnnystanet och ärver Shopping-kategorins färger i dag/natt. Butikerna visas i Shopping-filtret och kartlagret Shopping. Befintliga materialbeskrivningar, adresser, koordinater, källor, öppettider och markeringar av ej verifierade Apple-platskort är bevarade. Inga dubletter skapas.
@@ -239,9 +245,9 @@ Kopiera guiden till en separat katalog eller ett separat repository och ersätt 
 
 | Fil | Schemaversion | Innehåll/programversion |
 | --- | ---: | ---: |
-| places.json | 5 | 15 |
-| routes.json | 1 | 6 |
-| guide.json | 5 | 17 |
+| places.json | 5 | 16 |
+| routes.json | 1 | 8 |
+| guide.json | 5 | 18 |
 | stories.json | 1 | 4 |
 | history.json | 2 | 2 |
 | taxonomy.json | 1 | 4 |
@@ -285,6 +291,7 @@ Programversion 1.3.2 visar avgångsterminal efter flygbolaget när bokningen ang
 Hotellet visas även i Schema. Bokningskort visar platsens besöksinformation och adress. Webbplats och Fråga ChatGPT finns i listvyerna, med samma plats-id som kartan. Programknappar öppnar markören och aktiverar dess lager även om det dolts. Giannini anges som spontant obokat stopp i lördagens Oltrarno-program och rutt. Lisio kompletteras med Cecilia Cerchiarini; Cuculia och Nugolo med två personer; Nugolo med det bokade avbokningsvillkoret. Bokade platser listas inte som valbara besök andra dagar bara för att promenaden passerar dem.
 
 Kontroll: innehållsvalidatorn godkänner tre scheman, 69 platser, fem rutter, fem resdagar, fem bokningar, flyg och samtliga kart-/navigeringslänkar. JavaScript och renderat schema kontrollerat med hotellet, detaljerade bokningar, webbplats-/ChatGPT-knappar och flygordning. Visuellt Playwright-test kunde inte köras lokalt eftersom Chromium saknas. Tidigare geografiska osäkerheter i verifieringsrapporten kvarstår; denna ändring ändrar inga positioner eller Apple-id:n.
+
 
 
 

@@ -1,8 +1,8 @@
 {
   "$schema": "./routes.schema.v1.json",
   "schemaVersion": 1,
-  "contentVersion": 7,
-  "updatedAt": "2026-10-14T09:32:24.260Z",
+  "contentVersion": 8,
+  "updatedAt": "2026-10-16T07:13:23Z",
   "routes": [
     {
       "id": "tue",
@@ -114,7 +114,7 @@
             "uffizierna",
             "basilica-di-santa-croce",
             "mercato-di-santambrogio",
-            "nugolo",
+            "enoteca-pitti-gola-e-cantina",
             "hotel-la-scaletta"
           ]
         }

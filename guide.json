@@ -1,8 +1,8 @@
 {
   "$schema": "./guide.schema.v5.json",
   "schemaVersion": 5,
-  "contentVersion": 17,
-  "updatedAt": "2026-10-14T16:37:59Z",
+  "contentVersion": 18,
+  "updatedAt": "2026-10-16T07:13:23Z",
   "id": "florens-2026",
   "title": "Florens 2026",
   "destination": {
@@ -259,7 +259,7 @@
           "nodes": [
             {
               "type": "strong",
-              "text": "19.30"
+              "text": "19.00"
             },
             {
               "type": "text",
@@ -267,8 +267,8 @@
             },
             {
               "type": "place",
-              "placeId": "nugolo",
-              "text": "Nugolo"
+              "placeId": "enoteca-pitti-gola-e-cantina",
+              "text": "Enoteca Pitti Gola e Cantina"
             },
             {
               "type": "text",
@@ -362,9 +362,9 @@
       "startsAt": "2026-10-16T10:30:00+02:00"
     },
     {
-      "id": "nugolo-booking",
-      "placeId": "nugolo",
-      "startsAt": "2026-10-16T19:30:00+02:00"
+      "id": "enoteca-pitti-gola-e-cantina-booking",
+      "placeId": "enoteca-pitti-gola-e-cantina",
+      "startsAt": "2026-10-16T19:00:00+02:00"
     }
   ],
   "persistentPlaceIds": [
