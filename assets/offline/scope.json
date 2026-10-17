@@ -1,0 +1,708 @@
+{
+  "included": [
+    {
+      "id": "hotel-la-scaletta",
+      "name": "Hotel La Scaletta",
+      "position": {
+        "latitude": 43.7667357,
+        "longitude": 11.2515213
+      },
+      "reason": "Basplats eller promenadrutt"
+    },
+    {
+      "id": "duomo-santa-reparata",
+      "name": "Duomo / Santa Reparata",
+      "position": {
+        "latitude": 43.7731275,
+        "longitude": 11.2569577
+      },
+      "reason": "Basplats eller promenadrutt"
+    },
+    {
+      "id": "cuculia",
+      "name": "Cuculia",
+      "position": {
+        "latitude": 43.7682311,
+        "longitude": 11.2462342
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "fondazione-arte-della-seta-lisio",
+      "name": "Fondazione Arte della Seta Lisio",
+      "position": {
+        "latitude": 43.7454328,
+        "longitude": 11.2856036
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "uffizierna",
+      "name": "Uffizierna",
+      "position": {
+        "latitude": 43.7682698,
+        "longitude": 11.2557453
+      },
+      "reason": "Basplats eller promenadrutt"
+    },
+    {
+      "id": "nugolo",
+      "name": "Nugolo",
+      "position": {
+        "latitude": 43.7718531,
+        "longitude": 11.2679681
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "ponte-vecchio",
+      "name": "Ponte Vecchio",
+      "position": {
+        "latitude": 43.7679813,
+        "longitude": 11.2531752
+      },
+      "reason": "Basplats eller promenadrutt"
+    },
+    {
+      "id": "palazzo-pitti",
+      "name": "Palazzo Pitti",
+      "position": {
+        "latitude": 43.7651745,
+        "longitude": 11.2499678
+      },
+      "reason": "Basplats eller promenadrutt"
+    },
+    {
+      "id": "piazza-della-passera",
+      "name": "Piazza della Passera",
+      "position": {
+        "latitude": 43.7671987,
+        "longitude": 11.250464
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "piazza-santo-spirito",
+      "name": "Piazza Santo Spirito",
+      "position": {
+        "latitude": 43.7665769,
+        "longitude": 11.2473875
+      },
+      "reason": "Basplats eller promenadrutt"
+    },
+    {
+      "id": "basilica-di-santo-spirito",
+      "name": "Basilica di Santo Spirito",
+      "position": {
+        "latitude": 43.7675493,
+        "longitude": 11.2483102
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "piazza-del-carmine",
+      "name": "Piazza del Carmine",
+      "position": {
+        "latitude": 43.7686596,
+        "longitude": 11.2440146
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "piazza-della-signoria",
+      "name": "Piazza della Signoria",
+      "position": {
+        "latitude": 43.76968,
+        "longitude": 11.255877
+      },
+      "reason": "Basplats eller promenadrutt"
+    },
+    {
+      "id": "loggia-dei-lanzi",
+      "name": "Loggia dei Lanzi",
+      "position": {
+        "latitude": 43.7691879,
+        "longitude": 11.2555146
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "orsanmichele",
+      "name": "Orsanmichele",
+      "position": {
+        "latitude": 43.7707139,
+        "longitude": 11.255127
+      },
+      "reason": "Basplats eller promenadrutt"
+    },
+    {
+      "id": "piazza-della-repubblica",
+      "name": "Piazza della Repubblica",
+      "position": {
+        "latitude": 43.7715006,
+        "longitude": 11.2540394
+      },
+      "reason": "Basplats eller promenadrutt"
+    },
+    {
+      "id": "piazza-santa-trinita",
+      "name": "Piazza Santa Trinita",
+      "position": {
+        "latitude": 43.770168,
+        "longitude": 11.2514699
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "ponte-santa-trinita",
+      "name": "Ponte Santa Trinita",
+      "position": {
+        "latitude": 43.7690199,
+        "longitude": 11.2503339
+      },
+      "reason": "Basplats eller promenadrutt"
+    },
+    {
+      "id": "basilica-di-santa-croce",
+      "name": "Basilica di Santa Croce",
+      "position": {
+        "latitude": 43.7683899,
+        "longitude": 11.262821
+      },
+      "reason": "Basplats eller promenadrutt"
+    },
+    {
+      "id": "mercato-di-santambrogio",
+      "name": "Mercato di Sant’Ambrogio",
+      "position": {
+        "latitude": 43.7705849,
+        "longitude": 11.2669515
+      },
+      "reason": "Basplats eller promenadrutt"
+    },
+    {
+      "id": "giulio-giannini-e-figlio",
+      "name": "Giulio Giannini e Figlio",
+      "position": {
+        "latitude": 43.7664069,
+        "longitude": 11.2506566
+      },
+      "reason": "Basplats eller promenadrutt"
+    },
+    {
+      "id": "scuola-del-cuoio",
+      "name": "Scuola del Cuoio",
+      "position": {
+        "latitude": 43.7677701,
+        "longitude": 11.2632287
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "museo-opificio-delle-pietre-dure",
+      "name": "Museo Opificio delle Pietre Dure",
+      "position": {
+        "latitude": 43.7761815,
+        "longitude": 11.2589544
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "officina-profumo-farmaceutica-smn",
+      "name": "Officina Profumo-Farmaceutica SMN",
+      "position": {
+        "latitude": 43.7741036,
+        "longitude": 11.2477416
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "porta-san-niccolo",
+      "name": "Porta San Niccolò",
+      "position": {
+        "latitude": 43.7645237,
+        "longitude": 11.2647736
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "piazzale-michelangelo",
+      "name": "Piazzale Michelangelo",
+      "position": {
+        "latitude": 43.762819,
+        "longitude": 11.2650311
+      },
+      "reason": "Basplats eller promenadrutt"
+    },
+    {
+      "id": "san-miniato-al-monte",
+      "name": "San Miniato al Monte",
+      "position": {
+        "latitude": 43.7595177,
+        "longitude": 11.2650482
+      },
+      "reason": "Basplats eller promenadrutt"
+    },
+    {
+      "id": "le-volpi-e-luva",
+      "name": "Le Volpi e l’Uva",
+      "position": {
+        "latitude": 43.7670149,
+        "longitude": 11.2528166
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "il-santino",
+      "name": "Il Santino",
+      "position": {
+        "latitude": 43.7689621,
+        "longitude": 11.2472908
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "enoteca-pitti-gola-e-cantina",
+      "name": "Enoteca Pitti Gola e Cantina",
+      "position": {
+        "latitude": 43.7661198,
+        "longitude": 11.2500858
+      },
+      "reason": "Basplats eller promenadrutt"
+    },
+    {
+      "id": "enoteca-spontanea",
+      "name": "Enoteca Spontanea",
+      "position": {
+        "latitude": 43.7655711,
+        "longitude": 11.2483667
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "fuori-porta",
+      "name": "Fuori Porta",
+      "position": {
+        "latitude": 43.7633882,
+        "longitude": 11.2616964
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "loggia-roof-bar",
+      "name": "Loggia Roof Bar",
+      "position": {
+        "latitude": 43.7662261,
+        "longitude": 11.2474385
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "il-santo-bevitore",
+      "name": "Il Santo Bevitore",
+      "position": {
+        "latitude": 43.7690562,
+        "longitude": 11.2468096
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "mercato-centrale",
+      "name": "Mercato Centrale",
+      "position": {
+        "latitude": 43.7766446,
+        "longitude": 11.2532562
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "pitti-mosaici",
+      "name": "Pitti Mosaici",
+      "position": {
+        "latitude": 43.7659882,
+        "longitude": 11.2497398
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "castorina-1895",
+      "name": "Castorina 1895",
+      "position": {
+        "latitude": 43.7684524,
+        "longitude": 11.2481668
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "mio-concept-store",
+      "name": "Mio Concept Store",
+      "position": {
+        "latitude": 43.7719386,
+        "longitude": 11.2502393
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "giulia-materia",
+      "name": "Giulia Materia",
+      "position": {
+        "latitude": 43.766205,
+        "longitude": 11.2492651
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "gelateria-della-passera",
+      "name": "Gelateria della Passera",
+      "position": {
+        "latitude": 43.767177,
+        "longitude": 11.250696
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "gelateria-dei-neri",
+      "name": "Gelateria dei Neri",
+      "position": {
+        "latitude": 43.7677701,
+        "longitude": 11.2590927
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "gelateria-la-carraia",
+      "name": "Gelateria La Carraia",
+      "position": {
+        "latitude": 43.769614,
+        "longitude": 11.2466151
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "perche-no",
+      "name": "Perché No!",
+      "position": {
+        "latitude": 43.7708033,
+        "longitude": 11.2554985
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "vivoli",
+      "name": "Vivoli",
+      "position": {
+        "latitude": 43.7699782,
+        "longitude": 11.2600797
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "cantina-del-gelato",
+      "name": "Cantina del Gelato",
+      "position": {
+        "latitude": 43.7665653,
+        "longitude": 11.2548226
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "serre-torrigiani-in-piazzetta",
+      "name": "Serre Torrigiani in Piazzetta",
+      "position": {
+        "latitude": 43.7711312,
+        "longitude": 11.2550395
+      },
+      "reason": "Basplats eller promenadrutt"
+    },
+    {
+      "id": "caffe-concerto-paszkowski",
+      "name": "Caffè Concerto Paszkowski",
+      "position": {
+        "latitude": 43.7719428,
+        "longitude": 11.2539361
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "bulli-balene",
+      "name": "Bulli & Balene",
+      "position": {
+        "latitude": 43.7671193,
+        "longitude": 11.2507349
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "beppa-fioraia",
+      "name": "Beppa Fioraia",
+      "position": {
+        "latitude": 43.76279,
+        "longitude": 11.26097
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "santa-maria-novella",
+      "name": "Santa Maria Novella",
+      "position": {
+        "latitude": 43.7743,
+        "longitude": 11.249367
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "basilica-di-san-lorenzo",
+      "name": "Basilica di San Lorenzo",
+      "position": {
+        "latitude": 43.7748667,
+        "longitude": 11.2541842
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "cappelle-medicee",
+      "name": "Cappelle Medicee",
+      "position": {
+        "latitude": 43.7749984,
+        "longitude": 11.2532401
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "galleria-dellaccademia",
+      "name": "Galleria dell’Accademia",
+      "position": {
+        "latitude": 43.7767763,
+        "longitude": 11.2587413
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "museo-nazionale-del-bargello",
+      "name": "Museo Nazionale del Bargello",
+      "position": {
+        "latitude": 43.7703946,
+        "longitude": 11.2579635
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "giardino-di-boboli",
+      "name": "Giardino di Boboli",
+      "position": {
+        "latitude": 43.7625711,
+        "longitude": 11.2488413
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "palazzo-medici-riccardi",
+      "name": "Palazzo Medici Riccardi",
+      "position": {
+        "latitude": 43.7751456,
+        "longitude": 11.2559009
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "giardino-delle-rose",
+      "name": "Rosenträdgården · Giardino delle Rose",
+      "position": {
+        "latitude": 43.7628947,
+        "longitude": 11.2631472
+      },
+      "reason": "Basplats eller promenadrutt"
+    },
+    {
+      "id": "antico-setificio-fiorentino",
+      "name": "Antico Setificio Fiorentino",
+      "position": {
+        "latitude": 43.7708604,
+        "longitude": 11.2413137
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "alberto-cozzi-legatoria",
+      "name": "Alberto Cozzi – Legatoria",
+      "position": {
+        "latitude": 43.7707144,
+        "longitude": 11.2496125
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "riccardo-luci-carta-marmorizzata",
+      "name": "Riccardo Luci – Carta Marmorizzata",
+      "position": {
+        "latitude": 43.7706865,
+        "longitude": 11.2495905
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "scarpelli-mosaici",
+      "name": "Scarpelli Mosaici",
+      "position": {
+        "latitude": 43.7752308,
+        "longitude": 11.2575263
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "casa-dei-tessuti",
+      "name": "Casa dei Tessuti",
+      "position": {
+        "latitude": 43.7728486,
+        "longitude": 11.2537444
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "ermini-agostino",
+      "name": "Ermini Agostino",
+      "position": {
+        "latitude": 43.7738174,
+        "longitude": 11.2545958
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "valli-tessuti",
+      "name": "Valli Tessuti",
+      "position": {
+        "latitude": 43.7709311,
+        "longitude": 11.2488842
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "le-telerie-toscane",
+      "name": "Le Telerie Toscane",
+      "position": {
+        "latitude": 43.7662154,
+        "longitude": 11.2492656
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "passamaneria-toscana",
+      "name": "Passamaneria Toscana",
+      "position": {
+        "latitude": 43.7748,
+        "longitude": 11.2536
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "chalet-il-boschetto",
+      "name": "Chalet il Boschetto",
+      "position": {
+        "latitude": 43.7620442,
+        "longitude": 11.2647951
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "terrazze-michelangelo",
+      "name": "Terrazze Michelangelo",
+      "position": {
+        "latitude": 43.7613203,
+        "longitude": 11.2669434
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "forte-di-belvedere",
+      "name": "Forte di Belvedere",
+      "position": {
+        "latitude": 43.7634,
+        "longitude": 11.2534
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "io-osteria-personale",
+      "name": "IO Osteria Personale",
+      "position": {
+        "latitude": 43.77038,
+        "longitude": 11.24062
+      },
+      "reason": "Basplats eller promenadrutt"
+    },
+    {
+      "id": "campolmi-filati",
+      "name": "Campolmi Filati – Dettaglio",
+      "position": {
+        "latitude": 43.7729469,
+        "longitude": 11.2593042
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "mirko-filati",
+      "name": "Mirko Filati – La Buca",
+      "position": {
+        "latitude": 43.7746043,
+        "longitude": 11.2547204
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "samba-mercerie",
+      "name": "Samba Mercerie",
+      "position": {
+        "latitude": 43.77196,
+        "longitude": 11.2561
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "ricamo-cucito",
+      "name": "Ricamo & Cucito",
+      "position": {
+        "latitude": 43.777296,
+        "longitude": 11.2557749
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "merceria-delcor",
+      "name": "Merceria Firenze Delcor",
+      "position": {
+        "latitude": 43.77166,
+        "longitude": 11.25104
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "il-papiro-guicciardini",
+      "name": "Il Papiro – Guicciardini",
+      "position": {
+        "latitude": 43.766813,
+        "longitude": 11.251513
+      },
+      "reason": "Sammanhängande stadsområde"
+    },
+    {
+      "id": "palazzo-davanzati",
+      "name": "Palazzo Davanzati",
+      "position": {
+        "latitude": 43.7701302,
+        "longitude": 11.2528563
+      },
+      "reason": "Sammanhängande stadsområde"
+    }
+  ],
+  "excluded": [],
+  "bounds": [
+    [
+      43.74139039971254,
+      11.235021374692394
+    ],
+    [
+      43.78133840028746,
+      11.291202225307606
+    ]
+  ]
+}

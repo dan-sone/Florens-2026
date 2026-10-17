@@ -1,0 +1,67 @@
+name: Build and verify offline preview
+on:
+  push:
+    branches: [offline-florence-map]
+    paths: ['offline-*.js', 'offline-map-test.html', 'offline-config.json', 'tools/**', 'package*.json', '.github/workflows/offline-preview.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: florence-offline-preview
+  cancel-in-progress: false
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      LIBGL_ALWAYS_SOFTWARE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: offline-florence-map
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Download build-time fonts and compatibility styles
+        run: npm run fetch:offline
+      - name: Install pinned PMTiles extraction tool
+        run: |
+          curl --fail --location --retry 3 https://github.com/protomaps/go-pmtiles/releases/download/v1.31.2/go-pmtiles_1.31.2_Linux_x86_64.tar.gz -o /tmp/pmtiles.tar.gz
+          tar -xzf /tmp/pmtiles.tar.gz -C /tmp pmtiles
+      - name: Extract the computed offline area and build the guide
+        run: |
+          PMTILES_CLI=/tmp/pmtiles npm run extract:offline
+          /tmp/pmtiles verify assets/offline/florence.pmtiles
+      - name: Validate guide data and presentation
+        run: |
+          npm run check
+          node tools/check-offline-scope.cjs
+      - name: Install test browsers
+        run: npx playwright install --with-deps chromium webkit
+      - name: Verify downloads, failure handling, and offline navigation
+        run: npm run test:offline
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: offline-browser-verification
+          path: test-results/offline
+      - name: Publish verified files to the test branch only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/offline offline/guide.html offline-files.js offline-manifest.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Build verified offline preview [skip ci]'
+            git push origin HEAD:offline-florence-map
+          fi
+      - name: Package self-hostable HTTPS preview
+        run: |
+          mkdir -p /tmp/offline-preview
+          git archive HEAD | tar -x -C /tmp/offline-preview
+          rm -rf /tmp/offline-preview/.github
+      - uses: actions/upload-artifact@v4
+        with:
+          name: florence-offline-preview
+          path: /tmp/offline-preview

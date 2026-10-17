@@ -1,0 +1,507 @@
+{
+  "id": "1a98888e41e3bf46",
+  "cache": "florens-offline-pack-1a98888e41e3bf46",
+  "source": "https://build.protomaps.com/20261016.pmtiles",
+  "bounds": [
+    [
+      43.74139039971254,
+      11.235021374692394
+    ],
+    [
+      43.78133840028746,
+      11.291202225307606
+    ]
+  ],
+  "zoom": [
+    0,
+    15
+  ],
+  "files": [
+    {
+      "path": "assets/history/catena.webp",
+      "bytes": 244492,
+      "sha256": "6182ff60584384808eef025fc0e03da69039f5e8149dc16bd046105c085be459"
+    },
+    {
+      "path": "assets/history/cosimo.webp",
+      "bytes": 96720,
+      "sha256": "6eb9214f0aa0883b743df081afe84120125245384cf8264ae75d499def3d6df4"
+    },
+    {
+      "path": "assets/history/mercato.webp",
+      "bytes": 44706,
+      "sha256": "8c3043ca57ebedee2cf3e319b24c777435df732a60db7b0a0d28b50d04712bbc"
+    },
+    {
+      "path": "assets/offline/florence.pmtiles",
+      "bytes": 5254373,
+      "sha256": "73c51b6235601aed2e7ffc4d7633fd04b49c4916cc4b0c75e3a6e28abd424017"
+    },
+    {
+      "path": "assets/offline/fonts/glyphicons-halflings-regular.eot",
+      "bytes": 14079,
+      "sha256": "5ff7c239555476e939e86d457bb78424b945b733b2c23791d9807c2357259d43"
+    },
+    {
+      "path": "assets/offline/fonts/glyphicons-halflings-regular.svg",
+      "bytes": 63157,
+      "sha256": "3a9760d706275d9ffe85a0042f3ee73f8425e3011cac1fa8a3c15a59e4053ffa"
+    },
+    {
+      "path": "assets/offline/fonts/glyphicons-halflings-regular.ttf",
+      "bytes": 29512,
+      "sha256": "cb18b8d11f9698fc8cb3341cb5c882af1103ef8927d34e1602015b5f82eb234f"
+    },
+    {
+      "path": "assets/offline/fonts/glyphicons-halflings-regular.woff",
+      "bytes": 16448,
+      "sha256": "71c12656535e99119c2a952c10554cd6f47c6923d2d96155a7833276e68992af"
+    },
+    {
+      "path": "assets/offline/glyphs/Noto Sans Regular/0-255.pbf",
+      "bytes": 76044,
+      "sha256": "62c6d49b15fa836eb6aa45e259c7ca6762f44b011b09e47776efbe4a6db1b397"
+    },
+    {
+      "path": "assets/offline/glyphs/Noto Sans Regular/12288-12543.pbf",
+      "bytes": 6939,
+      "sha256": "4d776ca89b51ab5ec679eda50ced7bbb12ccdf7b861d12daec7cfbe3f50445e8"
+    },
+    {
+      "path": "assets/offline/glyphs/Noto Sans Regular/256-511.pbf",
+      "bytes": 127726,
+      "sha256": "2eca7561f9f566bcacfda5dd04fb5880baec1328ec0f5484678289a13994de8a"
+    },
+    {
+      "path": "assets/offline/glyphs/Noto Sans Regular/512-767.pbf",
+      "bytes": 94728,
+      "sha256": "6abc80badad0e823e228ab739515be257c8b33bc68bb077dd873030e9b2d143a"
+    },
+    {
+      "path": "assets/offline/glyphs/Noto Sans Regular/65280-65535.pbf",
+      "bytes": 7552,
+      "sha256": "953b22dad634ed0eb0a4c80aeb8ee9f88a7f10d80a75fdc6e9265403f34d52a3"
+    },
+    {
+      "path": "assets/offline/glyphs/Noto Sans Regular/768-1023.pbf",
+      "bytes": 77034,
+      "sha256": "537ccbee79180f4f8b3f6d2bdd27df979260ce1a0358c40d7aa7db505d9b03aa"
+    },
+    {
+      "path": "assets/offline/glyphs/Noto Sans Regular/8192-8447.pbf",
+      "bytes": 64220,
+      "sha256": "8ea977a587352fe31b4159ffdbc9a40be79056f2472017c742ea1e4a931864b9"
+    },
+    {
+      "path": "assets/offline/glyphs/Noto Sans Regular/8448-8703.pbf",
+      "bytes": 82014,
+      "sha256": "125b49cccfe95ac2f64b6bc2661871fba0081ff1b24f34c20bd29260b9351b57"
+    },
+    {
+      "path": "assets/offline/licenses/@fortawesome-fontawesome-free-LICENSE.txt",
+      "bytes": 7427,
+      "sha256": "de784a808496d49f5f80dd9d1d6e9a51cff712cfbc339e7c25155631ae3cdb5d"
+    },
+    {
+      "path": "assets/offline/licenses/@maplibre-maplibre-gl-leaflet-LICENSE",
+      "bytes": 767,
+      "sha256": "eaa721ba158cbeff47ad53b1035dfc26ff744df66662c93ff715c9885197ebf3"
+    },
+    {
+      "path": "assets/offline/licenses/Noto-OFL.txt",
+      "bytes": 4396,
+      "sha256": "cee9892f9f0cc8fe882c9e9537ee6a89621d86ee7ceaf70b02e2b2b1c25c061a"
+    },
+    {
+      "path": "assets/offline/licenses/bootstrap-LICENSE",
+      "bytes": 1131,
+      "sha256": "53d2513c8df48a817d70537cc906b8e9c7bf2513328ff66847894773e615b37e"
+    },
+    {
+      "path": "assets/offline/licenses/jquery-LICENSE.txt",
+      "bytes": 1097,
+      "sha256": "d4db9ebe6f29f5168eac45ad713f055623ac5d0dcd5ba92da23d650ae012020d"
+    },
+    {
+      "path": "assets/offline/licenses/leaflet-LICENSE",
+      "bytes": 1394,
+      "sha256": "97c194191510b19c72d25094922821a888d5d9bafb909ea7a38c9bf5b6c40a08"
+    },
+    {
+      "path": "assets/offline/licenses/leaflet.awesome-markers-LICENSE",
+      "bytes": 1052,
+      "sha256": "eb9cb7abfd51b3d60a390ab572488738cf0278ae974fa06df0201909d1ce6dd6"
+    },
+    {
+      "path": "assets/offline/licenses/leaflet.locatecontrol-LICENSE",
+      "bytes": 1081,
+      "sha256": "33341eb4541eaa99b13340840679e5b200113aa63d434ef6481de8726a0ebd4d"
+    },
+    {
+      "path": "assets/offline/licenses/maplibre-gl-LICENSE.txt",
+      "bytes": 5984,
+      "sha256": "ee5fc05a0677eaf69601d2c7db0d9ecd6cc27c3abc1d0733bc9ed34707cf8ef2"
+    },
+    {
+      "path": "assets/offline/scope.json",
+      "bytes": 17434,
+      "sha256": "3d162184176811b7e3079325ba251bb8134b7bd4770b587dbc7b19752309b1c5"
+    },
+    {
+      "path": "assets/offline/style.json",
+      "bytes": 53183,
+      "sha256": "12c8ca427789248b5df9022a8a21576fef277487b013bf1602f5ecf45c1cb96b"
+    },
+    {
+      "path": "assets/offline/vendor/awesome/images/markers-matte.png",
+      "bytes": 14323,
+      "sha256": "497826545a90e09a240504d14530eba45823b19fd44175e09e27c47cd822ddb9"
+    },
+    {
+      "path": "assets/offline/vendor/awesome/images/markers-matte@2x.png",
+      "bytes": 31113,
+      "sha256": "948fc8c4426f04f60964ed20394247f45b0b60e575d02398b9b6810e7a29a823"
+    },
+    {
+      "path": "assets/offline/vendor/awesome/images/markers-plain.png",
+      "bytes": 7946,
+      "sha256": "cf233423aa44e75ac0031e77b8ba571cd3331010517e1197e63fb7b06856c1ff"
+    },
+    {
+      "path": "assets/offline/vendor/awesome/images/markers-shadow.png",
+      "bytes": 535,
+      "sha256": "8703a2262710f5e3d29e65d2acdf90d6512e159e119d27b8234731d8a6208a20"
+    },
+    {
+      "path": "assets/offline/vendor/awesome/images/markers-shadow@2x.png",
+      "bytes": 1469,
+      "sha256": "b21a536be27313fb504f69f5899ff0b1245b276571769ac08d6c32c35676e47a"
+    },
+    {
+      "path": "assets/offline/vendor/awesome/images/markers-soft.png",
+      "bytes": 56965,
+      "sha256": "e41bc4be3d9cc8fcda26990db42fde1990230d352bc5f6f614fe89e163fb4edb"
+    },
+    {
+      "path": "assets/offline/vendor/awesome/images/markers-soft@2x.png",
+      "bytes": 165517,
+      "sha256": "d6926e36feb2224311ab88e08dd7c0eebdbe34a64b45ee09a8bc38ecab0cd5ee"
+    },
+    {
+      "path": "assets/offline/vendor/awesome/leaflet.awesome-markers.css",
+      "bytes": 2285,
+      "sha256": "bfba947d37a17ffa470a27a764affd7115cc747bae47e5ac24386feb5e99321c"
+    },
+    {
+      "path": "assets/offline/vendor/awesome/leaflet.awesome-markers.js",
+      "bytes": 3789,
+      "sha256": "8b0382d98ee76b3706729ebfb2c088b99be258aa30f6054de67b527602348d07"
+    },
+    {
+      "path": "assets/offline/vendor/awesome/leaflet.awesome-markers.min.js",
+      "bytes": 1775,
+      "sha256": "22a8914795f542d01d72ae651b8bc1075fd6c70ad10a49239e8e297ef5b26a0d"
+    },
+    {
+      "path": "assets/offline/vendor/bootstrap.css",
+      "bytes": 194901,
+      "sha256": "2143941c03dacda8b4f1016ced6e0c6f34e5c04585a3bcffe33c3c626c448a4a"
+    },
+    {
+      "path": "assets/offline/vendor/bootstrap.js",
+      "bytes": 80496,
+      "sha256": "c4b2394a30fa0e4a23c6b308541353e20872a6fd765ed8fb70e6b402029deb00"
+    },
+    {
+      "path": "assets/offline/vendor/fontawesome/css/all.min.css",
+      "bytes": 101784,
+      "sha256": "01b035efb5dfa529c512f82962ed633328222da6f33c224244806d4798c67349"
+    },
+    {
+      "path": "assets/offline/vendor/fontawesome/webfonts/fa-brands-400.ttf",
+      "bytes": 186112,
+      "sha256": "c7ae37d35b8edd322f5c85b8f54f8cb76f5e8446581ae20da5e7e3a9bdee900b"
+    },
+    {
+      "path": "assets/offline/vendor/fontawesome/webfonts/fa-brands-400.woff2",
+      "bytes": 107460,
+      "sha256": "3fe890d088ecf0cc9bc1b9069201e52972dbad6237865524090e15982d0de718"
+    },
+    {
+      "path": "assets/offline/vendor/fontawesome/webfonts/fa-regular-400.ttf",
+      "bytes": 62048,
+      "sha256": "fdc1f7533021117d87697715eac26ba3d4eef9225c7eedbbfb1b0d0cfff0ab8c"
+    },
+    {
+      "path": "assets/offline/vendor/fontawesome/webfonts/fa-regular-400.woff2",
+      "bytes": 25096,
+      "sha256": "fe69d94841462d397faeff253ee09a6dc7941be931f942a55e6b9def8f3b048d"
+    },
+    {
+      "path": "assets/offline/vendor/fontawesome/webfonts/fa-solid-900.ttf",
+      "bytes": 397728,
+      "sha256": "6d53c706f3b7178ccfc82c94d3fc7968828dacd351717f27c757a65cfd853147"
+    },
+    {
+      "path": "assets/offline/vendor/fontawesome/webfonts/fa-solid-900.woff2",
+      "bytes": 150472,
+      "sha256": "d27bc752105c079f8a516e9142406a9fc12cbb409f9bf8681f2ddfe0360b52a6"
+    },
+    {
+      "path": "assets/offline/vendor/fontawesome/webfonts/fa-v4compatibility.ttf",
+      "bytes": 10136,
+      "sha256": "4d73f280597014ae892270cee177513ad329955de91ad9d2a45a1f5760a32ffa"
+    },
+    {
+      "path": "assets/offline/vendor/fontawesome/webfonts/fa-v4compatibility.woff2",
+      "bytes": 4584,
+      "sha256": "7d1c2ce5f34e1b3567536e8d3039c6c34f8257742982c5ff5a5b47a82e5a67d7"
+    },
+    {
+      "path": "assets/offline/vendor/glyphicons.css",
+      "bytes": 13018,
+      "sha256": "ca64645c22680035acdd8149902fda928c381cafbeab0b628b5542a7323ee0e4"
+    },
+    {
+      "path": "assets/offline/vendor/jquery.js",
+      "bytes": 87533,
+      "sha256": "fc9a93dd241f6b045cbff0481cf4e1901becd0e12fb45166a8f17f95823f0b1a"
+    },
+    {
+      "path": "assets/offline/vendor/leaflet/images/layers-2x.png",
+      "bytes": 1259,
+      "sha256": "066daca850d8ffbef007af00b06eac0015728dee279c51f3cb6c716df7c42edf"
+    },
+    {
+      "path": "assets/offline/vendor/leaflet/images/layers.png",
+      "bytes": 696,
+      "sha256": "1dbbe9d028e292f36fcba8f8b3a28d5e8932754fc2215b9ac69e4cdecf5107c6"
+    },
+    {
+      "path": "assets/offline/vendor/leaflet/images/marker-icon-2x.png",
+      "bytes": 2464,
+      "sha256": "00179c4c1ee830d3a108412ae0d294f55776cfeb085c60129a39aa6fc4ae2528"
+    },
+    {
+      "path": "assets/offline/vendor/leaflet/images/marker-icon.png",
+      "bytes": 1466,
+      "sha256": "574c3a5cca85f4114085b6841596d62f00d7c892c7b03f28cbfa301deb1dc437"
+    },
+    {
+      "path": "assets/offline/vendor/leaflet/images/marker-shadow.png",
+      "bytes": 618,
+      "sha256": "264f5c640339f042dd729062cfc04c17f8ea0f29882b538e3848ed8f10edb4da"
+    },
+    {
+      "path": "assets/offline/vendor/leaflet/leaflet-src.esm.js",
+      "bytes": 422149,
+      "sha256": "17cbba56c1ad018677d9471328cf31e2c3c8fe6930504b0345453ca38c97ba3d"
+    },
+    {
+      "path": "assets/offline/vendor/leaflet/leaflet-src.js",
+      "bytes": 447681,
+      "sha256": "57c5acc3a6d6adf4ec5fd614cc88cab6722889484176e96cce8c5fd7beff5e35"
+    },
+    {
+      "path": "assets/offline/vendor/leaflet/leaflet.css",
+      "bytes": 14657,
+      "sha256": "90b693d86392a4779c861b28cf307e7e59c3fb35328c4d8b95f58f814d38c722"
+    },
+    {
+      "path": "assets/offline/vendor/leaflet/leaflet.js",
+      "bytes": 146715,
+      "sha256": "5819285cec137b229c94e1ee5ad73e8b6b84345a4367d60f75fe477fe0fb7b03"
+    },
+    {
+      "path": "assets/offline/vendor/locate.css",
+      "bytes": 430,
+      "sha256": "47491170c19b7f747ca2a6c8ecbfaaf61250ce346cd19c54a387672c11ed9e94"
+    },
+    {
+      "path": "assets/offline/vendor/locate.js",
+      "bytes": 12202,
+      "sha256": "fdb9a1185ca91d151c6a97f994d333cfbd9990b0a27935ec61aafb47df1d4098"
+    },
+    {
+      "path": "assets/offline/vendor/maplibre-leaflet.js",
+      "bytes": 9296,
+      "sha256": "1e6cf8cb3eb5fd909879aa1bf36a383fb506c9a5b2dbbfababce65a294dd1fcb"
+    },
+    {
+      "path": "assets/offline/vendor/maplibre.css",
+      "bytes": 70024,
+      "sha256": "761a1130f0960ea369d917ec843f7d1af5ca1dcf27701aef1d9d59821b3bab25"
+    },
+    {
+      "path": "assets/offline/vendor/maplibre.js",
+      "bytes": 1048625,
+      "sha256": "de48c6770051db952afdc56eb0309417b78f70640b7cede782267e8dc59c600d"
+    },
+    {
+      "path": "assets/offline/vendor/pmtiles.js",
+      "bytes": 20229,
+      "sha256": "caf981bc46f6327ee7e65d5dc964d89d38a69f60edca2bd4c5c890c21b554c6c"
+    },
+    {
+      "path": "assets/offline/vendor/rotate.css",
+      "bytes": 36669,
+      "sha256": "82e3e005f8befbe54638c81c106e1eaa7fae2bd12284b39c5ad7dad51eaa45f8"
+    },
+    {
+      "path": "guide.json",
+      "bytes": 49347,
+      "sha256": "492c57f84a6f34d5574b32331167b0f7f28537714807a366592c97b8196fb81e"
+    },
+    {
+      "path": "guide.schema.v1.json",
+      "bytes": 9665,
+      "sha256": "2f63f6eb15b71bc410d9cbacb2eb94fb361e2b947c12a5a22a588c50bfc6614a"
+    },
+    {
+      "path": "guide.schema.v2.json",
+      "bytes": 11519,
+      "sha256": "ed2a75117fc69b5e48bde39c48e8e7539b02aea9ab31912b0029f0adb938b7f2"
+    },
+    {
+      "path": "guide.schema.v3.json",
+      "bytes": 11689,
+      "sha256": "dbf01caf7cd512828602857a8615c1dc23f9ee7d49461c27fbf9d1f9aec6e212"
+    },
+    {
+      "path": "guide.schema.v4.json",
+      "bytes": 12621,
+      "sha256": "ec8e048ab693c440ba464e858b26fae51baf613d938c918d706202e35205d513"
+    },
+    {
+      "path": "guide.schema.v5.json",
+      "bytes": 11742,
+      "sha256": "f2bebecd73540d2ffdb0f0eeb0ad113d7f47448740f84540972766c73012cf7f"
+    },
+    {
+      "path": "history.json",
+      "bytes": 9403,
+      "sha256": "09251929d63cd3b0c552d73a19d80c1c895d1a382f7083d35506ce6e5e5b34c1"
+    },
+    {
+      "path": "history.schema.v1.json",
+      "bytes": 2745,
+      "sha256": "8f9def113179b4afc9f4fe920d5daf52d268ff71a0614df5334b1023bb8d61ec"
+    },
+    {
+      "path": "history.schema.v2.json",
+      "bytes": 4445,
+      "sha256": "44aec593f9fa6f0c5d368187f68c944e15b9b05de7d1cb429c09307ff3764de3"
+    },
+    {
+      "path": "offline-config.json",
+      "bytes": 270,
+      "sha256": "fb07f13ef3aba085cf486adef913caf58e19b113b2fcfef5db41b36feeaf409a"
+    },
+    {
+      "path": "offline-download.js",
+      "bytes": 7548,
+      "sha256": "ecab45729056fa8e095047f575c89f6edb590b72d8ce2e8ffeb92b4c3b8a41a2"
+    },
+    {
+      "path": "offline-map-test.html",
+      "bytes": 2586,
+      "sha256": "49c7cb25cc709e2f080968914050b33a93a0abfab55f284e7d087e61ccdc2e4b"
+    },
+    {
+      "path": "offline-map.js",
+      "bytes": 1645,
+      "sha256": "955848e224de500403a9fa0ba83bef29fcd79f820808cd39ab3d47f6009515c5"
+    },
+    {
+      "path": "offline-scope.js",
+      "bytes": 2336,
+      "sha256": "9ad7dd4148dda486d013ad21fb60b50438647a3b738050e45c70abcb6a78b434"
+    },
+    {
+      "path": "offline/guide.html",
+      "bytes": 66730,
+      "sha256": "1e169ec3f43136f2734596f23a982c8650c4a29193657d40832db10d9be85612"
+    },
+    {
+      "path": "place-presentation.js",
+      "bytes": 2913,
+      "sha256": "0d0d0e90f99f2ffcf31f5c4d6bb805d65fe564366f41b259cc35d17048ed874d"
+    },
+    {
+      "path": "place-sheet.css",
+      "bytes": 5838,
+      "sha256": "c02a3a4cb5f9a1ed6021da67c7b46f4cd8a8974ab5bf253d3d11c455204e66ee"
+    },
+    {
+      "path": "places-validator.js",
+      "bytes": 156017,
+      "sha256": "608742b34008bce728e709621c4d40af28cdbc9cf928dd4f3744d7f034901118"
+    },
+    {
+      "path": "places.json",
+      "bytes": 241663,
+      "sha256": "e429f4ac2b715157ca880fcaef7d128636d3243b5adf5fb07b5d9eeda403d431"
+    },
+    {
+      "path": "places.schema.v1.json",
+      "bytes": 9485,
+      "sha256": "00042d9f66825983055cc01a655b48135ca7bdf79e61d4e7fd70c17f284e1d81"
+    },
+    {
+      "path": "places.schema.v2.json",
+      "bytes": 15047,
+      "sha256": "2146e48ed69c72d33a673a52dd0d83d32490c2c047f3608a8731eadaa1c34c6a"
+    },
+    {
+      "path": "places.schema.v3.json",
+      "bytes": 15185,
+      "sha256": "684c6904607c92742fca224011295cf29c8d60db29dd817820ef142f5f29e00d"
+    },
+    {
+      "path": "places.schema.v4.json",
+      "bytes": 15301,
+      "sha256": "0418d0bb7403bb03175258cca3e6670d3d1be190cc98d988816f30c6687796ca"
+    },
+    {
+      "path": "places.schema.v5.json",
+      "bytes": 15299,
+      "sha256": "f073795f941c858ab36754738631fd8b0b9ff0028e70577f8eb5232904fa11fb"
+    },
+    {
+      "path": "routes.json",
+      "bytes": 3048,
+      "sha256": "807739e0037bf0ee52607b6c80f48f3aecfdce0ebd3e6bbc52e60b98ce9fb402"
+    },
+    {
+      "path": "routes.schema.v1.json",
+      "bytes": 1897,
+      "sha256": "c15d1044615814385f4cce35e97a14c918dc3f98f5988b173e0f0e6bbc6a41dc"
+    },
+    {
+      "path": "stories.json",
+      "bytes": 37866,
+      "sha256": "72ad2afa6e06f31437787b1096edf53ed1d59b722a47a976387f84cad2389933"
+    },
+    {
+      "path": "stories.schema.v1.json",
+      "bytes": 1531,
+      "sha256": "9392d97563cabf702facb8c7d2dd383619471016e8173c755218022bb03a5b42"
+    },
+    {
+      "path": "taxonomy.json",
+      "bytes": 6298,
+      "sha256": "636f93fa783b6a18fa2ecbb0a3bef5cf42fba8e2952beb5a288189fdb834b75a"
+    },
+    {
+      "path": "taxonomy.schema.v1.json",
+      "bytes": 3077,
+      "sha256": "543c889783169ccca8682b5d247563c5d30534158441a013273b36d4e9687e0a"
+    },
+    {
+      "path": "ui-theme.css",
+      "bytes": 35316,
+      "sha256": "d2c2cce1c47368b9590299d21f67bd856b7bfa767c3f8c42692a42348aedd87b"
+    }
+  ],
+  "totalBytes": 11107027
+}
