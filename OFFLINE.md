@@ -56,4 +56,4 @@ python3 -m http.server 8765
 
 Desktop test URL: http://localhost:8765/offline-map-test.html. For an iPhone use an HTTPS host serving the complete built site, not the desktop localhost URL. GitHub Actions supplies a complete preview archive for any static HTTPS host; do not merge this PR merely to obtain a test link.
 
-Automated WebKit is a useful compatibility check, not a test on physical iPhone/iPad Safari. The physical-device airplane-mode checklist above remains the final acceptance test before production integration.
+Chromium tests use browser offline mode plus a disconnected HTTP server. WebKit tests disconnect the HTTP server because Playwright WebKit can return an internal navigation error when its offline switch is used with Service Workers. No preview resource can be delivered by the network during either test. Automated WebKit is a useful compatibility check, not a test on physical iPhone/iPad Safari. The physical-device airplane-mode checklist above remains the final acceptance test before production integration.
