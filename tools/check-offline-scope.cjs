@@ -1,0 +1,17 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+global.window=global;vm.runInThisContext(fs.readFileSync('offline-scope.js','utf8'));
+const config=JSON.parse(fs.readFileSync('offline-config.json'));
+const place=(id,lat,lon,category='museum')=>({id,name:id,category,position:{latitude:lat,longitude:lon}});
+const places=[place('hotel',43.77,11.25,'hotel'),place('walk',43.775,11.255),place('nearby',43.78,11.26),place('airport',43.78,11.255,'airport'),place('transfer',43.78,11.255,'transfer'),place('trip',43.78,11.255,'day-trip'),place('distant',44.5,12.3),{id:'no-position',name:'no position',category:'museum'}];
+const routes=[{segments:[{mode:'walk',placeIds:['hotel','walk','distant','airport']}]}];
+const result=OfflineScope.compute(places,routes,config);
+assert.deepEqual(result.included.map(p=>p.id),['hotel','walk','nearby']);
+assert.deepEqual(result.excluded.map(p=>p.id),['airport','transfer','trip','distant']);
+assert(result.bounds[0][0]<43.77&&result.bounds[1][0]>43.78);
+assert(result.bounds[1][1]<11.3,'Distant points must not enlarge the map');
+assert.deepEqual(OfflineScope.compute([],[],config).bounds,null);
+const overrides=OfflineScope.compute(places,routes,{...config,overrides:{distant:'include',walk:'exclude'}});
+assert(overrides.included.some(p=>p.id==='distant'));assert(!overrides.included.some(p=>p.id==='walk'));
+const noTaxi=OfflineScope.compute([place('hotel',43.77,11.25,'hotel'),place('taxi',43.82,11.25)], [{segments:[{mode:'taxi',placeIds:['taxi']}]}],config);
+assert(!noTaxi.included.some(p=>p.id==='taxi'));
+console.log('PASS: reusable offline scope, anchors/walking, cluster, excluded categories, distant outliers, overrides, margins, empty data');

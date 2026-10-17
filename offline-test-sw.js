@@ -1,5 +1,19 @@
-const CACHE='florens-offline-prototype-v1';
-const ASSETS=['./offline-map-test.html','./offline-scope.js','./offline-config.json','./places.json','./routes.json','https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js','https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css'];
-self.addEventListener('install',event=>event.waitUntil((async()=>{const cache=await caches.open(CACHE);await Promise.allSettled(ASSETS.map(url=>cache.add(url)));await self.skipWaiting()})()));
-self.addEventListener('activate',event=>event.waitUntil((async()=>{await Promise.all((await caches.keys()).filter(key=>key.startsWith('florens-offline-prototype-')&&key!==CACHE).map(key=>caches.delete(key)));await self.clients.claim()})()));
-self.addEventListener('fetch',event=>{const req=event.request,url=new URL(req.url);if(req.method!=='GET')return;if(url.hostname==='tile.openstreetmap.org')return;if(url.origin!==self.location.origin&&url.hostname!=='cdn.jsdelivr.net')return;event.respondWith((async()=>{const cached=await caches.match(req);try{const response=await fetch(req);if(response.ok){const cache=await caches.open(CACHE);cache.put(req,response.clone())}return response}catch(error){if(cached)return cached;throw error}})())});
+// Scope is limited to the test page and /offline/. Never controls index.html.
+importScripts('./offline-files.js');
+self.addEventListener('install',event=>event.waitUntil(self.skipWaiting()));
+self.addEventListener('activate',event=>event.waitUntil(self.clients.claim()));
+self.addEventListener('fetch',event=>{
+ if(event.request.method!=='GET')return;
+ const url=new URL(event.request.url);if(url.origin!==self.location.origin)return;
+ const base=new URL('./',self.location.href),relative=decodeURIComponent(url.pathname.slice(base.pathname.length));
+ const known=OFFLINE_FILES.some(f=>f.path===relative)||['offline-files.js','offline-manifest.json'].includes(relative);
+ if(!known)return;
+ event.respondWith((async()=>{
+  const cache=await caches.open(OFFLINE_CACHE);
+  const clean=new URL(relative,base).href;
+  const cached=await cache.match(clean);
+  if(cached)return cached;
+  // Only explicit downloads populate the cache. No partial/opaque successes.
+  return fetch(event.request);
+ })());
+});
