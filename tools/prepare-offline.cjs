@@ -33,7 +33,7 @@ let guide=fs.readFileSync('offline/guide.html','utf8').replace('<script src="off
 fs.writeFileSync('offline/guide.html',guide);
 function walk(dir){return fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(dir+'/'+e.name):[dir+'/'+e.name]);}
 const local=['offline-map-test.html','offline/guide.html','offline-download.js','offline-map.js','offline-scope.js','offline-config.json','place-presentation.js','places-validator.js','place-sheet.css','ui-theme.css',...fs.readdirSync('.').filter(p=>p.endsWith('.json')&&!p.startsWith('package')&&!p.startsWith('offline-manifest')),...walk('assets')];
-const files=[...new Set(local)].filter(p=>!p.endsWith('.map')&&!p.endsWith('.ts')&&!p.endsWith('README.md')&&!p.endsWith('LICENSE')&&!p.endsWith('LICENSE.txt')).sort().map(p=>{const data=fs.readFileSync(p);return {path:p,bytes:data.length,sha256:crypto.createHash('sha256').update(data).digest('hex')};});
+const files=[...new Set(local)].filter(p=>p.includes('/licenses/')||!p.endsWith('.map')&&!p.endsWith('.ts')&&!p.endsWith('README.md')&&!p.endsWith('LICENSE')&&!p.endsWith('LICENSE.txt')).sort().map(p=>{const data=fs.readFileSync(p);return {path:p,bytes:data.length,sha256:crypto.createHash('sha256').update(data).digest('hex')};});
 const id=crypto.createHash('sha256').update(JSON.stringify(files)).digest('hex').slice(0,16);
 const cache='florens-offline-pack-'+id;
 fs.writeFileSync('offline-files.js','const OFFLINE_CACHE='+JSON.stringify(cache)+';\nconst OFFLINE_FILES='+JSON.stringify(files)+';\nconst OFFLINE_STYLE='+fs.readFileSync(out+'/style.json','utf8')+';\nconst OFFLINE_SCOPE='+JSON.stringify(scope)+';\n');
