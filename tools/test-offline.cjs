@@ -33,8 +33,8 @@ const results=[];
    for(const view of ['sevardheter','schema','historia','karta']){const button=page.locator(`[data-view="${view}"]`).first();if(await button.count())await button.click();await page.waitForTimeout(300);}
    await page.reload();await page.waitForTimeout(2000);assert.equal(await page.title(),'Florens 2026');assert.equal(errors.length,0,errors.join('\n')+'\n'+failed.join('\n'));assert.deepEqual(failed,[],'No failed requests offline');
    // Close the page and create a new one to verify a cold navigation, not just memory.
-   await page.close();const cold=await context.newPage();await cold.goto(base+'/offline/guide.html');await cold.waitForFunction(()=>document.querySelectorAll('.awesome-marker').length>10);await cold.close();
-   const production=await context.newPage();await context.setOffline(false);await production.goto(base+'/index.html');assert.equal(await production.evaluate(()=>navigator.serviceWorker.controller),null,'Production not controlled by test workers');await production.close();
+   await page.close();const cold=await context.newPage();await cold.goto(base+'/offline/guide.html');assert.equal(await cold.evaluate(async()=>(await guideReady).markersById.size),77);await cold.close();
+   const production=await context.newPage();await context.setOffline(false);await production.goto(base+'/index.html',{waitUntil:'commit'});assert.equal(await production.evaluate(()=>navigator.serviceWorker.controller),null,'Production not controlled by test workers');await production.close();
    results.push(`${name}/${device}: complete download, vector rendering, offline map/guide reload, cold navigation, existing views, no failed offline requests, production isolation`);
    await context.close();
   }
