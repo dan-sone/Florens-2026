@@ -37,10 +37,11 @@ const results=[];
    await page.evaluate(async()=>{const g=await guideReady;g.showDayRoute('fri');});await page.waitForTimeout(600);assert(await page.evaluate(async()=>{const g=await guideReady;return g.map.hasLayer(g.dayRoutes.fri);}));await page.evaluate(async()=>{const g=await guideReady;g.showPlaceOnMap('duomo-santa-reparata');g.openPlaceSheet('duomo-santa-reparata');});await page.waitForTimeout(700);assert((await page.locator('#sheetTitle').textContent()).includes('Duomo'));await page.evaluate(async()=>{(await guideReady).closePlaceSheet(false);});
    await page.reload();await page.waitForTimeout(2000);assert.equal(await page.title(),'Florens 2026');assert.equal(errors.length,0,errors.join('\n')+'\n'+failed.join('\n'));assert.deepEqual(failed,[],'No failed requests offline');
    // Close the page and create a new one to verify a cold navigation, not just memory.
+   await page.goto(base+'/offline-map-test.html');await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Redo för offline'));await page.evaluate(async()=>{const current=await caches.open(OFFLINE_CACHE),previousName=OFFLINE_CACHE+'-previous',previous=await caches.open(previousName);for(const req of await current.keys()){let response=await current.match(req);if(new URL(req.url).pathname.endsWith('/offline-files.js'))response=new Response((await response.text()).replace(OFFLINE_CACHE,previousName),{headers:{'Content-Type':'application/javascript'}});await previous.put(req,response);}await caches.delete(OFFLINE_CACHE);});await page.reload();await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Redo för offline'));
    await page.close();const cold=await context.newPage();await cold.goto(base+'/offline/guide.html');assert.equal(await cold.evaluate(async()=>(await guideReady).markersById.size),77);await cold.close();
    const production=await context.newPage();await setOffline(context,false);await production.goto(base+'/index.html',{waitUntil:'commit'});assert.equal(await production.evaluate(()=>navigator.serviceWorker.controller),null,'Production not controlled by test workers');await production.close();
-   results.push(`${name}/${device}: complete download, vector rendering, offline map/guide reload, cold navigation, existing views, no failed offline requests, production isolation`);
-   await context.close();
+   results.push(`${name}/${device}: complete download, vector rendering, offline map/guide reload, cold navigation, existing views, no failed offline requests, production isolation, previous-version fallback`);
+   console.log('PASS',name,device);await context.close();
   }
   // Error handling uses a fresh device store for each failure.
   for(const test of ['network','cancel','quota','missing','integrity']){
@@ -59,7 +60,7 @@ const results=[];
     fault=null;delay=0;
     if(test==='network'){await p.click('#download');await p.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Redo för offline'),null,{timeout:90000});}
    }
-   fault=null;delay=0;results.push(`${name}/${test}: passed`);await ctx.close();
+   fault=null;delay=0;results.push(`${name}/${test}: passed`);console.log('PASS',name,test);await ctx.close();
   }
   networkBlocked=false;await browser.close();
  }
