@@ -17,9 +17,8 @@ const results=[];
  for(const name of engines){
   const options={headless:true};if(name==='chromium'){options.args=['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader'];if(process.env.CHROMIUM_EXECUTABLE)options.executablePath=process.env.CHROMIUM_EXECUTABLE;}
   const browser=await ({chromium,webkit}[name]).launch(options);
-  // Playwright WebKit setOffline can fail before Service Worker navigation.
-  // Sever the HTTP server connection instead; no resource can be fetched online.
-  const setOffline=async(ctx,value)=>{networkBlocked=value;if(name==='chromium')await ctx.setOffline(value);};
+  // Both browser offline emulation and a severed origin: no HTTP cache fallback.
+  const setOffline=async(ctx,value)=>{networkBlocked=value;await ctx.setOffline(value);};
   for(const [device,viewport] of Object.entries({iphone:{width:390,height:844},ipad:{width:1194,height:834}})){
    const context=await browser.newContext({viewport,isMobile:true,hasTouch:true,deviceScaleFactor:1});
    const page=await context.newPage(),errors=[],failed=[];page.on('pageerror',e=>errors.push(e.message));page.on('requestfailed',r=>failed.push(r.url()));
@@ -32,9 +31,10 @@ const results=[];
    await page.reload();await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Redo för offline'));
    await page.waitForTimeout(1500);await page.screenshot({path:path.join(root,`test-results/offline/${name}-${device}-map.png`)});
    await page.click('#guide');await page.waitForFunction(()=>document.querySelector('[data-view="sevardheter"]'));
-   await page.waitForTimeout(2500);await page.screenshot({path:path.join(root,`test-results/offline/${name}-${device}-guide.png`)});
+   await page.waitForFunction(()=>typeof guideReady!=='undefined');await page.evaluate(()=>guideReady);await page.waitForTimeout(2500);await page.screenshot({path:path.join(root,`test-results/offline/${name}-${device}-guide.png`)});
    // Exercise the existing navigation and its data offline, including lazy history images.
-   for(const view of ['sevardheter','schema','historia','karta']){const button=page.locator(`[data-view="${view}"]`).first();if(await button.count())await button.click();await page.waitForTimeout(300);}
+   for(const view of ['sevardheter','schema','historia','karta']){const button=page.locator(`[data-view="${view}"]`).first();if(await button.count())await button.click();await page.waitForTimeout(300);if(view==='historia'){await page.locator('.history-card').evaluateAll(nodes=>nodes.forEach(n=>n.open=true));await page.locator('.history-image img').evaluateAll(images=>images.forEach(img=>img.loading='eager'));await page.waitForFunction(()=>[...document.querySelectorAll('.history-image img')].every(i=>i.complete&&i.naturalWidth>0));}}
+   await page.evaluate(async()=>{const g=await guideReady;g.showDayRoute('fri');});await page.waitForTimeout(600);assert(await page.evaluate(async()=>{const g=await guideReady;return g.map.hasLayer(g.dayRoutes.fri);}));await page.evaluate(async()=>{(await guideReady).showPlaceOnMap('duomo-santa-reparata');});await page.waitForTimeout(700);assert((await page.locator('#sheetTitle').textContent()).includes('Duomo'));await page.evaluate(async()=>{(await guideReady).closePlaceSheet(false);});
    await page.reload();await page.waitForTimeout(2000);assert.equal(await page.title(),'Florens 2026');assert.equal(errors.length,0,errors.join('\n')+'\n'+failed.join('\n'));assert.deepEqual(failed,[],'No failed requests offline');
    // Close the page and create a new one to verify a cold navigation, not just memory.
    await page.close();const cold=await context.newPage();await cold.goto(base+'/offline/guide.html');assert.equal(await cold.evaluate(async()=>(await guideReady).markersById.size),77);await cold.close();
