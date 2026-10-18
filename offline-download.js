@@ -4,11 +4,21 @@
  const base=new URL('./',location.href),key=new URL('offline-ready',base).href;
  const cache=await caches.open(OFFLINE_CACHE);let aborter,mapLayer,boundary;
  const map=inApp?null:L.map('map').setView([43.765,11.26],14);
- const fail=message=>{$('status').textContent=message};
+ const fail=(message,state='error')=>{
+  let text=message;
+  if(inApp&&state==='error'){
+   console.warn('Offline:',message);
+   if(/Hämtning misslyckades|Failed to fetch|Load failed|NetworkError/i.test(message))text='Hämtningen kunde inte slutföras. Kontrollera internetanslutningen och försök igen.';
+   else if(/Ofullständig fil|Fel filstorlek|Kontrollsumman|Skadad lokal fil/.test(message))text='Nedladdningen blev inte komplett. Försök igen med en stabil internetanslutning.';
+   else if(message.startsWith('Offline kunde inte starta:'))text='Guiden kunde inte förberedas för offline. Öppna den direkt i Safari och försök igen.';
+  }
+  $('status').textContent=text;
+  if(inApp){window.dispatchEvent(new CustomEvent('offline-download-state',{detail:{state}}));if(state==='error')$('download').textContent='Försök igen';}
+ };
  window.addEventListener('offline-map-error',e=>fail('Kartan kunde inte visas: '+e.detail));
  const total=OFFLINE_FILES.reduce((sum,f)=>sum+f.bytes,0);
- $('estimate').textContent='Hela paketet: '+mb(total)+' (gatukarta '+mb(OFFLINE_FILES.filter(f=>f.path.endsWith('.pmtiles')).reduce((sum,f)=>sum+f.bytes,0))+').';
- async function storage(){const e=await navigator.storage?.estimate?.();$('storage').textContent=e?'Webbplatsens lagring: '+mb(e.usage||0)+'. Uppskattat ledigt: '+mb(Math.max(0,(e.quota||0)-(e.usage||0)))+'.':'';}
+ $('estimate').textContent=inApp?mb(total).replace('.',',')+' på den här enheten':'Hela paketet: '+mb(total)+' (gatukarta '+mb(OFFLINE_FILES.filter(f=>f.path.endsWith('.pmtiles')).reduce((sum,f)=>sum+f.bytes,0))+').';
+ async function storage(){const e=await navigator.storage?.estimate?.();$('storage').textContent=e?(inApp?'Sparat på webbplatsen: '+mb(e.usage||0).replace('.',','):'Webbplatsens lagring: '+mb(e.usage||0)+'. Uppskattat ledigt: '+mb(Math.max(0,(e.quota||0)-(e.usage||0)))+'.'):'';}
  async function ready(){
   if(!await cache.match(key)||!await cache.match(new URL('offline-files.js',base).href))return false;
   // Confirm every file is still present; a stale marker alone is not readiness.
@@ -29,15 +39,15 @@
   map.fitBounds(scope.bounds,{paddingTopLeft:[15,Math.min(innerHeight*.52,360)],paddingBottomRight:[15,25]});
   $('scope').textContent=scope.included.length+' platser. Streckad blå gräns = sparat område. Rutter visar guidens befintliga förbindelser mellan stopp.';
  }
- async function refresh(){const ok=await ready();$('guide').hidden=!ok;window.dispatchEvent(new CustomEvent('offline-package-status',{detail:{ready:ok}}));$('download').textContent=ok?'Kontrollera paketet':'Hämta för offline';fail(ok?'Redo för offline · alla filer finns lokalt.':'Ingen komplett offlinekarta sparad.');if(ok)await render();await storage();}
+ async function refresh(){const ok=await ready();$('guide').hidden=!ok;window.dispatchEvent(new CustomEvent('offline-package-status',{detail:{ready:ok}}));$('download').textContent=inApp?(ok?'Kontrollera nedladdningen':'Hämta guiden'):(ok?'Kontrollera paketet':'Hämta för offline');$('remove').hidden=inApp&&!ok;fail(inApp?(ok?'Redo för offline. Guiden finns sparad på den här enheten.':'Hämta guiden så kan du använda den i flygplansläge.'):(ok?'Redo för offline · alla filer finns lokalt.':'Ingen komplett offlinekarta sparad.'),ok?'ready':'empty');if(ok)await render();await storage();}
  let offlineAvailable=false;
  function within(promise,message){let timer;return Promise.race([promise,new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error(message)),15000);})]).finally(()=>clearTimeout(timer));}
  async function start(){
-  $('download').disabled=true;fail('Startar offlinefunktionen …');
+  $('download').disabled=true;fail('Kontrollerar att guiden kan sparas …','checking');
   try{
    if(!isSecureContext)throw Error('Sidan saknar säker HTTPS-anslutning. Öppna testlänken direkt i Safari.');
    if(!('serviceWorker' in navigator))throw Error('Den här visningen tillåter inte Service Workers. Öppna länken direkt i Safari, utanför ChatGPT:s webbvisning.');
-   const registrations=await within(Promise.all(inApp?[navigator.serviceWorker.register('./offline-sw.js',{scope:'./'})]:[navigator.serviceWorker.register('./offline-test-sw.js',{scope:'./offline-map-test'}),navigator.serviceWorker.register('./offline-test-sw.js',{scope:'./offline/'})]),'Testvärden svarade inte när offlinetjänsten skulle registreras.');
+   const registrations=await within(Promise.all(inApp?[navigator.serviceWorker.register('./offline-sw.js',{scope:'./',updateViaCache:'none'})]:[navigator.serviceWorker.register('./offline-test-sw.js',{scope:'./offline-map-test'}),navigator.serviceWorker.register('./offline-test-sw.js',{scope:'./offline/'})]),'Testvärden svarade inte när offlinetjänsten skulle registreras.');
    // Wait for the registrations themselves, not serviceWorker.ready, which may
    // wait forever if a host rewrites the document URL outside the requested scope.
    await within(Promise.all(registrations.map(registration=>new Promise((resolve,reject)=>{
@@ -52,7 +62,7 @@
  }
  $('download').onclick=async()=>{
   if(!offlineAvailable)return;
-  aborter=new AbortController();$('download').disabled=true;$('remove').disabled=true;$('cancel').hidden=false;$('progress').hidden=false;let received=0,documents;
+  aborter=new AbortController();$('download').disabled=true;$('remove').disabled=true;$('cancel').hidden=false;$('progress').hidden=false;$('guide').hidden=true;fail('Förbereder hämtningen …','downloading');let received=0,documents;
   const wasReady=await ready();
   try{
    const estimate=await navigator.storage?.estimate?.();
@@ -77,7 +87,7 @@
      await cache.put(url,new Response(bytes,{headers:{'Content-Type':response.headers.get('Content-Type')||'application/octet-stream'}}));
     }finally{clearTimeout(timeout);}}
     else{const bytes=await response.arrayBuffer();const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');if(hash!==file.sha256)throw Error('Skadad lokal fil: '+file.path);}
-    if(aborter.signal.aborted)throw new DOMException('Avbruten','AbortError');received+=file.bytes;$('progress').value=received/total*100;fail('Sparar och verifierar '+mb(received)+' / '+mb(total)+' …');
+    if(aborter.signal.aborted)throw new DOMException('Avbruten','AbortError');received+=file.bytes;$('progress').value=received/total*100;fail((inApp?'Hämtar ':'Sparar och verifierar ')+mb(received)+' / '+mb(total)+' …','downloading');
    }
    // HTML depends on this verified copy. Then use three bounded workers to avoid
    // one round-trip per file without holding the whole package in memory.
@@ -90,7 +100,7 @@
    await cache.put(new URL('offline-files.js',base).href,new Response(bootstrap,{headers:{'Content-Type':'application/javascript'}}));
    await cache.put(key,new Response('complete')); 
    const persistent=await navigator.storage?.persist?.().catch(()=>false);
-   await refresh();$('storage').textContent+=' '+(persistent?'Beständig lagring beviljad.':'Safari kan rensa sparade data; kontrollera före avresa.');
+   await refresh();if(!inApp)$('storage').textContent+=' '+(persistent?'Beständig lagring beviljad.':'Safari kan rensa sparade data; kontrollera före avresa.');
    // Remove only this feature's older versions, after a complete successful update.
    for(const name of await caches.keys())if(name.startsWith('florens-offline-pack-')&&name!==OFFLINE_CACHE)await caches.delete(name);
   }catch(e){if(!wasReady){await cache.delete(key);for(const file of OFFLINE_FILES)await cache.delete(new URL(file.path,base).href);}fail(e.name==='AbortError'?'Hämtningen avbröts eller tog för lång tid. Försök igen med sidan öppen.':e.name==='QuotaExceededError'?'Lagringsutrymmet räckte inte. Frigör utrymme och försök igen.':e.message);$('guide').hidden=!await ready();}
@@ -101,4 +111,4 @@
  $('show').onchange=e=>{if(boundary){if(e.target.checked)boundary.addTo(map);else map.removeLayer(boundary);}};
  $('fit').onclick=()=>map?.fitBounds(OFFLINE_SCOPE.bounds,{padding:[25,25]});
  await start();
-})().catch(e=>{document.getElementById('status').textContent='Offlinefunktionen kunde inte starta: '+e.message;console.error(e);});
+})().catch(e=>{const status=document.getElementById(window.OFFLINE_IN_APP?'offline-status':'status');if(status)status.textContent='Offlinefunktionen kunde inte starta: '+e.message;console.error(e);});

@@ -11,7 +11,7 @@ const replacements=[[/https:\/\/cdn.jsdelivr.net\/npm\/leaflet@1.9.3\/dist\//g,'
 for(const [pattern,value] of replacements)html=html.replace(pattern,vendor+'/'+value);
 html=html.replace('<head>','<head><base href="../">');
 const setup=`<script src="${vendor}/pmtiles.js"></script><script src="offline-map.js"></script>`;
-html=html.replace(/<script src="offline-app.js" defer><\/script>/,'');
+html=html.replace(/<script src="offline-app\.js(?:\?[^" ]*)?" defer><\/script>/,'');
 if(!html.includes('src="offline-map.js"'))html=html.replace('<script src="place-presentation',setup+'<script src="place-presentation');
 html=html.replace(/var tile_layer_670938deb8b58c2d30ad3e7204f24def = L.tileLayer\([\s\S]*?\n            \);/,`var tile_layer_670938deb8b58c2d30ad3e7204f24def = OfflineMap.layer({showBoundary:true});`);
 html=html.replace('if(navigator.onLine) tile_layer_670938deb8b58c2d30ad3e7204f24def.addTo','tile_layer_670938deb8b58c2d30ad3e7204f24def.addTo');
@@ -39,7 +39,7 @@ fs.writeFileSync(out+'/scope.json',JSON.stringify(scope,null,2));
 fs.writeFileSync(out+'/style.json',JSON.stringify(raster));
 // Copy bootstrap globals before the shared map adapter in the generated guide.
 let guide=fs.readFileSync('offline/guide.html','utf8');
-if(!guide.includes('src="offline-files.js"'))guide=guide.replace('<script src="offline-map.js">','<script src="offline-files.js"></script><script src="offline-map.js">');
+if(!/src="offline-files\.js(?:\?|")/.test(guide))guide=guide.replace('<script src="offline-map.js">','<script src="offline-files.js"></script><script src="offline-map.js">');
 fs.writeFileSync('offline/guide.html',guide);
 // Deliver byte-exact documents independently of hosts that decorate HTML pages.
 fs.writeFileSync(out+'/documents.json',JSON.stringify({version:1,documents:Object.fromEntries(['index.html','offline-map-test.html','offline/guide.html'].map(p=>[p,fs.readFileSync(p,'utf8')]))}));
