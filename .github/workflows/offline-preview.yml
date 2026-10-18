@@ -1,7 +1,7 @@
 name: Build and verify offline preview
 on:
   push:
-    branches: [main, offline-florence-map, offline-carto-render]
+    branches: [main, offline-florence-map, offline-carto-render, offline-dialog-polish]
     paths: ['index.html', '*.css', '*.json', 'offline-app.js', 'offline-download.js', 'offline-map.js', 'offline-sw.js', 'offline-test-sw.js', 'offline-map-test.html', 'offline-scope.js', 'place-presentation.js', 'places-validator.js', 'tools/**', '.github/workflows/offline-preview.yml']
   workflow_dispatch:
 permissions:
