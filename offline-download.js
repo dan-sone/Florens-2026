@@ -39,7 +39,7 @@
   map.fitBounds(scope.bounds,{paddingTopLeft:[15,Math.min(innerHeight*.52,360)],paddingBottomRight:[15,25]});
   $('scope').textContent=scope.included.length+' platser. Streckad blå gräns = sparat område. Rutter visar guidens befintliga förbindelser mellan stopp.';
  }
- async function refresh(){const ok=await ready();$('guide').hidden=!ok;window.dispatchEvent(new CustomEvent('offline-package-status',{detail:{ready:ok}}));$('download').textContent=inApp?(ok?'Kontrollera nedladdningen':'Hämta guiden'):(ok?'Kontrollera paketet':'Hämta för offline');$('remove').hidden=inApp&&!ok;fail(inApp?(ok?'Redo för offline. Guiden finns sparad på den här enheten.':'Hämta guiden så kan du använda den i flygplansläge.'):(ok?'Redo för offline · alla filer finns lokalt.':'Ingen komplett offlinekarta sparad.'),ok?'ready':'empty');if(ok)await render();await storage();}
+ async function refresh(){const ok=await ready();$('guide').hidden=!ok;window.dispatchEvent(new CustomEvent('offline-package-status',{detail:{ready:ok}}));$('download').textContent=inApp?(ok?'Kontrollera nedladdningen':'Hämta'):(ok?'Kontrollera paketet':'Hämta för offline');$('remove').hidden=inApp&&!ok;fail(inApp?'':(ok?'Redo för offline · alla filer finns lokalt.':'Ingen komplett offlinekarta sparad.'),ok?'ready':'empty');if(ok)await render();await storage();}
  let offlineAvailable=false;
  function within(promise,message){let timer;return Promise.race([promise,new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error(message)),15000);})]).finally(()=>clearTimeout(timer));}
  async function start(){
@@ -87,7 +87,7 @@
      await cache.put(url,new Response(bytes,{headers:{'Content-Type':response.headers.get('Content-Type')||'application/octet-stream'}}));
     }finally{clearTimeout(timeout);}}
     else{const bytes=await response.arrayBuffer();const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');if(hash!==file.sha256)throw Error('Skadad lokal fil: '+file.path);}
-    if(aborter.signal.aborted)throw new DOMException('Avbruten','AbortError');received+=file.bytes;$('progress').value=received/total*100;fail((inApp?'Hämtar ':'Sparar och verifierar ')+mb(received)+' / '+mb(total)+' …','downloading');
+    if(aborter.signal.aborted)throw new DOMException('Avbruten','AbortError');received+=file.bytes;$('progress').value=received/total*100;fail((inApp?Math.round(received/total*100)+' %':'Sparar och verifierar '+mb(received)+' / '+mb(total)+' …'),'downloading');
    }
    // HTML depends on this verified copy. Then use three bounded workers to avoid
    // one round-trip per file without holding the whole package in memory.

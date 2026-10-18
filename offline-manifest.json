@@ -1,6 +1,6 @@
 {
-  "id": "7a41f0a09955f616",
-  "cache": "florens-offline-pack-7a41f0a09955f616",
+  "id": "b2c5909e13cc1838",
+  "cache": "florens-offline-pack-b2c5909e13cc1838",
   "source": {
     "url": "https://download.geofabrik.de/europe/italy/centro-latest.osm.pbf",
     "style": "https://github.com/openstreetmap-carto/openstreetmap-carto/tree/v6.1.0",
@@ -40,7 +40,7 @@
     {
       "path": "assets/offline/documents.json",
       "bytes": 139040,
-      "sha256": "d0240f8518892a8161df857feffd6fcfc8048e5c6373aa88cbca0e77fc8edc06"
+      "sha256": "787af11e5824ac5c6db1b0e6e50f64c73126ab7e7aa06c0a03873d53c2332602"
     },
     {
       "path": "assets/offline/fonts/glyphicons-halflings-regular.eot",
@@ -545,17 +545,17 @@
     {
       "path": "index.html",
       "bytes": 66936,
-      "sha256": "258feff8ea438f1647eb608019fe3bc855b96876b6493576330302edf803024e"
+      "sha256": "f198e5af3d9ac188992f4dd1a496a9e6e33a941f58f38eb9d792b62229f3c04e"
     },
     {
       "path": "offline-app.css",
-      "bytes": 6414,
-      "sha256": "64ccba02055b767b04ff2b02fbedf4ebb6940d496e8044beaa947e1b93108347"
+      "bytes": 6672,
+      "sha256": "72087e729ead330653e8adffd40309fd9065154e4cd824614856676554d37f94"
     },
     {
       "path": "offline-app.js",
-      "bytes": 6650,
-      "sha256": "7c790a998b9d6ffb3c857ca4b58e02fc432d778bf2f37c96c657406d4385f0a2"
+      "bytes": 6790,
+      "sha256": "457be7fd6dd2e23fdb14c9ab618b3e59bd129cc4cf361ef4b4b1dab805a9ad57"
     },
     {
       "path": "offline-config.json",
@@ -564,8 +564,8 @@
     },
     {
       "path": "offline-download.js",
-      "bytes": 12975,
-      "sha256": "2b663d75c95b6b993de128f05eb8f6414fbfb0cde259d7325b35fb0c6a22cc53"
+      "bytes": 12870,
+      "sha256": "f2669630fc26b0994da0197772689b5245a75dafe13cfd9a6cb00382b72145b6"
     },
     {
       "path": "offline-map-test.html",
@@ -585,7 +585,7 @@
     {
       "path": "offline/guide.html",
       "bytes": 66665,
-      "sha256": "9d58bdc98d9aa6cdb35d6ef97ee1c4e531542a7db52af66068188e8fd8837d53"
+      "sha256": "47e5be8de413da842d616a7947baafdb5d9a8a4ecebfee5cdf4a7516c720b0a2"
     },
     {
       "path": "place-presentation.js",
@@ -668,5 +668,5 @@
       "sha256": "d2c2cce1c47368b9590299d21f67bd856b7bfa767c3f8c42692a42348aedd87b"
     }
   ],
-  "totalBytes": 67717218
+  "totalBytes": 67717511
 }

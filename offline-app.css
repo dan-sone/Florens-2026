@@ -12,3 +12,6 @@
 @media(prefers-color-scheme:dark){#offline-dialog .offline-destructive{color:#ff8f94}}
 @media(max-width:600px) and (min-height:500px){#offline-dialog{top:auto;bottom:max(12px,env(safe-area-inset-bottom));left:12px;right:12px;transform:none;width:auto;max-height:calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 24px);padding:12px 22px 22px}#offline-dialog .offline-handle{display:block;width:36px;height:4px;background:var(--line);border-radius:3px;margin:0 auto 18px}}
 @media(prefers-reduced-motion:reduce){#offline-dialog input[type=checkbox]::after{transition:none}}
+
+#offline-dialog #offline-status:empty{display:none}#offline-dialog #offline-estimate{display:none}#offline-dialog .offline-state-card{margin-bottom:16px}#offline-dialog h3{margin-bottom:0}
+#offline-dialog[data-state=empty] .offline-state-card{display:none}
