@@ -28,14 +28,28 @@
   $('scope').textContent=scope.included.length+' platser. Streckad blå gräns = sparat område. Rutter visar guidens befintliga förbindelser mellan stopp.';
  }
  async function refresh(){const ok=await ready();$('guide').hidden=!ok;$('download').textContent=ok?'Kontrollera paketet':'Hämta för offline';fail(ok?'Redo för offline · alla filer finns lokalt.':'Ingen komplett offlinekarta sparad.');if(ok)await render();await storage();}
- try{
-  if(!isSecureContext||!('serviceWorker' in navigator))throw Error('Öppna sidan via HTTPS i Safari.');
-  await Promise.all([navigator.serviceWorker.register('./offline-test-sw.js',{scope:'./offline-map-test.html'}),navigator.serviceWorker.register('./offline-test-sw.js',{scope:'./offline/'})]);
-  await navigator.serviceWorker.ready;
-  if(!navigator.serviceWorker.controller)await new Promise(resolve=>navigator.serviceWorker.addEventListener('controllerchange',resolve,{once:true}));
-  await refresh();
- }catch(e){fail(e.message);$('download').disabled=true;}
+ let offlineAvailable=false;
+ function within(promise,message){let timer;return Promise.race([promise,new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error(message)),15000);})]).finally(()=>clearTimeout(timer));}
+ async function start(){
+  $('download').disabled=true;fail('Startar offlinefunktionen …');
+  try{
+   if(!isSecureContext)throw Error('Sidan saknar säker HTTPS-anslutning. Öppna testlänken direkt i Safari.');
+   if(!('serviceWorker' in navigator))throw Error('Den här visningen tillåter inte Service Workers. Öppna länken direkt i Safari, utanför ChatGPT:s webbvisning.');
+   const registrations=await within(Promise.all([navigator.serviceWorker.register('./offline-test-sw.js',{scope:'./offline-map-test.html'}),navigator.serviceWorker.register('./offline-test-sw.js',{scope:'./offline/'})]),'Testvärden svarade inte när offlinetjänsten skulle registreras.');
+   // Wait for the registrations themselves, not serviceWorker.ready, which may
+   // wait forever if a host rewrites the document URL outside the requested scope.
+   await within(Promise.all(registrations.map(registration=>new Promise((resolve,reject)=>{
+    const worker=registration.installing||registration.waiting||registration.active;
+    if(!worker){reject(Error('Offlinetjänsten saknar aktiv worker.'));return;}
+    const check=()=>{if(worker.state==='activated')resolve();else if(worker.state==='redundant')reject(Error('Webbläsaren avvisade offlinetjänsten.'));};
+    worker.addEventListener('statechange',check);check();
+   }))), 'Offlinetjänsten kunde inte aktiveras inom 15 sekunder.');
+   if(!navigator.serviceWorker.controller)await within(new Promise(resolve=>{const check=()=>{if(navigator.serviceWorker.controller){navigator.serviceWorker.removeEventListener('controllerchange',check);resolve();}};navigator.serviceWorker.addEventListener('controllerchange',check);check();}), 'Testvärden aktiverade offlinetjänsten men lät den inte styra testsidan.');
+   offlineAvailable=true;await refresh();$('download').disabled=false;
+  }catch(e){offlineAvailable=false;fail('Offline kunde inte starta: '+e.message+' [Sida: '+location.pathname+'; inbäddad: '+(window.top!==window.self?'ja':'nej')+']');$('download').disabled=true;}
+ }
  $('download').onclick=async()=>{
+  if(!offlineAvailable)return;
   aborter=new AbortController();$('download').disabled=true;$('remove').disabled=true;$('cancel').hidden=false;$('progress').hidden=false;let received=0;
   const wasReady=await ready();
   try{
@@ -61,4 +75,5 @@
  $('remove').onclick=async()=>{await cache.delete(key);for(const f of OFFLINE_FILES)await cache.delete(new URL(f.path,base).href);location.reload();};
  $('show').onchange=e=>{if(boundary){if(e.target.checked)boundary.addTo(map);else map.removeLayer(boundary);}};
  $('fit').onclick=()=>map.fitBounds(OFFLINE_SCOPE.bounds,{padding:[25,25]});
+ await start();
 })().catch(e=>{document.getElementById('status').textContent='Offlinefunktionen kunde inte starta: '+e.message;console.error(e);});

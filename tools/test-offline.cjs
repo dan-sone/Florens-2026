@@ -43,6 +43,18 @@ const results=[];
    results.push(`${name}/${device}: complete download, vector rendering, offline map/guide reload, cold navigation, existing views, no failed offline requests, production isolation, previous-version fallback`);
    console.log('PASS',name,device);await context.close();
   }
+  // A host can activate a worker without ever controlling the document.
+  // Initialization must time out visibly while the other controls remain wired.
+  {
+   const ctx=await browser.newContext(),p=await ctx.newPage();
+   await ctx.addInitScript(()=>Object.defineProperty(navigator,'serviceWorker',{value:{register:async()=>({active:{state:'activated',addEventListener(){}}}),controller:null,addEventListener(){},removeEventListener(){}}}));
+   await p.goto(base+'/offline-map-test.html');
+   await p.waitForFunction(()=>document.querySelector('#status').textContent.includes('lät den inte styra testsidan'),null,{timeout:25000});
+   assert(await p.locator('#download').isDisabled());
+   const before=await p.locator('.leaflet-map-pane').getAttribute('style');await p.click('#fit');await p.waitForTimeout(400);
+   assert.notEqual(await p.locator('.leaflet-map-pane').getAttribute('style'),before,'Map controls remain responsive during failed initialization');
+   results.push(`${name}/startup: bounded failure, visible diagnostic, responsive controls`);console.log('PASS',name,'startup');await ctx.close();
+  }
   // Error handling uses a fresh device store for each failure.
   for(const test of ['network','cancel','quota','missing','integrity']){
    const ctx=await browser.newContext(),p=await ctx.newPage();
