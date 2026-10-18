@@ -1,0 +1,66 @@
+name: Build and verify offline preview
+on:
+  push:
+    branches: [main, offline-florence-map, offline-carto-render]
+    paths: ['index.html', '*.css', '*.json', 'offline-app.js', 'offline-download.js', 'offline-map.js', 'offline-sw.js', 'offline-test-sw.js', 'offline-map-test.html', 'offline-scope.js', 'place-presentation.js', 'places-validator.js', 'tools/**', '.github/workflows/offline-preview.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: florence-offline-preview
+  cancel-in-progress: true
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      LIBGL_ALWAYS_SOFTWARE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Download build-time fonts and compatibility styles
+        run: npm run fetch:offline
+      - name: Build the guide from the verified original Carto package
+        run: |
+          npm run build:offline
+          node tools/check-carto-package.cjs
+      - name: Validate guide data and presentation
+        run: |
+          npm run check
+          node tools/check-offline-scope.cjs
+      - name: Install test browsers
+        run: npx playwright install --with-deps chromium webkit
+      - name: Verify downloads, failure handling, and offline navigation
+        timeout-minutes: 8
+        run: |
+          npm run test:offline
+          node tools/test-offline-production.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: offline-browser-verification
+          path: test-results/offline
+      - name: Publish verified files to the test branch only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/offline offline/guide.html offline-files.js offline-manifest.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Build verified offline preview [skip ci]'
+            git push origin HEAD:${{ github.ref_name }}
+          fi
+      - name: Package self-hostable HTTPS preview
+        run: |
+          mkdir -p /tmp/offline-preview
+          git archive HEAD | tar -x -C /tmp/offline-preview
+          rm -rf /tmp/offline-preview/.github
+      - uses: actions/upload-artifact@v4
+        with:
+          name: florence-offline-preview
+          path: /tmp/offline-preview

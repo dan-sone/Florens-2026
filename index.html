@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="application-version" content="1.18.12">
+<meta name="application-version" content="1.19.0">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
     
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    <script src="assets/offline/vendor/leaflet/leaflet.js"></script>
+    <script src="assets/offline/vendor/jquery.js"></script>
+    <script src="assets/offline/vendor/bootstrap.js"></script>
+    <script src="assets/offline/vendor/awesome/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="assets/offline/vendor/leaflet/leaflet.css"/>
+    <link rel="stylesheet" href="assets/offline/vendor/bootstrap.css"/>
+    <link rel="stylesheet" href="assets/offline/vendor/glyphicons.css"/>
+    <link rel="stylesheet" href="assets/offline/vendor/fontawesome/css/all.min.css"/>
+    <link rel="stylesheet" href="assets/offline/vendor/awesome/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="assets/offline/vendor/rotate.css"/>
     
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, viewport-fit=cover" />
@@ -71,8 +71,8 @@
             </script>
 
         
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-locatecontrol/0.66.2/L.Control.Locate.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-locatecontrol/0.66.2/L.Control.Locate.min.css"/>
+    <script src="assets/offline/vendor/locate.js"></script>
+    <link rel="stylesheet" href="assets/offline/vendor/locate.css"/>
 <style>
 :root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:16px}
 #guide{position:absolute;top:calc(env(safe-area-inset-top,0px) + 5px);left:50%;transform:translateX(-50%);width:min(440px,calc(100% - 92px));z-index:1100;background:rgba(255,255,255,.68);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.5);border-radius:12px;box-shadow:0 2px 10px #0002;padding:4px 5px;font-family:-apple-system,BlinkMacSystemFont,sans-serif}
@@ -116,6 +116,7 @@ body[data-view]:not([data-view=karta]) #guide,body[data-view]:not([data-view=kar
             <div class="folium-map" id="map_1391adca8bfb43099964d4b8f21913ee" ></div>
         
 </body>
+<link rel="stylesheet" href="offline-app.css"><script src="assets/offline/vendor/pmtiles.js"></script><script src="offline-files.js"></script><script src="offline-map.js"></script><script src="offline-app.js" defer></script>
 <script src="place-presentation.js?v=1.16.1"></script>
 <script src="places-validator.js"></script>
 <script>
@@ -186,7 +187,7 @@ var map_1391adca8bfb43099964d4b8f21913ee = L.map(
             );
         
     
-            tile_layer_670938deb8b58c2d30ad3e7204f24def.addTo(map_1391adca8bfb43099964d4b8f21913ee);
+            if(navigator.onLine) tile_layer_670938deb8b58c2d30ad3e7204f24def.addTo(map_1391adca8bfb43099964d4b8f21913ee);
         
     
             (function(){
@@ -658,7 +659,7 @@ function renderHistory(){
 renderScheduleList();syncScheduleDay(selectedDay);renderHistory();setView(location.hash.slice(1));
 window.addEventListener('hashchange',()=>setView(location.hash.slice(1)));
 
- return {map:m,content,guide,routeContent,storyContent,historyContent,taxonomy,presentationRegistry,listCategorySelection,placesById,markersById,dayRoutes,chooseDay,setDayGuide,setView,showPlaceOnMap,showDayRoute,openPlaceSheet,closePlaceSheet};
+ return {map:m,onlineBasemap:tile_layer_670938deb8b58c2d30ad3e7204f24def,content,guide,routeContent,storyContent,historyContent,taxonomy,presentationRegistry,listCategorySelection,placesById,markersById,dayRoutes,chooseDay,setDayGuide,setView,showPlaceOnMap,showDayRoute,openPlaceSheet,closePlaceSheet};
 })();
 guideReady.catch(error=>{
  console.error(error);
