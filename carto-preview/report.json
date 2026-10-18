@@ -16,7 +16,7 @@
   "samples": [
     {
       "zoom": 15,
-      "renderSeconds": 4.0278383659999974,
+      "renderSeconds": 2.226489608999998,
       "metatilePngBytes": 1111465,
       "tileWebpMedianBytes": 14580.0,
       "tileWebpMeanBytes": 15345.6875,
@@ -25,7 +25,7 @@
     },
     {
       "zoom": 17,
-      "renderSeconds": 2.5039893739999997,
+      "renderSeconds": 1.295294014999996,
       "metatilePngBytes": 998272,
       "tileWebpMedianBytes": 13452.0,
       "tileWebpMeanBytes": 13347.375,
@@ -34,16 +34,16 @@
     },
     {
       "zoom": 18,
-      "renderSeconds": 1.3190785830000067,
-      "metatilePngBytes": 838933,
+      "renderSeconds": 0.6723576410000192,
+      "metatilePngBytes": 838898,
       "tileWebpMedianBytes": 12069.0,
-      "tileWebpMeanBytes": 11129.96875,
+      "tileWebpMeanBytes": 11131.0625,
       "tileX": 139267,
       "tileY": 95553
     },
     {
       "zoom": 19,
-      "renderSeconds": 0.8010308349999917,
+      "renderSeconds": 0.42790899000002014,
       "metatilePngBytes": 615880,
       "tileWebpMedianBytes": 8567.0,
       "tileWebpMeanBytes": 8102.15625,
