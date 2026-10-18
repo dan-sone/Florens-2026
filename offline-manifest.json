@@ -1,7 +1,12 @@
 {
-  "id": "68a49b1b07467aa0",
-  "cache": "florens-offline-pack-68a49b1b07467aa0",
-  "source": "https://build.protomaps.com/20261016.pmtiles",
+  "id": "8254d4867fe3b460",
+  "cache": "florens-offline-pack-8254d4867fe3b460",
+  "source": {
+    "url": "https://download.geofabrik.de/europe/italy/centro-latest.osm.pbf",
+    "style": "https://github.com/openstreetmap-carto/openstreetmap-carto/tree/v6.1.0",
+    "sourceSha256": "dd1e8d348c70cac0be7bb0eefe07feb188364c422206c9db74a47ea1e1e2a606"
+  },
+  "cartography": "OpenStreetMap Carto",
   "bounds": [
     [
       43.74139039971254,
@@ -14,7 +19,7 @@
   ],
   "zoom": [
     0,
-    15
+    19
   ],
   "files": [
     {
@@ -34,13 +39,8 @@
     },
     {
       "path": "assets/offline/documents.json",
-      "bytes": 70892,
-      "sha256": "c3ac6a1602438a65de93ae5571845db4a8483ee9754057631777b2eb3c41fc93"
-    },
-    {
-      "path": "assets/offline/florence.pmtiles",
-      "bytes": 5254373,
-      "sha256": "73c51b6235601aed2e7ffc4d7633fd04b49c4916cc4b0c75e3a6e28abd424017"
+      "bytes": 70502,
+      "sha256": "251fcd5767a733a982eca74b68f6b8bbd21038dc7f4cc0e92c826130adff6f0b"
     },
     {
       "path": "assets/offline/fonts/glyphicons-halflings-regular.eot",
@@ -63,71 +63,6 @@
       "sha256": "71c12656535e99119c2a952c10554cd6f47c6923d2d96155a7833276e68992af"
     },
     {
-      "path": "assets/offline/glyphs/Noto Sans Regular/0-255.pbf",
-      "bytes": 76044,
-      "sha256": "62c6d49b15fa836eb6aa45e259c7ca6762f44b011b09e47776efbe4a6db1b397"
-    },
-    {
-      "path": "assets/offline/glyphs/Noto Sans Regular/12288-12543.pbf",
-      "bytes": 6939,
-      "sha256": "4d776ca89b51ab5ec679eda50ced7bbb12ccdf7b861d12daec7cfbe3f50445e8"
-    },
-    {
-      "path": "assets/offline/glyphs/Noto Sans Regular/22784-23039.pbf",
-      "bytes": 29,
-      "sha256": "2ee75a039b051dacd31fd50c867d15f3594481006723ea7bc7059a143d2e0e05"
-    },
-    {
-      "path": "assets/offline/glyphs/Noto Sans Regular/23040-23295.pbf",
-      "bytes": 29,
-      "sha256": "1a6f09bfcdc8ad3c0101493aea45e6795324d005ee8446d16c850735e6cb2b69"
-    },
-    {
-      "path": "assets/offline/glyphs/Noto Sans Regular/23296-23551.pbf",
-      "bytes": 29,
-      "sha256": "07e4766a40a1f2cb5d80bd7320ecfa892e4091442cf331e0192158f30120a791"
-    },
-    {
-      "path": "assets/offline/glyphs/Noto Sans Regular/256-511.pbf",
-      "bytes": 127726,
-      "sha256": "2eca7561f9f566bcacfda5dd04fb5880baec1328ec0f5484678289a13994de8a"
-    },
-    {
-      "path": "assets/offline/glyphs/Noto Sans Regular/512-767.pbf",
-      "bytes": 94728,
-      "sha256": "6abc80badad0e823e228ab739515be257c8b33bc68bb077dd873030e9b2d143a"
-    },
-    {
-      "path": "assets/offline/glyphs/Noto Sans Regular/65024-65279.pbf",
-      "bytes": 68701,
-      "sha256": "79839b70b48fa9c4cae32f946571481c167adc35eae404044d1ca74514f731b1"
-    },
-    {
-      "path": "assets/offline/glyphs/Noto Sans Regular/65280-65535.pbf",
-      "bytes": 7552,
-      "sha256": "953b22dad634ed0eb0a4c80aeb8ee9f88a7f10d80a75fdc6e9265403f34d52a3"
-    },
-    {
-      "path": "assets/offline/glyphs/Noto Sans Regular/768-1023.pbf",
-      "bytes": 77034,
-      "sha256": "537ccbee79180f4f8b3f6d2bdd27df979260ce1a0358c40d7aa7db505d9b03aa"
-    },
-    {
-      "path": "assets/offline/glyphs/Noto Sans Regular/8192-8447.pbf",
-      "bytes": 64220,
-      "sha256": "8ea977a587352fe31b4159ffdbc9a40be79056f2472017c742ea1e4a931864b9"
-    },
-    {
-      "path": "assets/offline/glyphs/Noto Sans Regular/8448-8703.pbf",
-      "bytes": 82014,
-      "sha256": "125b49cccfe95ac2f64b6bc2661871fba0081ff1b24f34c20bd29260b9351b57"
-    },
-    {
-      "path": "assets/offline/glyphs/Noto Sans Regular/9984-10239.pbf",
-      "bytes": 101495,
-      "sha256": "bdb6b5deb10499a1778b4d1192bc16d59cd7fc8880ca0445b54c1747058883dc"
-    },
-    {
       "path": "assets/offline/licenses/@fortawesome-fontawesome-free-LICENSE.txt",
       "bytes": 7427,
       "sha256": "de784a808496d49f5f80dd9d1d6e9a51cff712cfbc339e7c25155631ae3cdb5d"
@@ -141,6 +76,11 @@
       "path": "assets/offline/licenses/Noto-OFL.txt",
       "bytes": 4396,
       "sha256": "cee9892f9f0cc8fe882c9e9537ee6a89621d86ee7ceaf70b02e2b2b1c25c061a"
+    },
+    {
+      "path": "assets/offline/licenses/OSM-Carto-LICENSE.txt",
+      "bytes": 777,
+      "sha256": "82c9708d7ad9f6919dfb1bd8f6a09caf451e5fd0448b9564cdd0a9046729bb88"
     },
     {
       "path": "assets/offline/licenses/Tangram-icons-LICENSE.md",
@@ -178,34 +118,204 @@
       "sha256": "ee5fc05a0677eaf69601d2c7db0d9ecd6cc27c3abc1d0733bc9ed34707cf8ef2"
     },
     {
+      "path": "assets/offline/raster/17406-11942.pmtiles",
+      "bytes": 505922,
+      "sha256": "57203e8cf0b26229b23ef189283532c33661761b8c0d919dcb3f097329003a49"
+    },
+    {
+      "path": "assets/offline/raster/17406-11943.pmtiles",
+      "bytes": 1158345,
+      "sha256": "207c30936e54525add7459659b3d1a2241233a68bfc345477a65f300f7247836"
+    },
+    {
+      "path": "assets/offline/raster/17406-11944.pmtiles",
+      "bytes": 890720,
+      "sha256": "0d0e2041de979e02805b73e949db39a8a0c125d6a7aa01d41268ef6d90e9de7a"
+    },
+    {
+      "path": "assets/offline/raster/17406-11945.pmtiles",
+      "bytes": 495549,
+      "sha256": "728d9314b87ce27be31de1a18a4a8ede7e7690e8ecd2cddca7587015b97fce6f"
+    },
+    {
+      "path": "assets/offline/raster/17406-11946.pmtiles",
+      "bytes": 759733,
+      "sha256": "511f4458c717f6801ea081044593c305403f081bff4a13dc6a75d66a5dcf0fc0"
+    },
+    {
+      "path": "assets/offline/raster/17406-11947.pmtiles",
+      "bytes": 290215,
+      "sha256": "fade326a2c3d78badcd25896b61fdfc37426d00992983aaba63eec8aefaa07b6"
+    },
+    {
+      "path": "assets/offline/raster/17407-11942.pmtiles",
+      "bytes": 1331313,
+      "sha256": "b459d137a07da793ed838a912dc1e14ccd5bcba2c285028925f95994d1f2497c"
+    },
+    {
+      "path": "assets/offline/raster/17407-11943.pmtiles",
+      "bytes": 3810730,
+      "sha256": "0ccda76f680e7aa22fcf1ddf4563257d80d926ccb909e06823b7595b026a9885"
+    },
+    {
+      "path": "assets/offline/raster/17407-11944.pmtiles",
+      "bytes": 3572712,
+      "sha256": "15694c2178182a3fb73a2810c2b7260ac32d6719cee5b810223b3460ace513ed"
+    },
+    {
+      "path": "assets/offline/raster/17407-11945.pmtiles",
+      "bytes": 2524693,
+      "sha256": "4f07922f94c472b3b200d1d855b9f663e6877f7af7de2b413f2649d2a41a3fc4"
+    },
+    {
+      "path": "assets/offline/raster/17407-11946.pmtiles",
+      "bytes": 1607301,
+      "sha256": "12816bcda9cfa6af8698a70e636b707c3dc841a52c829d1bf151bbc388ebaf4c"
+    },
+    {
+      "path": "assets/offline/raster/17407-11947.pmtiles",
+      "bytes": 603413,
+      "sha256": "8852b86d24a888798ad8f11d8370babd695b742cf6105a2dff43bef6e3765ca1"
+    },
+    {
+      "path": "assets/offline/raster/17408-11942.pmtiles",
+      "bytes": 1436354,
+      "sha256": "16bc3acd9973dff00036eeee2c0c8c92b93b6265fb107c0de08c5cdd140ab087"
+    },
+    {
+      "path": "assets/offline/raster/17408-11943.pmtiles",
+      "bytes": 3916057,
+      "sha256": "0e08f1ddf74bc56147a74dd23936a3866608a6e47a1117f141e9db0df8369729"
+    },
+    {
+      "path": "assets/offline/raster/17408-11944.pmtiles",
+      "bytes": 3460886,
+      "sha256": "1f50c69a91c24adb1553606a452b82b37d48227d6849788df0104b8f93d7a7eb"
+    },
+    {
+      "path": "assets/offline/raster/17408-11945.pmtiles",
+      "bytes": 1498007,
+      "sha256": "231857907b8fb12fa718c4e488760947bfe68d5c9ccaab24b441244e6fa6d0b8"
+    },
+    {
+      "path": "assets/offline/raster/17408-11946.pmtiles",
+      "bytes": 987499,
+      "sha256": "4e6f2e2e05a418c0d0efcd5e08603b792f860afae8857b3b671615642e08a56a"
+    },
+    {
+      "path": "assets/offline/raster/17408-11947.pmtiles",
+      "bytes": 709188,
+      "sha256": "c2ec9713ba3dcd044c9ae7639d20c4d07d17e8f5908b922b01f02ce03abf7f15"
+    },
+    {
+      "path": "assets/offline/raster/17409-11942.pmtiles",
+      "bytes": 1308021,
+      "sha256": "53ebf97cd1bc691d8647d3882f5bcb3299f204c3050516faa50675b9fd2bb7ae"
+    },
+    {
+      "path": "assets/offline/raster/17409-11943.pmtiles",
+      "bytes": 3552420,
+      "sha256": "3673157d8c5d6084dee478cf17c0afa31907cdb3f8db702fe83bb46b749b2e51"
+    },
+    {
+      "path": "assets/offline/raster/17409-11944.pmtiles",
+      "bytes": 3229347,
+      "sha256": "1bb956e99eb98a072689979790cf31c2e02ee140e6263863e349bb7e2945ce87"
+    },
+    {
+      "path": "assets/offline/raster/17409-11945.pmtiles",
+      "bytes": 2379948,
+      "sha256": "5d8737952fea88d6a20ab805a0f83c5bf99b8613a4bceb19905961da0a2a071b"
+    },
+    {
+      "path": "assets/offline/raster/17409-11946.pmtiles",
+      "bytes": 899642,
+      "sha256": "443a40bc095a6bd9f9fd80eef35836d175b65fb7cae9c24a5421a0ee33239111"
+    },
+    {
+      "path": "assets/offline/raster/17409-11947.pmtiles",
+      "bytes": 653987,
+      "sha256": "4dff07b60631c06ec2464af08b98b340dd89916878011c56e844b74e018379c4"
+    },
+    {
+      "path": "assets/offline/raster/17410-11942.pmtiles",
+      "bytes": 1184779,
+      "sha256": "2540c4c4608329ff1e0756485a60138823cf7cb727e1b1438eedac20d6e0ed77"
+    },
+    {
+      "path": "assets/offline/raster/17410-11943.pmtiles",
+      "bytes": 3484102,
+      "sha256": "4857f24a9399727d8300368f0885a22a84bb926b0c69e2edcfd157c66de9566f"
+    },
+    {
+      "path": "assets/offline/raster/17410-11944.pmtiles",
+      "bytes": 2991586,
+      "sha256": "7755add8ad02e385d36ec7dac3a2142da6f24ceda122e289bffeeddf022b8969"
+    },
+    {
+      "path": "assets/offline/raster/17410-11945.pmtiles",
+      "bytes": 1803334,
+      "sha256": "98a68f846b7676e37832a7567b3235ed32a6e9c0defcb0b01375b53860e1f181"
+    },
+    {
+      "path": "assets/offline/raster/17410-11946.pmtiles",
+      "bytes": 791491,
+      "sha256": "cf7e50cd9ff429848090909069bca91f63481093124ea4e139b4dda269396683"
+    },
+    {
+      "path": "assets/offline/raster/17410-11947.pmtiles",
+      "bytes": 736786,
+      "sha256": "19d6019e461f592ba2f37261742947b98bbc0a5554416922987ec5fb63f29760"
+    },
+    {
+      "path": "assets/offline/raster/17411-11942.pmtiles",
+      "bytes": 863478,
+      "sha256": "70f0c678933fa4b4f9ca38b8ee9ca8654340eb04a60b94a1171e76893e6e44f3"
+    },
+    {
+      "path": "assets/offline/raster/17411-11943.pmtiles",
+      "bytes": 2653775,
+      "sha256": "8e2318199a79ab6374a4c00ecd98049ffbaeec92e562c44150d6850c9fd9389b"
+    },
+    {
+      "path": "assets/offline/raster/17411-11944.pmtiles",
+      "bytes": 2113515,
+      "sha256": "48746b382a1e0fcb09211eaf728e58b022a4d6ea1070987688e08bd4582d6f87"
+    },
+    {
+      "path": "assets/offline/raster/17411-11945.pmtiles",
+      "bytes": 2618394,
+      "sha256": "204941ed24f5123865c38e6b70eed4a1c0c10b8854e4128c6b10d89112965a9b"
+    },
+    {
+      "path": "assets/offline/raster/17411-11946.pmtiles",
+      "bytes": 911128,
+      "sha256": "9f58b0214031ed025ac5de3c8c80a89d940dcb6af72401585756677de08a7455"
+    },
+    {
+      "path": "assets/offline/raster/17411-11947.pmtiles",
+      "bytes": 867629,
+      "sha256": "364f5ea06c461721ae7c1489a6fa3ec8afee7f78cb4c6c2bc589d9371812ff06"
+    },
+    {
+      "path": "assets/offline/raster/index.json",
+      "bytes": 11202,
+      "sha256": "9757ceae33271b7a393db61bd8fa3219d655f8af30d5e06698f3c895dabdb40f"
+    },
+    {
+      "path": "assets/offline/raster/overview.pmtiles",
+      "bytes": 732774,
+      "sha256": "dfc2e6d697a46e1336fb8800df811d4ff8e33e058f9c31181cdde1f0a348d2dc"
+    },
+    {
       "path": "assets/offline/scope.json",
       "bytes": 17434,
       "sha256": "3d162184176811b7e3079325ba251bb8134b7bd4770b587dbc7b19752309b1c5"
     },
     {
-      "path": "assets/offline/sprites/light.json",
-      "bytes": 3549,
-      "sha256": "bfac76cf7ed5c2aa2992695904056a1c6b07785b7fd20e6c640cb44fd6244a2e"
-    },
-    {
-      "path": "assets/offline/sprites/light.png",
-      "bytes": 16174,
-      "sha256": "b6a34640917bdc57d0bd080836db33376371a3312ebe7b849045268015de3481"
-    },
-    {
-      "path": "assets/offline/sprites/light@2x.json",
-      "bytes": 3579,
-      "sha256": "1fb5b123fbe35d2e1f6ac171513ce01df89e671273a417ee89c44886a4c132f0"
-    },
-    {
-      "path": "assets/offline/sprites/light@2x.png",
-      "bytes": 28852,
-      "sha256": "23f6e9df27c2e9a14385763980a24e3608966bfc8192a106058bc2ca959ab563"
-    },
-    {
       "path": "assets/offline/style.json",
-      "bytes": 65067,
-      "sha256": "0da0db4f0363990ddbeccdf601f4b89797c173a99db658a2b7b3dab833e6654a"
+      "bytes": 8481,
+      "sha256": "d63c8cf5130e6a32dc1a51d091ea9d37d1bb8202bfd81d92e3ffc7bec3bf1301"
     },
     {
       "path": "assets/offline/vendor/awesome/images/markers-matte.png",
@@ -378,21 +488,6 @@
       "sha256": "fdb9a1185ca91d151c6a97f994d333cfbd9990b0a27935ec61aafb47df1d4098"
     },
     {
-      "path": "assets/offline/vendor/maplibre-leaflet.js",
-      "bytes": 9296,
-      "sha256": "1e6cf8cb3eb5fd909879aa1bf36a383fb506c9a5b2dbbfababce65a294dd1fcb"
-    },
-    {
-      "path": "assets/offline/vendor/maplibre.css",
-      "bytes": 70024,
-      "sha256": "761a1130f0960ea369d917ec843f7d1af5ca1dcf27701aef1d9d59821b3bab25"
-    },
-    {
-      "path": "assets/offline/vendor/maplibre.js",
-      "bytes": 1048625,
-      "sha256": "de48c6770051db952afdc56eb0309417b78f70640b7cede782267e8dc59c600d"
-    },
-    {
       "path": "assets/offline/vendor/pmtiles.js",
       "bytes": 20229,
       "sha256": "caf981bc46f6327ee7e65d5dc964d89d38a69f60edca2bd4c5c890c21b554c6c"
@@ -454,18 +549,18 @@
     },
     {
       "path": "offline-download.js",
-      "bytes": 9926,
-      "sha256": "47430ce1b0c815258f6cda0cfdc5ddaa1fb46ac116a264643d00ca1aa37528c1"
+      "bytes": 10942,
+      "sha256": "9643a08720263603cfb25fc9b76e5fe515f3d4fab066d242a35ff25f74b7399a"
     },
     {
       "path": "offline-map-test.html",
-      "bytes": 2586,
-      "sha256": "49c7cb25cc709e2f080968914050b33a93a0abfab55f284e7d087e61ccdc2e4b"
+      "bytes": 2399,
+      "sha256": "12bb9360ce1954cb8bc071766884dfc8ecb05a3686221e8eab107b9da612da70"
     },
     {
       "path": "offline-map.js",
-      "bytes": 1696,
-      "sha256": "d4a1d6102d0e14449b5e3ac9a53b1eef2a1f7b401c6ff0a1e4b1ab9c4464ac9b"
+      "bytes": 3061,
+      "sha256": "14815426ba01d5b948425c00a40dddc5ad89efddb47f1dd0224355a06ef98100"
     },
     {
       "path": "offline-scope.js",
@@ -474,8 +569,8 @@
     },
     {
       "path": "offline/guide.html",
-      "bytes": 66730,
-      "sha256": "1e169ec3f43136f2734596f23a982c8650c4a29193657d40832db10d9be85612"
+      "bytes": 66543,
+      "sha256": "f7d3860d6ce0193a2649b328e10bd494ee871b78c0c339bb3d15e60341cad677"
     },
     {
       "path": "place-presentation.js",
@@ -558,5 +653,5 @@
       "sha256": "d2c2cce1c47368b9590299d21f67bd856b7bfa767c3f8c42692a42348aedd87b"
     }
   ],
-  "totalBytes": 11415743
+  "totalBytes": 67566514
 }
