@@ -5,7 +5,7 @@ from PIL import Image
 ROOT=Path('/tmp/florens-carto/style')
 OUT=Path.cwd()/'carto-preview';OUT.mkdir(exist_ok=True)
 os.chdir(ROOT)
-mapnik.register_fonts(str(ROOT/'fonts'),True)
+mapnik.register_fonts(str(ROOT/'fonts'),recurse=True)
 assert 'Noto Sans Regular' in mapnik.FontEngine.face_names()
 R=20037508.342789244
 
