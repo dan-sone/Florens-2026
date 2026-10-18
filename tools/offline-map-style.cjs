@@ -16,15 +16,18 @@ module.exports=()=>{
   if(l.id==='buildings'){l.paint['fill-opacity']=.72;l.paint['fill-outline-color']='#b9aa99';}
   if(l.id==='pois'){
    const minZoom=['coalesce',['get','min_zoom'],17];
-   const threshold=['case',inside('culture'),['min',15,minZoom],inside('nature'),minZoom,['max',16,['min',17,minZoom]]];
+   // Keep the tile source's importance ranking. Never pull all minor POIs
+   // forward to the same zoom: that turns city centres into a wall of symbols.
+   const threshold=['case',['<=',minZoom,14],minZoom,inside('nature'),minZoom,['min',19,['+',minZoom,1]]];
    l.filter=['all',['any',...Object.keys(groups).map(inside)],['any',['has','name'],['has','name:en']],['>=',['zoom'],threshold]];
    const icons=['aerodrome','animal','artwork','attraction','bar','beach','beauty','bench','books','building','bus_stop','cafe','clothes','convenience','drinking_water','electronics','fast_food','ferry_terminal','forest','garden','library','marina','museum','park','peak','post_office','restaurant','school','stadium','supermarket','theatre','toilets','university','zoo'];
    l.layout['icon-image']=['case',['in',['get','kind'],['literal',icons]],['get','kind'],inside('shops'),'convenience',inside('food'),'cafe',['==',['get','kind'],'station'],'train_station',inside('culture'),'attraction','building'];
    l.layout['symbol-sort-key']=['+',['case',inside('culture'),0,inside('nature'),20,inside('shops'),30,inside('food'),40,50],['coalesce',['get','min_zoom'],17]];
    l.layout['text-field']=['coalesce',['get','name'],['get','name:en']];
-   l.layout['text-size']=['interpolate',['linear'],['zoom'],14,11,17,12.5,19,15];
-   l.layout['icon-size']=.95;l.layout['icon-padding']=3;l.layout['text-padding']=3;l.layout['text-optional']=true;
-   l.paint['text-color']=['case',inside('culture'),'#785295',inside('shops'),'#247a9c',inside('food'),'#a65c22',inside('nature'),'#34733e','#585566'];
+   l.layout['text-size']=['interpolate',['linear'],['zoom'],14,10.5,17,11,19,12.5];
+   l.layout['icon-size']=.75;l.layout['icon-padding']=6;l.layout['text-padding']=6;l.layout['text-optional']=false;
+   l.paint['icon-opacity']=.8;
+   l.paint['text-color']=['case',inside('culture'),'#74617f',inside('shops'),'#477b8b',inside('food'),'#916b48',inside('nature'),'#4b7551','#6b6670'];
    l.paint['text-halo-color']='#fffdf8';l.paint['text-halo-width']=1.3;
   }
  }

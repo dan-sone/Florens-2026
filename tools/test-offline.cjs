@@ -37,12 +37,29 @@ const results=[];
    await page.click('#guide');await page.waitForFunction(()=>document.querySelector('[data-view="sevardheter"]'));
    await page.waitForFunction(()=>typeof guideReady!=='undefined');await page.evaluate(()=>guideReady);await page.waitForTimeout(2500);await page.screenshot({path:path.join(root,`test-results/offline/${name}-${device}-guide.png`)});
    // Basemap POIs must render from the saved tile data and local sprites.
-   await page.evaluate(async()=>{const g=await guideReady;g.map.eachLayer(l=>{if(l.getMaplibreMap)window.testBasemap=l.getMaplibreMap();});g.map.setView([43.770,11.255],17,{animate:false});});
+   await page.evaluate(async()=>{const g=await guideReady;g.map.eachLayer(l=>{if(l.getMaplibreMap)window.testBasemap=l.getMaplibreMap();});g.map.setView([43.770,11.255],18,{animate:false});});
    await page.waitForFunction(()=>{const gl=window.testBasemap;return gl.loaded()&&gl.queryRenderedFeatures({layers:['pois']}).some(f=>f.properties.kind==='museum');},null,{timeout:30000});
    const shopKinds=['clothes','books','gift','leather','supermarket','convenience','shoes','jewelry','bakery','stationery','wine','pottery','bookbinder','craft','fashion_accessories','cosmetics','beauty','perfumery','art','department_store','deli','pastry','toys','bag'];
    await page.waitForFunction(shopKinds=>{const features=window.testBasemap.queryRenderedFeatures({layers:['pois']});return features.some(f=>shopKinds.includes(f.properties.kind)&&f.properties.name)&&features.some(f=>['restaurant','cafe','bar'].includes(f.properties.kind));},shopKinds,{timeout:20000}).catch(async error=>{console.log('Rendered POIs',name,device,await page.evaluate(()=>window.testBasemap.queryRenderedFeatures({layers:['pois']}).map(f=>({name:f.properties.name,kind:f.properties.kind}))));throw error;});
    assert(await page.evaluate(()=>window.testBasemap.hasImage('museum')),'Local museum sprite loaded');
    await page.screenshot({path:path.join(root,`test-results/offline/${name}-${device}-poi-detail.png`)});
+   if(device==='ipad'){
+    const density=await page.evaluate(async()=>{
+     const g=await guideReady,gl=window.testBasemap;
+     const idle=change=>new Promise(resolve=>{gl.once('idle',resolve);change();});
+     await idle(()=>g.map.setView([43.770,11.255],17,{animate:false}));
+     const quiet=gl.queryRenderedFeatures({layers:['pois']}).length;
+     const filter=gl.getFilter('pois'),size=gl.getLayoutProperty('pois','text-size');
+     const old=JSON.parse(JSON.stringify(filter)),culture=old[1][1],nature=old[1][4],z=['coalesce',['get','min_zoom'],17];
+     old[3][2]=['case',culture,['min',15,z],nature,z,['max',16,['min',17,z]]];
+     await idle(()=>{gl.setFilter('pois',old);gl.setLayoutProperty('pois','icon-size',.95);gl.setLayoutProperty('pois','icon-padding',3);gl.setLayoutProperty('pois','text-padding',3);gl.setLayoutProperty('pois','text-optional',true);gl.setLayoutProperty('pois','text-size',['interpolate',['linear'],['zoom'],14,11,17,12.5,19,15]);});
+     const dense=gl.queryRenderedFeatures({layers:['pois']}).length;
+     await idle(()=>{gl.setFilter('pois',filter);gl.setLayoutProperty('pois','icon-size',.75);gl.setLayoutProperty('pois','icon-padding',6);gl.setLayoutProperty('pois','text-padding',6);gl.setLayoutProperty('pois','text-optional',false);gl.setLayoutProperty('pois','text-size',size);});
+     return {quiet,dense};
+    });
+    console.log('POI density',name,JSON.stringify(density));assert(density.quiet<density.dense,'Fewer basemap POIs than the previous crowded style at the same camera');
+   }
+
    // Exercise the existing navigation and its data offline, including lazy history images.
    for(const view of ['sevardheter','schema','historia','karta']){const button=page.locator(`[data-view="${view}"]`).first();if(await button.count())await button.click();await page.waitForTimeout(300);if(view==='historia'){await page.locator('.history-card').evaluateAll(nodes=>nodes.forEach(n=>n.open=true));await page.locator('.history-image img').evaluateAll(images=>images.forEach(img=>img.loading='eager'));await page.waitForFunction(()=>[...document.querySelectorAll('.history-image img')].every(i=>i.complete&&i.naturalWidth>0));}}
    await page.evaluate(async()=>{const g=await guideReady;g.showDayRoute('fri');});await page.waitForTimeout(600);assert(await page.evaluate(async()=>{const g=await guideReady;return g.map.hasLayer(g.dayRoutes.fri);}));await page.evaluate(async()=>{const g=await guideReady;g.showPlaceOnMap('duomo-santa-reparata');g.openPlaceSheet('duomo-santa-reparata');});await page.waitForTimeout(700);assert((await page.locator('#sheetTitle').textContent()).includes('Duomo'));await page.evaluate(async()=>{(await guideReady).closePlaceSheet(false);});
