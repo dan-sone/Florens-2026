@@ -39,9 +39,8 @@ const results=[];
    // Basemap POIs must render from the saved tile data and local sprites.
    await page.evaluate(async()=>{const g=await guideReady;g.map.eachLayer(l=>{if(l.getMaplibreMap)window.testBasemap=l.getMaplibreMap();});g.map.setView([43.770,11.255],17,{animate:false});});
    await page.waitForFunction(()=>{const gl=window.testBasemap;return gl.loaded()&&gl.queryRenderedFeatures({layers:['pois']}).some(f=>f.properties.kind==='museum');},null,{timeout:30000});
-   const poiKinds=await page.evaluate(()=>window.testBasemap.queryRenderedFeatures({layers:['pois']}).map(f=>f.properties.kind));
-   assert(poiKinds.some(k=>['clothes','books','gift','leather','supermarket','convenience','shoes','jewelry'].includes(k)),'Named shop POIs render');
-   assert(poiKinds.some(k=>['restaurant','cafe','bar'].includes(k)),'Food POIs render');
+   const shopKinds=['clothes','books','gift','leather','supermarket','convenience','shoes','jewelry','bakery','stationery','wine','pottery','bookbinder','craft','fashion_accessories','cosmetics','beauty','perfumery','art','department_store','deli','pastry','toys','bag'];
+   await page.waitForFunction(shopKinds=>{const features=window.testBasemap.queryRenderedFeatures({layers:['pois']});return features.some(f=>shopKinds.includes(f.properties.kind)&&f.properties.name)&&features.some(f=>['restaurant','cafe','bar'].includes(f.properties.kind));},shopKinds,{timeout:20000}).catch(async error=>{console.log('Rendered POIs',name,device,await page.evaluate(()=>window.testBasemap.queryRenderedFeatures({layers:['pois']}).map(f=>({name:f.properties.name,kind:f.properties.kind}))));throw error;});
    assert(await page.evaluate(()=>window.testBasemap.hasImage('museum')),'Local museum sprite loaded');
    await page.screenshot({path:path.join(root,`test-results/offline/${name}-${device}-poi-detail.png`)});
    // Exercise the existing navigation and its data offline, including lazy history images.
