@@ -1,0 +1,22 @@
+{
+  "$schema": "./routes.schema.v1.json",
+  "schemaVersion": 1,
+  "contentVersion": 1,
+  "updatedAt": "2026-10-18T21:00:00Z",
+  "routes": [
+    {
+      "id": "test-route",
+      "segments": [
+        {
+          "id": "test-walk",
+          "mode": "walk",
+          "placeIds": [
+            "test-base",
+            "test-museum",
+            "test-cafe"
+          ]
+        }
+      ]
+    }
+  ]
+}

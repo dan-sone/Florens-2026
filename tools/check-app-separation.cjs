@@ -25,6 +25,10 @@ async function load(documents,label){
 }
 (async()=>{
  await load(original,'current');
+ const preview=Object.fromEntries(names.map(name=>[name,JSON.parse(read('demo/'+name+'.json'))]));
+ await load(preview,'published-preview');
+ const previewMain=[...read('demo/index.html').matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)].map(m=>m[1]).find(code=>code.includes('const guideReady ='));
+ assert.equal(previewMain,main,'Preview must use the exact shared app logic');
  const next=structuredClone(original),map=new Map(next.taxonomy.categories.map((c,i)=>[c.id,'category-'+i]));
  next.guide.id='second-trip';next.guide.title='Second destination';next.guide.destination={name:'Second city',searchSuffix:'Second city'};next.guide.map.center={latitude:59.3,longitude:18.1};
  next.taxonomy.categories.forEach(c=>c.id=map.get(c.id));next.taxonomy.subcategories.forEach(s=>s.categoryId=map.get(s.categoryId));next.guide.categories.forEach(c=>c.id=map.get(c.id));next.places.places.forEach(p=>p.category=map.get(p.category));next['app-config'].bookingCategoryId=map.get(next['app-config'].bookingCategoryId);

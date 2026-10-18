@@ -1,0 +1,38 @@
+{
+  "$schema": "./stories.schema.v1.json",
+  "schemaVersion": 1,
+  "contentVersion": 1,
+  "updatedAt": "2026-10-18T21:00:00Z",
+  "stories": [
+    {
+      "placeId": "test-museum",
+      "title": "En påhittad testplats",
+      "paragraphs": [
+        "Den här berättelsen är testinnehåll. Den beskriver ingen verklig verksamhet."
+      ],
+      "lookFor": "Prova att visa platsen på kartan och öppna dess platskort.",
+      "sources": [
+        {
+          "label": "Testversionens innehållsfiler",
+          "url": "https://github.com/dan-sone/Florens-2026/tree/main/examples/stockholm",
+          "checkedAt": "2026-10-18"
+        }
+      ]
+    },
+    {
+      "placeId": "test-cafe",
+      "title": "En påhittad testplats",
+      "paragraphs": [
+        "Den här berättelsen är testinnehåll. Den beskriver ingen verklig verksamhet."
+      ],
+      "lookFor": "Prova att visa platsen på kartan och öppna dess platskort.",
+      "sources": [
+        {
+          "label": "Testversionens innehållsfiler",
+          "url": "https://github.com/dan-sone/Florens-2026/tree/main/examples/stockholm",
+          "checkedAt": "2026-10-18"
+        }
+      ]
+    }
+  ]
+}

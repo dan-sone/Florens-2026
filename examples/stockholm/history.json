@@ -1,0 +1,31 @@
+{
+  "$schema": "./history.schema.v2.json",
+  "schemaVersion": 2,
+  "contentVersion": 1,
+  "updatedAt": "2026-10-18T21:00:00Z",
+  "title": "Om testversionen",
+  "intro": "Samma appkod med annat innehåll. Alla markerade verksamheter är påhittade.",
+  "chapters": [
+    {
+      "id": "about-test",
+      "period": "Testversion",
+      "title": "Innehåll som kan bytas",
+      "teaser": "Karta, platser och dagsplan läses från egna datafiler.",
+      "paragraphs": [
+        "Det här är ett test av att guiden fungerar för ett annat resmål utan ändrad applogik. Platserna och dagsplanen är påhittade. Kartan visar Stockholm.",
+        "Prova att öppna ett platskort, välja en dag och filtrera bland sevärdheterna. Testversionen använder onlinekarta och har ingen offlinenedladdning."
+      ],
+      "placeIds": [
+        "test-museum",
+        "test-cafe"
+      ],
+      "sources": [
+        {
+          "label": "Testversionens innehållsfiler",
+          "url": "https://github.com/dan-sone/Florens-2026/tree/main/examples/stockholm",
+          "checkedAt": "2026-10-18"
+        }
+      ]
+    }
+  ]
+}

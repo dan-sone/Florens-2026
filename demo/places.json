@@ -1,0 +1,208 @@
+{
+  "$schema": "./places.schema.v6.json",
+  "schemaVersion": 6,
+  "contentVersion": 1,
+  "updatedAt": "2026-10-18T21:00:00Z",
+  "places": [
+    {
+      "id": "test-base",
+      "name": "Testhotell",
+      "category": "hotel",
+      "description": "Påhittad testplats. Visar att samma app fungerar med ett annat innehåll.",
+      "address": null,
+      "position": {
+        "latitude": 59.324,
+        "longitude": 18.069
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "unresolved",
+        "checkedAt": null,
+        "sources": [],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Påhittade testdata."
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Stockholm",
+        "weekly": [],
+        "note": "Testplats utan verkliga öppettider.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": null,
+      "focus": "Testdata – ingen verklig verksamhet",
+      "subcategory": "hotels"
+    },
+    {
+      "id": "test-museum",
+      "name": "Testmuseum",
+      "category": "see-do",
+      "description": "Påhittad testplats. Visar att samma app fungerar med ett annat innehåll.",
+      "address": null,
+      "position": {
+        "latitude": 59.328,
+        "longitude": 18.072
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "unresolved",
+        "checkedAt": null,
+        "sources": [],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Påhittade testdata."
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Stockholm",
+        "weekly": [],
+        "note": "Testplats utan verkliga öppettider.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": null,
+      "focus": "Testdata – ingen verklig verksamhet",
+      "subcategory": "churches"
+    },
+    {
+      "id": "test-workshop",
+      "name": "Testverkstad",
+      "category": "craft",
+      "description": "Påhittad testplats. Visar att samma app fungerar med ett annat innehåll.",
+      "address": null,
+      "position": {
+        "latitude": 59.326,
+        "longitude": 18.062
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "unresolved",
+        "checkedAt": null,
+        "sources": [],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Påhittade testdata."
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Stockholm",
+        "weekly": [],
+        "note": "Testplats utan verkliga öppettider.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": null,
+      "focus": "Testdata – ingen verklig verksamhet",
+      "subcategory": "textiles"
+    },
+    {
+      "id": "test-cafe",
+      "name": "Testkafé",
+      "category": "food-drink",
+      "description": "Påhittad testplats. Visar att samma app fungerar med ett annat innehåll.",
+      "address": null,
+      "position": {
+        "latitude": 59.323,
+        "longitude": 18.075
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "unresolved",
+        "checkedAt": null,
+        "sources": [],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Påhittade testdata."
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Stockholm",
+        "weekly": [],
+        "note": "Testplats utan verkliga öppettider.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": null,
+      "focus": "Testdata – ingen verklig verksamhet",
+      "subcategory": "restaurants"
+    },
+    {
+      "id": "test-shop",
+      "name": "Testbutik",
+      "category": "shopping",
+      "description": "Påhittad testplats. Visar att samma app fungerar med ett annat innehåll.",
+      "address": null,
+      "position": {
+        "latitude": 59.33,
+        "longitude": 18.065
+      },
+      "appleMaps": {
+        "placeId": null,
+        "placeUrl": null
+      },
+      "entrance": null,
+      "website": null,
+      "verification": {
+        "status": "unresolved",
+        "checkedAt": null,
+        "sources": [],
+        "checks": {
+          "identity": false,
+          "position": false,
+          "placeLink": false,
+          "navigation": false
+        },
+        "notes": "Påhittade testdata."
+      },
+      "openingHours": {
+        "status": "unconfirmed",
+        "timeZone": "Europe/Stockholm",
+        "weekly": [],
+        "note": "Testplats utan verkliga öppettider.",
+        "sources": [],
+        "exceptions": []
+      },
+      "specialties": null,
+      "focus": "Testdata – ingen verklig verksamhet",
+      "subcategory": "food-markets"
+    }
+  ]
+}

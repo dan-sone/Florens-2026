@@ -1,0 +1,113 @@
+{
+  "$schema": "./guide.schema.v6.json",
+  "schemaVersion": 6,
+  "contentVersion": 1,
+  "updatedAt": "2026-10-18T21:00:00Z",
+  "id": "stockholm-demo",
+  "title": "Stockholm · TEST",
+  "destination": {
+    "name": "Stockholm · TEST",
+    "searchSuffix": "Stockholm"
+  },
+  "timeZone": "Europe/Stockholm",
+  "map": {
+    "center": {
+      "latitude": 59.326,
+      "longitude": 18.069
+    },
+    "zoom": 15
+  },
+  "defaultSelection": {
+    "id": "all",
+    "label": "Ingen rutt",
+    "program": [
+      {
+        "nodes": [
+          {
+            "type": "text",
+            "text": "Testversion med påhittade platser i Stockholm. Prova Dagar, Sevärdheter och Historia."
+          }
+        ]
+      }
+    ],
+    "summary": "Välj dag"
+  },
+  "days": [
+    {
+      "id": "test-day",
+      "date": "2026-10-19",
+      "label": "Mån 19",
+      "routeIds": [
+        "test-route"
+      ],
+      "program": [
+        {
+          "nodes": [
+            {
+              "type": "text",
+              "text": "Påhittad testdag: "
+            },
+            {
+              "type": "place",
+              "placeId": "test-museum",
+              "text": "Testmuseum"
+            },
+            {
+              "type": "text",
+              "text": " följt av "
+            },
+            {
+              "type": "place",
+              "placeId": "test-cafe",
+              "text": "Testkafé"
+            },
+            {
+              "type": "text",
+              "text": ". Inga riktiga bokningar."
+            }
+          ]
+        }
+      ],
+      "summary": "Prova en testdag"
+    }
+  ],
+  "bookings": [],
+  "persistentPlaceIds": [
+    "test-base"
+  ],
+  "categories": [
+    {
+      "id": "booked"
+    },
+    {
+      "id": "see-do"
+    },
+    {
+      "id": "craft"
+    },
+    {
+      "id": "food-drink"
+    },
+    {
+      "id": "shopping"
+    }
+  ],
+  "presentation": {
+    "placeOverrides": {}
+  },
+  "flights": [],
+  "discoveryAreas": [
+    {
+      "id": "test-area",
+      "title": "Prova guiden",
+      "intro": "Påhittade platser på en riktig karta. Endast testdata, ingen färdig reseguide.",
+      "placeIds": [
+        "test-base",
+        "test-museum",
+        "test-workshop",
+        "test-cafe",
+        "test-shop"
+      ]
+    }
+  ]
+}

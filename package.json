@@ -9,7 +9,8 @@
     "extract:offline": "node tools/extract-offline.cjs",
     "test:offline": "node tools/test-offline.cjs",
     "fetch:offline": "node tools/fetch-offline-extras.cjs",
-    "test:architecture": "node tools/check-offline-storage.cjs && node tools/check-app-separation.cjs && node tools/check-offline-update.cjs"
+    "test:architecture": "node tools/check-offline-storage.cjs && node tools/check-app-separation.cjs && node tools/check-offline-update.cjs",
+    "build:preview": "node tools/build-preview.cjs"
   },
   "type": "commonjs",
   "devDependencies": {
