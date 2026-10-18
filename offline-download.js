@@ -4,7 +4,17 @@
  const base=new URL('./',location.href),key=new URL('offline-ready',base).href;
  const cache=await caches.open(OFFLINE_CACHE);let aborter,mapLayer,boundary;
  const map=inApp?null:L.map('map').setView([43.765,11.26],14);
- const fail=(message,state='error')=>{$('status').textContent=message;if(inApp){window.dispatchEvent(new CustomEvent('offline-download-state',{detail:{state}}));if(state==='error')$('download').textContent='Försök igen';}};
+ const fail=(message,state='error')=>{
+  let text=message;
+  if(inApp&&state==='error'){
+   console.warn('Offline:',message);
+   if(/Hämtning misslyckades|Failed to fetch|Load failed|NetworkError/i.test(message))text='Hämtningen kunde inte slutföras. Kontrollera internetanslutningen och försök igen.';
+   else if(/Ofullständig fil|Fel filstorlek|Kontrollsumman|Skadad lokal fil/.test(message))text='Nedladdningen blev inte komplett. Försök igen med en stabil internetanslutning.';
+   else if(message.startsWith('Offline kunde inte starta:'))text='Guiden kunde inte förberedas för offline. Öppna den direkt i Safari och försök igen.';
+  }
+  $('status').textContent=text;
+  if(inApp){window.dispatchEvent(new CustomEvent('offline-download-state',{detail:{state}}));if(state==='error')$('download').textContent='Försök igen';}
+ };
  window.addEventListener('offline-map-error',e=>fail('Kartan kunde inte visas: '+e.detail));
  const total=OFFLINE_FILES.reduce((sum,f)=>sum+f.bytes,0);
  $('estimate').textContent=inApp?mb(total).replace('.',',')+' på den här enheten':'Hela paketet: '+mb(total)+' (gatukarta '+mb(OFFLINE_FILES.filter(f=>f.path.endsWith('.pmtiles')).reduce((sum,f)=>sum+f.bytes,0))+').';
