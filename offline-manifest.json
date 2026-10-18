@@ -1,6 +1,6 @@
 {
-  "id": "70be9b0eea3d6374",
-  "cache": "florens-offline-pack-70be9b0eea3d6374",
+  "id": "6ebd3d9295575d57",
+  "cache": "florens-offline-pack-6ebd3d9295575d57",
   "source": {
     "url": "https://download.geofabrik.de/europe/italy/centro-latest.osm.pbf",
     "style": "https://github.com/openstreetmap-carto/openstreetmap-carto/tree/v6.1.0",
@@ -549,8 +549,8 @@
     },
     {
       "path": "offline-app.css",
-      "bytes": 1678,
-      "sha256": "7bd350f3eeaf53b712fd4e51e1a6631cb38079cbb089cffa8a81148cb1895c3f"
+      "bytes": 1798,
+      "sha256": "0685768d0cf052e69a1d329fbdbcd55a676c3f17cf3238a1118afd0aaa93d802"
     },
     {
       "path": "offline-app.js",
@@ -668,5 +668,5 @@
       "sha256": "d2c2cce1c47368b9590299d21f67bd856b7bfa767c3f8c42692a42348aedd87b"
     }
   ],
-  "totalBytes": 67709379
+  "totalBytes": 67709499
 }
