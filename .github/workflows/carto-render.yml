@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     env:
-      CARTO_FULL: '0'
+      CARTO_FULL: '1'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -40,11 +40,16 @@ jobs:
         run: bash tools/carto/prepare.sh
       - name: Render and measure the original cartography
         run: /usr/bin/python3 tools/carto/render.py
+      - name: Build lossless raster PMTiles for the complete area
+        run: |
+          curl --fail --location --retry 3 https://github.com/protomaps/go-pmtiles/releases/download/v1.31.2/go-pmtiles_1.31.2_Linux_x86_64.tar.gz -o /tmp/pmtiles.tar.gz
+          tar -xzf /tmp/pmtiles.tar.gz -C /tmp pmtiles
+          /usr/bin/python3 tools/carto/render-full.py
       - name: Save the reviewable preview on the experimental branch
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add carto-preview
+          git add carto-preview assets/offline/raster
           if ! git diff --cached --quiet; then
             git commit -m 'Build measured OSM Carto sample [skip ci]'
             git push origin HEAD:offline-carto-render
