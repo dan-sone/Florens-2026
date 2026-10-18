@@ -1,0 +1,56 @@
+name: Render original OSM Carto preview
+on:
+  push:
+    branches: [offline-carto-render]
+    paths: ['tools/carto/**', '.github/workflows/carto-render.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: florence-carto-render
+  cancel-in-progress: false
+jobs:
+  render:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      CARTO_FULL: '0'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: offline-carto-render
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/florens-carto
+          key: florens-carto-6.1.0-20261018-${{ hashFiles('places.json', 'routes.json', 'offline-config.json', 'offline-scope.js') }}-v1
+      - name: Install the original cartographic renderer
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends postgresql postgresql-16-postgis-3 osm2pgsql osmium-tool gdal-bin python3-mapnik python3-psycopg2 python3-yaml python3-requests python3-pil fonts-dejavu-core fonts-noto-cjk fonts-unifont curl unzip
+          npm install --prefix /tmp/carto-cli carto@1.2.0
+          sudo service postgresql start
+          sudo -u postgres createuser --superuser runner
+          createdb gis
+          psql gis -c 'CREATE EXTENSION postgis' -c 'CREATE EXTENSION hstore' -c 'ALTER SYSTEM SET jit=off'
+          psql gis -c 'SELECT pg_reload_conf();'
+      - name: Prepare regional source data and official style
+        run: bash tools/carto/prepare.sh
+      - name: Render and measure the original cartography
+        run: /usr/bin/python3 tools/carto/render.py
+      - name: Save the reviewable preview on the experimental branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add carto-preview
+          if ! git diff --cached --quiet; then
+            git commit -m 'Build measured OSM Carto sample [skip ci]'
+            git push origin HEAD:offline-carto-render
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: carto-render-preview
+          path: carto-preview
