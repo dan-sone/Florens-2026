@@ -1,7 +1,7 @@
 name: Build and verify offline preview
 on:
   push:
-    branches: [offline-florence-map]
+    branches: [offline-florence-map, offline-carto-render]
     paths: ['offline-*.js', 'offline-map-test.html', 'offline-config.json', 'tools/**', 'package*.json', '.github/workflows/offline-preview.yml']
   workflow_dispatch:
 permissions:
@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: offline-florence-map
+          ref: ${{ github.ref_name }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -26,14 +26,10 @@ jobs:
       - run: npm ci
       - name: Download build-time fonts and compatibility styles
         run: npm run fetch:offline
-      - name: Install pinned PMTiles extraction tool
+      - name: Build the guide from the verified original Carto package
         run: |
-          curl --fail --location --retry 3 https://github.com/protomaps/go-pmtiles/releases/download/v1.31.2/go-pmtiles_1.31.2_Linux_x86_64.tar.gz -o /tmp/pmtiles.tar.gz
-          tar -xzf /tmp/pmtiles.tar.gz -C /tmp pmtiles
-      - name: Extract the computed offline area and build the guide
-        run: |
-          PMTILES_CLI=/tmp/pmtiles npm run extract:offline
-          /tmp/pmtiles verify assets/offline/florence.pmtiles
+          npm run build:offline
+          node tools/check-carto-package.cjs
       - name: Validate guide data and presentation
         run: |
           npm run check
@@ -54,7 +50,7 @@ jobs:
           git add assets/offline offline/guide.html offline-files.js offline-manifest.json
           if ! git diff --cached --quiet; then
             git commit -m 'Build verified offline preview [skip ci]'
-            git push origin HEAD:offline-florence-map
+            git push origin HEAD:${{ github.ref_name }}
           fi
       - name: Package self-hostable HTTPS preview
         run: |

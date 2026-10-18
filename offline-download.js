@@ -6,7 +6,7 @@
  const fail=message=>{$('status').textContent=message};
  window.addEventListener('offline-map-error',e=>fail('Kartan kunde inte visas: '+e.detail));
  const total=OFFLINE_FILES.reduce((sum,f)=>sum+f.bytes,0);
- $('estimate').textContent='Hela paketet: '+mb(total)+' (gatukarta '+mb(OFFLINE_FILES.find(f=>f.path.endsWith('.pmtiles')).bytes)+').';
+ $('estimate').textContent='Hela paketet: '+mb(total)+' (gatukarta '+mb(OFFLINE_FILES.filter(f=>f.path.endsWith('.pmtiles')).reduce((sum,f)=>sum+f.bytes,0))+').';
  async function storage(){const e=await navigator.storage?.estimate?.();$('storage').textContent=e?'Webbplatsens lagring: '+mb(e.usage||0)+'. Uppskattat ledigt: '+mb(Math.max(0,(e.quota||0)-(e.usage||0)))+'.':'';}
  async function ready(){
   if(!await cache.match(key)||!await cache.match(new URL('offline-files.js',base).href))return false;
@@ -55,20 +55,35 @@
   try{
    const estimate=await navigator.storage?.estimate?.();
    if(!wasReady&&estimate&&estimate.quota-estimate.usage<total*1.3)throw Error('Otillräckligt lagringsutrymme. Frigör utrymme och försök igen.');
-   for(const file of OFFLINE_FILES){
+   async function save(file){
+    if(aborter.signal.aborted)throw new DOMException('Avbruten','AbortError');
     const url=new URL(file.path,base).href;let response=await cache.match(url);
-    if(!response){const timeout=setTimeout(()=>aborter.abort(),60000);try{
+    if(!response){let timeout;const touch=()=>{clearTimeout(timeout);timeout=setTimeout(()=>aborter.abort(),60000);};touch();try{
      if(file.path.endsWith('.html')){
-      // Hosting can inject/normalize live HTML. Only the canonical package copy
-      // is cached, with the same byte count and SHA-256 checks as every asset.
-      if(!documents){const saved=await cache.match(new URL('assets/offline/documents.json',base).href);if(!saved)throw Error('Paketets HTML-underlag saknas. Hämta paketet igen.');documents=(await saved.json()).documents;}
       if(typeof documents?.[file.path]!=='string')throw Error('Sidan saknas i offlinepaketet: '+file.path);
       response=new Response(documents[file.path],{headers:{'Content-Type':'text/html; charset=utf-8'}});
      }else response=await fetch(url,{cache:'no-store',signal:aborter.signal});
-     if(!response.ok||response.type==='opaque')throw Error('Hämtning misslyckades: '+file.path+' ('+response.status+')');const bytes=await response.arrayBuffer();if(bytes.byteLength!==file.bytes)throw Error('Ofullständig fil: '+file.path);const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');if(hash!==file.sha256)throw Error('Kontrollsumman stämmer inte: '+file.path);await cache.put(url,new Response(bytes,{headers:{'Content-Type':response.headers.get('Content-Type')||'application/octet-stream'}}));}finally{clearTimeout(timeout);}}
+     if(!response.ok||response.type==='opaque')throw Error('Hämtning misslyckades: '+file.path+' ('+response.status+')');
+     // Reset the timeout as data arrives: a slow, progressing transfer may finish.
+     const reader=response.body.getReader(),chunks=[];let length=0;
+     for(;;){const next=await reader.read();if(next.done)break;touch();length+=next.value.byteLength;if(length>file.bytes){await reader.cancel();throw Error('Fel filstorlek: '+file.path);}chunks.push(next.value);}
+     if(length!==file.bytes)throw Error('Ofullständig fil: '+file.path);
+     const bytes=new Uint8Array(length);let offset=0;for(const chunk of chunks){bytes.set(chunk,offset);offset+=chunk.byteLength;}
+     const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');
+     if(hash!==file.sha256)throw Error('Kontrollsumman stämmer inte: '+file.path);
+     if(aborter.signal.aborted)throw new DOMException('Avbruten','AbortError');
+     await cache.put(url,new Response(bytes,{headers:{'Content-Type':response.headers.get('Content-Type')||'application/octet-stream'}}));
+    }finally{clearTimeout(timeout);}}
     else{const bytes=await response.arrayBuffer();const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');if(hash!==file.sha256)throw Error('Skadad lokal fil: '+file.path);}
     if(aborter.signal.aborted)throw new DOMException('Avbruten','AbortError');received+=file.bytes;$('progress').value=received/total*100;fail('Sparar och verifierar '+mb(received)+' / '+mb(total)+' …');
    }
+   // HTML depends on this verified copy. Then use three bounded workers to avoid
+   // one round-trip per file without holding the whole package in memory.
+   const documentFile=OFFLINE_FILES.find(f=>f.path==='assets/offline/documents.json');
+   await save(documentFile);documents=(await (await cache.match(new URL(documentFile.path,base).href)).json()).documents;
+   const queue=OFFLINE_FILES.filter(f=>f!==documentFile);let cursor=0,firstError;
+   const workers=Array.from({length:3},async()=>{try{while(cursor<queue.length)await save(queue[cursor++]);}catch(error){if(!firstError)firstError=error;aborter.abort();}});
+   await Promise.allSettled(workers);if(firstError)throw firstError;
    const bootstrap='const OFFLINE_CACHE='+JSON.stringify(OFFLINE_CACHE)+';\nconst OFFLINE_FILES='+JSON.stringify(OFFLINE_FILES)+';\nconst OFFLINE_STYLE='+JSON.stringify(OFFLINE_STYLE)+';\nconst OFFLINE_SCOPE='+JSON.stringify(OFFLINE_SCOPE)+';\n';
    await cache.put(new URL('offline-files.js',base).href,new Response(bootstrap,{headers:{'Content-Type':'application/javascript'}}));
    await cache.put(key,new Response('complete')); 

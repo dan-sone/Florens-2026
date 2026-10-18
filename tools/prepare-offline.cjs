@@ -10,7 +10,7 @@ let html=fs.readFileSync('index.html','utf8');
 const replacements=[[/https:\/\/cdn.jsdelivr.net\/npm\/leaflet@1.9.3\/dist\//g,'leaflet/'],[/https:\/\/code.jquery.com\/jquery-3.7.1.min.js/g,'jquery.js'],[/https:\/\/cdn.jsdelivr.net\/npm\/bootstrap@5.2.2\/dist\/js\/bootstrap.bundle.min.js/g,'bootstrap.js'],[/https:\/\/cdn.jsdelivr.net\/npm\/bootstrap@5.2.2\/dist\/css\/bootstrap.min.css/g,'bootstrap.css'],[/https:\/\/cdn.jsdelivr.net\/npm\/@fortawesome\/fontawesome-free@6.2.0\/css\/all.min.css/g,'fontawesome/css/all.min.css'],[/https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/Leaflet.awesome-markers\/2.0.2\//g,'awesome/'],[/https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/leaflet-locatecontrol\/0.66.2\/L.Control.Locate.min./g,'locate.'],[/https:\/\/netdna.bootstrapcdn.com\/bootstrap\/3.0.0\/css\/bootstrap-glyphicons.css/g,'glyphicons.css'],[/https:\/\/cdn.jsdelivr.net\/gh\/python-visualization\/folium\/folium\/templates\/leaflet.awesome.rotate.min.css/g,'rotate.css']];
 for(const [pattern,value] of replacements)html=html.replace(pattern,vendor+'/'+value);
 html=html.replace('<head>','<head><base href="../">');
-const setup=`<link rel="stylesheet" href="${vendor}/maplibre.css"><script src="${vendor}/maplibre.js"></script><script src="${vendor}/pmtiles.js"></script><script src="${vendor}/maplibre-leaflet.js"></script><script src="offline-map.js"></script>`;
+const setup=`<script src="${vendor}/pmtiles.js"></script><script src="offline-map.js"></script>`;
 html=html.replace('<script src="place-presentation',setup+'<script src="place-presentation');
 html=html.replace(/var tile_layer_670938deb8b58c2d30ad3e7204f24def = L.tileLayer\([\s\S]*?\n            \);/,`var tile_layer_670938deb8b58c2d30ad3e7204f24def = OfflineMap.layer({showBoundary:true});`);
 html=html.replace("const version=new URL(window.location.href).searchParams.get('v') || Date.now().toString();","const version='offline';");
@@ -18,16 +18,23 @@ html=html.replace('</body>','<a href="offline-map-test.html" style="position:fix
 fs.writeFileSync('offline/guide.html',html);
 global.window=global;vm.runInThisContext(fs.readFileSync('offline-scope.js','utf8'));
 const scope=OfflineScope.compute(require(root+'/places.json').places,require(root+'/routes.json').routes,require(root+'/offline-config.json'));
-const header=fs.readFileSync(out+'/florence.pmtiles').subarray(0,127);
-if(header.toString('ascii',0,7)!=='PMTiles'||header[7]!==3)throw Error('Expected PMTiles v3');
-const [[south,west],[north,east]]=scope.bounds;
-for(const [offset,value] of [[102,west],[106,south],[110,east],[114,north]])if(Math.abs(header.readInt32LE(offset)/1e7-value)>1.1e-7)throw Error('Scope changed: run tools/extract-offline.cjs to rebuild the map package');
+const rasterPath=out+'/raster/index.json';
+if(!fs.existsSync(rasterPath))throw Error('Build the OSM Carto raster package before preparing this offline guide.');
+const raster=JSON.parse(fs.readFileSync(rasterPath,'utf8'));
+if(raster.type!=='raster'||raster.format!=='webp'||raster.styleVersion!=='6.1.0')throw Error('Unexpected raster cartography');
+if(JSON.stringify(raster.bounds)!==JSON.stringify(scope.bounds))throw Error('Scope changed: rebuild the Carto raster package');
+let addressed=0;
+for(const pack of raster.packages){
+ const bytes=fs.readFileSync(pack.path),header=bytes.subarray(0,127);
+ if(header.toString('ascii',0,7)!=='PMTiles'||header[7]!==3||header[99]!==4)throw Error('Expected raster WebP PMTiles v3: '+pack.path);
+ if(bytes.length!==pack.bytes||crypto.createHash('sha256').update(bytes).digest('hex')!==pack.sha256)throw Error('Raster package checksum: '+pack.path);
+ if(bytes.length>20*1024*1024)throw Error('Raster chunk exceeds the small-file budget');
+ addressed+=Number(header.readBigUInt64LE(72));
+}
+if(addressed!==raster.tileCount)throw Error('Raster tile count does not match its index');
+copy(out+'/raster/OSM-Carto-LICENSE.txt',out+'/licenses/OSM-Carto-LICENSE.txt');
 fs.writeFileSync(out+'/scope.json',JSON.stringify(scope,null,2));
-const mapStyle=require('./offline-map-style.cjs')();
-const styleErrors=require('@maplibre/maplibre-gl-style-spec').validateStyleMin(mapStyle);
-if(styleErrors.length)throw Error(styleErrors.map(e=>e.message).join('\n'));
-for(const suffix of ['.json','.png','@2x.json','@2x.png'])if(!fs.existsSync(out+'/sprites/light'+suffix))throw Error('Run npm run fetch:offline for the local POI sprites');
-fs.writeFileSync(out+'/style.json',JSON.stringify(mapStyle));
+fs.writeFileSync(out+'/style.json',JSON.stringify(raster));
 // Copy bootstrap globals before the shared map adapter in the generated guide.
 let guide=fs.readFileSync('offline/guide.html','utf8').replace('<script src="offline-map.js">','<script src="offline-files.js"></script><script src="offline-map.js">');
 fs.writeFileSync('offline/guide.html',guide);
@@ -35,9 +42,10 @@ fs.writeFileSync('offline/guide.html',guide);
 fs.writeFileSync(out+'/documents.json',JSON.stringify({version:1,documents:Object.fromEntries(['offline-map-test.html','offline/guide.html'].map(p=>[p,fs.readFileSync(p,'utf8')]))}));
 function walk(dir){return fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(dir+'/'+e.name):[dir+'/'+e.name]);}
 const local=['offline-map-test.html','offline/guide.html','offline-download.js','offline-map.js','offline-scope.js','offline-config.json','place-presentation.js','places-validator.js','place-sheet.css','ui-theme.css',...fs.readdirSync('.').filter(p=>p.endsWith('.json')&&!p.startsWith('package')&&!p.startsWith('offline-manifest')),...walk('assets')];
-const files=[...new Set(local)].filter(p=>p.includes('/licenses/')||!p.endsWith('.map')&&!p.endsWith('.ts')&&!p.endsWith('README.md')&&!p.endsWith('LICENSE')&&!p.endsWith('LICENSE.txt')).sort().map(p=>{const data=fs.readFileSync(p);return {path:p,bytes:data.length,sha256:crypto.createHash('sha256').update(data).digest('hex')};});
+const unused=p=>p===out+'/florence.pmtiles'||p.startsWith(out+'/glyphs/')||p.startsWith(out+'/sprites/')||/\/vendor\/maplibre(?:-leaflet)?\.(?:js|css)$/.test(p);
+const files=[...new Set(local)].filter(p=>!unused(p)).filter(p=>p.includes('/licenses/')||!p.endsWith('.map')&&!p.endsWith('.ts')&&!p.endsWith('README.md')&&!p.endsWith('LICENSE')&&!p.endsWith('LICENSE.txt')).sort().map(p=>{const data=fs.readFileSync(p);return {path:p,bytes:data.length,sha256:crypto.createHash('sha256').update(data).digest('hex')};});
 const id=crypto.createHash('sha256').update(JSON.stringify(files)).digest('hex').slice(0,16);
 const cache='florens-offline-pack-'+id;
 fs.writeFileSync('offline-files.js','const OFFLINE_CACHE='+JSON.stringify(cache)+';\nconst OFFLINE_FILES='+JSON.stringify(files)+';\nconst OFFLINE_STYLE='+fs.readFileSync(out+'/style.json','utf8')+';\nconst OFFLINE_SCOPE='+JSON.stringify(scope)+';\n');
-fs.writeFileSync('offline-manifest.json',JSON.stringify({id,cache,source:'https://build.protomaps.com/20261016.pmtiles',bounds:scope.bounds,zoom:[0,15],files,totalBytes:files.reduce((s,f)=>s+f.bytes,0)},null,2));
+fs.writeFileSync('offline-manifest.json',JSON.stringify({id,cache,source:raster.source,cartography:raster.cartography,bounds:scope.bounds,zoom:[raster.minZoom,raster.maxZoom],files,totalBytes:files.reduce((s,f)=>s+f.bytes,0)},null,2));
 console.log('Offline package:',id,files.length,'files',files.reduce((s,f)=>s+f.bytes,0),'bytes');

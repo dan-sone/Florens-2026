@@ -28,37 +28,25 @@ const results=[];
    const page=await context.newPage(),errors=[],failed=[];page.on('pageerror',e=>errors.push(e.message));page.on('requestfailed',r=>failed.push(r.url()));
    page.on('console',m=>{if(m.type()==='error'&&!m.text().includes('favicon'))errors.push(m.text());});
    await page.goto(base+'/offline-map-test.html');if(prettyUrls)assert.equal(new URL(page.url()).pathname,'/offline-map-test','Host redirected the manager to its extensionless URL');await page.waitForFunction(()=>document.querySelector('#status').textContent==='Ingen komplett offlinekarta sparad.');
-   await page.click('#download');await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Redo för offline'),null,{timeout:90000});
-   await page.waitForTimeout(2000);assert(await page.locator('canvas').count()>0,'Vector map canvas');
+   const downloadStart=Date.now();await page.click('#download');await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Redo för offline'),null,{timeout:90000});
+   console.log('CARTO_LOCAL_DOWNLOAD',name,device,Date.now()-downloadStart,'ms');await page.waitForFunction(()=>[...document.querySelectorAll('.leaflet-tile')].some(i=>i.complete&&i.naturalWidth===256));
    assert.equal(errors.length,0,errors.join('\n'));const counts=await page.evaluate(async()=>({files:OFFLINE_FILES.length,stored:(await (await caches.open(OFFLINE_CACHE)).keys()).length}));assert.equal(counts.stored,counts.files+2);if(prettyUrls){assert((await page.content()).includes('injected by test host'),'Live HTML was modified by the host');assert(!(await page.evaluate(async()=>(await (await caches.open(OFFLINE_CACHE)).match(new URL('offline-map-test.html',location.href).href)).text())).includes('injected by test host'),'Cached HTML is the unmodified canonical package document');}
    await setOffline(context,true);failed.length=0;
    await page.reload();await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Redo för offline'));
    await page.waitForTimeout(1500);await page.screenshot({path:path.join(root,`test-results/offline/${name}-${device}-map.png`)});
    await page.click('#guide');await page.waitForFunction(()=>document.querySelector('[data-view="sevardheter"]'));
    await page.waitForFunction(()=>typeof guideReady!=='undefined');await page.evaluate(()=>guideReady);await page.waitForTimeout(2500);await page.screenshot({path:path.join(root,`test-results/offline/${name}-${device}-guide.png`)});
-   // Basemap POIs must render from the saved tile data and local sprites.
-   await page.evaluate(async()=>{const g=await guideReady;g.map.eachLayer(l=>{if(l.getMaplibreMap)window.testBasemap=l.getMaplibreMap();});g.map.setView([43.770,11.255],18,{animate:false});});
-   await page.waitForFunction(()=>{const gl=window.testBasemap;return gl.loaded()&&gl.queryRenderedFeatures({layers:['pois']}).some(f=>f.properties.kind==='museum');},null,{timeout:30000});
-   const shopKinds=['clothes','books','gift','leather','supermarket','convenience','shoes','jewelry','bakery','stationery','wine','pottery','bookbinder','craft','fashion_accessories','cosmetics','beauty','perfumery','art','department_store','deli','pastry','toys','bag'];
-   await page.waitForFunction(shopKinds=>{const features=window.testBasemap.queryRenderedFeatures({layers:['pois']});return features.some(f=>shopKinds.includes(f.properties.kind)&&f.properties.name)&&features.some(f=>['restaurant','cafe','bar'].includes(f.properties.kind));},shopKinds,{timeout:20000}).catch(async error=>{console.log('Rendered POIs',name,device,await page.evaluate(()=>window.testBasemap.queryRenderedFeatures({layers:['pois']}).map(f=>({name:f.properties.name,kind:f.properties.kind}))));throw error;});
-   assert(await page.evaluate(()=>window.testBasemap.hasImage('museum')),'Local museum sprite loaded');
+   // The original Carto labels and POIs are baked into lossless raster pixels.
+   await page.evaluate(async()=>{const g=await guideReady;g.map.eachLayer(l=>{if(l.offlineRaster)window.testBasemap=l;});g.map.setView([43.770,11.255],18,{animate:false});});
+   await page.waitForFunction(()=>!window.testBasemap.isLoading()&&[...document.querySelectorAll('.leaflet-tile')].filter(i=>i.complete&&i.naturalWidth===256).length>=4);
+   assert.equal(await page.evaluate(()=>OFFLINE_STYLE.cartography),'OpenStreetMap Carto');
+   const colors=await page.evaluate(()=>{const c=document.createElement('canvas');c.width=c.height=256;const ctx=c.getContext('2d');ctx.drawImage([...document.querySelectorAll('.leaflet-tile')].find(i=>i.complete&&i.naturalWidth===256),0,0);const p=ctx.getImageData(0,0,256,256).data,s=new Set();for(let i=0;i<p.length;i+=4)s.add(p.slice(i,i+3).join(','));return s.size;});
+   assert(colors>100,'Decoded raster includes detailed original cartography');
    await page.screenshot({path:path.join(root,`test-results/offline/${name}-${device}-poi-detail.png`)});
-   if(device==='ipad'){
-    const density=await page.evaluate(async()=>{
-     const g=await guideReady,gl=window.testBasemap;
-     const idle=change=>new Promise(resolve=>{gl.once('idle',resolve);change();});
-     await idle(()=>g.map.setView([43.770,11.255],17,{animate:false}));
-     const quiet=gl.queryRenderedFeatures({layers:['pois']}).length;
-     const filter=gl.getFilter('pois'),size=gl.getLayoutProperty('pois','text-size');
-     const old=JSON.parse(JSON.stringify(filter)),culture=old[1][1],nature=old[1][4],z=['coalesce',['get','min_zoom'],17];
-     old[3][2]=['case',culture,['min',15,z],nature,z,['max',16,['min',17,z]]];
-     await idle(()=>{gl.setFilter('pois',old);gl.setLayoutProperty('pois','icon-size',.95);gl.setLayoutProperty('pois','icon-padding',3);gl.setLayoutProperty('pois','text-padding',3);gl.setLayoutProperty('pois','text-optional',true);gl.setLayoutProperty('pois','text-size',['interpolate',['linear'],['zoom'],14,11,17,12.5,19,15]);});
-     const dense=gl.queryRenderedFeatures({layers:['pois']}).length;
-     await idle(()=>{gl.setFilter('pois',filter);gl.setLayoutProperty('pois','icon-size',.75);gl.setLayoutProperty('pois','icon-padding',6);gl.setLayoutProperty('pois','text-padding',6);gl.setLayoutProperty('pois','text-optional',false);gl.setLayoutProperty('pois','text-size',size);});
-     return {quiet,dense};
-    });
-    console.log('POI density',name,JSON.stringify(density));assert(density.quiet<density.dense,'Fewer basemap POIs than the previous crowded style at the same camera');
-   }
+   const panStart=Date.now();await page.evaluate(async()=>{(await guideReady).map.setView([43.760,11.270],19,{animate:false});});
+   await page.waitForFunction(()=>!window.testBasemap.isLoading());
+   const panMs=Date.now()-panStart;assert(panMs<5000,'Stored raster pan finishes promptly');
+   console.log('CARTO_OFFLINE_PAN',name,device,panMs,'ms');
 
    // Exercise the existing navigation and its data offline, including lazy history images.
    for(const view of ['sevardheter','schema','historia','karta']){const button=page.locator(`[data-view="${view}"]`).first();if(await button.count())await button.click();await page.waitForTimeout(300);if(view==='historia'){await page.locator('.history-card').evaluateAll(nodes=>nodes.forEach(n=>n.open=true));await page.locator('.history-image img').evaluateAll(images=>images.forEach(img=>img.loading='eager'));await page.waitForFunction(()=>[...document.querySelectorAll('.history-image img')].every(i=>i.complete&&i.naturalWidth>0));}}
@@ -66,9 +54,9 @@ const results=[];
    await page.reload();await page.waitForTimeout(2000);assert.equal(await page.title(),'Florens 2026');assert.equal(errors.length,0,errors.join('\n')+'\n'+failed.join('\n'));assert.deepEqual(failed,[],'No failed requests offline');
    // Close the page and create a new one to verify a cold navigation, not just memory.
    await page.goto(base+'/offline-map-test.html');await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Redo för offline'));await page.evaluate(async()=>{const current=await caches.open(OFFLINE_CACHE),previousName=OFFLINE_CACHE+'-previous',previous=await caches.open(previousName);for(const req of await current.keys()){let response=await current.match(req);if(new URL(req.url).pathname.endsWith('/offline-files.js'))response=new Response((await response.text()).replace(OFFLINE_CACHE,previousName),{headers:{'Content-Type':'application/javascript'}});await previous.put(req,response);}await caches.delete(OFFLINE_CACHE);});await page.reload();await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Redo för offline'));
-   await page.close();const cold=await context.newPage();await cold.goto(base+(prettyUrls?'/offline/guide':'/offline/guide.html'));assert.equal(await cold.evaluate(async()=>(await guideReady).markersById.size),77);await cold.close();
+   await page.close();const cold=await context.newPage();const coldStart=Date.now();await cold.goto(base+(prettyUrls?'/offline/guide':'/offline/guide.html'));assert.equal(await cold.evaluate(async()=>(await guideReady).markersById.size),77);await cold.waitForFunction(()=>[...document.querySelectorAll('.leaflet-tile')].some(i=>i.complete&&i.naturalWidth===256));const coldMs=Date.now()-coldStart;assert(coldMs<5000,'Cold offline map displays promptly');console.log('CARTO_OFFLINE_COLD',name,device,coldMs,'ms');await cold.close();
    const production=await context.newPage();await setOffline(context,false);await production.goto(base+'/index.html',{waitUntil:'commit'});assert.equal(await production.evaluate(()=>navigator.serviceWorker.controller),null,'Production not controlled by test workers');await production.close();
-   results.push(`${name}/${device}: ${prettyUrls?'extensionless host redirects and transformed live HTML, ':''}complete download, vector rendering, offline map/guide reload, cold navigation, existing views, named museum/shop/food POIs and local sprites, no failed offline requests, production isolation, previous-version fallback`);
+   results.push(`${name}/${device}: ${prettyUrls?'extensionless host redirects and transformed live HTML, ':''}complete download, original Carto raster rendering, offline map/guide reload, cold navigation, existing views, decoded detailed raster tiles with baked-in labels and POIs, no failed offline requests, production isolation, previous-version fallback`);
    console.log('PASS',name,device);await context.close();
   }
   prettyUrls=false;
@@ -89,7 +77,7 @@ const results=[];
    const ctx=await browser.newContext(),p=await ctx.newPage();
    if(test==='quota')await ctx.addInitScript(()=>{const put=Cache.prototype.put;Cache.prototype.put=function(req,res){if(String(req).endsWith('.pmtiles'))throw new DOMException('Test quota','QuotaExceededError');return put.call(this,req,res);};});
    await p.goto(base+'/offline-map-test.html');await p.waitForFunction(()=>document.querySelector('#status').textContent==='Ingen komplett offlinekarta sparad.');
-   if(test==='network'||test==='cancel'){fault='assets/offline/florence.pmtiles';delay=test==='cancel'?3000:0;}
+   if(test==='network'||test==='cancel'){fault=require('../assets/offline/raster/index.json').packages[0].path;delay=test==='cancel'?3000:0;}
    await p.click('#download');
    if(test==='cancel'){await p.waitForTimeout(100);await p.click('#cancel');}
    if(['missing','integrity'].includes(test)){

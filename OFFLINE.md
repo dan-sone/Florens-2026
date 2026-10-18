@@ -1,65 +1,59 @@
 # Florens offline preview
 
-Production `index.html` is unchanged. `offline/guide.html` is a generated copy of its UI, with a local Protomaps/PMTiles basemap and locally hosted dependencies. Do not edit the generated guide by hand.
+Production `index.html`, `offline-scope.js` and `offline-config.json` remain unchanged. `offline/guide.html` is generated from the original guide UI; do not edit it by hand. The separate test host link is supplied directly in the conversation.
 
-## Build and review
+## Original cartography
 
-The `offline-florence-map` branch runs **Build and verify offline preview** in GitHub Actions. It extracts the map, builds the preview, tests it with Chromium and WebKit at iPhone and iPad viewport sizes, and commits generated assets to this branch only after the checks pass. It never deploys or merges production. Browser screenshots/results and a self-hostable site archive are attached to the run. A failed or cancelled run is not a verified preview.
+The basemap is self-rendered **OpenStreetMap Carto 6.1.0**, with its official colors, labels, symbols and scale rules. Mapnik renders 8×8 metatiles with a label buffer, then crops the standard 256px tiles. Lossless WebP tiles are stored in PMTiles v3 archives, partitioned by z15 parent tile (plus one overview archive), each below 20 MiB. All zooms 0–19 are present; there is no vector overzoom. Leaflet reads only visible tiles through a local CacheStorage Blob source; no WebGL is needed.
 
-The source of the basemap is Protomaps' 2026-10-16 planet build, format version 4.15.2, OSM replication time 2026-10-16 04:00 UTC. The extraction tool is go-pmtiles 1.31.2. Tiles are MVT vectors in PMTiles v3, zooms 0–15, overzoomed by MapLibre up to the guide's existing zoom 19. Additional zoom does not add information beyond z15. This is a street map, not satellite imagery.
+This is the same cartographic design as the guide's standard OpenStreetMap layer. A pixel-identical live image is not promised: source data dates, style releases, renderer/font versions and label placement at metatile boundaries can differ from the public live service. The snapshot does not update during the trip. Basemap symbols/labels are baked into the map, just like the original raster layer; the guide's own place pins and cards stay interactive.
 
-The existing `offline-scope.js` rule engine and `offline-config.json` are unchanged. The current computed rectangle is approximately 4.45 × 4.51 km, contains 77 positioned places and a 450 m margin, with bounds south 43.7413904, west 11.2350214, north 43.7813384, east 11.2912022. The current dataset contains no excluded positioned places; synthetic tests must cover airports/day trips/distant outliers. The engine remains trip-independent: hotel anchor, walking routes, local radius, connected clusters, excluded categories and per-place overrides. A package rebuild is mandatory if the calculated bounds change. Build validation checks the real PMTiles header against the computed bounds, so an outdated extent cannot silently ship.
+Data comes from Geofabrik's Centro Italy OSM extract. Ocean geometry comes from osmdata.openstreetmap.de. No tiles are bulk-downloaded from tile.openstreetmap.org: its policy forbids offline prefetching. The renderer uses the official Carto source and fonts. Preserve OpenStreetMap attribution and the included CC0 Carto license. Source URLs, input SHA-256, package hashes, sizes, tile counts and render time are recorded in `assets/offline/raster/index.json`.
+
+## Coverage and reusable scope
+
+The existing general rule engine remains trip-independent: hotel anchor, walking routes, local radius, connected clusters, excluded categories, per-place overrides and margins. Florence currently contains 77 positioned places with a 450 m margin, over approximately 4.45 × 4.51 km. The bounds are south 43.7413904, west 11.2350214, north 43.7813384, east 11.2912022. Synthetic tests cover distant outliers, excluded categories and overrides. A rebuild is required when these calculated bounds change; the build rejects a mismatched package. `check-carto-package.cjs` reads every tile intersecting the scope at every zoom, validating partitions, XYZ/TMS addressing and WebP payloads.
 
 ## iPhone and iPad test
 
-The owner-private HTTPS preview link is supplied directly in the conversation. It is a separate test host; the GitHub Pages production guide is unchanged.
+1. Open the supplied HTTPS test link directly in **Safari**, in a normal tab, online. Each device/browser/origin needs its own download. Files, GitHub source pages, raw GitHub URLs and ordinary HTTP LAN addresses are unsuitable for Service Workers.
+2. Tap **Hämta för offline**. Keep Safari visible and the device awake until **Redo för offline · alla filer finns lokalt.** appears. The displayed package size is exact for that build; browser overhead and temporary copies require extra free space. Allow at least twice the displayed size when updating an existing package. Three bounded downloads run concurrently. Progress counts verified bytes. A progressing transfer may continue; 60 seconds without incoming data aborts it. Cancel, HTTP errors, wrong file size, wrong SHA-256 and quota failures cannot create a complete package.
+3. Tap **Öppna hela testguiden**. Check the familiar Karta, Dagar, Sevärdheter and Historia views. The dashed blue rectangle marks the saved scope. Check labels, shops, museums and original icons around Piazza della Signoria at zooms 17–19.
+4. Turn on airplane mode **and turn Wi-Fi off**. Reload. Pan over the whole marked rectangle and zoom 0–19. Check Duomo, Ponte Vecchio, Santa Croce, San Miniato and Lisio. Open place cards and history pictures, switch days and show routes.
+5. Close the tab and reopen the same test link offline. Repeat portrait/landscape and on iPad. The guide must load without a connection.
+6. Use **Offlinetest** to return to the download page. **Kontrollera paketet** checks local hashes. **Ta bort paketet** removes this version; downloading is required again afterward.
+7. Optional: Share → Add to Home Screen. Open that installed app online and download/check **there** before relying on it. Do not assume it shares Safari's stored package.
 
-The preview must be served over HTTPS (or localhost for a desktop test). A GitHub file page, raw.githubusercontent.com, opening an HTML file from Files, and ordinary HTTP to a Mac's LAN IP do not provide a suitable offline app origin.
+Routes are the guide's existing lines between stops, not new street-following routing or turn-by-turn navigation. Apple Maps links, websites, ChatGPT and live information need connectivity or their own downloaded resources. GPS depends on hardware and permission; Wi-Fi-only iPads may lack GPS.
 
-1. Open the supplied **offline-map-test.html** preview link in Safari, in a normal tab, while online. Do this separately on each device. About 11.2 MB is downloaded; browser storage overhead is additional (about 12–15 MB total observed in Chromium). Allow at least 25 MB free for temporary copies and updates.
-2. Tap **Hämta för offline** and keep the page visible until **Redo för offline · alla filer finns lokalt.** appears. A progress bar shows verified bytes. All files are checked with SHA-256 before readiness is recorded. The canonical HTML documents are downloaded inside a verified JSON package, so a host that decorates live HTML cannot invalidate or modify the saved offline guide. The same checks run when the test page opens again; missing/corrupt files invalidate readiness.
-3. Tap **Öppna hela testguiden**. Verify the familiar Karta, Dagar, Sevärdheter and Historia views. The quiet dashed blue rectangle on the map marks the intended saved extent. The basemap's colors and label placement differ from the online raster map; app controls, icons, content and interactions use the existing guide UI.
-4. Turn on airplane mode **and turn Wi-Fi off**. Airplane mode alone can leave Wi-Fi enabled. Reload the guide, pan around the entire marked rectangle, and zoom in to read street names. Check Ponte Vecchio, Duomo, Santa Croce, San Miniato and Lisio. Open place cards, switch days and show a route. Open Historia and expand the image sections.
-5. Close the tab. Open the **same preview URL** again while still offline. The guide must load without a network connection. Also test portrait and landscape, and repeat on iPad.
-6. Return to the test/download page using the **Offlinetest** link. Check that it still reports ready. **Kontrollera paketet** rechecks local checksums without needing a network connection. **Ta bort paketet** deletes only this version of the offline pack; another online download is needed afterward.
-7. Optionally use Safari's Share → Add to Home Screen. Open that installed version online and download/check the package **there** before relying on it; do not assume it shares Safari's storage. Use that same icon during the trip.
+## Safari limits
 
-The map and existing route overlays work offline. Routes remain the guide's existing lines between stops; they are not new street-following routes or an offline turn-by-turn navigation engine. Apple Maps directions, linked websites, ChatGPT and live information need connectivity or their own separately downloaded resources. GPS may work offline if the device has GPS and location permission, but this preview does not guarantee a GPS fix; Wi-Fi-only iPads may lack GPS hardware.
+HTTPS, Service Workers, CacheStorage and WebP support are required. Current iOS/iPadOS Safari supports these. No WebGL requirement remains. Automated Playwright WebKit is a compatibility check, not a physical-device Safari test. The device checklist above is final acceptance before production integration.
 
-## Safari storage limits
+Safari may suspend downloads when the app goes into the background or the phone locks. Keep the page open until ready; no background download is promised. Private browsing is unsuitable for durable storage. Storage estimates/persistence requests are optional and used where available. Safari can evict website data under storage pressure or after prolonged inactivity, and manually clearing website data deletes the package. Home Screen installation may improve persistence heuristics but does not replace a pre-departure airplane-mode check. Moving to another preview domain or production does not move the download.
 
-HTTPS and Service Workers are required; MapLibre 5 also needs WebGL2. Use a current iOS/iPadOS Safari. Storage estimates and persistent-storage requests use the Safari 17+ Storage API when available, and are optional on older versions. Private browsing is unsuitable for durable trip storage. Downloads can be interrupted when Safari is suspended or the phone locks; keep the page visible, then retry if needed. There is no background download promise.
+Primary references: https://webkit.org/blog/14403/updates-to-storage-policy/ and https://operations.osmfoundation.org/policies/tiles/
 
-Safari storage is best effort unless persistent storage is granted, and even persistence is not a backup against manually clearing website data. Low storage pressure and prolonged inactivity can cause eviction. Home Screen installation can improve persistence heuristics but is not a guarantee. Check **Redo för offline** shortly before departure, in the browser/app you will actually use. Each browser/device/origin needs its own download. Moving between preview domains or later to production does not move the saved package.
+## Integrity and isolation
 
-Primary reference: https://webkit.org/blog/14403/updates-to-storage-policy/
+All guide assets, data, schemas, scripts, CSS, fonts, history images and raster archives are local. Every file has a byte count and SHA-256. Canonical HTML is delivered inside a verified JSON package, so a host's live HTML decorations cannot corrupt the offline copy. A completion marker is written last. On failure all parallel workers settle before partial files are removed. An older complete package remains usable until the replacement completes. Missing/corrupt files invalidate readiness.
 
-## Implementation
+The test Service Workers control only the `offline-map-test` URL prefix and `/offline/`; they never control production `index.html`. Versioned caches use the manifest's content hash. Only older caches belonging to this feature are removed after a successful update.
 
-- Local files only: PMTiles, MapLibre, PMTiles decoder, Leaflet/adapter, existing plugins, icon fonts, Noto glyph subsets, data, schemas, styles and history images. No runtime CDN, external sprites or external glyph service is needed. Bundled normal/Retina Protomaps v4 sprites restore basemap museum, shop, food and service labels independently of the guide’s own pins. The palette uses blue water, green parks, warm buildings and stronger road/text contrast inspired by the online OpenStreetMap map. It is not pixel-identical to OSM’s raster cartography. Important landmarks appear first. Other POIs follow the source importance ranking and appear one zoom level later; zoom to 17–19 for local shops and restaurants. Smaller, quieter symbols require space for their names, so standalone icons do not crowd the map. Cultural labels are prioritized. Noto glyph ranges cover the Latin/European characters and punctuation used in this Florence map; another destination/language can require additional ranges.
-- PMTiles reads the locally cached Blob through a custom byte source. It never relies on cached HTTP range fragments, a tile provider's HTTP cache or unsupported bulk downloading of OpenStreetMap's raster tile service. The archive is about 5.25 MB and is read as a Blob, with slices decoded on demand.
-- CacheStorage stores full verified files. A completion marker is written last. Failed first downloads are cleared; cancel, timeout, HTTP failure, truncated/corrupt files and quota errors cannot produce a ready state. Older feature-specific caches are removed only after the new pack completes. Other site caches are never deleted. The Service Worker falls back to an older complete pack if the current version has not completed; the online download page discovers the new manifest without mixing partial guide resources.
-- Service Workers control only `offline-map-test.html` and `/offline/`. They do not control production `index.html`, even on the same host. Production code is not registered for offline support in this PR.
-- Versioned cache names come from an asset manifest. `offline-files.js` contains the same manifest and is saved with the completed pack so that a cold offline launch has all bootstrap data.
-- Build inputs and generated dependencies are locked by `package-lock.json`. Basemap data is a Produced Work distributed with OpenStreetMap attribution; Protomaps supports self-hosted region extraction. Preserve the displayed attribution and the bundled library/font licenses. See https://docs.protomaps.com/basemaps/downloads and https://docs.protomaps.com/pmtiles/cli.
+## Build and verify
 
-## Reproduce locally
+`Render original OSM Carto preview` builds regional data and original map tiles on the experimental branch. `Build and verify offline preview` prepares the local guide from those archives, checks content/scope/full tile coverage and runs Chromium and WebKit at iPhone/iPad sizes, including Retina, extensionless hosting and modified live HTML. Tests sever both the browser connection and HTTP origin. They cover cold starts, panning, guide views/routes/images, update fallback, network errors, cancellation, storage quota, missing/corrupt assets and production isolation. Screenshots and results are attached to the Actions run. A failed/cancelled run is not a verified version.
 
 ```sh
 npm ci
 npm run fetch:offline
-# Install go-pmtiles 1.31.2, then:
-PMTILES_CLI=/path/to/pmtiles npm run extract:offline
+# Raster packages are committed. Rebuild them with the Carto workflow if scope changes.
+npm run build:offline
 npm run check
+node tools/check-offline-scope.cjs
+node tools/check-carto-package.cjs
 npx playwright install --with-deps chromium webkit
 npm run test:offline
-python3 -m http.server 8765
 ```
 
-Desktop test URL: http://localhost:8765/offline-map-test.html. For an iPhone use an HTTPS host serving the complete built site, not the desktop localhost URL. GitHub Actions supplies a complete preview archive for any static HTTPS host; do not merge this PR merely to obtain a test link.
-
-A fixed-camera comparison at zoom 17 verifies reduced POI density against the previous crowded style (65 rendered background POIs instead of 272 in both Chromium and WebKit). Guide markers are unchanged.
-
-Browser tests additionally verify rendered museum, shop and food POIs and the local museum sprite with the network disconnected, including a Retina iPad viewport.
-
-Tests use Playwright 1.64.1 with browser offline mode and a disconnected HTTP origin in both Chromium and WebKit; no preview resource can be delivered by the network. Older Playwright WebKit offline emulation has a known defect fixed in 1.64 (https://github.com/microsoft/playwright/issues/42775). Automated WebKit is a useful compatibility check, not a test on physical iPhone/iPad Safari. The physical-device airplane-mode checklist above remains the final acceptance test before production integration.
+Full rendering additionally requires Ubuntu/PostgreSQL/PostGIS/osm2pgsql/Mapnik/CartoCSS and go-pmtiles 1.31.2, as pinned in `.github/workflows/carto-render.yml`. Cached regional inputs are keyed by the scope inputs. The Florence renderer currently imports Centro Italy and uses empty Antarctic tables; other destinations require selecting their regional raw source and any relevant external datasets. The rule engine itself is reusable without changes.
