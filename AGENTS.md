@@ -10,3 +10,5 @@ Denna regel gäller alla ändringar i projektet.
 - Offlineområden, lagringsnamn, startpositioner och kartpaket ska härledas från resans data och konfiguration. Genererade kartpaket och andra byggfiler får innehålla resmålets data, men bygglogiken ska förbli generell.
 - Ett nytt resmål ska kunna använda samma appkod genom att ersätta innehåll, konfiguration och genererade kartpaket.
 - Kontrollera denna separation vid varje ändring. Befintliga avvikelser får inte användas som förebild för nya; rätta dem när den berörda funktionen ändras och verifiera att beteendet bevaras.
+
+Se ARCHITECTURE.md för ansvarsfördelningen. Kör npm run check före publicering; det inkluderar test:architecture.

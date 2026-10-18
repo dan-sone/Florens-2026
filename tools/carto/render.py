@@ -2,7 +2,9 @@ import json,math,os,time,hashlib,statistics
 from pathlib import Path
 import mapnik
 from PIL import Image
-ROOT=Path('/tmp/florens-carto/style')
+WORK=Path(os.environ.get('CARTO_WORK_DIR','/tmp/trip-guide-carto'))
+BUILD=json.loads((WORK/'build.json').read_text())
+ROOT=WORK/'style'
 OUT=Path.cwd()/'carto-preview';OUT.mkdir(exist_ok=True)
 os.chdir(ROOT)
 mapnik.register_fonts(str(ROOT/'fonts'))
@@ -28,8 +30,8 @@ def render(z,lon,lat):
  sx=max(0,min(5,x-mx-1));sy=max(0,min(5,y-my-1))
  image.crop((sx*256,sy*256,(sx+3)*256,(sy+3)*256)).save(OUT/f'carto-z{z}-detail.png')
  return {'zoom':z,'renderSeconds':seconds,'metatilePngBytes':len(raw),'tileWebpMedianBytes':statistics.median(tiles),'tileWebpMeanBytes':statistics.mean(tiles),'tileX':x,'tileY':y}
-report={'renderer':'Mapnik '+mapnik.mapnik_version_string(),'style':'OpenStreetMap Carto 6.1.0','styleUrl':'https://github.com/openstreetmap-carto/openstreetmap-carto/tree/v6.1.0','dataSource':'https://download.geofabrik.de/europe/italy/centro-latest.osm.pbf','scope':json.load(open('/tmp/florens-carto/scope.json'))['bounds'],'samples':[]}
+report={'renderer':'Mapnik '+mapnik.mapnik_version_string(),'style':'OpenStreetMap Carto 6.1.0','styleUrl':'https://github.com/openstreetmap-carto/openstreetmap-carto/tree/v6.1.0','dataSource':BUILD['sourceUrl'],'scope':BUILD['scope']['bounds'],'samples':[]}
 for z in [15,17,18,19]:
- r=render(z,11.255,43.770);report['samples'].append(r);print('CARTO SAMPLE',json.dumps(r),flush=True)
+ r=render(z,BUILD['center']['longitude'],BUILD['center']['latitude']);report['samples'].append(r);print('CARTO SAMPLE',json.dumps(r),flush=True)
 (OUT/'report.json').write_text(json.dumps(report,indent=2))
 print(json.dumps(report),flush=True)

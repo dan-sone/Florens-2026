@@ -1,9 +1,10 @@
 // Production worker: online requests stay fresh; a complete local snapshot is the fallback.
-importScripts('./offline-files.js');
+importScripts('./offline-files.js','./offline-storage.js');
+const packageStorage=OfflineStorage.create(OFFLINE_CACHE,OFFLINE_STORAGE,self.location.href);
 self.addEventListener('install',event=>event.waitUntil(self.skipWaiting()));
 self.addEventListener('activate',event=>event.waitUntil(self.clients.claim()));
 async function completeCache(base){
- for(const name of [OFFLINE_CACHE,...(await caches.keys()).filter(n=>n.startsWith('florens-offline-pack-')&&n!==OFFLINE_CACHE).reverse()]){const cache=await caches.open(name);if(await cache.match(new URL('offline-ready',base).href))return cache;}
+ for(const name of await packageStorage.completeNames())return caches.open(name);
  return null;
 }
 self.addEventListener('fetch',event=>{

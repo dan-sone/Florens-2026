@@ -3,7 +3,9 @@ import concurrent.futures,datetime,hashlib,io,json,math,multiprocessing,os,shuti
 from pathlib import Path
 import mapnik
 from PIL import Image
-ROOT=Path('/tmp/florens-carto/style')
+WORK=Path(os.environ.get('CARTO_WORK_DIR','/tmp/trip-guide-carto'))
+BUILD=json.loads((WORK/'build.json').read_text())
+ROOT=WORK/'style'
 R=20037508.342789244
 M=None
 
@@ -29,10 +31,10 @@ def render_meta(task):
  return result,time.monotonic()-start
 
 def main():
- repo=Path.cwd();out=repo/'assets/offline/raster';temp=Path('/tmp/florens-carto/mbtiles')
+ repo=Path.cwd();out=repo/'assets/offline/raster';temp=WORK/'mbtiles'
  if out.exists():shutil.rmtree(out)
  out.mkdir(parents=True);temp.mkdir(exist_ok=True)
- bounds=json.load(open('/tmp/florens-carto/scope.json'))['bounds'];(s,w),(n,e)=bounds
+ bounds=BUILD['scope']['bounds'];(s,w),(n,e)=bounds
  tasks={};counts={}
  for z in range(20):
   x0,y1=xy(w,s,z);x1,y0=xy(e,n,z);size=min(8,2**z);counts[z]=(x1-x0+1)*(y1-y0+1)
@@ -62,7 +64,7 @@ def main():
  packages=[];cli=os.environ.get('PMTILES_CLI','/tmp/pmtiles')
  for key,db in sorted(dbs.items()):
   stats=package_stats[key]
-  meta={'name':'Florens — OpenStreetMap Carto','format':'webp','type':'baselayer','description':'Self-rendered OSM Carto 6.1.0, lossless raster tiles','attribution':'© OpenStreetMap contributors','bounds':','.join(map(str,[w,s,e,n])),'minzoom':str(stats['minzoom']),'maxzoom':str(stats['maxzoom'])}
+  meta={'name':BUILD['title']+' — OpenStreetMap Carto','format':'webp','type':'baselayer','description':'Self-rendered OSM Carto 6.1.0, lossless raster tiles','attribution':'© OpenStreetMap contributors','bounds':','.join(map(str,[w,s,e,n])),'minzoom':str(stats['minzoom']),'maxzoom':str(stats['maxzoom'])}
   db.executemany('INSERT INTO metadata VALUES (?,?)',meta.items());db.commit();db.close()
   filename=key+'.pmtiles';dest=out/filename
   subprocess.run([cli,'convert',str(temp/(key+'.mbtiles')),str(dest)],check=True)
@@ -71,7 +73,7 @@ def main():
   if size>20*1024*1024:raise RuntimeError(f'Archive {filename} exceeds the small-file budget: {size}')
   packages.append({'key':key,'path':'assets/offline/raster/'+filename,'bytes':size,'sha256':hashlib.sha256(dest.read_bytes()).hexdigest(),**stats})
  shutil.copy(ROOT/'LICENSE.txt',out/'OSM-Carto-LICENSE.txt')
- index={'version':1,'type':'raster','format':'webp','cartography':'OpenStreetMap Carto','styleVersion':'6.1.0','tileSize':256,'minZoom':0,'maxZoom':19,'partitionZoom':15,'bounds':bounds,'packages':packages,'tileCount':sum(counts.values()),'tilesAtZoom':counts,'totalMapBytes':sum(p['bytes'] for p in packages),'renderSeconds':round(time.monotonic()-start,2),'createdAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source':{'url':'https://download.geofabrik.de/europe/italy/centro-latest.osm.pbf','style':'https://github.com/openstreetmap-carto/openstreetmap-carto/tree/v6.1.0','sourceSha256':hashlib.sha256((Path.home()/'.cache/florens-carto/region.osm.pbf').read_bytes()).hexdigest()},'attribution':'© OpenStreetMap contributors · OpenStreetMap Carto'}
+ index={'version':1,'type':'raster','format':'webp','cartography':'OpenStreetMap Carto','styleVersion':'6.1.0','tileSize':256,'minZoom':0,'maxZoom':19,'partitionZoom':15,'bounds':bounds,'packages':packages,'tileCount':sum(counts.values()),'tilesAtZoom':counts,'totalMapBytes':sum(p['bytes'] for p in packages),'renderSeconds':round(time.monotonic()-start,2),'createdAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source':{'url':BUILD['sourceUrl'],'style':'https://github.com/openstreetmap-carto/openstreetmap-carto/tree/v6.1.0','sourceSha256':hashlib.sha256((Path(BUILD['cacheDir'])/'region.osm.pbf').read_bytes()).hexdigest()},'attribution':'© OpenStreetMap contributors · OpenStreetMap Carto'}
  (out/'index.json').write_text(json.dumps(index,indent=2))
  (repo/'carto-preview/full-report.json').write_text(json.dumps(index,indent=2))
  print('CARTO FULL COMPLETE',json.dumps({k:index[k] for k in ['tileCount','totalMapBytes','renderSeconds']}),flush=True)

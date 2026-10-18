@@ -3,12 +3,12 @@
  const $=id=>document.getElementById((inApp?'offline-':'')+id),mb=n=>(n/1e6).toFixed(1)+' MB';
  const base=new URL('./',location.href),key=new URL('offline-ready',base).href;
  const cache=await caches.open(OFFLINE_CACHE);let aborter,mapLayer,boundary,downloadRunning=false;
- const preferenceKey=base.pathname+':offline-enabled';let offlineEnabled=false,autoAttempted=false;
+ const preferenceKey=base.pathname+':'+OFFLINE_STORAGE.tripId+':offline-enabled';let offlineEnabled=false,autoAttempted=false;
  try{offlineEnabled=localStorage.getItem(preferenceKey)==='1';}catch{}
- const previousCaches=[];
- for(const name of await caches.keys())if(name.startsWith('florens-offline-pack-')&&name!==OFFLINE_CACHE){const previous=await caches.open(name);if(await previous.match(key))previousCaches.push(previous);}
+ const packageStorage=OfflineStorage.create(OFFLINE_CACHE,OFFLINE_STORAGE,base);
+ const previousCaches=await packageStorage.previousCaches();
  if(previousCaches.length||await cache.match(key)){offlineEnabled=true;try{localStorage.setItem(preferenceKey,'1');}catch{}}
- const map=inApp?null:L.map('map').setView([43.765,11.26],14);
+ const map=inApp?null:L.map('map').fitBounds(OFFLINE_SCOPE.bounds);
  const fail=(message,state='error')=>{
   let text=message;
   if(inApp&&state==='error'){
@@ -110,19 +110,19 @@
    const queue=OFFLINE_FILES.filter(f=>f!==documentFile);let cursor=0,firstError;
    const workers=Array.from({length:3},async()=>{try{while(cursor<queue.length)await save(queue[cursor++]);}catch(error){if(!firstError)firstError=error;aborter.abort();}});
    await Promise.allSettled(workers);if(firstError)throw firstError;
-   const bootstrap='const OFFLINE_CACHE='+JSON.stringify(OFFLINE_CACHE)+';\nconst OFFLINE_FILES='+JSON.stringify(OFFLINE_FILES)+';\nconst OFFLINE_STYLE='+JSON.stringify(OFFLINE_STYLE)+';\nconst OFFLINE_SCOPE='+JSON.stringify(OFFLINE_SCOPE)+';\n';
+   const bootstrap='const OFFLINE_CACHE='+JSON.stringify(OFFLINE_CACHE)+';\nconst OFFLINE_STORAGE='+JSON.stringify(OFFLINE_STORAGE)+';\nconst OFFLINE_FILES='+JSON.stringify(OFFLINE_FILES)+';\nconst OFFLINE_STYLE='+JSON.stringify(OFFLINE_STYLE)+';\nconst OFFLINE_SCOPE='+JSON.stringify(OFFLINE_SCOPE)+';\n';
    await cache.put(new URL('offline-files.js',base).href,new Response(bootstrap,{headers:{'Content-Type':'application/javascript'}}));
    await cache.put(key,new Response('complete'));
    offlineEnabled=true;try{localStorage.setItem(preferenceKey,'1');}catch{}
    const persistent=await navigator.storage?.persist?.().catch(()=>false);
    await refresh();if(!inApp)$('storage').textContent+=' '+(persistent?'Beständig lagring beviljad.':'Safari kan rensa sparade data; kontrollera före avresa.');
    // Remove only this feature's older versions, after a complete successful update.
-   for(const name of await caches.keys())if(name.startsWith('florens-offline-pack-')&&name!==OFFLINE_CACHE)await caches.delete(name);
+   await packageStorage.removeOlder();
   }catch(e){if(!wasReady){await cache.delete(key);for(const file of OFFLINE_FILES)await cache.delete(new URL(file.path,base).href);}fail(e.name==='AbortError'?'Hämtningen avbröts eller tog för lång tid. Försök igen med sidan öppen.':e.name==='QuotaExceededError'?'Lagringsutrymmet räckte inte. Frigör utrymme och försök igen.':e.message);$('guide').hidden=!await ready();}
   finally{downloadRunning=false;$('download').disabled=false;$('remove').disabled=false;$('cancel').hidden=true;$('progress').hidden=true;await storage();}
  };
  $('cancel').onclick=()=>aborter?.abort();
- $('remove').onclick=async()=>{offlineEnabled=false;try{localStorage.removeItem(preferenceKey);}catch{}if(inApp){for(const name of await caches.keys())if(name.startsWith('florens-offline-pack-')&&name!==OFFLINE_CACHE)await caches.delete(name);for(const request of await cache.keys())await cache.delete(request);window.dispatchEvent(new CustomEvent('offline-package-change',{detail:{ready:false}}));await refresh();}else{await cache.delete(key);for(const f of OFFLINE_FILES)await cache.delete(new URL(f.path,base).href);location.reload();}};
+ $('remove').onclick=async()=>{offlineEnabled=false;try{localStorage.removeItem(preferenceKey);}catch{}if(inApp){await packageStorage.removeOlder();for(const request of await cache.keys())await cache.delete(request);window.dispatchEvent(new CustomEvent('offline-package-change',{detail:{ready:false}}));await refresh();}else{await cache.delete(key);for(const f of OFFLINE_FILES)await cache.delete(new URL(f.path,base).href);location.reload();}};
  $('show').onchange=e=>{if(boundary){if(e.target.checked)boundary.addTo(map);else map.removeLayer(boundary);}};
  $('fit').onclick=()=>map?.fitBounds(OFFLINE_SCOPE.bounds,{padding:[25,25]});
  async function maybeAutoUpdate(){

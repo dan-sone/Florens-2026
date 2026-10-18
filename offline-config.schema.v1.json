@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Offline configuration v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "anchorCategories",
+    "localRouteModes",
+    "excludeCategories",
+    "localRadiusKm",
+    "clusterRadiusKm",
+    "marginMeters",
+    "overrides",
+    "storage",
+    "mapSource"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "./offline-config.schema.v1.json"
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "anchorCategories": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "localRouteModes": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "excludeCategories": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "localRadiusKm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "clusterRadiusKm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "marginMeters": {
+      "type": "number",
+      "minimum": 0
+    },
+    "overrides": {
+      "type": "object",
+      "additionalProperties": {
+        "enum": [
+          "include",
+          "exclude"
+        ]
+      }
+    },
+    "storage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "legacyCachePrefixes"
+      ],
+      "properties": {
+        "legacyCachePrefixes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "mapSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "regionUrl"
+      ],
+      "properties": {
+        "regionUrl": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "vectorArchiveUrl": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        }
+      }
+    }
+  }
+}

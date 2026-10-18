@@ -1,8 +1,8 @@
 {
-  "$schema": "./places.schema.v5.json",
-  "schemaVersion": 5,
-  "contentVersion": 19,
-  "updatedAt": "2026-10-16T11:48:19.227Z",
+  "$schema": "./places.schema.v6.json",
+  "schemaVersion": 6,
+  "contentVersion": 20,
+  "updatedAt": "2026-10-18T19:28:32.648Z",
   "places": [
     {
       "id": "hotel-la-scaletta",

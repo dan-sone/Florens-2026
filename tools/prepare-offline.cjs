@@ -1,6 +1,8 @@
 // Run after npm ci. Builds the canonical offline snapshot from the guide source.
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),vm=require('node:vm');
 const root=path.resolve(__dirname,'..');process.chdir(root);
+const config=require(root+'/offline-config.json');
+const Ajv=require('ajv/dist/2020'),addFormats=require('ajv-formats');const configValidator=new Ajv({allErrors:true});addFormats(configValidator);if(!configValidator.validate(require(root+'/offline-config.schema.v1.json'),config))throw Error(configValidator.errorsText());
 const out='assets/offline',vendor=out+'/vendor';fs.mkdirSync(vendor,{recursive:true});fs.mkdirSync('offline',{recursive:true});
 function copy(src,dest){fs.mkdirSync(path.dirname(dest),{recursive:true});fs.cpSync(src,dest,{recursive:true});}
 const modules={'leaflet/dist':'leaflet','jquery/dist/jquery.min.js':'jquery.js','bootstrap/dist/js/bootstrap.bundle.min.js':'bootstrap.js','bootstrap/dist/css/bootstrap.min.css':'bootstrap.css','@fortawesome/fontawesome-free/css/all.min.css':'fontawesome/css/all.min.css','@fortawesome/fontawesome-free/webfonts':'fontawesome/webfonts','leaflet.awesome-markers/dist':'awesome','leaflet.locatecontrol/dist/L.Control.Locate.min.js':'locate.js','leaflet.locatecontrol/dist/L.Control.Locate.min.css':'locate.css','maplibre-gl/dist/maplibre-gl.js':'maplibre.js','maplibre-gl/dist/maplibre-gl.css':'maplibre.css','@maplibre/maplibre-gl-leaflet/leaflet-maplibre-gl.js':'maplibre-leaflet.js','pmtiles/dist/pmtiles.js':'pmtiles.js'};
@@ -44,11 +46,13 @@ fs.writeFileSync('offline/guide.html',guide);
 // Deliver byte-exact documents independently of hosts that decorate HTML pages.
 fs.writeFileSync(out+'/documents.json',JSON.stringify({version:1,documents:Object.fromEntries(['index.html','offline-map-test.html','offline/guide.html'].map(p=>[p,fs.readFileSync(p,'utf8')]))}));
 function walk(dir){return fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(dir+'/'+e.name):[dir+'/'+e.name]);}
-const local=['index.html','offline-app.js','offline-app.css','offline-map-test.html','offline/guide.html','offline-download.js','offline-map.js','offline-scope.js','offline-config.json','place-presentation.js','places-validator.js','place-sheet.css','ui-theme.css',...fs.readdirSync('.').filter(p=>p.endsWith('.json')&&!p.startsWith('package')&&!p.startsWith('offline-manifest')),...walk('assets')];
-const unused=p=>p===out+'/florence.pmtiles'||p.startsWith(out+'/glyphs/')||p.startsWith(out+'/sprites/')||/\/vendor\/maplibre(?:-leaflet)?\.(?:js|css)$/.test(p);
+const local=['index.html','offline-app.js','offline-app.css','offline-map-test.html','offline/guide.html','offline-download.js','offline-storage.js','offline-map.js','offline-scope.js','offline-config.json','place-presentation.js','places-validator.js','place-sheet.css','ui-theme.css',...fs.readdirSync('.').filter(p=>p.endsWith('.json')&&!p.startsWith('package')&&!p.startsWith('offline-manifest')),...walk('assets')];
+const activeArchives=new Set(raster.packages.map(p=>p.path));
+const unused=p=>p.endsWith('.pmtiles')&&!activeArchives.has(p)||p.startsWith(out+'/glyphs/')||p.startsWith(out+'/sprites/')||/\/vendor\/maplibre(?:-leaflet)?\.(?:js|css)$/.test(p);
 const files=[...new Set(local)].filter(p=>!unused(p)).filter(p=>p.includes('/licenses/')||!p.endsWith('.map')&&!p.endsWith('.ts')&&!p.endsWith('README.md')&&!p.endsWith('LICENSE')&&!p.endsWith('LICENSE.txt')).sort().map(p=>{const data=fs.readFileSync(p);return {path:p,bytes:data.length,sha256:crypto.createHash('sha256').update(data).digest('hex')};});
 const id=crypto.createHash('sha256').update(JSON.stringify(files)).digest('hex').slice(0,16);
-const cache='florens-offline-pack-'+id;
-fs.writeFileSync('offline-files.js','const OFFLINE_CACHE='+JSON.stringify(cache)+';\nconst OFFLINE_FILES='+JSON.stringify(files)+';\nconst OFFLINE_STYLE='+fs.readFileSync(out+'/style.json','utf8')+';\nconst OFFLINE_SCOPE='+JSON.stringify(scope)+';\n');
+const storage={tripId:require(root+'/guide.json').id,prefix:'trip-guide-'+require(root+'/guide.json').id+'-offline-pack-',legacyPrefixes:require(root+'/offline-config.json').storage?.legacyCachePrefixes||[]};
+const cache=storage.prefix+id;
+fs.writeFileSync('offline-files.js','const OFFLINE_CACHE='+JSON.stringify(cache)+';\nconst OFFLINE_STORAGE='+JSON.stringify(storage)+';\nconst OFFLINE_FILES='+JSON.stringify(files)+';\nconst OFFLINE_STYLE='+fs.readFileSync(out+'/style.json','utf8')+';\nconst OFFLINE_SCOPE='+JSON.stringify(scope)+';\n');
 fs.writeFileSync('offline-manifest.json',JSON.stringify({id,cache,source:raster.source,cartography:raster.cartography,bounds:scope.bounds,zoom:[raster.minZoom,raster.maxZoom],files,totalBytes:files.reduce((s,f)=>s+f.bytes,0)},null,2));
 console.log('Offline package:',id,files.length,'files',files.reduce((s,f)=>s+f.bytes,0),'bytes');

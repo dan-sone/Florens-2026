@@ -1,6 +1,6 @@
 {
-  "id": "ae5e56341e7d729f",
-  "cache": "florens-offline-pack-ae5e56341e7d729f",
+  "id": "b0d4237d2fec05cc",
+  "cache": "trip-guide-florens-2026-offline-pack-b0d4237d2fec05cc",
   "source": {
     "url": "https://download.geofabrik.de/europe/italy/centro-latest.osm.pbf",
     "style": "https://github.com/openstreetmap-carto/openstreetmap-carto/tree/v6.1.0",
@@ -23,6 +23,16 @@
   ],
   "files": [
     {
+      "path": "app-config.json",
+      "bytes": 841,
+      "sha256": "3fb723b82034cc8bdebb1421bbe8b30c19e6fa293d1c6d26a9d714ec9fc99eac"
+    },
+    {
+      "path": "app-config.schema.v1.json",
+      "bytes": 1498,
+      "sha256": "dfaefd655150228a6192beb8601aa89434c8f9514adf22adddbc7cee48b83fae"
+    },
+    {
       "path": "assets/history/catena.webp",
       "bytes": 244492,
       "sha256": "6182ff60584384808eef025fc0e03da69039f5e8149dc16bd046105c085be459"
@@ -39,8 +49,8 @@
     },
     {
       "path": "assets/offline/documents.json",
-      "bytes": 151192,
-      "sha256": "66dc6205c028d268932ea78b816578ed5e7adcf954ae0d003ba4763a3da4640c"
+      "bytes": 151069,
+      "sha256": "f4258d0387793c360f8b3123f2037fea0f45892bb2057c912b3da2736f15dbde"
     },
     {
       "path": "assets/offline/fonts/glyphicons-halflings-regular.eot",
@@ -500,7 +510,7 @@
     {
       "path": "guide.json",
       "bytes": 49347,
-      "sha256": "492c57f84a6f34d5574b32331167b0f7f28537714807a366592c97b8196fb81e"
+      "sha256": "232aa3ebb2112e385fa076b45987de00ec2e0ae274b0ecf372ef6a9bb6cc524b"
     },
     {
       "path": "guide.schema.v1.json",
@@ -528,6 +538,11 @@
       "sha256": "f2bebecd73540d2ffdb0f0eeb0ad113d7f47448740f84540972766c73012cf7f"
     },
     {
+      "path": "guide.schema.v6.json",
+      "bytes": 11641,
+      "sha256": "fe3b1b7174d9cfe5cd259d60e09a1c65621409a6ec0c609737b7fc442b209e2b"
+    },
+    {
       "path": "history.json",
       "bytes": 9403,
       "sha256": "09251929d63cd3b0c552d73a19d80c1c895d1a382f7083d35506ce6e5e5b34c1"
@@ -544,8 +559,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 72899,
-      "sha256": "1079a201730478c3526437308a4c0ca49f422b0f0ca30fc6f1c0670fbc5201e7"
+      "bytes": 72701,
+      "sha256": "9d16417042a0fac8397a71109ab2ca2522c6a96d897aadcf6e2d517b97f2ea4a"
     },
     {
       "path": "offline-app.css",
@@ -554,23 +569,28 @@
     },
     {
       "path": "offline-app.js",
-      "bytes": 8250,
-      "sha256": "eba614c89f7f6b4ad80361fe0e24b9e21124d03adc5aa2010e3c44fd331fba83"
+      "bytes": 8245,
+      "sha256": "658fee8b066c40433f11857c7e9c376bcbabd945da65aea451cf778a4d1325c6"
     },
     {
       "path": "offline-config.json",
-      "bytes": 270,
-      "sha256": "fb07f13ef3aba085cf486adef913caf58e19b113b2fcfef5db41b36feeaf409a"
+      "bytes": 582,
+      "sha256": "bd0efebd2415cca8a0481e433052bbec5a28f7521cbb3d687adadb364795ba24"
+    },
+    {
+      "path": "offline-config.schema.v1.json",
+      "bytes": 2179,
+      "sha256": "0e03a602446edcdda07a7f1e127c33b309f1cb5c20ac5517670c19e51379e394"
     },
     {
       "path": "offline-download.js",
-      "bytes": 14592,
-      "sha256": "e9a15bd61deacb92fc10c0d786f000fedf9919eff12270dcc427aea77612d924"
+      "bytes": 14404,
+      "sha256": "12a8c718325f48aec639d750a20955623f9bd6f8e0c7163524e7433b0b8467aa"
     },
     {
       "path": "offline-map-test.html",
-      "bytes": 2399,
-      "sha256": "12bb9360ce1954cb8bc071766884dfc8ecb05a3686221e8eab107b9da612da70"
+      "bytes": 2404,
+      "sha256": "6ae130475d15a6dc82bf025348c30daa30b2dcbfcbdbc99e2278d64d791d06d3"
     },
     {
       "path": "offline-map.js",
@@ -583,9 +603,14 @@
       "sha256": "9ad7dd4148dda486d013ad21fb60b50438647a3b738050e45c70abcb6a78b434"
     },
     {
+      "path": "offline-storage.js",
+      "bytes": 1501,
+      "sha256": "81c9167ac7cea04df5ed09b80ebccb7393ffc45a2bbbb41716ebd4eb9a6b7bb6"
+    },
+    {
       "path": "offline/guide.html",
-      "bytes": 72628,
-      "sha256": "e6794f505d74742c25d04c6bd2382e323bcddf697661d5fe76a91ad19916d2d3"
+      "bytes": 72735,
+      "sha256": "286405f7673671fce9d4c5b2143bd5aa6cd8233d200ba6808693e06ec9f72177"
     },
     {
       "path": "place-presentation.js",
@@ -599,13 +624,13 @@
     },
     {
       "path": "places-validator.js",
-      "bytes": 156017,
-      "sha256": "608742b34008bce728e709621c4d40af28cdbc9cf928dd4f3744d7f034901118"
+      "bytes": 156452,
+      "sha256": "1c3b8cc2a90f403d1dbf7fb6167675c7e8a28a1486105a5c35334489d2af3597"
     },
     {
       "path": "places.json",
       "bytes": 241663,
-      "sha256": "e429f4ac2b715157ca880fcaef7d128636d3243b5adf5fb07b5d9eeda403d431"
+      "sha256": "c36c716d43e5f7be411d707774e54e2a45403c967dbf97d31f9d3310eefb18a7"
     },
     {
       "path": "places.schema.v1.json",
@@ -631,6 +656,11 @@
       "path": "places.schema.v5.json",
       "bytes": 15299,
       "sha256": "f073795f941c858ab36754738631fd8b0b9ff0028e70577f8eb5232904fa11fb"
+    },
+    {
+      "path": "places.schema.v6.json",
+      "bytes": 15232,
+      "sha256": "4f9ca05f687390e9ac46f0885d89f6eff24af7dc70db4dad339d7fdad161ca6e"
     },
     {
       "path": "routes.json",
@@ -668,5 +698,5 @@
       "sha256": "b40f411279957f7ab6784d021f423072090cdd1b070a945d2df53faa89783456"
     }
   ],
-  "totalBytes": 67747044
+  "totalBytes": 67780281
 }

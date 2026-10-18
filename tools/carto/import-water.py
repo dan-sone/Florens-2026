@@ -1,6 +1,7 @@
-import json,math,subprocess,sys
+import json,math,subprocess,sys,os
+from pathlib import Path
 name,filename=sys.argv[1:]
-(s,w),(n,e)=json.load(open('/tmp/florens-carto/scope.json'))['bounds']
+(s,w),(n,e)=json.loads((Path(os.environ.get('CARTO_WORK_DIR','/tmp/trip-guide-carto'))/'scope.json').read_text())['bounds']
 x=lambda l:l*20037508.342789244/180
 y=lambda l:math.log(math.tan((90+l)*math.pi/360))*20037508.342789244/math.pi
 # Low-zoom world ocean polygons are small enough to retain globally.

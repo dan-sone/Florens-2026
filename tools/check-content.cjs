@@ -1,10 +1,13 @@
 const fs=require('fs'),vm=require('vm'),assert=require('assert/strict');
 vm.runInThisContext(fs.readFileSync('places-validator.js','utf8'));
 const schemas={},documents={};
-for(const name of ['places','routes','guide','stories','history','taxonomy']){documents[name]=JSON.parse(fs.readFileSync(name+'.json'));assert.equal(documents[name].$schema,'./'+name+'.schema.v'+documents[name].schemaVersion+'.json');schemas[name]=JSON.parse(fs.readFileSync(documents[name].$schema));}
+for(const name of ['places','routes','guide','stories','history','taxonomy','app-config']){documents[name]=JSON.parse(fs.readFileSync(name+'.json'));assert.equal(documents[name].$schema,'./'+name+'.schema.v'+documents[name].schemaVersion+'.json');schemas[name]=JSON.parse(fs.readFileSync(documents[name].$schema));}
 const validate=d=>PlacesValidator.validateTrip(schemas,d);
 validate(documents);
 const cases=[
+ d=>d['app-config'].bookingCategoryId='missing-category',
+ d=>d['app-config'].assistantQuestionTemplate='No placeholders',
+ d=>d.places.places[0].category=d['app-config'].bookingCategoryId,
  d=>d.taxonomy.categories.push(d.taxonomy.categories[0]),
  d=>d.taxonomy.subcategories.push(d.taxonomy.subcategories[0]),
  d=>d.taxonomy.categories[0].colors.light='red',
@@ -98,7 +101,7 @@ const independent=structuredClone(documents);independent.guide.contentVersion=7;
 // A different trip uses the same schemas and renderer contract.
 const next=structuredClone(documents);next.guide.id='next-trip';next.guide.title='Nästa resa';next.guide.destination={name:'Annan stad',searchSuffix:'Annan stad'};next.guide.map.center={latitude:59.3,longitude:18.1};next.guide.days.forEach((day,i)=>{day.id='day-'+(i+1);day.date='2027-01-'+(13+i)});next.guide.bookings.forEach(b=>b.startsAt=b.startsAt.replace('2026-10','2027-01'));next.guide.flights=[];validate(next);
 assert(!/Florens|Firenze|2026-10|hotel-la-scaletta|routeDefinitions/.test(fs.readFileSync('index.html','utf8')));
-console.log(`PASS: six schemas; ${documents.places.places.length} places, ${documents.routes.routes.length} routes, ${documents.guide.days.length} days, ${documents.guide.bookings.length} bookings, ${documents.stories.stories.length} stories; ${documents.history.chapters.length} history chapters; ${cases.length} invalid-input cases; independent versions and reusable trip content`);
+console.log(`PASS: seven schemas; ${documents.places.places.length} places, ${documents.routes.routes.length} routes, ${documents.guide.days.length} days, ${documents.guide.bookings.length} bookings, ${documents.stories.stories.length} stories; ${documents.history.chapters.length} history chapters; ${cases.length} invalid-input cases; independent versions and reusable trip content`);
 
 for(const place of documents.places.places){
  const url=new URL(PlacesValidator.applePlaceLink(place));assert.equal(url.hostname,'maps.apple.com');assert.equal(url.pathname,'/place');
@@ -123,3 +126,7 @@ const v3Places=structuredClone(documents);v3Places.places.schemaVersion=3;v3Plac
 
 // Florence-specific regression for issue #1, using production filter and marker code.
 require('./check-textile-shops.cjs');
+
+const v5=structuredClone(documents);for(const name of ['places','guide']){v5[name].schemaVersion=5;v5[name].$schema='./'+name+'.schema.v5.json';}
+PlacesValidator.validateTrip({...schemas,places:JSON.parse(fs.readFileSync('places.schema.v5.json')),guide:JSON.parse(fs.readFileSync('guide.schema.v5.json'))},v5);
+console.log('PASS: legacy place and guide schema v5 compatibility');

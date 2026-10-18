@@ -1,14 +1,15 @@
 {
   "name": "florens-2026",
-  "version": "1.18.4",
+  "version": "1.20.0",
   "description": "Schema validation for the Florence travel guide",
   "scripts": {
     "build": "node tools/build-validator.cjs",
-    "check": "node tools/check-content.cjs",
+    "check": "node tools/check-content.cjs && npm run test:architecture",
     "build:offline": "node tools/prepare-offline.cjs",
     "extract:offline": "node tools/extract-offline.cjs",
     "test:offline": "node tools/test-offline.cjs",
-    "fetch:offline": "node tools/fetch-offline-extras.cjs"
+    "fetch:offline": "node tools/fetch-offline-extras.cjs",
+    "test:architecture": "node tools/check-offline-storage.cjs && node tools/check-app-separation.cjs && node tools/check-offline-update.cjs"
   },
   "type": "commonjs",
   "devDependencies": {
@@ -20,6 +21,7 @@
     "bootstrap": "^5.2.2",
     "esbuild": "^0.25.12",
     "jquery": "^3.7.1",
+    "jsdom": "30.1.3",
     "leaflet": "^1.9.3",
     "leaflet.awesome-markers": "^2.0.5",
     "leaflet.locatecontrol": "^0.66.2",

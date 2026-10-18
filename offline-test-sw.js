@@ -1,12 +1,13 @@
 // Scope is limited to the test page and /offline/. Never controls index.html.
-importScripts('./offline-files.js');
+importScripts('./offline-files.js','./offline-storage.js');
+const packageStorage=OfflineStorage.create(OFFLINE_CACHE,OFFLINE_STORAGE,self.location.href);
 self.addEventListener('install',event=>event.waitUntil(self.skipWaiting()));
 self.addEventListener('activate',event=>event.waitUntil(self.clients.claim()));
 async function activeCache(base){
  const current=await caches.open(OFFLINE_CACHE);
  if(await current.match(new URL('offline-ready',base).href))return current;
  // An update or failed download must not strand a previously complete pack.
- for(const name of (await caches.keys()).reverse())if(name.startsWith('florens-offline-pack-')&&name!==OFFLINE_CACHE){const previous=await caches.open(name);if(await previous.match(new URL('offline-ready',base).href))return previous;}
+ for(const name of await packageStorage.completeNames())if(name!==OFFLINE_CACHE)return caches.open(name);
  return current;
 }
 self.addEventListener('fetch',event=>{

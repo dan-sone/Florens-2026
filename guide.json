@@ -1,8 +1,8 @@
 {
-  "$schema": "./guide.schema.v5.json",
-  "schemaVersion": 5,
-  "contentVersion": 20,
-  "updatedAt": "2026-10-16T11:48:19.227Z",
+  "$schema": "./guide.schema.v6.json",
+  "schemaVersion": 6,
+  "contentVersion": 21,
+  "updatedAt": "2026-10-18T19:28:32.656Z",
   "id": "florens-2026",
   "title": "Florens 2026",
   "destination": {

@@ -7,7 +7,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: florence-carto-render
+  group: ${{ github.repository }}-carto-render
   cancel-in-progress: false
 jobs:
   render:
@@ -24,8 +24,8 @@ jobs:
           node-version: 22
       - uses: actions/cache/restore@v4
         with:
-          path: ~/.cache/florens-carto
-          key: florens-carto-6.1.0-20261018-${{ hashFiles('places.json', 'routes.json', 'offline-config.json', 'offline-scope.js') }}-v1
+          path: ~/.cache/trip-guide-carto
+          key: trip-carto-6.1.0-${{ hashFiles('guide.json', 'places.json', 'routes.json', 'offline-config.json', 'offline-scope.js') }}-v1
       - name: Install the original cartographic renderer
         run: |
           sudo apt-get update -qq
@@ -57,8 +57,8 @@ jobs:
       - uses: actions/cache/save@v4
         if: always()
         with:
-          path: ~/.cache/florens-carto
-          key: florens-carto-6.1.0-20261018-${{ hashFiles('places.json', 'routes.json', 'offline-config.json', 'offline-scope.js') }}-v1
+          path: ~/.cache/trip-guide-carto
+          key: trip-carto-6.1.0-${{ hashFiles('guide.json', 'places.json', 'routes.json', 'offline-config.json', 'offline-scope.js') }}-v1
       - uses: actions/upload-artifact@v4
         if: always()
         with:

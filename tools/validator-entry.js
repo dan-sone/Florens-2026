@@ -18,7 +18,7 @@ function unique(items,label,key='id') {
   return ids;
 }
 export function validateTrip(schemas,documents) {
-  for(const name of ['places','routes','guide'])createValidator(schemas[name])(documents[name]);
+  for(const name of ['places','routes','guide',...(documents['app-config']?['app-config']:[])])createValidator(schemas[name])(documents[name]);
   const {places,routes,guide}=documents;
   const placeMap=new Map(places.places.map(p=>[p.id,p]));
   for(const place of places.places){
@@ -55,7 +55,7 @@ export function validateTrip(schemas,documents) {
     for(const category of t.categories)if(!t.icons[category.iconId])throw new Error('Kategori saknar ikon: '+category.id);
     for(const sub of t.subcategories){if(!categoryIds.has(sub.categoryId))throw new Error('Underkategori har okänd kategori: '+sub.id);if(!t.icons[sub.iconId])throw new Error('Underkategori saknar ikon: '+sub.id);if(t.categories.find(c=>c.id===sub.categoryId).kind!=='place')throw new Error('Underkategori måste tillhöra platskategori: '+sub.id);}
     for(const category of guide.categories)if(!categoryIds.has(category.id))throw new Error('Okänt kategorifilter: '+category.id);
-    for(const place of places.places){if(!categoryIds.has(place.category))throw new Error('Platsen saknar kategori i registret: '+place.id);if(places.schemaVersion>=5){if(!subIds.has(place.subcategory))throw new Error('Okänd underkategori: '+place.id);if(bySub.get(place.subcategory).categoryId!==place.category)throw new Error('Underkategori tillhör fel kategori: '+place.id);}}
+    for(const place of places.places){if(!categoryIds.has(place.category))throw new Error('Platsen saknar kategori i registret: '+place.id);if(t.categories.find(c=>c.id===place.category).kind!=='place')throw new Error('Platsen måste tillhöra en platskategori: '+place.id);if(places.schemaVersion>=5){if(!subIds.has(place.subcategory))throw new Error('Okänd underkategori: '+place.id);if(bySub.get(place.subcategory).categoryId!==place.category)throw new Error('Underkategori tillhör fel kategori: '+place.id);}}
     if(guide.schemaVersion>=5&&Object.values(guide.presentation.placeOverrides).some(p=>p.icon))throw new Error('Ikon ska ligga i det gemensamma registret');
   }
   if(guide.discoveryAreas){
@@ -97,7 +97,9 @@ export function validateTrip(schemas,documents) {
   guide.persistentPlaceIds.forEach(id=>requirePlace(id,true));
   Object.keys(guide.presentation.placeOverrides).forEach(id=>requirePlace(id));
   const booked=new Set(guide.bookings.map(b=>b.placeId));
-  if(booked.size&&!categories.has('booked'))throw new Error('Bokningsfiltret saknas');
+  if(documents['app-config']&&documents.taxonomy?.categories.find(c=>c.id===documents['app-config'].bookingCategoryId)?.kind!=='status')throw new Error('Bokningskategorin måste vara en statuskategori');
+  const bookingCategoryId=documents['app-config']?.bookingCategoryId||documents.taxonomy?.categories.find(c=>c.kind==='status')?.id;
+  if(booked.size&&!categories.has(bookingCategoryId))throw new Error('Bokningsfiltret saknas');
   for(const p of places.places)if(!guide.persistentPlaceIds.includes(p.id)&&!booked.has(p.id)&&!categories.has(p.category))throw new Error('Kategorifilter saknas: '+p.category);
   return documents;
 }

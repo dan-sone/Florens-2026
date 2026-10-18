@@ -31,8 +31,9 @@
  button.onclick=()=>dialog.showModal();
  const g=await guideReady;const control=L.control({position:'topright'});control.onAdd=()=>{const box=L.DomUtil.create('div','leaflet-control offline-control');box.append(button);L.DomEvent.disableClickPropagation(box);L.DomEvent.disableScrollPropagation(box);return box;};control.addTo(g.map);
  let local,boundary,sequence=0,fallback=false;
+ const packageStorage=OfflineStorage.create(OFFLINE_CACHE,OFFLINE_STORAGE,document.baseURI);
  async function saved(){
-  const names=await caches.keys();for(const name of [OFFLINE_CACHE,...names.filter(n=>n.startsWith('florens-offline-pack-')&&n!==OFFLINE_CACHE).reverse()]){
+  for(const name of await packageStorage.completeNames()){
    const cache=await caches.open(name),base=new URL('./',document.baseURI);if(!await cache.match(new URL('offline-ready',base).href))continue;
    const response=await cache.match(new URL('assets/offline/raster/index.json',base).href);if(response){
     const document=await cache.match(new URL('index.html',base).href),html=document?await document.text():'';
