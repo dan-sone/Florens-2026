@@ -1,4 +1,4 @@
-// Run after npm ci. Production index.html is an input, never modified.
+// Run after npm ci. Builds the canonical offline snapshot from the guide source.
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),vm=require('node:vm');
 const root=path.resolve(__dirname,'..');process.chdir(root);
 const out='assets/offline',vendor=out+'/vendor';fs.mkdirSync(vendor,{recursive:true});fs.mkdirSync('offline',{recursive:true});
@@ -11,8 +11,10 @@ const replacements=[[/https:\/\/cdn.jsdelivr.net\/npm\/leaflet@1.9.3\/dist\//g,'
 for(const [pattern,value] of replacements)html=html.replace(pattern,vendor+'/'+value);
 html=html.replace('<head>','<head><base href="../">');
 const setup=`<script src="${vendor}/pmtiles.js"></script><script src="offline-map.js"></script>`;
-html=html.replace('<script src="place-presentation',setup+'<script src="place-presentation');
+html=html.replace(/<script src="offline-app.js" defer><\/script>/,'');
+if(!html.includes('src="offline-map.js"'))html=html.replace('<script src="place-presentation',setup+'<script src="place-presentation');
 html=html.replace(/var tile_layer_670938deb8b58c2d30ad3e7204f24def = L.tileLayer\([\s\S]*?\n            \);/,`var tile_layer_670938deb8b58c2d30ad3e7204f24def = OfflineMap.layer({showBoundary:true});`);
+html=html.replace('if(navigator.onLine) tile_layer_670938deb8b58c2d30ad3e7204f24def.addTo','tile_layer_670938deb8b58c2d30ad3e7204f24def.addTo');
 html=html.replace("const version=new URL(window.location.href).searchParams.get('v') || Date.now().toString();","const version='offline';");
 html=html.replace('</body>','<a href="offline-map-test.html" style="position:fixed;top:calc(env(safe-area-inset-top) + 8px);left:8px;z-index:1100;background:#ffffffe8;padding:7px;border-radius:8px;font:12px -apple-system,sans-serif">Offlinetest</a></body>');
 fs.writeFileSync('offline/guide.html',html);
@@ -36,12 +38,13 @@ copy(out+'/raster/OSM-Carto-LICENSE.txt',out+'/licenses/OSM-Carto-LICENSE.txt');
 fs.writeFileSync(out+'/scope.json',JSON.stringify(scope,null,2));
 fs.writeFileSync(out+'/style.json',JSON.stringify(raster));
 // Copy bootstrap globals before the shared map adapter in the generated guide.
-let guide=fs.readFileSync('offline/guide.html','utf8').replace('<script src="offline-map.js">','<script src="offline-files.js"></script><script src="offline-map.js">');
+let guide=fs.readFileSync('offline/guide.html','utf8');
+if(!guide.includes('src="offline-files.js"'))guide=guide.replace('<script src="offline-map.js">','<script src="offline-files.js"></script><script src="offline-map.js">');
 fs.writeFileSync('offline/guide.html',guide);
 // Deliver byte-exact documents independently of hosts that decorate HTML pages.
-fs.writeFileSync(out+'/documents.json',JSON.stringify({version:1,documents:Object.fromEntries(['offline-map-test.html','offline/guide.html'].map(p=>[p,fs.readFileSync(p,'utf8')]))}));
+fs.writeFileSync(out+'/documents.json',JSON.stringify({version:1,documents:Object.fromEntries(['index.html','offline-map-test.html','offline/guide.html'].map(p=>[p,fs.readFileSync(p,'utf8')]))}));
 function walk(dir){return fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(dir+'/'+e.name):[dir+'/'+e.name]);}
-const local=['offline-map-test.html','offline/guide.html','offline-download.js','offline-map.js','offline-scope.js','offline-config.json','place-presentation.js','places-validator.js','place-sheet.css','ui-theme.css',...fs.readdirSync('.').filter(p=>p.endsWith('.json')&&!p.startsWith('package')&&!p.startsWith('offline-manifest')),...walk('assets')];
+const local=['index.html','offline-app.js','offline-app.css','offline-map-test.html','offline/guide.html','offline-download.js','offline-map.js','offline-scope.js','offline-config.json','place-presentation.js','places-validator.js','place-sheet.css','ui-theme.css',...fs.readdirSync('.').filter(p=>p.endsWith('.json')&&!p.startsWith('package')&&!p.startsWith('offline-manifest')),...walk('assets')];
 const unused=p=>p===out+'/florence.pmtiles'||p.startsWith(out+'/glyphs/')||p.startsWith(out+'/sprites/')||/\/vendor\/maplibre(?:-leaflet)?\.(?:js|css)$/.test(p);
 const files=[...new Set(local)].filter(p=>!unused(p)).filter(p=>p.includes('/licenses/')||!p.endsWith('.map')&&!p.endsWith('.ts')&&!p.endsWith('README.md')&&!p.endsWith('LICENSE')&&!p.endsWith('LICENSE.txt')).sort().map(p=>{const data=fs.readFileSync(p);return {path:p,bytes:data.length,sha256:crypto.createHash('sha256').update(data).digest('hex')};});
 const id=crypto.createHash('sha256').update(JSON.stringify(files)).digest('hex').slice(0,16);

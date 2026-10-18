@@ -1,10 +1,9 @@
 /* Original OSM Carto raster tiles, read on demand from small local PMTiles archives. */
 window.OfflineMap={
- layer({showBoundary=false}={}){
-  const spec=OFFLINE_STYLE;
+ layer({showBoundary=false,spec=OFFLINE_STYLE,cacheName=OFFLINE_CACHE}={}){
   if(spec.type!=='raster')throw Error('Kartpaketet använder inte den förväntade OSM Carto-kartan.');
   const packages=new Map(spec.packages.map(p=>[p.key,p])),archives=new Map();
-  const base=new URL('./',document.baseURI),cachePromise=caches.open(OFFLINE_CACHE);
+  const base=new URL('./',document.baseURI),cachePromise=caches.open(cacheName);
   function archive(key){
    if(archives.has(key))return archives.get(key);
    const info=packages.get(key);if(!info)return null;
