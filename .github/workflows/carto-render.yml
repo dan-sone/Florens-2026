@@ -22,7 +22,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - uses: actions/cache@v4
+      - uses: actions/cache/restore@v4
         with:
           path: ~/.cache/florens-carto
           key: florens-carto-6.1.0-20261018-${{ hashFiles('places.json', 'routes.json', 'offline-config.json', 'offline-scope.js') }}-v1
@@ -49,6 +49,11 @@ jobs:
             git commit -m 'Build measured OSM Carto sample [skip ci]'
             git push origin HEAD:offline-carto-render
           fi
+      - uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: ~/.cache/florens-carto
+          key: florens-carto-6.1.0-20261018-${{ hashFiles('places.json', 'routes.json', 'offline-config.json', 'offline-scope.js') }}-v1
       - uses: actions/upload-artifact@v4
         if: always()
         with:

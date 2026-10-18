@@ -9,7 +9,8 @@ if [ ! -d /tmp/florens-carto/style ]; then
  git clone --depth 1 --branch v6.1.0 https://github.com/openstreetmap-carto/openstreetmap-carto.git /tmp/florens-carto/style
 fi
 if [ ! -s "$CARTO_CACHE/region.osm.pbf" ]; then
- curl --fail --location --retry 3 https://download.geofabrik.de/europe/italy/centro-latest.osm.pbf -o "$CARTO_CACHE/region.osm.pbf"
+ curl --fail --location --retry 3 https://download.geofabrik.de/europe/italy/centro-latest.osm.pbf -o "$CARTO_CACHE/region.osm.pbf.part"
+ mv "$CARTO_CACHE/region.osm.pbf.part" "$CARTO_CACHE/region.osm.pbf"
 fi
 CARTO_EXTRACT_BOUNDS=$(node -e "const s=require('/tmp/florens-carto/scope.json').bounds;console.log([s[0][1]-.14,s[0][0]-.1,s[1][1]+.14,s[1][0]+.1].join(','))")
 if [ ! -s "$CARTO_CACHE/region.dump" ]; then
@@ -27,7 +28,8 @@ if [ ! -s "$CARTO_CACHE/region.dump" ]; then
    CARTO_WATER_ARCHIVE=water-polygons-split-3857
   fi
   if [ ! -s "$CARTO_CACHE/$CARTO_WATER_ARCHIVE.zip" ]; then
-   curl --fail --location --retry 3 "https://osmdata.openstreetmap.de/download/$CARTO_WATER_ARCHIVE.zip" -o "$CARTO_CACHE/$CARTO_WATER_ARCHIVE.zip"
+   curl --fail --location --retry 3 "https://osmdata.openstreetmap.de/download/$CARTO_WATER_ARCHIVE.zip" -o "$CARTO_CACHE/$CARTO_WATER_ARCHIVE.zip.part"
+   mv "$CARTO_CACHE/$CARTO_WATER_ARCHIVE.zip.part" "$CARTO_CACHE/$CARTO_WATER_ARCHIVE.zip"
   fi
   mkdir -p /tmp/florens-carto/water
   unzip -q -o "$CARTO_CACHE/$CARTO_WATER_ARCHIVE.zip" -d /tmp/florens-carto/water
@@ -35,7 +37,8 @@ if [ ! -s "$CARTO_CACHE/region.dump" ]; then
   /usr/bin/python3 tools/carto/import-water.py "$source" "/tmp/florens-carto/water/$CARTO_WATER_ARCHIVE/$source.shp"
   rm -rf /tmp/florens-carto/water
  done
- pg_dump --format=custom gis -f "$CARTO_CACHE/region.dump"
+ pg_dump --format=custom gis -f "$CARTO_CACHE/region.dump.part"
+ mv "$CARTO_CACHE/region.dump.part" "$CARTO_CACHE/region.dump"
 else
  pg_restore --dbname gis --no-owner "$CARTO_CACHE/region.dump"
 fi
@@ -47,4 +50,4 @@ for family in NotoSansSymbols NotoSansSymbols2; do
  curl --fail --location --retry 3 "https://raw.githubusercontent.com/notofonts/noto-fonts/main/hinted/ttf/$family/$family-Regular.ttf" -o "/tmp/florens-carto/style/fonts/$family-Regular.ttf"
 done
 cd /tmp/florens-carto/style
-/tmp/carto-cli/node_modules/.bin/carto -a '3.1.0' project.mml > project.xml
+/tmp/carto-cli/node_modules/.bin/carto -a '3.0.22' project.mml > project.xml
