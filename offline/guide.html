@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head><base href="../">
-<meta name="application-version" content="1.19.3">
+<meta name="application-version" content="1.19.4">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
@@ -104,7 +106,7 @@ body[data-view]:not([data-view=karta]) #guide,body[data-view]:not([data-view=kar
 #placeCount{font-size:13px;color:#64748b;margin-bottom:12px}.optional-stops{display:flex;gap:7px;flex-wrap:wrap}.optional-stops button{margin:0}.list-empty{padding:24px;background:white;border-radius:14px;color:#64748b}
 </style>
 <link rel="stylesheet" href="place-sheet.css?v=1.18.10">
-<link rel="stylesheet" href="ui-theme.css?v=1.19.3">
+<link rel="stylesheet" href="ui-theme.css?v=1.19.4">
 </head>
 <body data-view="karta"><nav id="viewTabs" role="tablist" aria-label="Guidevyer"><button role="tab" id="tab-karta" data-view="karta" aria-selected="true" aria-controls="map_1391adca8bfb43099964d4b8f21913ee"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2zM9 3v16M15 5v16"/></svg>Karta</button><button role="tab" id="tab-schema" data-view="schema" aria-selected="false" aria-controls="schemaPanel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4M17 3v4M3 10h18M7 14h3M14 14h3M7 17h3"/></svg>Dagar</button><button role="tab" id="tab-sevardheter" data-view="sevardheter" aria-selected="false" aria-controls="placesPanel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Sevärdheter</button><button role="tab" id="tab-historia" data-view="historia" aria-selected="false" aria-controls="historyPanel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5c-3-2-6-2-9-1v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-3-1-6-1-9 1Zm0 0v15"/></svg>Historia</button></nav>
 <main id="listView" hidden><section class="list-panel" id="schemaPanel" role="tabpanel" aria-labelledby="tab-schema" hidden></section><section class="list-panel" id="placesPanel" role="tabpanel" aria-labelledby="tab-sevardheter" hidden><h1>Sevärdheter</h1><p class="list-intro">Välj kategori och upptäck platserna. Öppna ett kort eller välj läsvyn för att läsa allt.</p><div id="placeFilters" aria-label="Kategorier"></div><div class="places-view-mode" role="group" aria-label="Visning av platser"><button type="button" data-places-mode="overview" aria-pressed="true">Kategori</button><button type="button" data-places-mode="area" aria-pressed="false">Område</button><button type="button" data-places-mode="reading" aria-pressed="false">Läsvy</button></div><p id="placeCount" aria-live="polite"></p><div id="placeList"></div></section><section class="list-panel" id="historyPanel" role="tabpanel" aria-labelledby="tab-historia" hidden></section></main>
@@ -116,7 +118,7 @@ body[data-view]:not([data-view=karta]) #guide,body[data-view]:not([data-view=kar
             <div class="folium-map" id="map_1391adca8bfb43099964d4b8f21913ee" ></div>
         
 <a href="offline-map-test.html" style="position:fixed;top:calc(env(safe-area-inset-top) + 8px);left:8px;z-index:1100;background:#ffffffe8;padding:7px;border-radius:8px;font:12px -apple-system,sans-serif">Offlinetest</a></body>
-<link rel="stylesheet" href="offline-app.css?v=1.19.3"><script src="assets/offline/vendor/pmtiles.js"></script><script src="offline-files.js?v=1.19.3"></script><script src="offline-map.js"></script>
+<link rel="stylesheet" href="offline-app.css?v=1.19.4"><script src="assets/offline/vendor/pmtiles.js"></script><script src="offline-files.js?v=1.19.4"></script><script src="offline-map.js"></script>
 <script src="place-presentation.js?v=1.16.1"></script>
 <script src="places-validator.js"></script>
 <script>
@@ -216,9 +218,31 @@ var map_1391adca8bfb43099964d4b8f21913ee = L.map(
  // Replace automatic hover/open behavior with the same explicit toggle as routes.
  L.DomEvent.off(layerHost,'mouseenter mouseleave');
  const expandLayers=layerControl.expand.bind(layerControl),collapseLayers=layerControl.collapse.bind(layerControl);
- layerControl.expand=function(){expandLayers();layerToggle.setAttribute('aria-expanded','true');return this;};
+ layerControl.expand=function(){expandLayers();layerToggle.setAttribute('aria-expanded','true');positionLayerMenu();return this;};
  layerControl.collapse=function(){collapseLayers();layerToggle.setAttribute('aria-expanded','false');return this;};
- layerToggle.addEventListener('click',()=>{if(layerHost.classList.contains('leaflet-control-layers-expanded'))layerControl.collapse();else{setDayGuide(false);closePlaceSheet(false);layerControl.expand();}});
+ // A shared viewport fit keeps short menus fully visible beside their trigger.
+function popupPlacement(bounds,anchor,width,height){
+ const fitWidth=Math.min(width,bounds.right-bounds.left),fitHeight=Math.min(height,bounds.bottom-bounds.top);
+ const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
+ const beside=anchor.left-fitWidth-8;
+ const left=beside>=bounds.left?beside:anchor.right+8+fitWidth<=bounds.right?anchor.right+8:bounds.right-fitWidth;
+ return {left:clamp(left,bounds.left,bounds.right-fitWidth),top:clamp(anchor.top,bounds.top,bounds.bottom-fitHeight),width:fitWidth,height:fitHeight};
+}
+const popupSafeArea=document.createElement('div');popupSafeArea.className='popup-safe-area';popupSafeArea.setAttribute('aria-hidden','true');document.body.append(popupSafeArea);
+function popupBounds(){
+ const safe=popupSafeArea.getBoundingClientRect(),mapBounds=m.getContainer().getBoundingClientRect(),nav=document.getElementById('viewTabs').getBoundingClientRect();
+ return {left:Math.max(safe.left,mapBounds.left+8),right:Math.min(safe.right,mapBounds.right-8),top:safe.top,bottom:Math.max(safe.top+44,Math.min(safe.bottom,nav.top-8))};
+}
+function fitPopup(element,anchor){
+ const bounds=popupBounds();element.style.setProperty('--popup-width',Math.min(420,bounds.right-bounds.left)+'px');
+ const fit=popupPlacement(bounds,anchor.getBoundingClientRect(),element.getBoundingClientRect().width,element.scrollHeight+2);
+ element.style.setProperty('--popup-left',fit.left+'px');element.style.setProperty('--popup-top',fit.top+'px');element.style.setProperty('--popup-space',(bounds.bottom-bounds.top)+'px');
+ return fit;
+}
+function positionLayerMenu(){fitPopup(layerHost.querySelector('.leaflet-control-layers-list'),layerToggle);}
+window.addEventListener('resize',()=>{if(layerHost.classList.contains('leaflet-control-layers-expanded'))positionLayerMenu();});
+window.visualViewport?.addEventListener('resize',()=>{if(layerHost.classList.contains('leaflet-control-layers-expanded'))positionLayerMenu();if(dayGuideOpen)setDayGuide(true);});
+layerToggle.addEventListener('click',()=>{if(layerHost.classList.contains('leaflet-control-layers-expanded'))layerControl.collapse();else{setDayGuide(false);closePlaceSheet(false);layerControl.expand();}});
  const routeControl=L.control({position:'topright'});
  let routeButton;
  routeControl.onAdd=function(){
@@ -301,13 +325,13 @@ function chooseDay(day){
 dayChoices.addEventListener('click',event=>{const button=event.target.closest('[data-route-day]');if(button)chooseDay(button.dataset.routeDay);});
 const dayGuide=document.getElementById('guide'),dayGrab=document.getElementById('dayGuideGrab'),dayContent=document.getElementById('dayGuideContent');
 let dayGuideOpen=false,dayDrag=null,dayIgnoreClick=0;
-function dayGuideHeight(open){const base=dayGuide.querySelector('.day-guide-bar').offsetHeight+20,limit=Math.max(base,Math.min((window.visualViewport?.height||innerHeight)*.58,routeButton.getBoundingClientRect().bottom-20));if(!open)return base;return selectedDay===guide.defaultSelection.id?Math.min(limit,base+dayChoices.offsetHeight+document.getElementById('daycard').scrollHeight+24):limit;}
+function dayGuideHeight(open){const base=dayGuide.querySelector('.day-guide-bar').offsetHeight+20,bounds=popupBounds(),limit=bounds.bottom-bounds.top;if(!open)return Math.min(base,limit);return Math.min(limit,base+dayChoices.offsetHeight+document.getElementById('daycard').scrollHeight+24);}
 function setDayGuide(open){
  dayGuideOpen=open;dayGuide.hidden=!open;dayGuide.dataset.level=open?'expanded':'compact';
  const viewportHeight=window.visualViewport?.height||innerHeight,buttonBounds=routeButton.getBoundingClientRect();
  dayGuide.style.setProperty('--day-guide-bottom',Math.max(0,viewportHeight-buttonBounds.bottom)+'px');
  dayGuide.style.setProperty('--day-guide-space',Math.max(100,buttonBounds.bottom-20)+'px');
- dayGuide.style.height=dayGuideHeight(open)+'px';dayContent.inert=!open;
+ if(open)fitPopup(dayGuide,routeButton);dayGuide.style.height=dayGuideHeight(open)+'px';if(open)fitPopup(dayGuide,routeButton);dayContent.inert=!open;
  routeButton.setAttribute('aria-expanded',String(open));dayGrab.setAttribute('aria-expanded',String(open));
  dayGrab.setAttribute('aria-label',open?'Stäng dagens program':'Visa dagens program');
 }
