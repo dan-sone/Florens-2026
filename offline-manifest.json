@@ -1,6 +1,6 @@
 {
-  "id": "8254d4867fe3b460",
-  "cache": "florens-offline-pack-8254d4867fe3b460",
+  "id": "70be9b0eea3d6374",
+  "cache": "florens-offline-pack-70be9b0eea3d6374",
   "source": {
     "url": "https://download.geofabrik.de/europe/italy/centro-latest.osm.pbf",
     "style": "https://github.com/openstreetmap-carto/openstreetmap-carto/tree/v6.1.0",
@@ -39,8 +39,8 @@
     },
     {
       "path": "assets/offline/documents.json",
-      "bytes": 70502,
-      "sha256": "251fcd5767a733a982eca74b68f6b8bbd21038dc7f4cc0e92c826130adff6f0b"
+      "bytes": 138995,
+      "sha256": "f99d03d84d34fb88dd69df640fa47a41d2d76d9527e1d650e0df2cb4fc3100c1"
     },
     {
       "path": "assets/offline/fonts/glyphicons-halflings-regular.eot",
@@ -543,14 +543,29 @@
       "sha256": "44aec593f9fa6f0c5d368187f68c944e15b9b05de7d1cb429c09307ff3764de3"
     },
     {
+      "path": "index.html",
+      "bytes": 66909,
+      "sha256": "3a01c09b841ef4a96ede06cd1d803bb6cf91009d1fe4eac4710939829c3789e6"
+    },
+    {
+      "path": "offline-app.css",
+      "bytes": 1678,
+      "sha256": "7bd350f3eeaf53b712fd4e51e1a6631cb38079cbb089cffa8a81148cb1895c3f"
+    },
+    {
+      "path": "offline-app.js",
+      "bytes": 5016,
+      "sha256": "ca0df70a574267200d86b9fd7dfbaad3d607feb185c50446046af03b50716df5"
+    },
+    {
       "path": "offline-config.json",
       "bytes": 270,
       "sha256": "fb07f13ef3aba085cf486adef913caf58e19b113b2fcfef5db41b36feeaf409a"
     },
     {
       "path": "offline-download.js",
-      "bytes": 10942,
-      "sha256": "9643a08720263603cfb25fc9b76e5fe515f3d4fab066d242a35ff25f74b7399a"
+      "bytes": 11596,
+      "sha256": "ceae843a38a0e6cfdab2769170d5dcf61209cc2e70c5ce928feaff9a7e342cc3"
     },
     {
       "path": "offline-map-test.html",
@@ -559,8 +574,8 @@
     },
     {
       "path": "offline-map.js",
-      "bytes": 3061,
-      "sha256": "14815426ba01d5b948425c00a40dddc5ad89efddb47f1dd0224355a06ef98100"
+      "bytes": 3072,
+      "sha256": "8e35342e26d9f30ff328cbcab4448db3d179fcc20b31f5611e0bd0ca778bcc1a"
     },
     {
       "path": "offline-scope.js",
@@ -569,8 +584,8 @@
     },
     {
       "path": "offline/guide.html",
-      "bytes": 66543,
-      "sha256": "f7d3860d6ce0193a2649b328e10bd494ee871b78c0c339bb3d15e60341cad677"
+      "bytes": 66647,
+      "sha256": "4f1ec08c565ee0eb83e7e6e29a339a0c7f0d5e945a2046c678226b606f669634"
     },
     {
       "path": "place-presentation.js",
@@ -653,5 +668,5 @@
       "sha256": "d2c2cce1c47368b9590299d21f67bd856b7bfa767c3f8c42692a42348aedd87b"
     }
   ],
-  "totalBytes": 67566514
+  "totalBytes": 67709379
 }
