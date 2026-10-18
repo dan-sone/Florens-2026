@@ -1,6 +1,6 @@
 {
-  "id": "1a98888e41e3bf46",
-  "cache": "florens-offline-pack-1a98888e41e3bf46",
+  "id": "59c30b7285488b61",
+  "cache": "florens-offline-pack-59c30b7285488b61",
   "source": "https://build.protomaps.com/20261016.pmtiles",
   "bounds": [
     [
@@ -399,8 +399,8 @@
     },
     {
       "path": "offline-download.js",
-      "bytes": 7548,
-      "sha256": "ecab45729056fa8e095047f575c89f6edb590b72d8ce2e8ffeb92b4c3b8a41a2"
+      "bytes": 9268,
+      "sha256": "cc7e11f5a58d2a17eae72c2e7beb4c12f71331530c88095cf1474706e7e5f358"
     },
     {
       "path": "offline-map-test.html",
@@ -503,5 +503,5 @@
       "sha256": "d2c2cce1c47368b9590299d21f67bd856b7bfa767c3f8c42692a42348aedd87b"
     }
   ],
-  "totalBytes": 11107027
+  "totalBytes": 11108747
 }
