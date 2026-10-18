@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="application-version" content="1.19.5">
+<meta name="application-version" content="1.19.6">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="color-scheme" content="light dark">
@@ -106,7 +106,7 @@ body[data-view]:not([data-view=karta]) #guide,body[data-view]:not([data-view=kar
 #placeCount{font-size:13px;color:#64748b;margin-bottom:12px}.optional-stops{display:flex;gap:7px;flex-wrap:wrap}.optional-stops button{margin:0}.list-empty{padding:24px;background:white;border-radius:14px;color:#64748b}
 </style>
 <link rel="stylesheet" href="place-sheet.css?v=1.18.10">
-<link rel="stylesheet" href="ui-theme.css?v=1.19.5">
+<link rel="stylesheet" href="ui-theme.css?v=1.19.6">
 </head>
 <body data-view="karta"><nav id="viewTabs" role="tablist" aria-label="Guidevyer"><button role="tab" id="tab-karta" data-view="karta" aria-selected="true" aria-controls="map_1391adca8bfb43099964d4b8f21913ee"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2zM9 3v16M15 5v16"/></svg>Karta</button><button role="tab" id="tab-schema" data-view="schema" aria-selected="false" aria-controls="schemaPanel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4M17 3v4M3 10h18M7 14h3M14 14h3M7 17h3"/></svg>Dagar</button><button role="tab" id="tab-sevardheter" data-view="sevardheter" aria-selected="false" aria-controls="placesPanel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Sevärdheter</button><button role="tab" id="tab-historia" data-view="historia" aria-selected="false" aria-controls="historyPanel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5c-3-2-6-2-9-1v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-3-1-6-1-9 1Zm0 0v15"/></svg>Historia</button></nav>
 <main id="listView" hidden><section class="list-panel" id="schemaPanel" role="tabpanel" aria-labelledby="tab-schema" hidden></section><section class="list-panel" id="placesPanel" role="tabpanel" aria-labelledby="tab-sevardheter" hidden><h1>Sevärdheter</h1><p class="list-intro">Välj kategori och upptäck platserna. Öppna ett kort eller välj läsvyn för att läsa allt.</p><div id="placeFilters" aria-label="Kategorier"></div><div class="places-view-mode" role="group" aria-label="Visning av platser"><button type="button" data-places-mode="overview" aria-pressed="true">Kategori</button><button type="button" data-places-mode="area" aria-pressed="false">Område</button><button type="button" data-places-mode="reading" aria-pressed="false">Läsvy</button></div><p id="placeCount" aria-live="polite"></p><div id="placeList"></div></section><section class="list-panel" id="historyPanel" role="tabpanel" aria-labelledby="tab-historia" hidden></section></main>
@@ -118,7 +118,7 @@ body[data-view]:not([data-view=karta]) #guide,body[data-view]:not([data-view=kar
             <div class="folium-map" id="map_1391adca8bfb43099964d4b8f21913ee" ></div>
         
 </body>
-<link rel="stylesheet" href="offline-app.css?v=1.19.5"><script src="assets/offline/vendor/pmtiles.js"></script><script src="offline-files.js?v=1.19.5"></script><script src="offline-map.js"></script><script src="offline-app.js?v=1.19.5" defer></script>
+<link rel="stylesheet" href="offline-app.css?v=1.19.6"><script src="assets/offline/vendor/pmtiles.js"></script><script src="offline-files.js?v=1.19.6"></script><script src="offline-map.js"></script><script src="offline-app.js?v=1.19.6" defer></script>
 <script src="place-presentation.js?v=1.16.1"></script>
 <script src="places-validator.js"></script>
 <script>
@@ -270,7 +270,43 @@ layerToggle.addEventListener('click',()=>{if(layerHost.classList.contains('leafl
   return box;
  };
  routeControl.addTo(m);
- L.control.locate({position:'topright'}).addTo(m);
+ // Use the real compass bearing, including due north (0 degrees).
+ function compassHeading(event,screenAngle=0){
+  let heading;
+  if(Number.isFinite(event.webkitCompassHeading)){
+   if(Number.isFinite(event.webkitCompassAccuracy)&&event.webkitCompassAccuracy<0)return null;
+   heading=event.webkitCompassHeading;
+  }else if(event.absolute===true&&Number.isFinite(event.alpha))heading=360-event.alpha;
+  else return null;
+  return ((heading+screenAngle)%360+360)%360;
+ }
+ const HeadingCone=L.Marker.extend({
+  initialize(latlng,heading){
+   this._bearing=heading;this._rotation=heading;
+   const icon=L.divIcon({className:'guide-heading-icon',iconSize:[96,96],iconAnchor:[48,48],html:'<div class="guide-heading-beam"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="guideHeadingGradient" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" stop-color="#2a93ee" stop-opacity=".5"/><stop offset="100%" stop-color="#2a93ee" stop-opacity=".04"/></linearGradient></defs><path d="M48 48 20 5 Q48 -5 76 5Z" fill="url(#guideHeadingGradient)"/></svg></div>'});
+   L.Marker.prototype.initialize.call(this,latlng,{icon,interactive:false,keyboard:false,zIndexOffset:-1});
+  },
+  onAdd(map){L.Marker.prototype.onAdd.call(this,map);this.setHeading(this._bearing);},
+  setHeading(heading){
+   this._rotation+=((heading-this._bearing+540)%360)-180;this._bearing=heading;
+   const beam=this.getElement()?.querySelector('.guide-heading-beam');if(beam)beam.style.transform='rotate('+this._rotation+'deg)';return this;
+  }
+ });
+ const locationControl=L.control.locate({position:'topright',showCompass:true,compassClass:HeadingCone,locateOptions:{enableHighAccuracy:true},strings:{title:'Min position'}}).addTo(m);
+ // The bundled locate control owns sensor subscriptions and clears the cone on stop.
+ locationControl._onDeviceOrientation=function(event){
+  if(!this._active)return;
+  const heading=compassHeading(event,window.screen?.orientation?.angle??window.orientation??0);
+  if(heading===null){this._compassHeading=null;this._drawCompass();return;}
+  this._setCompassHeading(heading);
+ };
+ let compassPermission=null,compassRequest=null;
+ function requestCompass(){
+  const api=window.DeviceOrientationEvent;if(typeof api?.requestPermission!=='function'||compassPermission==='granted'||compassRequest)return;
+  // Call synchronously inside the tap; Safari requires a direct user gesture.
+  try{compassRequest=Promise.resolve(api.requestPermission(true)).then(result=>{compassPermission=result;}).catch(()=>{compassPermission='denied';}).finally(()=>{compassRequest=null;});}catch{compassPermission='denied';}
+ }
+ locationControl.getContainer().querySelector('a').addEventListener('click',requestCompass,{capture:true});
 const dayRoutes={};
 function buildRoutes(){
  guide.days.forEach(day=>{

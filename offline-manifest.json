@@ -1,6 +1,6 @@
 {
-  "id": "164acf3ce20c9257",
-  "cache": "florens-offline-pack-164acf3ce20c9257",
+  "id": "290d30d569e67e41",
+  "cache": "florens-offline-pack-290d30d569e67e41",
   "source": {
     "url": "https://download.geofabrik.de/europe/italy/centro-latest.osm.pbf",
     "style": "https://github.com/openstreetmap-carto/openstreetmap-carto/tree/v6.1.0",
@@ -39,8 +39,8 @@
     },
     {
       "path": "assets/offline/documents.json",
-      "bytes": 143452,
-      "sha256": "b0ad6f643bb8b3c85f5914dda712aee67067ff3d6a649a84c19106a91bc1daca"
+      "bytes": 148938,
+      "sha256": "a618c07f47818e20d45bd5cfd60748c8ff26763c5469ba1aae4d27296c4dce49"
     },
     {
       "path": "assets/offline/fonts/glyphicons-halflings-regular.eot",
@@ -544,8 +544,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 69110,
-      "sha256": "ec69e25f568daea98f0ac38b2aa53d10a3aba76f2c139684846b52fa2dcd9c6e"
+      "bytes": 71785,
+      "sha256": "835f9a6570409b58a880b8ce07792f05ccaca4fae3496e89eb11a1a800378d25"
     },
     {
       "path": "offline-app.css",
@@ -584,8 +584,8 @@
     },
     {
       "path": "offline/guide.html",
-      "bytes": 68839,
-      "sha256": "c952018f39744f3f4fc8e7e8cd334d14dfbe79d80716daf00d742fae773864ac"
+      "bytes": 71514,
+      "sha256": "8b3798334aef27744b68bae3724343b558b66949b3194946fe70eae03b2d99ce"
     },
     {
       "path": "place-presentation.js",
@@ -664,9 +664,9 @@
     },
     {
       "path": "ui-theme.css",
-      "bytes": 37019,
-      "sha256": "181fb3de82bff8c935953d9f27a0c17f7fbefe2e16a1ef3feba828883ded4155"
+      "bytes": 37411,
+      "sha256": "b40f411279957f7ab6784d021f423072090cdd1b070a945d2df53faa89783456"
     }
   ],
-  "totalBytes": 67729616
+  "totalBytes": 67740844
 }
