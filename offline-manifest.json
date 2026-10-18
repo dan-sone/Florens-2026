@@ -1,6 +1,6 @@
 {
-  "id": "b47b979c70a19cfa",
-  "cache": "florens-offline-pack-b47b979c70a19cfa",
+  "id": "e0ebb17289ca0aab",
+  "cache": "florens-offline-pack-e0ebb17289ca0aab",
   "source": "https://build.protomaps.com/20261016.pmtiles",
   "bounds": [
     [
@@ -199,8 +199,8 @@
     },
     {
       "path": "assets/offline/style.json",
-      "bytes": 65195,
-      "sha256": "a6de187a0258f66dd5a7462c5cedb106a8aaa37c6d1200e732e19278be932575"
+      "bytes": 65067,
+      "sha256": "0da0db4f0363990ddbeccdf601f4b89797c173a99db658a2b7b3dab833e6654a"
     },
     {
       "path": "assets/offline/vendor/awesome/images/markers-matte.png",
@@ -553,5 +553,5 @@
       "sha256": "d2c2cce1c47368b9590299d21f67bd856b7bfa767c3f8c42692a42348aedd87b"
     }
   ],
-  "totalBytes": 11344316
+  "totalBytes": 11344188
 }
