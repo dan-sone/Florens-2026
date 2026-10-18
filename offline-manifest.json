@@ -1,6 +1,6 @@
 {
-  "id": "35233a2a5e648e38",
-  "cache": "florens-offline-pack-35233a2a5e648e38",
+  "id": "164acf3ce20c9257",
+  "cache": "florens-offline-pack-164acf3ce20c9257",
   "source": {
     "url": "https://download.geofabrik.de/europe/italy/centro-latest.osm.pbf",
     "style": "https://github.com/openstreetmap-carto/openstreetmap-carto/tree/v6.1.0",
@@ -40,7 +40,7 @@
     {
       "path": "assets/offline/documents.json",
       "bytes": 143452,
-      "sha256": "c0f35b2a45c0c47af6fafe98f441fba2f362932bf3ab6cc7522bce9b4708a243"
+      "sha256": "b0ad6f643bb8b3c85f5914dda712aee67067ff3d6a649a84c19106a91bc1daca"
     },
     {
       "path": "assets/offline/fonts/glyphicons-halflings-regular.eot",
@@ -545,7 +545,7 @@
     {
       "path": "index.html",
       "bytes": 69110,
-      "sha256": "04ca8ebe8c4775f8654ba6512e308466a8f2bb5caaed83efcf3f2227d2089df1"
+      "sha256": "ec69e25f568daea98f0ac38b2aa53d10a3aba76f2c139684846b52fa2dcd9c6e"
     },
     {
       "path": "offline-app.css",
@@ -554,8 +554,8 @@
     },
     {
       "path": "offline-app.js",
-      "bytes": 6790,
-      "sha256": "457be7fd6dd2e23fdb14c9ab618b3e59bd129cc4cf361ef4b4b1dab805a9ad57"
+      "bytes": 6710,
+      "sha256": "87b2c4a5b5b011b01f14b6db7a1d7b188c036d84364c3fd412c241fe74f69493"
     },
     {
       "path": "offline-config.json",
@@ -564,8 +564,8 @@
     },
     {
       "path": "offline-download.js",
-      "bytes": 12870,
-      "sha256": "f2669630fc26b0994da0197772689b5245a75dafe13cfd9a6cb00382b72145b6"
+      "bytes": 14592,
+      "sha256": "e9a15bd61deacb92fc10c0d786f000fedf9919eff12270dcc427aea77612d924"
     },
     {
       "path": "offline-map-test.html",
@@ -585,7 +585,7 @@
     {
       "path": "offline/guide.html",
       "bytes": 68839,
-      "sha256": "709e74284375f6668712736190eafd99f76d829ed8d61cbfd792310fed483903"
+      "sha256": "c952018f39744f3f4fc8e7e8cd334d14dfbe79d80716daf00d742fae773864ac"
     },
     {
       "path": "place-presentation.js",
@@ -668,5 +668,5 @@
       "sha256": "181fb3de82bff8c935953d9f27a0c17f7fbefe2e16a1ef3feba828883ded4155"
     }
   ],
-  "totalBytes": 67727974
+  "totalBytes": 67729616
 }

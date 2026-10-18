@@ -2,7 +2,12 @@
  const inApp=!!window.OFFLINE_IN_APP;
  const $=id=>document.getElementById((inApp?'offline-':'')+id),mb=n=>(n/1e6).toFixed(1)+' MB';
  const base=new URL('./',location.href),key=new URL('offline-ready',base).href;
- const cache=await caches.open(OFFLINE_CACHE);let aborter,mapLayer,boundary;
+ const cache=await caches.open(OFFLINE_CACHE);let aborter,mapLayer,boundary,downloadRunning=false;
+ const preferenceKey=base.pathname+':offline-enabled';let offlineEnabled=false,autoAttempted=false;
+ try{offlineEnabled=localStorage.getItem(preferenceKey)==='1';}catch{}
+ const previousCaches=[];
+ for(const name of await caches.keys())if(name.startsWith('florens-offline-pack-')&&name!==OFFLINE_CACHE){const previous=await caches.open(name);if(await previous.match(key))previousCaches.push(previous);}
+ if(previousCaches.length||await cache.match(key)){offlineEnabled=true;try{localStorage.setItem(preferenceKey,'1');}catch{}}
  const map=inApp?null:L.map('map').setView([43.765,11.26],14);
  const fail=(message,state='error')=>{
   let text=message;
@@ -39,7 +44,7 @@
   map.fitBounds(scope.bounds,{paddingTopLeft:[15,Math.min(innerHeight*.52,360)],paddingBottomRight:[15,25]});
   $('scope').textContent=scope.included.length+' platser. Streckad blå gräns = sparat område. Rutter visar guidens befintliga förbindelser mellan stopp.';
  }
- async function refresh(){const ok=await ready();$('guide').hidden=!ok;window.dispatchEvent(new CustomEvent('offline-package-status',{detail:{ready:ok}}));$('download').textContent=inApp?(ok?'Kontrollera nedladdningen':'Hämta'):(ok?'Kontrollera paketet':'Hämta för offline');$('remove').hidden=inApp&&!ok;fail(inApp?'':(ok?'Redo för offline · alla filer finns lokalt.':'Ingen komplett offlinekarta sparad.'),ok?'ready':'empty');if(ok)await render();await storage();}
+ async function refresh(){const ok=await ready();$('guide').hidden=!ok;window.dispatchEvent(new CustomEvent('offline-package-status',{detail:{ready:ok}}));$('download').textContent=inApp?(ok?'Uppdatera':'Hämta'):(ok?'Kontrollera paketet':'Hämta för offline');$('remove').hidden=inApp&&!ok;fail(inApp?'':(ok?'Redo för offline · alla filer finns lokalt.':'Ingen komplett offlinekarta sparad.'),ok?'ready':'empty');if(ok)await render();await storage();return ok;}
  let offlineAvailable=false;
  function within(promise,message){let timer;return Promise.race([promise,new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error(message)),15000);})]).finally(()=>clearTimeout(timer));}
  async function start(){
@@ -61,7 +66,8 @@
   }catch(e){offlineAvailable=false;fail('Offline kunde inte starta: '+e.message+' [Sida: '+location.pathname+'; inbäddad: '+(window.top!==window.self?'ja':'nej')+']');$('download').disabled=true;}
  }
  $('download').onclick=async()=>{
-  if(!offlineAvailable)return;
+  if(!offlineAvailable||downloadRunning)return;
+  downloadRunning=true;$('progress').value=0;
   aborter=new AbortController();$('download').disabled=true;$('remove').disabled=true;$('cancel').hidden=false;$('progress').hidden=false;$('guide').hidden=true;fail('Förbereder hämtningen …','downloading');let received=0,documents;
   const wasReady=await ready();
   try{
@@ -70,6 +76,14 @@
    async function save(file){
     if(aborter.signal.aborted)throw new DOMException('Avbruten','AbortError');
     const url=new URL(file.path,base).href;let response=await cache.match(url);
+    // Reuse unchanged verified files from the previous complete snapshot.
+    if(!response)for(const previous of previousCaches){
+     const candidate=await previous.match(url);if(!candidate)continue;
+     const bytes=await candidate.arrayBuffer();if(bytes.byteLength!==file.bytes)continue;
+     const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');
+     if(hash!==file.sha256)continue;
+     response=new Response(bytes,{headers:candidate.headers});await cache.put(url,response.clone());break;
+    }
     if(!response){let timeout;const touch=()=>{clearTimeout(timeout);timeout=setTimeout(()=>aborter.abort(),60000);};touch();try{
      if(file.path.endsWith('.html')){
       if(typeof documents?.[file.path]!=='string')throw Error('Sidan saknas i offlinepaketet: '+file.path);
@@ -98,17 +112,24 @@
    await Promise.allSettled(workers);if(firstError)throw firstError;
    const bootstrap='const OFFLINE_CACHE='+JSON.stringify(OFFLINE_CACHE)+';\nconst OFFLINE_FILES='+JSON.stringify(OFFLINE_FILES)+';\nconst OFFLINE_STYLE='+JSON.stringify(OFFLINE_STYLE)+';\nconst OFFLINE_SCOPE='+JSON.stringify(OFFLINE_SCOPE)+';\n';
    await cache.put(new URL('offline-files.js',base).href,new Response(bootstrap,{headers:{'Content-Type':'application/javascript'}}));
-   await cache.put(key,new Response('complete')); 
+   await cache.put(key,new Response('complete'));
+   offlineEnabled=true;try{localStorage.setItem(preferenceKey,'1');}catch{}
    const persistent=await navigator.storage?.persist?.().catch(()=>false);
    await refresh();if(!inApp)$('storage').textContent+=' '+(persistent?'Beständig lagring beviljad.':'Safari kan rensa sparade data; kontrollera före avresa.');
    // Remove only this feature's older versions, after a complete successful update.
    for(const name of await caches.keys())if(name.startsWith('florens-offline-pack-')&&name!==OFFLINE_CACHE)await caches.delete(name);
   }catch(e){if(!wasReady){await cache.delete(key);for(const file of OFFLINE_FILES)await cache.delete(new URL(file.path,base).href);}fail(e.name==='AbortError'?'Hämtningen avbröts eller tog för lång tid. Försök igen med sidan öppen.':e.name==='QuotaExceededError'?'Lagringsutrymmet räckte inte. Frigör utrymme och försök igen.':e.message);$('guide').hidden=!await ready();}
-  finally{$('download').disabled=false;$('remove').disabled=false;$('cancel').hidden=true;$('progress').hidden=true;await storage();}
+  finally{downloadRunning=false;$('download').disabled=false;$('remove').disabled=false;$('cancel').hidden=true;$('progress').hidden=true;await storage();}
  };
  $('cancel').onclick=()=>aborter?.abort();
- $('remove').onclick=async()=>{if(inApp){for(const name of await caches.keys())if(name.startsWith('florens-offline-pack-')&&name!==OFFLINE_CACHE)await caches.delete(name);for(const request of await cache.keys())await cache.delete(request);window.dispatchEvent(new CustomEvent('offline-package-change',{detail:{ready:false}}));await refresh();}else{await cache.delete(key);for(const f of OFFLINE_FILES)await cache.delete(new URL(f.path,base).href);location.reload();}};
+ $('remove').onclick=async()=>{offlineEnabled=false;try{localStorage.removeItem(preferenceKey);}catch{}if(inApp){for(const name of await caches.keys())if(name.startsWith('florens-offline-pack-')&&name!==OFFLINE_CACHE)await caches.delete(name);for(const request of await cache.keys())await cache.delete(request);window.dispatchEvent(new CustomEvent('offline-package-change',{detail:{ready:false}}));await refresh();}else{await cache.delete(key);for(const f of OFFLINE_FILES)await cache.delete(new URL(f.path,base).href);location.reload();}};
  $('show').onchange=e=>{if(boundary){if(e.target.checked)boundary.addTo(map);else map.removeLayer(boundary);}};
  $('fit').onclick=()=>map?.fitBounds(OFFLINE_SCOPE.bounds,{padding:[25,25]});
- await start();
+ async function maybeAutoUpdate(){
+  if(!inApp||!offlineEnabled||!navigator.onLine||!offlineAvailable||downloadRunning||autoAttempted)return;
+  if(await cache.match(key))return;
+  autoAttempted=true;await $('download').onclick();
+ }
+ window.addEventListener('online',()=>{autoAttempted=false;maybeAutoUpdate().catch(error=>fail(error.message));});
+ await start();await maybeAutoUpdate();
 })().catch(e=>{const status=document.getElementById(window.OFFLINE_IN_APP?'offline-status':'status');if(status)status.textContent='Offlinefunktionen kunde inte starta: '+e.message;console.error(e);});

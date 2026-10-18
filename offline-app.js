@@ -24,7 +24,7 @@
  async function refresh(){
   const revision=++sequence,pack=await saved();if(revision!==sequence)return;
   button.dataset.ready=pack?'true':'false';button.title=button.ariaLabel=pack?'Offlinekarta sparad':'Hämta för offline';
-  const state=document.getElementById('offline-status');if(pack&&pack.cacheName!==OFFLINE_CACHE){if(!document.getElementById('offline-download').disabled){showState('update');document.getElementById('offline-remove').hidden=false;state.textContent='Din sparade guide fungerar fortfarande. Hämta den senaste versionen när du har internet.';document.getElementById('offline-download').textContent='Uppdatera guiden';}}
+  const state=document.getElementById('offline-status');if(pack&&pack.cacheName!==OFFLINE_CACHE){if(!document.getElementById('offline-download').disabled){showState('update');document.getElementById('offline-remove').hidden=false;state.textContent='Ny version finns.';document.getElementById('offline-download').textContent='Uppdatera';}}
   if(boundary){g.map.removeLayer(boundary);boundary=null;}
   if(pack&&document.getElementById('offline-show').checked)boundary=L.rectangle(pack.spec.bounds,{color:'#267b96',weight:1,dashArray:'7 6',fill:false,interactive:false}).addTo(g.map);
   const useLocal=pack&&(!navigator.onLine||fallback);
