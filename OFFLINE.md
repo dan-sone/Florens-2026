@@ -12,7 +12,7 @@ The existing `offline-scope.js` rule engine and `offline-config.json` are unchan
 
 ## iPhone and iPad test
 
-Owner-private HTTPS preview: https://florens-offline-test.soundreed8192.chatgpt.site/offline-map-test.html . Sign in with the owner's ChatGPT account if prompted. This is a separate test host; the GitHub Pages production guide is unchanged.
+The owner-private HTTPS preview link is supplied directly in the conversation. It is a separate test host; the GitHub Pages production guide is unchanged.
 
 The preview must be served over HTTPS (or localhost for a desktop test). A GitHub file page, raw.githubusercontent.com, opening an HTML file from Files, and ordinary HTTP to a Mac's LAN IP do not provide a suitable offline app origin.
 
@@ -57,6 +57,8 @@ python3 -m http.server 8765
 ```
 
 Desktop test URL: http://localhost:8765/offline-map-test.html. For an iPhone use an HTTPS host serving the complete built site, not the desktop localhost URL. GitHub Actions supplies a complete preview archive for any static HTTPS host; do not merge this PR merely to obtain a test link.
+
+A fixed-camera comparison at zoom 17 verifies reduced POI density against the previous crowded style (65 rendered background POIs instead of 272 in both Chromium and WebKit). Guide markers are unchanged.
 
 Browser tests additionally verify rendered museum, shop and food POIs and the local museum sprite with the network disconnected, including a Retina iPad viewport.
 
