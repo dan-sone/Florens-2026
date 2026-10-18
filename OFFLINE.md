@@ -1,6 +1,6 @@
-# Florens offline preview
+# Florens offline guide
 
-Production `index.html`, `offline-scope.js` and `offline-config.json` remain unchanged. `offline/guide.html` is generated from the original guide UI; do not edit it by hand. The separate test host link is supplied directly in the conversation.
+The ordinary `index.html` guide includes an offline download button in the existing map controls. The reusable `offline-scope.js` engine and `offline-config.json` are unchanged. Online the original OpenStreetMap layer is used; without connectivity the saved Carto package is selected automatically, including when connectivity changes while the guide is open. The same guide URL works after closing and reopening offline. `offline/guide.html` remains a generated test snapshot; do not edit it by hand.
 
 ## Original cartography
 
@@ -16,19 +16,19 @@ The existing general rule engine remains trip-independent: hotel anchor, walking
 
 ## iPhone and iPad test
 
-1. Open the supplied HTTPS test link directly in **Safari**, in a normal tab, online. Each device/browser/origin needs its own download. Files, GitHub source pages, raw GitHub URLs and ordinary HTTP LAN addresses are unsuitable for Service Workers.
+1. Open the ordinary HTTPS guide directly in **Safari**, in a normal tab, online. In **Karta**, tap the download-arrow button among the map controls. Each device/browser/origin needs its own download. Files, GitHub source pages, raw GitHub URLs and ordinary HTTP LAN addresses are unsuitable for Service Workers.
 2. Tap **Hämta för offline**. Keep Safari visible and the device awake until **Redo för offline · alla filer finns lokalt.** appears. The displayed package size is exact for that build; browser overhead and temporary copies require extra free space. Allow at least twice the displayed size when updating an existing package. Three bounded downloads run concurrently. Progress counts verified bytes. A progressing transfer may continue; 60 seconds without incoming data aborts it. Cancel, HTTP errors, wrong file size, wrong SHA-256 and quota failures cannot create a complete package.
-3. Tap **Öppna hela testguiden**. Check the familiar Karta, Dagar, Sevärdheter and Historia views. The dashed blue rectangle marks the saved scope. Check labels, shops, museums and original icons around Piazza della Signoria at zooms 17–19.
+3. Tap **Klart** to close the download panel. Check the familiar Karta, Dagar, Sevärdheter and Historia views. The dashed blue rectangle marks the saved scope. Check labels, shops, museums and original icons around Piazza della Signoria at zooms 17–19.
 4. Turn on airplane mode **and turn Wi-Fi off**. Reload. Pan over the whole marked rectangle and zoom 0–19. Check Duomo, Ponte Vecchio, Santa Croce, San Miniato and Lisio. Open place cards and history pictures, switch days and show routes.
-5. Close the tab and reopen the same test link offline. Repeat portrait/landscape and on iPad. The guide must load without a connection.
-6. Use **Offlinetest** to return to the download page. **Kontrollera paketet** checks local hashes. **Ta bort paketet** removes this version; downloading is required again afterward.
+5. Close the tab and reopen the same ordinary guide URL offline. Repeat portrait/landscape and on iPad. The guide must load without a connection.
+6. Tap the download-arrow button to reopen the offline panel. A green dot indicates a saved package. A newer available package is offered as **Uppdatera offlinepaketet**. **Kontrollera paketet** checks local hashes. **Ta bort paketet** removes this version; downloading is required again afterward.
 7. Optional: Share → Add to Home Screen. Open that installed app online and download/check **there** before relying on it. Do not assume it shares Safari's stored package.
 
 Routes are the guide's existing lines between stops, not new street-following routing or turn-by-turn navigation. Apple Maps links, websites, ChatGPT and live information need connectivity or their own downloaded resources. GPS depends on hardware and permission; Wi-Fi-only iPads may lack GPS.
 
 ## Safari limits
 
-HTTPS, Service Workers, CacheStorage and WebP support are required. Current iOS/iPadOS Safari supports these. No WebGL requirement remains. Automated Playwright WebKit is a compatibility check, not a physical-device Safari test. The device checklist above is final acceptance before production integration.
+HTTPS, Service Workers, CacheStorage and WebP support are required. Current iOS/iPadOS Safari supports these. No WebGL requirement remains. Automated Playwright WebKit is a compatibility check, not a physical-device Safari test. The Carto test version passed the owner's physical-device test before production integration. The ordinary guide integration additionally has dedicated automated tests for the root/index URL, online/offline switching, cold offline starts, recovery and deleting/re-downloading in the same page. Repeat the checklist on each device after downloading on the ordinary host.
 
 Safari may suspend downloads when the app goes into the background or the phone locks. Keep the page open until ready; no background download is promised. Private browsing is unsuitable for durable storage. Storage estimates/persistence requests are optional and used where available. Safari can evict website data under storage pressure or after prolonged inactivity, and manually clearing website data deletes the package. Home Screen installation may improve persistence heuristics but does not replace a pre-departure airplane-mode check. Moving to another preview domain or production does not move the download.
 
@@ -38,7 +38,7 @@ Primary references: https://webkit.org/blog/14403/updates-to-storage-policy/ and
 
 All guide assets, data, schemas, scripts, CSS, fonts, history images and raster archives are local. Every file has a byte count and SHA-256. Canonical HTML is delivered inside a verified JSON package, so a host's live HTML decorations cannot corrupt the offline copy. A completion marker is written last. On failure all parallel workers settle before partial files are removed. An older complete package remains usable until the replacement completes. Missing/corrupt files invalidate readiness.
 
-The test Service Workers control only the `offline-map-test` URL prefix and `/offline/`; they never control production `index.html`. Versioned caches use the manifest's content hash. Only older caches belonging to this feature are removed after a successful update.
+The production `offline-sw.js` controls this repository's guide directory. Online requests stay fresh; a complete local snapshot is used when requests fail or the device is offline. The separate legacy test workers control only the `offline-map-test` prefix and `/offline/`. Versioned caches use the manifest's content hash. Only older caches belonging to this feature are removed after a successful update. Packages downloaded on the private test host do not transfer to the ordinary guide host; download once again there.
 
 ## Build and verify
 

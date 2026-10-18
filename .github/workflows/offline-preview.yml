@@ -1,14 +1,14 @@
 name: Build and verify offline preview
 on:
   push:
-    branches: [offline-florence-map, offline-carto-render]
-    paths: ['index.html', 'offline-app.css', 'offline-*.js', 'offline-map-test.html', 'offline-config.json', 'tools/**', 'package*.json', '.github/workflows/offline-preview.yml']
+    branches: [main, offline-florence-map, offline-carto-render]
+    paths: ['index.html', '*.css', '*.json', 'offline-app.js', 'offline-download.js', 'offline-map.js', 'offline-sw.js', 'offline-test-sw.js', 'offline-map-test.html', 'offline-scope.js', 'place-presentation.js', 'places-validator.js', 'tools/**', '.github/workflows/offline-preview.yml']
   workflow_dispatch:
 permissions:
   contents: write
 concurrency:
   group: florence-offline-preview
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   offline:
     runs-on: ubuntu-latest
@@ -37,6 +37,7 @@ jobs:
       - name: Install test browsers
         run: npx playwright install --with-deps chromium webkit
       - name: Verify downloads, failure handling, and offline navigation
+        timeout-minutes: 8
         run: |
           npm run test:offline
           node tools/test-offline-production.cjs
