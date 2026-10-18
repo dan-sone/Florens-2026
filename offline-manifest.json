@@ -1,6 +1,6 @@
 {
-  "id": "6e3cf978ca957605",
-  "cache": "florens-offline-pack-6e3cf978ca957605",
+  "id": "b47b979c70a19cfa",
+  "cache": "florens-offline-pack-b47b979c70a19cfa",
   "source": "https://build.protomaps.com/20261016.pmtiles",
   "bounds": [
     [
@@ -68,6 +68,21 @@
       "sha256": "4d776ca89b51ab5ec679eda50ced7bbb12ccdf7b861d12daec7cfbe3f50445e8"
     },
     {
+      "path": "assets/offline/glyphs/Noto Sans Regular/22784-23039.pbf",
+      "bytes": 29,
+      "sha256": "2ee75a039b051dacd31fd50c867d15f3594481006723ea7bc7059a143d2e0e05"
+    },
+    {
+      "path": "assets/offline/glyphs/Noto Sans Regular/23040-23295.pbf",
+      "bytes": 29,
+      "sha256": "1a6f09bfcdc8ad3c0101493aea45e6795324d005ee8446d16c850735e6cb2b69"
+    },
+    {
+      "path": "assets/offline/glyphs/Noto Sans Regular/23296-23551.pbf",
+      "bytes": 29,
+      "sha256": "07e4766a40a1f2cb5d80bd7320ecfa892e4091442cf331e0192158f30120a791"
+    },
+    {
       "path": "assets/offline/glyphs/Noto Sans Regular/256-511.pbf",
       "bytes": 127726,
       "sha256": "2eca7561f9f566bcacfda5dd04fb5880baec1328ec0f5484678289a13994de8a"
@@ -76,6 +91,11 @@
       "path": "assets/offline/glyphs/Noto Sans Regular/512-767.pbf",
       "bytes": 94728,
       "sha256": "6abc80badad0e823e228ab739515be257c8b33bc68bb077dd873030e9b2d143a"
+    },
+    {
+      "path": "assets/offline/glyphs/Noto Sans Regular/65024-65279.pbf",
+      "bytes": 68701,
+      "sha256": "79839b70b48fa9c4cae32f946571481c167adc35eae404044d1ca74514f731b1"
     },
     {
       "path": "assets/offline/glyphs/Noto Sans Regular/65280-65535.pbf",
@@ -98,6 +118,11 @@
       "sha256": "125b49cccfe95ac2f64b6bc2661871fba0081ff1b24f34c20bd29260b9351b57"
     },
     {
+      "path": "assets/offline/glyphs/Noto Sans Regular/9984-10239.pbf",
+      "bytes": 101495,
+      "sha256": "bdb6b5deb10499a1778b4d1192bc16d59cd7fc8880ca0445b54c1747058883dc"
+    },
+    {
       "path": "assets/offline/licenses/@fortawesome-fontawesome-free-LICENSE.txt",
       "bytes": 7427,
       "sha256": "de784a808496d49f5f80dd9d1d6e9a51cff712cfbc339e7c25155631ae3cdb5d"
@@ -111,6 +136,11 @@
       "path": "assets/offline/licenses/Noto-OFL.txt",
       "bytes": 4396,
       "sha256": "cee9892f9f0cc8fe882c9e9537ee6a89621d86ee7ceaf70b02e2b2b1c25c061a"
+    },
+    {
+      "path": "assets/offline/licenses/Tangram-icons-LICENSE.md",
+      "bytes": 1074,
+      "sha256": "46d0ca73c10d7366ef7bf3932d8508267096393ccc9ef3a41d1b1d1fe37023f1"
     },
     {
       "path": "assets/offline/licenses/bootstrap-LICENSE",
@@ -148,9 +178,29 @@
       "sha256": "3d162184176811b7e3079325ba251bb8134b7bd4770b587dbc7b19752309b1c5"
     },
     {
+      "path": "assets/offline/sprites/light.json",
+      "bytes": 3549,
+      "sha256": "bfac76cf7ed5c2aa2992695904056a1c6b07785b7fd20e6c640cb44fd6244a2e"
+    },
+    {
+      "path": "assets/offline/sprites/light.png",
+      "bytes": 16174,
+      "sha256": "b6a34640917bdc57d0bd080836db33376371a3312ebe7b849045268015de3481"
+    },
+    {
+      "path": "assets/offline/sprites/light@2x.json",
+      "bytes": 3579,
+      "sha256": "1fb5b123fbe35d2e1f6ac171513ce01df89e671273a417ee89c44886a4c132f0"
+    },
+    {
+      "path": "assets/offline/sprites/light@2x.png",
+      "bytes": 28852,
+      "sha256": "23f6e9df27c2e9a14385763980a24e3608966bfc8192a106058bc2ca959ab563"
+    },
+    {
       "path": "assets/offline/style.json",
-      "bytes": 53183,
-      "sha256": "12c8ca427789248b5df9022a8a21576fef277487b013bf1602f5ecf45c1cb96b"
+      "bytes": 65195,
+      "sha256": "a6de187a0258f66dd5a7462c5cedb106a8aaa37c6d1200e732e19278be932575"
     },
     {
       "path": "assets/offline/vendor/awesome/images/markers-matte.png",
@@ -409,8 +459,8 @@
     },
     {
       "path": "offline-map.js",
-      "bytes": 1645,
-      "sha256": "955848e224de500403a9fa0ba83bef29fcd79f820808cd39ab3d47f6009515c5"
+      "bytes": 1696,
+      "sha256": "d4a1d6102d0e14449b5e3ac9a53b1eef2a1f7b401c6ff0a1e4b1ab9c4464ac9b"
     },
     {
       "path": "offline-scope.js",
@@ -503,5 +553,5 @@
       "sha256": "d2c2cce1c47368b9590299d21f67bd856b7bfa767c3f8c42692a42348aedd87b"
     }
   ],
-  "totalBytes": 11108742
+  "totalBytes": 11344316
 }
