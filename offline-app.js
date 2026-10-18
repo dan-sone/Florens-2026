@@ -44,5 +44,5 @@
  document.getElementById('offline-show').addEventListener('change',()=>refresh().catch(report));
  function report(error){showState('error');document.getElementById('offline-status').textContent='Offlinekartan kunde inte öppnas: '+error.message;}
  await refresh();
- const script=document.createElement('script');script.src='offline-download.js';script.onerror=()=>report(Error('Nedladdningsfunktionen kunde inte laddas. Ladda om sidan.'));document.body.append(script);
+ const script=document.createElement('script');script.src='offline-download.js?v='+encodeURIComponent(document.querySelector('meta[name="application-version"]').content);script.onerror=()=>report(Error('Nedladdningsfunktionen kunde inte laddas. Ladda om sidan.'));document.body.append(script);
 })().catch(error=>{console.error('Offline:',error);});
