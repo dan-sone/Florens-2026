@@ -1,6 +1,6 @@
 {
-  "id": "e0ebb17289ca0aab",
-  "cache": "florens-offline-pack-e0ebb17289ca0aab",
+  "id": "68a49b1b07467aa0",
+  "cache": "florens-offline-pack-68a49b1b07467aa0",
   "source": "https://build.protomaps.com/20261016.pmtiles",
   "bounds": [
     [
@@ -31,6 +31,11 @@
       "path": "assets/history/mercato.webp",
       "bytes": 44706,
       "sha256": "8c3043ca57ebedee2cf3e319b24c777435df732a60db7b0a0d28b50d04712bbc"
+    },
+    {
+      "path": "assets/offline/documents.json",
+      "bytes": 70892,
+      "sha256": "c3ac6a1602438a65de93ae5571845db4a8483ee9754057631777b2eb3c41fc93"
     },
     {
       "path": "assets/offline/florence.pmtiles",
@@ -449,8 +454,8 @@
     },
     {
       "path": "offline-download.js",
-      "bytes": 9263,
-      "sha256": "fcee5876cfc1ae1a86c673d424fcc860eed2220a20cac30115520c8ee3cf47a9"
+      "bytes": 9926,
+      "sha256": "47430ce1b0c815258f6cda0cfdc5ddaa1fb46ac116a264643d00ca1aa37528c1"
     },
     {
       "path": "offline-map-test.html",
@@ -553,5 +558,5 @@
       "sha256": "d2c2cce1c47368b9590299d21f67bd856b7bfa767c3f8c42692a42348aedd87b"
     }
   ],
-  "totalBytes": 11344188
+  "totalBytes": 11415743
 }
