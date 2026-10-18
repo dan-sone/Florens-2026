@@ -50,14 +50,22 @@
  }
  $('download').onclick=async()=>{
   if(!offlineAvailable)return;
-  aborter=new AbortController();$('download').disabled=true;$('remove').disabled=true;$('cancel').hidden=false;$('progress').hidden=false;let received=0;
+  aborter=new AbortController();$('download').disabled=true;$('remove').disabled=true;$('cancel').hidden=false;$('progress').hidden=false;let received=0,documents;
   const wasReady=await ready();
   try{
    const estimate=await navigator.storage?.estimate?.();
    if(!wasReady&&estimate&&estimate.quota-estimate.usage<total*1.3)throw Error('Otillräckligt lagringsutrymme. Frigör utrymme och försök igen.');
    for(const file of OFFLINE_FILES){
     const url=new URL(file.path,base).href;let response=await cache.match(url);
-    if(!response){const timeout=setTimeout(()=>aborter.abort(),60000);try{response=await fetch(url,{cache:'no-store',signal:aborter.signal});if(!response.ok||response.type==='opaque')throw Error('Hämtning misslyckades: '+file.path+' ('+response.status+')');const bytes=await response.arrayBuffer();if(bytes.byteLength!==file.bytes)throw Error('Ofullständig fil: '+file.path);const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');if(hash!==file.sha256)throw Error('Kontrollsumman stämmer inte: '+file.path);await cache.put(url,new Response(bytes,{headers:{'Content-Type':response.headers.get('Content-Type')||'application/octet-stream'}}));}finally{clearTimeout(timeout);}}
+    if(!response){const timeout=setTimeout(()=>aborter.abort(),60000);try{
+     if(file.path.endsWith('.html')){
+      // Hosting can inject/normalize live HTML. Only the canonical package copy
+      // is cached, with the same byte count and SHA-256 checks as every asset.
+      if(!documents){const saved=await cache.match(new URL('assets/offline/documents.json',base).href);if(!saved)throw Error('Paketets HTML-underlag saknas. Hämta paketet igen.');documents=(await saved.json()).documents;}
+      if(typeof documents?.[file.path]!=='string')throw Error('Sidan saknas i offlinepaketet: '+file.path);
+      response=new Response(documents[file.path],{headers:{'Content-Type':'text/html; charset=utf-8'}});
+     }else response=await fetch(url,{cache:'no-store',signal:aborter.signal});
+     if(!response.ok||response.type==='opaque')throw Error('Hämtning misslyckades: '+file.path+' ('+response.status+')');const bytes=await response.arrayBuffer();if(bytes.byteLength!==file.bytes)throw Error('Ofullständig fil: '+file.path);const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');if(hash!==file.sha256)throw Error('Kontrollsumman stämmer inte: '+file.path);await cache.put(url,new Response(bytes,{headers:{'Content-Type':response.headers.get('Content-Type')||'application/octet-stream'}}));}finally{clearTimeout(timeout);}}
     else{const bytes=await response.arrayBuffer();const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');if(hash!==file.sha256)throw Error('Skadad lokal fil: '+file.path);}
     if(aborter.signal.aborted)throw new DOMException('Avbruten','AbortError');received+=file.bytes;$('progress').value=received/total*100;fail('Sparar och verifierar '+mb(received)+' / '+mb(total)+' …');
    }

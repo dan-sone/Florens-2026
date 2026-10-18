@@ -31,6 +31,8 @@ fs.writeFileSync(out+'/style.json',JSON.stringify(mapStyle));
 // Copy bootstrap globals before the shared map adapter in the generated guide.
 let guide=fs.readFileSync('offline/guide.html','utf8').replace('<script src="offline-map.js">','<script src="offline-files.js"></script><script src="offline-map.js">');
 fs.writeFileSync('offline/guide.html',guide);
+// Deliver byte-exact documents independently of hosts that decorate HTML pages.
+fs.writeFileSync(out+'/documents.json',JSON.stringify({version:1,documents:Object.fromEntries(['offline-map-test.html','offline/guide.html'].map(p=>[p,fs.readFileSync(p,'utf8')]))}));
 function walk(dir){return fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(dir+'/'+e.name):[dir+'/'+e.name]);}
 const local=['offline-map-test.html','offline/guide.html','offline-download.js','offline-map.js','offline-scope.js','offline-config.json','place-presentation.js','places-validator.js','place-sheet.css','ui-theme.css',...fs.readdirSync('.').filter(p=>p.endsWith('.json')&&!p.startsWith('package')&&!p.startsWith('offline-manifest')),...walk('assets')];
 const files=[...new Set(local)].filter(p=>p.includes('/licenses/')||!p.endsWith('.map')&&!p.endsWith('.ts')&&!p.endsWith('README.md')&&!p.endsWith('LICENSE')&&!p.endsWith('LICENSE.txt')).sort().map(p=>{const data=fs.readFileSync(p);return {path:p,bytes:data.length,sha256:crypto.createHash('sha256').update(data).digest('hex')};});
