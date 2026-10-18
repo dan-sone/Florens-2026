@@ -15,6 +15,7 @@ window.OfflineMap={
   const style=JSON.parse(JSON.stringify(OFFLINE_STYLE));
   style.glyphs=new URL('glyphs/{fontstack}/{range}.pbf',base).href.replace(/%7B/g,'{').replace(/%7D/g,'}');
   style.sources.basemap.url='pmtiles://'+url;
+  style.sprite=new URL('sprites/light',base).href;
   const layer=L.maplibreGL({style,interactive:false,attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · Protomaps',maxZoom:19});
   layer.on('add',()=>{if(showBoundary)L.rectangle(OFFLINE_SCOPE.bounds,{color:'#267b96',weight:1,dashArray:'7 6',fill:false,interactive:false}).addTo(layer._map);layer.getMaplibreMap().on('error',e=>{console.error('Offlinekarta:',e.error);window.dispatchEvent(new CustomEvent('offline-map-error',{detail:e.error?.message||'Kartfel'}));});});
   return layer;

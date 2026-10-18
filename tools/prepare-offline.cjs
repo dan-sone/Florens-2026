@@ -23,11 +23,11 @@ if(header.toString('ascii',0,7)!=='PMTiles'||header[7]!==3)throw Error('Expected
 const [[south,west],[north,east]]=scope.bounds;
 for(const [offset,value] of [[102,west],[106,south],[110,east],[114,north]])if(Math.abs(header.readInt32LE(offset)/1e7-value)>1.1e-7)throw Error('Scope changed: run tools/extract-offline.cjs to rebuild the map package');
 fs.writeFileSync(out+'/scope.json',JSON.stringify(scope,null,2));
-const {layers,namedFlavor}=require('@protomaps/basemaps');
-let styleLayers=layers('basemap',namedFlavor('light'),{lang:'en'}).filter(l=>!l.layout?.['icon-image']);
-for(const l of styleLayers)if(l.layout?.['text-font'])l.layout['text-font']=['Noto Sans Regular'];
-fs.writeFileSync(out+'/style.json',JSON.stringify({version:8,glyphs:'./glyphs/{fontstack}/{range}.pbf',sources:{basemap:{type:'vector',url:'pmtiles://'+ 'PACKAGE_URL',attribution:'© OpenStreetMap contributors · Protomaps'}},layers:styleLayers}));
-// No sprite: guide POIs use the existing Leaflet icon system; basemap labels use local glyphs.
+const mapStyle=require('./offline-map-style.cjs')();
+const styleErrors=require('@maplibre/maplibre-gl-style-spec').validateStyleMin(mapStyle);
+if(styleErrors.length)throw Error(styleErrors.map(e=>e.message).join('\n'));
+for(const suffix of ['.json','.png','@2x.json','@2x.png'])if(!fs.existsSync(out+'/sprites/light'+suffix))throw Error('Run npm run fetch:offline for the local POI sprites');
+fs.writeFileSync(out+'/style.json',JSON.stringify(mapStyle));
 // Copy bootstrap globals before the shared map adapter in the generated guide.
 let guide=fs.readFileSync('offline/guide.html','utf8').replace('<script src="offline-map.js">','<script src="offline-files.js"></script><script src="offline-map.js">');
 fs.writeFileSync('offline/guide.html',guide);

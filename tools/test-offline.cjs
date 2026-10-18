@@ -24,7 +24,7 @@ const results=[];
   const setOffline=async(ctx,value)=>{networkBlocked=value;await ctx.setOffline(value);};
   for(const [device,viewport] of Object.entries({iphone:{width:390,height:844},ipad:{width:1194,height:834}})){
    prettyUrls=device==='ipad';
-   const context=await browser.newContext({viewport,isMobile:true,hasTouch:true,deviceScaleFactor:1});
+   const context=await browser.newContext({viewport,isMobile:true,hasTouch:true,deviceScaleFactor:device==='ipad'?2:1});
    const page=await context.newPage(),errors=[],failed=[];page.on('pageerror',e=>errors.push(e.message));page.on('requestfailed',r=>failed.push(r.url()));
    page.on('console',m=>{if(m.type()==='error'&&!m.text().includes('favicon'))errors.push(m.text());});
    await page.goto(base+'/offline-map-test.html');if(prettyUrls)assert.equal(new URL(page.url()).pathname,'/offline-map-test','Host redirected the manager to its extensionless URL');await page.waitForFunction(()=>document.querySelector('#status').textContent==='Ingen komplett offlinekarta sparad.');
@@ -36,6 +36,14 @@ const results=[];
    await page.waitForTimeout(1500);await page.screenshot({path:path.join(root,`test-results/offline/${name}-${device}-map.png`)});
    await page.click('#guide');await page.waitForFunction(()=>document.querySelector('[data-view="sevardheter"]'));
    await page.waitForFunction(()=>typeof guideReady!=='undefined');await page.evaluate(()=>guideReady);await page.waitForTimeout(2500);await page.screenshot({path:path.join(root,`test-results/offline/${name}-${device}-guide.png`)});
+   // Basemap POIs must render from the saved tile data and local sprites.
+   await page.evaluate(async()=>{const g=await guideReady;g.map.eachLayer(l=>{if(l.getMaplibreMap)window.testBasemap=l.getMaplibreMap();});g.map.setView([43.770,11.255],17,{animate:false});});
+   await page.waitForFunction(()=>{const gl=window.testBasemap;return gl.loaded()&&gl.queryRenderedFeatures({layers:['pois']}).some(f=>f.properties.kind==='museum');},null,{timeout:30000});
+   const poiKinds=await page.evaluate(()=>window.testBasemap.queryRenderedFeatures({layers:['pois']}).map(f=>f.properties.kind));
+   assert(poiKinds.some(k=>['clothes','books','gift','leather','supermarket','convenience','shoes','jewelry'].includes(k)),'Named shop POIs render');
+   assert(poiKinds.some(k=>['restaurant','cafe','bar'].includes(k)),'Food POIs render');
+   assert(await page.evaluate(()=>window.testBasemap.hasImage('museum')),'Local museum sprite loaded');
+   await page.screenshot({path:path.join(root,`test-results/offline/${name}-${device}-poi-detail.png`)});
    // Exercise the existing navigation and its data offline, including lazy history images.
    for(const view of ['sevardheter','schema','historia','karta']){const button=page.locator(`[data-view="${view}"]`).first();if(await button.count())await button.click();await page.waitForTimeout(300);if(view==='historia'){await page.locator('.history-card').evaluateAll(nodes=>nodes.forEach(n=>n.open=true));await page.locator('.history-image img').evaluateAll(images=>images.forEach(img=>img.loading='eager'));await page.waitForFunction(()=>[...document.querySelectorAll('.history-image img')].every(i=>i.complete&&i.naturalWidth>0));}}
    await page.evaluate(async()=>{const g=await guideReady;g.showDayRoute('fri');});await page.waitForTimeout(600);assert(await page.evaluate(async()=>{const g=await guideReady;return g.map.hasLayer(g.dayRoutes.fri);}));await page.evaluate(async()=>{const g=await guideReady;g.showPlaceOnMap('duomo-santa-reparata');g.openPlaceSheet('duomo-santa-reparata');});await page.waitForTimeout(700);assert((await page.locator('#sheetTitle').textContent()).includes('Duomo'));await page.evaluate(async()=>{(await guideReady).closePlaceSheet(false);});
@@ -44,7 +52,7 @@ const results=[];
    await page.goto(base+'/offline-map-test.html');await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Redo för offline'));await page.evaluate(async()=>{const current=await caches.open(OFFLINE_CACHE),previousName=OFFLINE_CACHE+'-previous',previous=await caches.open(previousName);for(const req of await current.keys()){let response=await current.match(req);if(new URL(req.url).pathname.endsWith('/offline-files.js'))response=new Response((await response.text()).replace(OFFLINE_CACHE,previousName),{headers:{'Content-Type':'application/javascript'}});await previous.put(req,response);}await caches.delete(OFFLINE_CACHE);});await page.reload();await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Redo för offline'));
    await page.close();const cold=await context.newPage();await cold.goto(base+(prettyUrls?'/offline/guide':'/offline/guide.html'));assert.equal(await cold.evaluate(async()=>(await guideReady).markersById.size),77);await cold.close();
    const production=await context.newPage();await setOffline(context,false);await production.goto(base+'/index.html',{waitUntil:'commit'});assert.equal(await production.evaluate(()=>navigator.serviceWorker.controller),null,'Production not controlled by test workers');await production.close();
-   results.push(`${name}/${device}: ${prettyUrls?'extensionless host redirects, ':''}complete download, vector rendering, offline map/guide reload, cold navigation, existing views, no failed offline requests, production isolation, previous-version fallback`);
+   results.push(`${name}/${device}: ${prettyUrls?'extensionless host redirects, ':''}complete download, vector rendering, offline map/guide reload, cold navigation, existing views, named museum/shop/food POIs and local sprites, no failed offline requests, production isolation, previous-version fallback`);
    console.log('PASS',name,device);await context.close();
   }
   prettyUrls=false;
