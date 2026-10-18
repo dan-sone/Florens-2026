@@ -14,7 +14,7 @@ def box(x,y,z,size):
  return mapnik.Box2d(-R+x*d,R-(y+size)*d,-R+(x+size)*d,R-y*d)
 def init_worker():
  global M
- os.chdir(ROOT);mapnik.register_fonts(str(ROOT/'fonts'),recurse=True)
+ os.chdir(ROOT);mapnik.register_fonts(str(ROOT/'fonts'))
  M=mapnik.Map(2048,2048);mapnik.load_map(M,str(ROOT/'project.xml'),False);M.buffer_size=128
 
 def render_meta(task):
