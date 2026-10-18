@@ -1,10 +1,13 @@
 const {chromium,webkit}=require('playwright');
 const assert=require('node:assert/strict'),http=require('node:http'),fs=require('node:fs'),path=require('node:path');
-const root=path.resolve(__dirname,'..');let fault=null,delay=0,networkBlocked=false;
+const root=path.resolve(__dirname,'..');let fault=null,delay=0,networkBlocked=false,prettyUrls=false;
 const mime={'.html':'text/html','.js':'application/javascript','.css':'text/css','.json':'application/json','.png':'image/png','.webp':'image/webp','.svg':'image/svg+xml','.pbf':'application/x-protobuf','.woff2':'font/woff2','.woff':'font/woff'};
 const server=http.createServer(async(req,res)=>{
  if(networkBlocked){req.socket.destroy();return;}
- const url=new URL(req.url,'http://localhost'),relative=decodeURIComponent(url.pathname).slice(1),file=path.resolve(root,relative);
+ const url=new URL(req.url,'http://localhost');let relative=decodeURIComponent(url.pathname).slice(1);
+ if(prettyUrls&&relative.endsWith('.html')){res.writeHead(308,{Location:'/'+relative.slice(0,-5)+url.search}).end();return;}
+ if(prettyUrls&&['offline-map-test','offline/guide','index'].includes(relative))relative+='.html';
+ const file=path.resolve(root,relative);
  if(!file.startsWith(root+path.sep)){res.writeHead(403).end();return;}
  if(relative===fault){if(delay)await new Promise(r=>setTimeout(r,delay));res.writeHead(503).end('Injected download failure');return;}
  try{const data=fs.readFileSync(file);res.writeHead(200,{'Content-Type':mime[path.extname(file)]||'application/octet-stream','Cache-Control':'no-store'});res.end(data);}catch{res.writeHead(404).end();}
@@ -20,10 +23,11 @@ const results=[];
   // Both browser offline emulation and a severed origin: no HTTP cache fallback.
   const setOffline=async(ctx,value)=>{networkBlocked=value;await ctx.setOffline(value);};
   for(const [device,viewport] of Object.entries({iphone:{width:390,height:844},ipad:{width:1194,height:834}})){
+   prettyUrls=device==='ipad';
    const context=await browser.newContext({viewport,isMobile:true,hasTouch:true,deviceScaleFactor:1});
    const page=await context.newPage(),errors=[],failed=[];page.on('pageerror',e=>errors.push(e.message));page.on('requestfailed',r=>failed.push(r.url()));
    page.on('console',m=>{if(m.type()==='error'&&!m.text().includes('favicon'))errors.push(m.text());});
-   await page.goto(base+'/offline-map-test.html');await page.waitForFunction(()=>document.querySelector('#status').textContent==='Ingen komplett offlinekarta sparad.');
+   await page.goto(base+'/offline-map-test.html');if(prettyUrls)assert.equal(new URL(page.url()).pathname,'/offline-map-test','Host redirected the manager to its extensionless URL');await page.waitForFunction(()=>document.querySelector('#status').textContent==='Ingen komplett offlinekarta sparad.');
    await page.click('#download');await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Redo för offline'),null,{timeout:90000});
    await page.waitForTimeout(2000);assert(await page.locator('canvas').count()>0,'Vector map canvas');
    assert.equal(errors.length,0,errors.join('\n'));const counts=await page.evaluate(async()=>({files:OFFLINE_FILES.length,stored:(await (await caches.open(OFFLINE_CACHE)).keys()).length}));assert.equal(counts.stored,counts.files+2);
@@ -38,11 +42,12 @@ const results=[];
    await page.reload();await page.waitForTimeout(2000);assert.equal(await page.title(),'Florens 2026');assert.equal(errors.length,0,errors.join('\n')+'\n'+failed.join('\n'));assert.deepEqual(failed,[],'No failed requests offline');
    // Close the page and create a new one to verify a cold navigation, not just memory.
    await page.goto(base+'/offline-map-test.html');await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Redo för offline'));await page.evaluate(async()=>{const current=await caches.open(OFFLINE_CACHE),previousName=OFFLINE_CACHE+'-previous',previous=await caches.open(previousName);for(const req of await current.keys()){let response=await current.match(req);if(new URL(req.url).pathname.endsWith('/offline-files.js'))response=new Response((await response.text()).replace(OFFLINE_CACHE,previousName),{headers:{'Content-Type':'application/javascript'}});await previous.put(req,response);}await caches.delete(OFFLINE_CACHE);});await page.reload();await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Redo för offline'));
-   await page.close();const cold=await context.newPage();await cold.goto(base+'/offline/guide.html');assert.equal(await cold.evaluate(async()=>(await guideReady).markersById.size),77);await cold.close();
+   await page.close();const cold=await context.newPage();await cold.goto(base+(prettyUrls?'/offline/guide':'/offline/guide.html'));assert.equal(await cold.evaluate(async()=>(await guideReady).markersById.size),77);await cold.close();
    const production=await context.newPage();await setOffline(context,false);await production.goto(base+'/index.html',{waitUntil:'commit'});assert.equal(await production.evaluate(()=>navigator.serviceWorker.controller),null,'Production not controlled by test workers');await production.close();
-   results.push(`${name}/${device}: complete download, vector rendering, offline map/guide reload, cold navigation, existing views, no failed offline requests, production isolation, previous-version fallback`);
+   results.push(`${name}/${device}: ${prettyUrls?'extensionless host redirects, ':''}complete download, vector rendering, offline map/guide reload, cold navigation, existing views, no failed offline requests, production isolation, previous-version fallback`);
    console.log('PASS',name,device);await context.close();
   }
+  prettyUrls=false;
   // A host can activate a worker without ever controlling the document.
   // Initialization must time out visibly while the other controls remain wired.
   {

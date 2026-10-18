@@ -14,10 +14,13 @@ self.addEventListener('fetch',event=>{
  const url=new URL(event.request.url);if(url.origin!==self.location.origin)return;
  event.respondWith((async()=>{
   const base=new URL('./',self.location.href),relative=decodeURIComponent(url.pathname.slice(base.pathname.length));
-  const clean=new URL(relative,base).href,cache=await activeCache(base);
+  // Static hosts may redirect .html URLs to extensionless document URLs.
+  const canonical=['offline-map-test','offline/guide'].includes(relative)?relative+'.html':relative;
+  const clean=new URL(canonical,base).href,cache=await activeCache(base);
   const cached=await cache.match(clean);
   const client=event.clientId?await self.clients.get(event.clientId):null;
-  const manager=event.request.mode==='navigate'?relative==='offline-map-test.html':client&&new URL(client.url).pathname===new URL('offline-map-test.html',base).pathname;
+  const isManager=pathname=>['offline-map-test','offline-map-test.html'].some(path=>pathname===new URL(path,base).pathname);
+  const manager=event.request.mode==='navigate'?isManager(url.pathname):client&&isManager(new URL(client.url).pathname);
   // The manager discovers a new manifest online; offline it can still open the old pack.
   // The guide always reads a complete local version, until its replacement is ready.
   if(manager){try{const response=await fetch(event.request);if(response.ok||!cached)return response;}catch(error){if(!cached)throw error;}}

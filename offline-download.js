@@ -35,7 +35,7 @@
   try{
    if(!isSecureContext)throw Error('Sidan saknar säker HTTPS-anslutning. Öppna testlänken direkt i Safari.');
    if(!('serviceWorker' in navigator))throw Error('Den här visningen tillåter inte Service Workers. Öppna länken direkt i Safari, utanför ChatGPT:s webbvisning.');
-   const registrations=await within(Promise.all([navigator.serviceWorker.register('./offline-test-sw.js',{scope:'./offline-map-test.html'}),navigator.serviceWorker.register('./offline-test-sw.js',{scope:'./offline/'})]),'Testvärden svarade inte när offlinetjänsten skulle registreras.');
+   const registrations=await within(Promise.all([navigator.serviceWorker.register('./offline-test-sw.js',{scope:'./offline-map-test'}),navigator.serviceWorker.register('./offline-test-sw.js',{scope:'./offline/'})]),'Testvärden svarade inte när offlinetjänsten skulle registreras.');
    // Wait for the registrations themselves, not serviceWorker.ready, which may
    // wait forever if a host rewrites the document URL outside the requested scope.
    await within(Promise.all(registrations.map(registration=>new Promise((resolve,reject)=>{
