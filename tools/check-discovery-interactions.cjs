@@ -9,7 +9,11 @@ try{
 const page=await browser.newPage({viewport:{width:1280,height:900}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
 await page.route(/^https?:\/\/(?!127\.0\.0\.1)/,r=>r.abort());
 await page.goto('http://127.0.0.1:8766/offline/guide.html');await page.evaluate(()=>guideReady);await page.click('#tab-sevardheter');
-const card=page.locator('[data-place-card]').first();await card.locator('.discovery-heading').click();await card.locator('[data-show-place]').click();await page.waitForTimeout(1300);await page.evaluate(async id=>(await guideReady).markersById.get(id).getElement().click(),await card.getAttribute('data-place-card'));
+const card=page.locator('[data-place-card="palazzo-medici-riccardi"]');await card.locator('.discovery-heading').click();
+assert.equal(await card.locator('[data-action="show"]').count(),0);
+assert.equal(await card.locator('.place-description').count(),0);
+assert.equal((await card.textContent()).match(/Via Cavour 3/g).length,1);
+await page.evaluate(async id=>(await guideReady).markersById.get(id).getElement().click(),await card.getAttribute('data-place-card'));
 await page.waitForSelector('#placeSheet:not([hidden])');
 assert.equal(await page.locator('.sheet-teaser').textContent(),await card.locator('.discovery-teaser').textContent());
 assert.equal(await page.locator('#sheetBody [data-action="show"]').count(),0);

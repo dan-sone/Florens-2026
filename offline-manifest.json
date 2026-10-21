@@ -1,6 +1,6 @@
 {
-  "id": "df63a8084a93b0be",
-  "cache": "trip-guide-florens-2026-offline-pack-df63a8084a93b0be",
+  "id": "1b83e16601181b98",
+  "cache": "trip-guide-florens-2026-offline-pack-1b83e16601181b98",
   "source": {
     "url": "https://download.geofabrik.de/europe/italy/centro-latest.osm.pbf",
     "style": "https://github.com/openstreetmap-carto/openstreetmap-carto/tree/v6.1.0",
@@ -49,8 +49,8 @@
     },
     {
       "path": "assets/offline/documents.json",
-      "bytes": 155809,
-      "sha256": "e55847e3bde1ffb03ee98c5e44cda3e26360f72a8840c815d8ca8892eaa3c323"
+      "bytes": 155989,
+      "sha256": "03c25fe1ebb5a6569493af2ec0cb298930f6c54a77d7931ea1a85a0d830013a6"
     },
     {
       "path": "assets/offline/fonts/glyphicons-halflings-regular.eot",
@@ -559,8 +559,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 75032,
-      "sha256": "2c818446d99f99b2b06a108f7c010233dff7ab5524ddc2e45db5c53fe8ed9535"
+      "bytes": 75119,
+      "sha256": "a90eeb9f69ed44d1c32e3270b03bb9cee704681c6619de25dcd8da9f3e637d48"
     },
     {
       "path": "offline-app.css",
@@ -609,8 +609,8 @@
     },
     {
       "path": "offline/guide.html",
-      "bytes": 75066,
-      "sha256": "e14cf935c0dcf28734d4a1814c20cb48318f6e32481b5462a8fb976c0bed423d"
+      "bytes": 75153,
+      "sha256": "7f54ee2f77b40b6b813f34d311a1652f80d6a7ea4f2ca5cee803bf7fa47edf9f"
     },
     {
       "path": "place-presentation.js",
@@ -629,8 +629,8 @@
     },
     {
       "path": "places.json",
-      "bytes": 241663,
-      "sha256": "c36c716d43e5f7be411d707774e54e2a45403c967dbf97d31f9d3310eefb18a7"
+      "bytes": 239502,
+      "sha256": "3a47d73ba51534636dfa98b4b0826996a59082ccf8fe79c427eb0d09ce15dceb"
     },
     {
       "path": "places.schema.v1.json",
@@ -698,5 +698,5 @@
       "sha256": "b8e6785d43cf00caecf9846b43858fd0a4a8e29392606bd4e481cd4414134e50"
     }
   ],
-  "totalBytes": 67789646
+  "totalBytes": 67787839
 }
