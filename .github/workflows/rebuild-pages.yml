@@ -1,0 +1,39 @@
+name: Rebuild and verify current Pages release
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [opened, reopened]
+    paths: ['.github/workflows/rebuild-pages.yml']
+permissions:
+  contents: read
+  pages: write
+jobs:
+  rebuild:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Rebuild the existing main publication and verify its files
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          # Rebuild the configured main site; never publish pull-request source.
+          gh api "repos/$GH_REPO/pages" --jq 'select(.source.branch == "main" and .source.path == "/" and .build_type == "legacy") | .html_url' > /tmp/site-url
+          site_url=$(cat /tmp/site-url)
+          test -n "$site_url"
+          release_sha=$(gh api "repos/$GH_REPO/commits/main" --jq .sha)
+          for file in index.html places.json; do
+            gh api "repos/$GH_REPO/contents/$file?ref=$release_sha" --jq .content | base64 --decode > "/tmp/expected-$file"
+          done
+          gh api --method POST "repos/$GH_REPO/pages/builds" --jq '{status,url}'
+          for attempt in $(seq 1 35); do
+            if curl --fail --silent --show-error --location --max-time 20 "${site_url}?release=${release_sha}&attempt=${attempt}" --output /tmp/published-index.html && cmp --silent /tmp/expected-index.html /tmp/published-index.html && curl --fail --silent --show-error --location --max-time 20 "${site_url}places.json?release=${release_sha}&attempt=${attempt}" --output /tmp/published-places.json && cmp --silent /tmp/expected-places.json /tmp/published-places.json; then
+              echo "Verified published main revision $release_sha at $site_url"
+              node -e 'const html=require("fs").readFileSync("/tmp/published-index.html","utf8");console.log("Published version: "+html.match(/name="application-version" content="([^"]+)"/)?.[1]);'
+              exit 0
+            fi
+            sleep 20
+          done
+          gh api "repos/$GH_REPO/pages/builds/latest" --jq '{status,commit,error}'
+          exit 1
