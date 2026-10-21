@@ -8,6 +8,7 @@ on:
 permissions:
   contents: read
   pages: read
+  actions: read
 concurrency:
   group: pages-verification-${{ github.ref }}
   cancel-in-progress: true
@@ -24,6 +25,7 @@ jobs:
         run: |
           gh api "repos/$GH_REPO/pages" --jq '{html_url,build_type,source,status}'
           gh api "repos/$GH_REPO/pages/builds/latest" --jq '{status,commit,error}'
+          gh api "repos/$GH_REPO/actions/runs?branch=main&per_page=10" --jq '[.workflow_runs[] | {id,name,status,conclusion,head_sha}]'
       - name: Inspect the currently published guide
         if: github.event_name == 'pull_request'
         env:
