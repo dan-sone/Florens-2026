@@ -465,7 +465,7 @@ function setView(view){
  currentView=view;document.body.dataset.view=view;if(layoutChanged||!panelAnimation)updateReadingPanel(view!=='karta',animate);
  if(view!=='karta'||(!animate&&!panelAnimation)){document.getElementById('schemaPanel').hidden=view!=='schema';document.getElementById('placesPanel').hidden=view!=='sevardheter';document.getElementById('historyPanel').hidden=view!=='historia';}
  document.querySelectorAll('#viewTabs [data-view]').forEach(button=>{const active=button.dataset.view===view;button.setAttribute('aria-selected',String(active));button.tabIndex=active?0:-1});
- if(view==='sevardheter')renderPlaceList();refreshMapLayout(animate||(!layoutChanged&&layoutInProgress));
+ if(view==='sevardheter')renderPlaceList();else syncDiscoveryAreas();refreshMapLayout(animate||(!layoutChanged&&layoutInProgress));
  if(!viewReady){viewReady=true;requestAnimationFrame(()=>document.body.classList.add('view-ready'));}
  if(changed&&view!=='karta')listView.scrollTop=viewScroll.get(view)||0;
  const url=new URL(location.href);url.hash=view==='karta'?'':view;history.replaceState(null,'',url);
@@ -660,12 +660,26 @@ function renderScheduleList(){
 document.getElementById('schemaPanel').addEventListener('toggle',event=>{const section=event.target.closest('details[data-day]');if(section&&section.open&&section.dataset.day!==selectedDay)chooseDay(section.dataset.day);},true);
 const filterBox=document.getElementById('placeFilters');
 const expandedPlaces=new Set();
+const discoveryAreaLayer=L.layerGroup();
+function syncDiscoveryAreas(){
+ discoveryAreaLayer.clearLayers();
+ if(currentView!=='sevardheter'||placesMode!=='area'){if(m.hasLayer(discoveryAreaLayer))m.removeLayer(discoveryAreaLayer);return;}
+ for(const area of guide.discoveryAreas||[]){
+  const points=area.placeIds.map(requirePlace).filter(p=>p.position&&placeVisible(p)).map(coordinates);
+  if(!points.length)continue;
+  const bounds=L.latLngBounds(points).pad(.12);
+  if(points.length===1)bounds.extend(L.latLng(points[0]).toBounds(120));
+  L.rectangle(bounds,{color:'#718580',weight:1,opacity:.45,fillOpacity:.055,interactive:false}).addTo(discoveryAreaLayer);
+ }
+ if(!m.hasLayer(discoveryAreaLayer))discoveryAreaLayer.addTo(m);
+}
+
 let placesMode='overview',renderedPlacesMode='overview',placesGrouping='overview';
 try{const saved=localStorage.getItem(guide.id+':places-view');if(['overview','area','reading'].includes(saved))placesMode=saved;if(localStorage.getItem(guide.id+':places-grouping')==='area')placesGrouping='area';if(placesMode!=='reading')placesGrouping=placesMode;}catch{}
 const listCategorySelection=new Set(categories.filter(c=>m.hasLayer(groups[c.id])).map(c=>c.id));
 m.on('overlayadd overlayremove',event=>{const c=categories.find(c=>groups[c.id]===event.layer);if(!c)return;if(event.type==='overlayadd')listCategorySelection.add(c.id);else listCategorySelection.delete(c.id);renderPlaceList();});
 filterBox.innerHTML=categories.map(c=>'<button aria-pressed="true" data-category="'+esc(c.id)+'">'+categoryIcon(c.id)+esc(c.label)+'</button>').join('');
-function placeVisible(place){return !guide.persistentPlaceIds.includes(place.id)&&listCategorySelection.has(place.category)&&(!bookedIds.includes(place.id)||listCategorySelection.has(bookingCategoryId))}
+function placeVisible(place){return !guide.persistentPlaceIds.includes(place.id)&&(listCategorySelection.has(place.category)||(bookedIds.includes(place.id)&&listCategorySelection.has(bookingCategoryId)))}
 function renderPlaceList(){
  if(renderedPlacesMode!=='reading')document.querySelectorAll('[data-place-card]').forEach(card=>{if(card.open)expandedPlaces.add(card.dataset.placeCard);else expandedPlaces.delete(card.dataset.placeCard);});
  renderedPlacesMode=placesMode;document.getElementById('placesPanel').dataset.placesMode=placesMode;
@@ -692,9 +706,10 @@ function renderPlaceList(){
   return '<section class="discovery-area" data-discovery-category="'+esc(category.id)+'" data-category="'+esc(category.id)+'"><h2>'+categoryIcon(category.id)+'<span>'+esc(category.label)+'</span><span class="category-count">'+ids.length+'</span></h2>'+sortIds(ids).map(id=>cardMarkup(requirePlace(id))).join('')+'</section>';
  }).join('');
  document.getElementById('placeList').innerHTML=visible.length?sectionMarkup:'<p class="list-empty">Inga platser i de valda kategorierna.</p>';
+ syncDiscoveryAreas();
 
 }
-document.getElementById('placeList').addEventListener('toggle',event=>{const card=event.target;if(placesMode==='reading'||!card.isConnected||!card.matches('[data-place-card]'))return;if(card.open)expandedPlaces.add(card.dataset.placeCard);else expandedPlaces.delete(card.dataset.placeCard);},true);
+document.getElementById('placeList').addEventListener('toggle',event=>{const card=event.target;if(placesMode==='reading'||!card.isConnected||!card.matches('[data-place-card]'))return;if(card.open){expandedPlaces.clear();document.querySelectorAll('[data-place-card]').forEach(other=>{if(other!==card)other.open=false;});expandedPlaces.add(card.dataset.placeCard);}else expandedPlaces.delete(card.dataset.placeCard);},true);
 document.getElementById('placeList').addEventListener('click',event=>{
  const heading=event.target.closest('.discovery-heading');
  if(!heading)return;
@@ -702,6 +717,7 @@ document.getElementById('placeList').addEventListener('click',event=>{
  if(!card)return;
  // Keep native disclosure and reading scroll; only focus the map when selecting/opening a place.
  if(placesMode==='reading')event.preventDefault();
+ else if(!card.open){expandedPlaces.clear();document.querySelectorAll('[data-place-card]').forEach(other=>{if(other!==card)other.open=false;});}
  if(placesMode==='reading'||!card.open)showPlaceOnMap(card.dataset.placeCard,{keepReadingView:true});
 });
 document.querySelector('.places-view-mode').addEventListener('click',event=>{const button=event.target.closest('[data-places-mode]');if(!button||placesMode===button.dataset.placesMode)return;placesMode=button.dataset.placesMode;if(placesMode!=='reading')placesGrouping=placesMode;try{localStorage.setItem(guide.id+':places-view',placesMode);localStorage.setItem(guide.id+':places-grouping',placesGrouping);}catch{}renderPlaceList();});
