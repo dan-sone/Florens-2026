@@ -32,3 +32,5 @@ body.place-open #guide{visibility:hidden;pointer-events:none}
 .sheet-header h2{margin:4px 0 0}
 .sheet-body{touch-action:pan-y;scrollbar-width:thin}
 #placeSheet[data-level=compact].has-overflow .sheet-body{overflow-y:auto}
+
+.sheet-body .sheet-teaser{color:var(--muted,#64748b);margin:0 0 12px}

@@ -520,6 +520,9 @@ function placeDescription(place){
  const description=presentation.descriptionSeparator?place.description.split(presentation.descriptionSeparator)[0]:place.description;
  return '<p>'+esc(description.split('\n').filter(line=>!hiddenDescriptionPrefixes.some(prefix=>line.startsWith(prefix))).join('\n')).replace(/\n/g,'<br>')+'</p>'+placeFacts(place);
 }
+function placeInfo(place){
+ return (bookedIds.includes(place.id)?'<span class="place-booked-status" data-category="'+esc(bookingCategoryId)+'">'+categoryIcon(bookingCategoryId)+'Bokat</span>':'')+placeDescription(place)+(place.address?'<p class="address">'+esc(place.address)+'</p>':'')+(place.verification.status==='unresolved'?'<span class="list-badge uncertain">Uppgifter behöver bekräftas</span>':'')+storyMarkup(place.id,true);
+}
 function placeResources(place){
  return (place.website?'<a class="list-action" target="_blank" rel="noopener" href="'+esc(place.website)+'">Webbplats ↗</a>':'')+'<button class="list-action" data-ask-place="'+esc(place.id)+'">Fråga ChatGPT</button>';
 }
@@ -609,8 +612,8 @@ function openPlaceSheet(id){
  clearPlaceSelection();if(revealedMarker&&revealedMarker.marker!==marker)clearRevealedMarker();
  sheetTrigger=marker?.getElement()||document.activeElement;sheetPlaceId=id;
  document.getElementById('sheetTitle').dataset.category=place.category;document.getElementById('sheetTitle').innerHTML=placeIcon(place)+'<span>'+esc(place.name)+'</span>';
- const uncertainty=place.verification.status==='unresolved'?'<p class="list-badge uncertain">Platsuppgifter behöver bekräftas</p>':'';
- sheetBody.innerHTML=(place.address?'<p class="sheet-address">'+esc(place.address)+'</p>':'')+sheetActions(place)+uncertainty+'<div class="sheet-copy">'+placeDescription(place)+storyMarkup(id,true)+'</div>';
+ const focus=place.focus||categories.find(c=>c.id===place.category)?.label||'Upptäck platsen';
+ sheetBody.innerHTML='<p class="sheet-teaser">'+esc(focus)+'</p>'+sheetActions(place)+'<div class="sheet-copy">'+placeInfo(place)+'</div>';
  sheetGrab.hidden=false;sheetHeader.classList.add('draggable');
  sheetBody.scrollTop=0;placeSheet.hidden=false;document.body.classList.add('place-open');selectPlace(id);
  setSheetLevel('compact');
@@ -663,17 +666,44 @@ document.getElementById('schemaPanel').addEventListener('toggle',event=>{const s
 const filterBox=document.getElementById('placeFilters');
 const expandedPlaces=new Set();
 const discoveryAreaLayer=L.layerGroup();
+const discoveryAreaBounds=new Map();
+let activeDiscoveryArea=null,areaScrollFrame=null;
+function focusDiscoveryArea(id){
+ if(currentView!=='sevardheter'||placesMode!=='area'||activeDiscoveryArea===id)return;
+ const bounds=discoveryAreaBounds.get(id);if(!bounds)return;
+ activeDiscoveryArea=id;
+ closePlaceSheet(false);
+ discoveryAreaLayer.eachLayer(layer=>layer.setStyle({weight:layer.discoveryAreaId===id?2:1,fillOpacity:layer.discoveryAreaId===id ? .09 : .055}));
+ m.fitBounds(bounds,{padding:[28,28],maxZoom:16,animate:!window.matchMedia('(prefers-reduced-motion: reduce)').matches});
+}
+function followVisibleDiscoveryArea(){
+ if(currentView!=='sevardheter'||placesMode!=='area')return;
+ const top=listView.getBoundingClientRect().top+Math.min(120,listView.clientHeight*.2);
+ const sections=[...document.querySelectorAll('[data-discovery-area]')];
+ const section=sections.find(section=>section.getBoundingClientRect().bottom>top)||sections.at(-1);
+ if(section)focusDiscoveryArea(section.dataset.discoveryArea);
+}
+listView.addEventListener('scroll',()=>{
+ if(areaScrollFrame!==null)return;
+ areaScrollFrame=requestAnimationFrame(()=>{areaScrollFrame=null;followVisibleDiscoveryArea();});
+},{passive:true});
+for(const type of ['pointerover','focusin'])document.getElementById('placeList').addEventListener(type,event=>{
+ const area=event.target.closest('[data-discovery-area]');
+ if(area&&!area.contains(event.relatedTarget))focusDiscoveryArea(area.dataset.discoveryArea);
+});
 function syncDiscoveryAreas(){
- discoveryAreaLayer.clearLayers();
+ discoveryAreaLayer.clearLayers();discoveryAreaBounds.clear();activeDiscoveryArea=null;
  if(currentView!=='sevardheter'||placesMode!=='area'){if(m.hasLayer(discoveryAreaLayer))m.removeLayer(discoveryAreaLayer);return;}
  for(const area of guide.discoveryAreas||[]){
   const points=area.placeIds.map(requirePlace).filter(p=>p.position&&placeVisible(p)).map(coordinates);
   if(!points.length)continue;
   const bounds=L.latLngBounds(points).pad(.12);
   if(points.length===1)bounds.extend(L.latLng(points[0]).toBounds(120));
-  L.rectangle(bounds,{color:'#718580',weight:1,opacity:.45,fillOpacity:.055,interactive:false}).addTo(discoveryAreaLayer);
+  discoveryAreaBounds.set(area.id,bounds);
+  const layer=L.rectangle(bounds,{color:'#718580',weight:1,opacity:.45,fillOpacity:.055,interactive:false});layer.discoveryAreaId=area.id;layer.addTo(discoveryAreaLayer);
  }
  if(!m.hasLayer(discoveryAreaLayer))discoveryAreaLayer.addTo(m);
+ requestAnimationFrame(followVisibleDiscoveryArea);
 }
 
 let placesMode='overview',renderedPlacesMode='overview',placesGrouping='overview';
@@ -690,11 +720,9 @@ function renderPlaceList(){
  const eligible=content.places.filter(p=>!guide.persistentPlaceIds.includes(p.id)),visible=eligible.filter(placeVisible),visibleIds=new Set(visible.map(p=>p.id));
  document.getElementById('placeCount').textContent=visible.length+' av '+eligible.length+' platser';
  const cardMarkup=place=>{
-  const presentation=markerPresentation[place.id]||{};
-  const description=(presentation.descriptionSeparator?place.description.split(presentation.descriptionSeparator)[0]:place.description).split('\n').filter(line=>!hiddenDescriptionPrefixes.some(prefix=>line.startsWith(prefix))).join('\n');
   const categoryKey=place.category;
   const focus=place.focus||categories.find(c=>c.id===place.category)?.label||'Upptäck platsen';
-  return '<details class="list-card discovery-card" data-place-card="'+esc(place.id)+'" data-category="'+esc(categoryKey)+'"'+(placesMode==='reading'||expandedPlaces.has(place.id)?' open':'')+'><summary class="discovery-heading"'+(placesMode==='reading'?' tabindex="0"':'')+'>'+placeIcon(place)+'<h3><span class="discovery-title">'+esc(place.name)+'</span></h3><svg class="discovery-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg><p class="discovery-teaser">'+esc(focus)+'</p></summary><div class="discovery-body">'+(bookedIds.includes(place.id)?'<span class="place-booked-status" data-category="'+esc(bookingCategoryId)+'">'+categoryIcon(bookingCategoryId)+'Bokat</span>':'')+'<p>'+esc(description).replace(/\n/g,'<br>')+'</p>'+placeFacts(place)+(place.address?'<p class="address">'+esc(place.address)+'</p>':'')+(place.verification.status==='unresolved'?'<span class="list-badge uncertain">Uppgifter behöver bekräftas</span>':'')+storyMarkup(place.id,true)+listActions(place)+'</div></details>';
+  return '<details class="list-card discovery-card" data-place-card="'+esc(place.id)+'" data-category="'+esc(categoryKey)+'"'+(placesMode==='reading'||expandedPlaces.has(place.id)?' open':'')+'><summary class="discovery-heading"'+(placesMode==='reading'?' tabindex="0"':'')+'>'+placeIcon(place)+'<h3><span class="discovery-title">'+esc(place.name)+'</span></h3><svg class="discovery-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg><p class="discovery-teaser">'+esc(focus)+'</p></summary><div class="discovery-body">'+listActions(place)+placeInfo(place)+'</div></details>';
  };
  const sortPlaces=(a,b)=>presentationRegistry.compare(a,b,placeCategories);
  const sortIds=ids=>ids.map(requirePlace).sort(sortPlaces).map(p=>p.id);
