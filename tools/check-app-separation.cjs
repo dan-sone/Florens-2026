@@ -20,6 +20,23 @@ async function load(documents,label){
   for(const place of documents.places.places.filter(p=>!documents.guide.persistentPlaceIds.includes(p.id)))assert(w.document.querySelector('[data-place-card="'+place.id+'"]'),'Missing list card: '+place.id);
   for(const category of documents.guide.categories)assert(w.document.querySelector('#placeFilters [data-category="'+category.id+'"]'),'Missing configured category');
   const first=documents.places.places.find(p=>!documents.guide.persistentPlaceIds.includes(p.id));g.showPlaceOnMap(first.id);assert(g.markersById.get(first.id));
+  const cards=[...w.document.querySelectorAll('[data-place-card]')];
+  cards[0].open=true;cards[0].dispatchEvent(new w.Event('toggle'));
+  cards[1].open=true;cards[1].dispatchEvent(new w.Event('toggle'));
+  assert.equal(cards[0].open,false);assert.equal(cards[1].open,true);
+  const booked=documents.places.places.find(p=>documents.guide.bookings.some(b=>b.placeId===p.id)&&!documents.guide.persistentPlaceIds.includes(p.id));
+  const bookingCategory=documents['app-config'].bookingCategoryId;
+  for(const selection of booked?[[bookingCategory],[booked.category],[]]:[]){
+   g.listCategorySelection.clear();selection.forEach(id=>g.listCategorySelection.add(id));g.setView('sevardheter');
+   assert.equal(!!w.document.querySelector('[data-place-card="'+booked.id+'"]'),selection.length>0);
+  }
+  documents.guide.categories.forEach(c=>g.listCategorySelection.add(c.id));g.setView('sevardheter');
+  w.document.querySelector('[data-places-mode="area"]').click();
+  const areaLayers=()=>Object.values(g.map._layers).filter(layer=>layer instanceof w.L.Rectangle&&layer.options.fillOpacity===.055);
+  assert.equal(areaLayers().length,documents.guide.discoveryAreas.length);
+  g.setView('karta');assert.equal(areaLayers().length,0);
+  g.setView('sevardheter');assert.equal(areaLayers().length,documents.guide.discoveryAreas.length);
+  w.document.querySelector('[data-places-mode="overview"]').click();assert.equal(areaLayers().length,0);
   console.log('PASS app startup:',label,'title, all markers, configurable layers, list content, place selection');g.map.remove();
  }finally{w.close();}
 }
