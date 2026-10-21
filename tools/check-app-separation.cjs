@@ -19,11 +19,23 @@ async function load(documents,label){
   assert.equal(w.document.title,documents.guide.title);assert.equal(g.markersById.size,documents.places.places.filter(p=>p.position).length);
   for(const place of documents.places.places.filter(p=>!documents.guide.persistentPlaceIds.includes(p.id)))assert(w.document.querySelector('[data-place-card="'+place.id+'"]'),'Missing list card: '+place.id);
   for(const category of documents.guide.categories)assert(w.document.querySelector('#placeFilters [data-category="'+category.id+'"]'),'Missing configured category');
-  const first=documents.places.places.find(p=>!documents.guide.persistentPlaceIds.includes(p.id));g.showPlaceOnMap(first.id);assert(g.markersById.get(first.id));
+  const first=documents.places.places.find(p=>!documents.guide.persistentPlaceIds.includes(p.id));g.showPlaceOnMap(first.id,{keepReadingView:true});assert(g.markersById.get(first.id));
   const cards=[...w.document.querySelectorAll('[data-place-card]')];
   cards[0].open=true;cards[0].dispatchEvent(new w.Event('toggle'));
   cards[1].open=true;cards[1].dispatchEvent(new w.Event('toggle'));
   assert.equal(cards[0].open,false);assert.equal(cards[1].open,true);
+  for(const card of cards){
+   const place=documents.places.places.find(p=>p.id===card.dataset.placeCard);
+   g.openPlaceSheet(place.id);
+   assert.equal(w.document.querySelector('#sheetTitle span:last-child').textContent,place.name);
+   assert.equal(w.document.querySelector('.sheet-teaser').textContent,card.querySelector('.discovery-teaser').textContent);
+   assert.equal(w.document.querySelector('#sheetBody [data-action="show"]'),null);
+   const body=card.querySelector('.discovery-body').cloneNode(true);
+   assert(body.firstElementChild.matches('.sheet-actions'));
+   body.querySelector('.sheet-actions').remove();
+   body.querySelector('p.address')?.textContent==='Kartposition saknas ännu.'&&body.querySelector('p.address').remove();
+   assert.equal(w.document.querySelector('.sheet-copy').innerHTML,body.innerHTML);
+  }
   const booked=documents.places.places.find(p=>documents.guide.bookings.some(b=>b.placeId===p.id)&&!documents.guide.persistentPlaceIds.includes(p.id));
   const bookingCategory=documents['app-config'].bookingCategoryId;
   for(const selection of booked?[[bookingCategory],[booked.category],[]]:[]){
@@ -32,8 +44,20 @@ async function load(documents,label){
   }
   documents.guide.categories.forEach(c=>g.listCategorySelection.add(c.id));g.setView('sevardheter');
   w.document.querySelector('[data-places-mode="area"]').click();
-  const areaLayers=()=>Object.values(g.map._layers).filter(layer=>layer instanceof w.L.Rectangle&&layer.options.fillOpacity===.055);
+  const areaLayers=()=>Object.values(g.map._layers).filter(layer=>layer instanceof w.L.Rectangle&&layer.discoveryAreaId);
   assert.equal(areaLayers().length,documents.guide.discoveryAreas.length);
+  const fits=[];g.map.fitBounds=(bounds,options)=>{fits.push({bounds,options});return g.map;};
+  const sections=[...w.document.querySelectorAll('[data-discovery-area]')];
+  sections[0].dispatchEvent(new w.MouseEvent('pointerover',{bubbles:true}));
+  assert.equal(fits.length,1);
+  sections[0].querySelector('h2').dispatchEvent(new w.MouseEvent('pointerover',{bubbles:true,relatedTarget:sections[0]}));assert.equal(fits.length,1);
+  if(sections.length>1){
+  sections[1].dispatchEvent(new w.FocusEvent('focusin',{bubbles:true}));assert.equal(fits.length,2);
+  assert(fits.at(-1).bounds.contains(w.L.latLng(documents.places.places.find(p=>p.id===documents.guide.discoveryAreas[1].placeIds[0]).position.latitude,documents.places.places.find(p=>p.id===documents.guide.discoveryAreas[1].placeIds[0]).position.longitude)));
+  sections.forEach((section,i)=>section.getBoundingClientRect=()=>({bottom:i===0?300:600}));
+  w.document.getElementById('listView').dispatchEvent(new w.Event('scroll'));
+  await new Promise(resolve=>w.requestAnimationFrame(resolve));assert.equal(fits.length,3);
+  }
   g.setView('karta');assert.equal(areaLayers().length,0);
   g.setView('sevardheter');assert.equal(areaLayers().length,documents.guide.discoveryAreas.length);
   w.document.querySelector('[data-places-mode="overview"]').click();assert.equal(areaLayers().length,0);
