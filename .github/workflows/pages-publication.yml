@@ -2,7 +2,7 @@ name: Verify Pages publication
 on:
   push:
     branches: [main]
-    paths: ['index.html', 'place-sheet.css', 'ui-theme.css', 'package.json', '.github/workflows/pages-publication.yml']
+    paths: ['index.html', 'places.json', 'place-sheet.css', 'ui-theme.css', 'package.json', '.github/workflows/pages-publication.yml']
   pull_request:
     paths: ['.github/workflows/pages-publication.yml']
 permissions:
@@ -46,8 +46,10 @@ jobs:
           for attempt in $(seq 1 50); do
             if curl --fail --silent --show-error --location --max-time 30 "${site_url}?release=${GITHUB_SHA}&attempt=${attempt}" --output /tmp/published-guide.html; then
               if EXPECTED_VERSION="$expected_version" node -e 'const fs=require("fs"),expected=process.env.EXPECTED_VERSION,html=fs.readFileSync("/tmp/published-guide.html","utf8"),version=html.match(/name="application-version" content="([^"]+)"/)?.[1];console.log(JSON.stringify({expected,version}));if(version!==expected||!html.includes("function placeInfo(place)")||!html.includes("function focusDiscoveryArea(id)"))process.exit(1);'; then
-                echo "Verified published version $expected_version at $site_url"
-                exit 0
+                if cmp --silent index.html /tmp/published-guide.html && curl --fail --silent --show-error --location --max-time 30 "${site_url}places.json?release=${GITHUB_SHA}&attempt=${attempt}" --output /tmp/published-places.json && cmp --silent places.json /tmp/published-places.json; then
+                  echo "Verified published version $expected_version and matching guide/content files at $site_url"
+                  exit 0
+                fi
               fi
             fi
             sleep 20

@@ -30,6 +30,9 @@ async function load(documents,label){
    assert.equal(w.document.querySelector('#sheetTitle span:last-child').textContent,place.name);
    assert.equal(w.document.querySelector('.sheet-teaser').textContent,card.querySelector('.discovery-teaser').textContent);
    assert.equal(w.document.querySelector('#sheetBody [data-action="show"]'),null);
+   assert.equal(card.querySelector('[data-action="show"]'),null);
+   assert.deepEqual([...card.querySelectorAll('[data-action]')].map(b=>b.dataset.action),[...w.document.querySelectorAll('#sheetBody [data-action]')].map(b=>b.dataset.action));
+   if(!place.description.trim()){assert.equal(card.querySelector('.place-description'),null);assert.equal(w.document.querySelector('#sheetBody .place-description'),null);}
    const body=card.querySelector('.discovery-body').cloneNode(true);
    assert(body.firstElementChild.matches('.sheet-actions'));
    body.querySelector('.sheet-actions').remove();

@@ -1,8 +1,8 @@
 {
   "$schema": "./places.schema.v6.json",
   "schemaVersion": 6,
-  "contentVersion": 20,
-  "updatedAt": "2026-10-18T19:28:32.648Z",
+  "contentVersion": 21,
+  "updatedAt": "2026-10-21T14:43:40.482Z",
   "places": [
     {
       "id": "hotel-la-scaletta",
@@ -191,7 +191,7 @@
       "id": "cuculia",
       "name": "Cuculia",
       "category": "food-drink",
-      "description": "Kreativ säsongsmat i Oltrarno. Inte längre bokad för födelsedagsmiddagen den 14 oktober; middagen är flyttad till IO Osteria Personale.",
+      "description": "Inte längre bokad för födelsedagsmiddagen den 14 oktober; middagen är flyttad till IO Osteria Personale.",
       "address": "Via dei Serragli 3R, Firenze",
       "position": {
         "latitude": 43.7682311,
@@ -308,7 +308,7 @@
       "id": "fondazione-arte-della-seta-lisio",
       "name": "Fondazione Arte della Seta Lisio",
       "category": "craft",
-      "description": "Tors 15/10 · 10.15 · bokad guidad visning med Cecilia Cerchiarini. Taxi från hotellet cirka 09.35. Räkna med upp till två timmar eller mer.\nEntré från Via Benedetto Fortini 143: ring på ”Fondazione Lisio-Uffici”. Fortsätt cirka 50 meter uppför; stiftelsen ligger till vänster om kyrkan. Operatörens kartpunkt och Apple-markören skiljer cirka 105 meter, så ange adressen till taxin och följ grindinstruktionen.",
+      "description": "Tors 15/10 · 10.15 · bokad guidad visning med Cecilia Cerchiarini. Taxi från hotellet cirka 09.35. Räkna med upp till två timmar eller mer.\nVid entrén: ring på ”Fondazione Lisio-Uffici”. Fortsätt cirka 50 meter uppför; stiftelsen ligger till vänster om kyrkan. Operatörens kartpunkt och Apple-markören skiljer cirka 105 meter, så ange adressen till taxin och följ grindinstruktionen.",
       "address": "Via Benedetto Fortini 143, Firenze",
       "position": {
         "latitude": 43.7454328,
@@ -591,7 +591,7 @@
       "id": "ponte-vecchio",
       "name": "Ponte Vecchio",
       "category": "see-do",
-      "description": "Florens klassiska bro",
+      "description": "",
       "address": null,
       "position": {
         "latitude": 43.7679813,
@@ -665,7 +665,7 @@
       "id": "palazzo-pitti",
       "name": "Palazzo Pitti",
       "category": "see-do",
-      "description": "Palats och Pitti-kvarteren",
+      "description": "",
       "address": "Piazza de’ Pitti 1, Firenze",
       "position": {
         "latitude": 43.7651745,
@@ -768,7 +768,7 @@
       "id": "piazza-della-passera",
       "name": "Piazza della Passera",
       "category": "see-do",
-      "description": "Litet torg i Oltrarno",
+      "description": "",
       "address": null,
       "position": {
         "latitude": 43.7671987,
@@ -834,7 +834,7 @@
       "id": "piazza-santo-spirito",
       "name": "Piazza Santo Spirito",
       "category": "food-drink",
-      "description": "Livligt kvarter för aperitivo",
+      "description": "",
       "address": null,
       "position": {
         "latitude": 43.7665769,
@@ -900,7 +900,7 @@
       "id": "basilica-di-santo-spirito",
       "name": "Basilica di Santo Spirito",
       "category": "see-do",
-      "description": "Kyrka av Brunelleschi",
+      "description": "",
       "address": "Piazza Santo Spirito 30, Firenze",
       "position": {
         "latitude": 43.7675493,
@@ -1088,7 +1088,7 @@
       "id": "piazza-della-signoria",
       "name": "Piazza della Signoria",
       "category": "see-do",
-      "description": "Palazzo Vecchio och skulpturer",
+      "description": "",
       "address": null,
       "position": {
         "latitude": 43.76968,
@@ -1154,7 +1154,7 @@
       "id": "loggia-dei-lanzi",
       "name": "Loggia dei Lanzi",
       "category": "see-do",
-      "description": "Skulpturer under arkaderna",
+      "description": "",
       "address": null,
       "position": {
         "latitude": 43.7691879,
@@ -1222,7 +1222,7 @@
       "id": "orsanmichele",
       "name": "Orsanmichele",
       "category": "see-do",
-      "description": "Ovanlig kyrka och medeltida arkitektur",
+      "description": "Medeltida arkitektur.",
       "address": null,
       "position": {
         "latitude": 43.7707139,
@@ -1290,7 +1290,7 @@
       "id": "piazza-della-repubblica",
       "name": "Piazza della Repubblica",
       "category": "see-do",
-      "description": "Centralt torg",
+      "description": "",
       "address": null,
       "position": {
         "latitude": 43.7715006,
@@ -1422,7 +1422,7 @@
       "id": "ponte-santa-trinita",
       "name": "Ponte Santa Trinita",
       "category": "see-do",
-      "description": "Fin vy över Ponte Vecchio",
+      "description": "",
       "address": null,
       "position": {
         "latitude": 43.7690199,
@@ -1488,7 +1488,7 @@
       "id": "basilica-di-santa-croce",
       "name": "Basilica di Santa Croce",
       "category": "see-do",
-      "description": "Kyrka och torg",
+      "description": "",
       "address": "Piazza Santa Croce 16, Firenze",
       "position": {
         "latitude": 43.7683899,
@@ -1556,7 +1556,7 @@
       "id": "mercato-di-santambrogio",
       "name": "Mercato di Sant’Ambrogio",
       "category": "shopping",
-      "description": "Lokal matmarknad, förmiddag",
+      "description": "Passar för ett förmiddagsbesök.",
       "address": "Piazza Lorenzo Ghiberti, Firenze",
       "position": {
         "latitude": 43.7705849,
@@ -1648,7 +1648,7 @@
       "id": "giulio-giannini-e-figlio",
       "name": "Giulio Giannini e Figlio",
       "category": "craft",
-      "description": "Via dei Velluti 1 vid Piazza Pitti · handmarmorerat papper och bokbinderi.\nSpontant stopp om vi är i närheten, utan bokning. Titta på papper, anteckningsböcker och album i butik/verkstad; möjlighet att köpa ett minne. Ingen workshop är bokad.",
+      "description": "Spontant stopp om vi är i närheten, utan bokning. Titta på papper, anteckningsböcker och album i butik/verkstad; möjlighet att köpa ett minne. Ingen workshop är bokad.",
       "address": "Via dei Velluti 1R, Firenze",
       "position": {
         "latitude": 43.7664069,
@@ -1730,7 +1730,7 @@
       "id": "scuola-del-cuoio",
       "name": "Scuola del Cuoio",
       "category": "craft",
-      "description": "Läderhantverk bakom Santa Croce. Entré genom trädgården, Via San Giuseppe 5R. Butiksbesök och arbete i verkstaden har separata tider.",
+      "description": "Entré genom trädgården bakom Santa Croce. Butiksbesök och arbete i verkstaden har separata tider.",
       "address": "Via San Giuseppe 5R, Firenze",
       "position": {
         "latitude": 43.7677701,
@@ -1842,7 +1842,7 @@
       "id": "museo-opificio-delle-pietre-dure",
       "name": "Museo Opificio delle Pietre Dure",
       "category": "craft",
-      "description": "Florentinsk stenintarsia och teknik",
+      "description": "",
       "address": "Via degli Alfani 78, Firenze",
       "position": {
         "latitude": 43.7761815,
@@ -1952,7 +1952,7 @@
       "id": "officina-profumo-farmaceutica-smn",
       "name": "Officina Profumo-Farmaceutica SMN",
       "category": "craft",
-      "description": "Historisk apotekar- och parfymmiljö",
+      "description": "",
       "address": "Via della Scala 16, Firenze",
       "position": {
         "latitude": 43.7741036,
@@ -2046,7 +2046,7 @@
       "id": "porta-san-niccolo",
       "name": "Porta San Niccolò",
       "category": "see-do",
-      "description": "Start på utsiktspromenaden",
+      "description": "",
       "address": null,
       "position": {
         "latitude": 43.7645237,
@@ -2121,7 +2121,7 @@
       "id": "piazzale-michelangelo",
       "name": "Piazzale Michelangelo",
       "category": "see-do",
-      "description": "Panorama över Florens\n\nAlternativ popuptext i index.html:\nValfri utsikt; buss eller taxi tillbaka.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
+      "description": "",
       "address": null,
       "position": {
         "latitude": 43.762819,
@@ -2300,7 +2300,7 @@
       "id": "le-volpi-e-luva",
       "name": "Le Volpi e l’Uva",
       "category": "food-drink",
-      "description": "Vinbar och smårätter nära Ponte Vecchio",
+      "description": "",
       "address": "Piazza dei Rossi 1R, Firenze",
       "position": {
         "latitude": 43.7670149,
@@ -2402,7 +2402,7 @@
       "id": "il-santino",
       "name": "Il Santino",
       "category": "food-drink",
-      "description": "Via di Santo Spirito 60R\nVinbar med små rätter och spännande viner.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
+      "description": "Små rätter och spännande viner.",
       "address": "Via di Santo Spirito 60R, Firenze",
       "position": {
         "latitude": 43.7689621,
@@ -2470,7 +2470,7 @@
       "id": "enoteca-pitti-gola-e-cantina",
       "name": "Enoteca Pitti Gola e Cantina",
       "category": "food-drink",
-      "description": "Fre 16/10 · 19.00 · bokat.\nPiazza de’ Pitti 16\nVinfokus, små producenter och tilltugg mitt emot Pitti.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
+      "description": "Fre 16/10 · 19.00 · bokat.\nVinfokus, små producenter och tilltugg mitt emot Pitti.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
       "address": "Piazza de’ Pitti 16, Firenze",
       "position": {
         "latitude": 43.7661198,
@@ -2554,7 +2554,7 @@
       "id": "enoteca-spontanea",
       "name": "Enoteca Spontanea",
       "category": "food-drink",
-      "description": "Via Maggio 61R\nIntressant vinbar på er promenad genom Oltrarno.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
+      "description": "Ett stopp på promenaden genom Oltrarno.",
       "address": "Via Maggio 61R, Firenze",
       "position": {
         "latitude": 43.7655711,
@@ -2614,7 +2614,7 @@
       "id": "fuori-porta",
       "name": "Fuori Porta",
       "category": "food-drink",
-      "description": "Via del Monte alle Croci 10R\nVin och lättare mat vid San Niccolò, bra vid utsiktspromenaden.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
+      "description": "Vin och lättare mat vid San Niccolò, bra vid utsiktspromenaden.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
       "address": "Via del Monte alle Croci 10R, Firenze",
       "position": {
         "latitude": 43.7633882,
@@ -2731,7 +2731,7 @@
       "id": "loggia-roof-bar",
       "name": "Loggia Roof Bar",
       "category": "food-drink",
-      "description": "Piazza Santo Spirito 9\nAperitivo med utsikt över Santo Spirito.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
+      "description": "Utsikt över Santo Spirito.",
       "address": "Piazza Santo Spirito 9, Firenze",
       "position": {
         "latitude": 43.7662261,
@@ -2834,7 +2834,7 @@
       "id": "il-santo-bevitore",
       "name": "Il Santo Bevitore",
       "category": "food-drink",
-      "description": "Via Santo Spirito 64R\nAvslappnad restaurang med ambitiös vinlista; obokat alternativ.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
+      "description": "Avslappnad restaurang med ambitiös vinlista; obokat alternativ.\nMarkören visar platsen. Använd Gå för aktuell gångväg i Apple Kartor.",
       "address": "Via Santo Spirito 64R, Firenze",
       "position": {
         "latitude": 43.7690562,
@@ -4157,7 +4157,7 @@
       "id": "santa-maria-novella",
       "name": "Santa Maria Novella",
       "category": "see-do",
-      "description": "Piazza Santa Maria Novella\nRenässansfasad och kyrkorum.",
+      "description": "",
       "address": "Piazza Santa Maria Novella",
       "position": {
         "latitude": 43.7743,
@@ -4300,7 +4300,7 @@
       "id": "basilica-di-san-lorenzo",
       "name": "Basilica di San Lorenzo",
       "category": "see-do",
-      "description": "Piazza di San Lorenzo\nBrunelleschis kyrka och Medicis historia.",
+      "description": "",
       "address": "Piazza di San Lorenzo",
       "position": {
         "latitude": 43.7748667,
@@ -4394,7 +4394,7 @@
       "id": "cappelle-medicee",
       "name": "Cappelle Medicee",
       "category": "see-do",
-      "description": "Piazza di Madonna degli Aldobrandini 6\nMichelangelos skulpturer och praktfullt pietra dura-arbete.",
+      "description": "Praktfullt pietra dura-arbete.",
       "address": "Piazza di Madonna degli Aldobrandini 6",
       "position": {
         "latitude": 43.7749984,
@@ -4488,7 +4488,7 @@
       "id": "galleria-dellaccademia",
       "name": "Galleria dell’Accademia",
       "category": "see-do",
-      "description": "Via Ricasoli 58/60\nMichelangelos David; museibesök kräver tid.",
+      "description": "Avsätt tid för museibesöket.",
       "address": "Via Ricasoli 58/60",
       "position": {
         "latitude": 43.7767763,
@@ -4582,7 +4582,7 @@
       "id": "museo-nazionale-del-bargello",
       "name": "Museo Nazionale del Bargello",
       "category": "see-do",
-      "description": "Via del Proconsolo 4\nRenässansskulptur och konsthantverk.",
+      "description": "",
       "address": "Via del Proconsolo 4",
       "position": {
         "latitude": 43.7703946,
@@ -4676,7 +4676,7 @@
       "id": "giardino-di-boboli",
       "name": "Giardino di Boboli",
       "category": "see-do",
-      "description": "Palazzo Pitti / Piazza de’ Pitti\nHistorisk trädgård bakom Palazzo Pitti.",
+      "description": "",
       "address": "Palazzo Pitti / Piazza de’ Pitti",
       "position": {
         "latitude": 43.7625711,
@@ -4771,7 +4771,7 @@
       "id": "palazzo-medici-riccardi",
       "name": "Palazzo Medici Riccardi",
       "category": "see-do",
-      "description": "Via Cavour 3\nMedicifamiljens renässanspalats.",
+      "description": "",
       "address": "Via Cavour 3",
       "position": {
         "latitude": 43.7751456,
@@ -4950,7 +4950,7 @@
       "id": "antico-setificio-fiorentino",
       "name": "Antico Setificio Fiorentino",
       "category": "craft",
-      "description": "Via Lorenzo Bartolini 4\nHistoriskt sidenväveri med gamla vävstolar. Tidigare bortvalt som bokat besök; besök i verkstaden endast efter överenskommelse.",
+      "description": "Tidigare bortvalt som bokat besök; besök i verkstaden endast efter överenskommelse.",
       "address": "Via Lorenzo Bartolini 4",
       "position": {
         "latitude": 43.7708604,
@@ -5033,7 +5033,7 @@
       "id": "alberto-cozzi-legatoria",
       "name": "Alberto Cozzi – Legatoria",
       "category": "craft",
-      "description": "Via del Parione 35R\nTraditionellt bokbinderi med handgjorda anteckningsböcker och marmorerat papper.",
+      "description": "Handgjorda anteckningsböcker och marmorerat papper.",
       "address": "Via del Parione 35R",
       "position": {
         "latitude": 43.7707144,
@@ -5153,7 +5153,7 @@
       "id": "riccardo-luci-carta-marmorizzata",
       "name": "Riccardo Luci – Carta Marmorizzata",
       "category": "craft",
-      "description": "Via del Parione 35A/R\nMarmorerat papper och läder, bokbinderi och egen verkstad; nära Alberto Cozzi.\nMarkören är ungefärlig; använd Apple Kartor för entrén.",
+      "description": "Marmorerat papper och läder, bokbinderi och egen verkstad; nära Alberto Cozzi.\nMarkören är ungefärlig; använd Apple Kartor för entrén.",
       "address": "Via del Parione 35A/R",
       "position": {
         "latitude": 43.7706865,
@@ -5230,7 +5230,7 @@
       "id": "scarpelli-mosaici",
       "name": "Scarpelli Mosaici",
       "category": "craft",
-      "description": "Via Ricasoli 59R\nFlorentinsk stenmosaik, pietra dura, i en specialiserad verkstad.\nMarkören är ungefärlig; använd Apple Kartor för entrén.",
+      "description": "Florentinsk stenmosaik, pietra dura, i en specialiserad verkstad.\nMarkören är ungefärlig; använd Apple Kartor för entrén.",
       "address": "Via Ricasoli 59R",
       "position": {
         "latitude": 43.7752308,
@@ -5307,7 +5307,7 @@
       "id": "casa-dei-tessuti",
       "name": "Casa dei Tessuti",
       "category": "craft",
-      "description": "Via dei Pecori 20/R\nKlassisk tygaffär med italienska mode- och skrädderityger, bland annat siden och ull.\nMarkören är ungefärlig; använd Apple Kartor för entrén.",
+      "description": "Italienska mode- och skrädderityger, bland annat siden och ull.",
       "address": "Via dei Pecori 20–24R, Firenze",
       "position": {
         "latitude": 43.7728486,
@@ -5384,7 +5384,7 @@
       "id": "ermini-agostino",
       "name": "Ermini Agostino",
       "category": "craft",
-      "description": "Borgo San Lorenzo 3\nTraditionell tygaffär med kvalitetsvävar i närheten av Duomo.\nMarkören är ungefärlig; använd Apple Kartor för entrén.",
+      "description": "Kvalitetsvävar i närheten av Duomo.",
       "address": "Borgo San Lorenzo 3",
       "position": {
         "latitude": 43.7738174,
@@ -5497,7 +5497,7 @@
       "id": "valli-tessuti",
       "name": "Valli Tessuti",
       "category": "craft",
-      "description": "Via della Vigna Nuova 81/R\nItalienska mode- och skrädderityger, siden, ull och andra exklusiva material.",
+      "description": "Italienska mode- och skrädderityger, siden, ull och andra exklusiva material.",
       "address": "Via della Vigna Nuova 81/R",
       "position": {
         "latitude": 43.7709311,
@@ -5580,7 +5580,7 @@
       "id": "le-telerie-toscane",
       "name": "Le Telerie Toscane",
       "category": "craft",
-      "description": "Sdrucciolo de’ Pitti 15R\nToscanska hemtextilier, linne, dukar och textilier med traditionella mönster.",
+      "description": "Linne, dukar och textilier med traditionella toskanska mönster.",
       "address": "Sdrucciolo de’ Pitti 15R",
       "position": {
         "latitude": 43.7662154,
@@ -5657,7 +5657,7 @@
       "id": "passamaneria-toscana",
       "name": "Passamaneria Toscana",
       "category": "craft",
-      "description": "Via del Canto dei Nelli 10\nDekorativa textilier, band och passamanteri. Adressuppgifter varierar mellan källor; kontrollera före besök.\nMarkören är ungefärlig; använd Apple Kartor för entrén.",
+      "description": "Adressuppgifter varierar mellan källor; kontrollera före besök.",
       "address": "Via del Canto dei Nelli 10",
       "position": {
         "latitude": 43.7748,
@@ -5726,7 +5726,7 @@
       "id": "chalet-il-boschetto",
       "name": "Chalet il Boschetto",
       "category": "food-drink",
-      "description": "Piazzale Michelangelo, vid Giardino dell’Iris.\nEnkel kiosk med schiacciata, panini, piadine, kaffe och dryck. Några sittplatser; även takeaway till utsikten.\nSpontant lunchalternativ. Öppettiderna varierar mellan källor; kontrollera på plats.",
+      "description": "Vid Giardino dell’Iris.\nEnkel kiosk med schiacciata, panini, piadine, kaffe och dryck. Några sittplatser; även takeaway till utsikten.\nSpontant lunchalternativ. Öppettiderna varierar mellan källor; kontrollera på plats.",
       "address": "Chalet il Boschetto, Piazzale Michelangelo, Firenze",
       "position": {
         "latitude": 43.7620442,
@@ -5786,7 +5786,7 @@
       "id": "terrazze-michelangelo",
       "name": "Terrazze Michelangelo",
       "category": "food-drink",
-      "description": "Viale Michelangiolo 61, Firenze.\nAvslappnat lunchalternativ nära Piazzale Michelangelo, med pizza och italienska rätter. Restaurangens webbplats anger pizza även till lunch.\nObokat alternativ till kiosklunch.",
+      "description": "Avslappnat lunchalternativ nära Piazzale Michelangelo, med pizza och italienska rätter. Restaurangens webbplats anger pizza även till lunch.\nObokat alternativ till kiosklunch.",
       "address": "Terrazze Michelangelo, Viale Michelangiolo 61, Firenze",
       "position": {
         "latitude": 43.7613203,
